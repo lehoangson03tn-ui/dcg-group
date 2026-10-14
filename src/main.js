@@ -58,9 +58,9 @@ ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Hệ sinh thái"}])}
 </div>
 </div></section>`;}
 function breadcrumb(items){return `<nav class="breadcrumbs" aria-label="Đường dẫn trang">${items.map((item,i)=>i===items.length-1?`<span aria-current="page">${esc(item.name)}</span>`:`<a href="${item.href}">${esc(item.name)}</a><span aria-hidden="true">/</span>`).join("")}</nav>`;}
-function brandTile(b){return `<a class="directory-tile" href="/he-sinh-thai/dcg-${b.slug}" aria-label="Khám phá ${b.name}">
+function brandTile(b){return `<a class="directory-tile directory-tile--${b.slug}" href="/he-sinh-thai/dcg-${b.slug}" aria-label="Khám phá ${b.name}">
    <div class="tile-banner"><img src="${A+b.image}" alt="" loading="lazy" decoding="async"><span class="tile-banner-label">DCG GROUP · ${esc(b.field)}</span></div>
-   <div class="tile-meta"><div class="tile-identity">${brandMark(b,'tile')}<div class="tile-identity-copy"><h2>${b.name}</h2><p>${b.field}</p></div></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
+   <div class="tile-meta"><div class="tile-identity">${brandMark(b,'tile')}<div class="tile-identity-copy"><h2>${b.name}</h2><p>${b.field}</p></div></div></div>
    <p class="tile-summary">${b.summary}</p>
    <span class="tile-more">Khám phá thương hiệu <span aria-hidden="true">→</span></span>
  </a>`;}

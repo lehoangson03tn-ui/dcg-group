@@ -41,14 +41,15 @@ body{color:var(--gg-ink)}
 .tile-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;filter:brightness(1.08) saturate(.95)}
 .directory-tile:hover .tile-banner img{transform:scale(1.035)}
 .tile-banner-label{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.94);color:#2a4655;font-size:9px;font-weight:700;letter-spacing:.75px;padding:7px 10px;max-width:calc(100% - 30px);border-radius:4px}
-.tile-meta{padding:21px 22px 2px;display:flex;align-items:center;gap:14px;justify-content:space-between}
-.tile-identity{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;align-items:center;min-width:0}
-.tile-identity-copy{min-width:0}
-.tile-identity h2{font-size:17px;letter-spacing:.6px;line-height:1.42;margin:0 0 4px;font-weight:700;color:#203e50}
-.tile-identity p{font-size:11px;line-height:1.55;letter-spacing:.25px;color:#60737d;margin:0}
-.tile-arrow{font-size:23px;color:#a17a43;flex:0 0 auto}
-.tile-summary{font-size:14px;line-height:1.7;color:#536775;padding:11px 22px 0;margin:0}
-.tile-more{margin:auto 22px 22px;padding-top:16px;color:#245e80;display:inline-flex;align-items:center;gap:16px;font-size:12px;line-height:1.6;font-weight:700}
+/* Brand-card content uses a single consistent inset and visual axis. */
+.tile-meta{padding:24px 26px 0;display:block;min-width:0}
+.tile-identity{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:16px;min-width:0;min-height:76px}
+.tile-identity-copy{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.tile-identity h2{font-size:clamp(15px,1.35vw,18px);font-weight:700;letter-spacing:.25px;line-height:1.4;color:#173A32;margin:0;overflow-wrap:normal;word-break:normal}
+.tile-identity p{font-size:12px;line-height:1.5;letter-spacing:.12px;color:#52635C;margin:0;overflow-wrap:break-word}
+.tile-summary{margin:0;padding:18px 26px 0;max-width:100%;font-size:14px;line-height:1.75;color:#52635C;text-wrap:pretty;overflow-wrap:break-word}
+.tile-more{margin:auto 26px 22px;padding-top:18px;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;line-height:1.5;font-weight:700;color:#17614B}
+.directory-tile:focus-visible{outline:3px solid #17614B;outline-offset:4px}
 .brand-empty{border:1px dashed #ccd6da;border-radius:12px;padding:37px 28px;text-align:center;background:#fff}
 .brand-empty h2{font-size:22px;margin:0 0 10px;line-height:1.4}
 .brand-empty p{font-size:14px;color:#526775;line-height:1.75}
@@ -82,12 +83,12 @@ body{color:var(--gg-ink)}
 .related-brands{background:#fff}
 .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .related-grid .tile-banner{aspect-ratio:2.7/1}
-.related-grid .tile-meta{padding:14px 16px 3px}
+.related-grid .tile-meta{padding:16px 18px 0}
 .related-grid .tile-identity h2{font-size:13px}
-.related-grid .tile-identity p{font-size:10px}
-.related-grid .tile-identity{grid-template-columns:48px minmax(0,1fr);gap:10px}
-.related-grid .tile-summary{font-size:12px;padding:8px 16px}
-.related-grid .tile-more{margin:0 16px 17px;font-size:11px}
+.related-grid .tile-identity p{font-size:11px}
+.related-grid .tile-identity{grid-template-columns:48px minmax(0,1fr);gap:12px;min-height:48px}
+.related-grid .tile-summary{font-size:12px;padding:13px 18px 0;line-height:1.65}
+.related-grid .tile-more{margin:auto 18px 16px;padding-top:14px;font-size:12px;min-height:44px}
 .related-grid .tile-banner-label{display:none}
 
 /* Solutions & projects */
@@ -139,9 +140,9 @@ body{color:var(--gg-ink)}
  .brand-search .search-reset{grid-column:2/3}
  .brand-directory-grid,.related-grid,.solution-grid{grid-template-columns:1fr;gap:18px}
  .tile-banner{aspect-ratio:2.55/1}
- .tile-meta{padding:18px 18px 2px}
- .tile-summary{padding:10px 18px 0;font-size:13px}
- .tile-more{margin:0 18px 20px}
+ .tile-meta{padding:20px 20px 0}
+ .tile-summary{padding:16px 20px 0;font-size:13px;line-height:1.75}
+ .tile-more{margin:auto 20px 20px;min-height:44px;padding-top:16px}
  .detail-head h1{font-size:33px}
  .detail-brand{gap:14px}
  .detail-head-text>p:not(.eyebrow){font-size:15px}
@@ -163,7 +164,7 @@ body{color:var(--gg-ink)}
 .brand-mark{display:grid;place-items:center;flex:none;width:100%;aspect-ratio:1;min-width:0;overflow:visible;background:transparent;isolation:isolate}
 .brand-mark__image{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center center;transform:none;filter:none;opacity:1;clip-path:none;border:0;border-radius:0;background:transparent}
 .brand-inline .brand-mark--row{width:92px}
-.tile-identity .brand-mark--tile{width:88px}
+.tile-identity .brand-mark--tile{width:76px}
 .related-grid .brand-mark--tile{width:48px}
 .detail-brand .brand-mark--detail{width:100px}
 .detail-brand{min-width:0;align-items:center;gap:21px}
@@ -174,11 +175,11 @@ body{color:var(--gg-ink)}
 .related-grid .tile-identity p{font-size:11px}
 @media(max-width:500px){
  .brand-inline .brand-mark--row{width:72px}
- .tile-identity{grid-template-columns:72px minmax(0,1fr);gap:12px}
- .tile-identity .brand-mark--tile{width:72px}
+ .tile-identity{grid-template-columns:64px minmax(0,1fr);gap:12px}
+ .tile-identity .brand-mark--tile{width:64px}
  .detail-brand .brand-mark--detail{width:76px}
  .detail-brand{gap:14px}
- .related-grid .tile-identity{grid-template-columns:52px minmax(0,1fr)}
+ .related-grid .tile-identity{grid-template-columns:52px minmax(0,1fr);min-height:52px}
  .related-grid .brand-mark--tile{width:52px}
 }
 
