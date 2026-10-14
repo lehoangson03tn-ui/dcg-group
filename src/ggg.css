@@ -217,3 +217,49 @@ body{color:var(--gg-ink)}
  .brand-directory-grid .tile-summary{grid-column:2;grid-row:2;padding:12px 24px 0;font-size:14px;line-height:1.7}
  .brand-directory-grid .tile-more{grid-column:2;grid-row:3;margin:0 24px 17px;padding-top:10px}
 }
+
+
+/* 2026-10-14: Entertainment brand identity alignment across directory, home and detail.
+   Keep the full emblem visible; never crop or stretch brand artwork. */
+.directory-tile--entertainment .tile-identity,
+.brand-row:has(a[href="/entertainment"]) .brand-inline {
+  min-width:0;
+  align-items:center;
+}
+.directory-tile--entertainment .brand-mark,
+.brand-row:has(a[href="/entertainment"]) .brand-mark,
+.detail-brand:has(+ h1) .brand-mark {
+  flex-shrink:0;
+  overflow:visible;
+}
+.directory-tile--entertainment .brand-mark__image,
+.brand-row:has(a[href="/entertainment"]) .brand-mark__image {
+  display:block;
+  width:100%;
+  height:100%;
+  aspect-ratio:1;
+  object-fit:contain!important;
+  object-position:center!important;
+  max-width:none;
+  filter:none!important;
+  transform:none!important;
+}
+.directory-tile--entertainment .tile-identity-copy,
+.brand-row:has(a[href="/entertainment"]) .brand-inline strong {
+  min-width:0;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+.detail-brand {
+  display:grid;
+  grid-template-columns:100px minmax(0,1fr);
+  align-items:center;
+}
+.detail-brand .brand-mark--detail {width:100px; height:100px}
+.detail-brand > span:not(.brand-mark) {overflow-wrap:anywhere}
+@media(max-width:640px){
+ .detail-brand{grid-template-columns:72px minmax(0,1fr);gap:14px}
+ .detail-brand .brand-mark--detail{width:72px;height:72px}
+ .directory-tile--entertainment .tile-identity{grid-template-columns:64px minmax(0,1fr)}
+ .directory-tile--entertainment .brand-mark--tile{width:64px;height:64px}
+}
