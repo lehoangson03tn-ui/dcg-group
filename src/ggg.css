@@ -118,13 +118,15 @@ body{color:var(--gg-ink)}
  .related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:800px){
- .brand-directory-grid,.solution-grid,.detail-head,.detail-main-grid,.solution-detail{grid-template-columns:1fr}
+ .detail-head,.detail-main-grid,.solution-detail{grid-template-columns:1fr}
+ .brand-directory-grid,.solution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .brand-search{padding:21px}
  .detail-intro{padding:45px 0 63px}
  .detail-head{gap:25px}.detail-image{aspect-ratio:16/9}
  .process-steps{grid-template-columns:1fr;gap:13px}
  .related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(max-width:640px){.brand-directory-grid,.solution-grid{grid-template-columns:1fr}}
 @media(max-width:500px){
  .directory-intro{padding:36px 0 68px}
  .directory-intro h1{font-size:34px}
@@ -151,3 +153,8 @@ body{color:var(--gg-ink)}
  .hero-actions>.button-dark,.hero-actions>.button-secondary{justify-content:space-between;max-width:100%;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.directory-tile,.solution-card,.tile-banner img{transition:none!important}}
+
+/* Immediate accessible drawer state, avoiding delayed visibility on touch open. */
+.mobile-menu{transition:opacity .2s ease!important}
+.mobile-menu.is-open{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+@media(max-width:800px){.brand-search button,.directory-tile,.brand-search input{touch-action:manipulation}}

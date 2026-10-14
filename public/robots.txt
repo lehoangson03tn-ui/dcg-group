@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dcg-group.vercel.app/sitemap.xml
