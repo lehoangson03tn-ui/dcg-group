@@ -14,7 +14,7 @@
       "handle": "filesystem"
     },
     {
-      "src": "^/(?:|ve-dcg|gioi-thieu|he-sinh-thai|talent|studio|vision|entertainment|mat-than-ai|giai-phap|du-an|lien-he|thong-tin-du-lieu|he-sinh-thai/dcg-(?:talent|studio|vision|entertainment)|giai-phap/(?:dcg-growmatch|sang-tao-video-ai|mat-than-ai|noi-dung-giai-tri-ai)|du-an/(?:dcg-growmatch|mat-than-ai))/?$",
+      "src": "^/(?:|ve-dcg|gioi-thieu|he-sinh-thai|talent|studio|vision|entertainment|mat-than-ai|giai-phap|du-an|lien-he|thong-tin-du-lieu|goc-nhin|goc-nhin/(?:truoc-khi-chon-nguoi|video-thuong-hieu-va-thong-diep|thu-camera-ai-can-quan-sat)|he-sinh-thai/dcg-(?:talent|studio|vision|entertainment)|giai-phap/(?:dcg-growmatch|sang-tao-video-ai|mat-than-ai|noi-dung-giai-tri-ai)|du-an/(?:dcg-growmatch|mat-than-ai))/?$",
       "dest": "/index.html"
     },
     {
