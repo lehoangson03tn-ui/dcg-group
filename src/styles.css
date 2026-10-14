@@ -2,50 +2,128 @@
 
 
 
-/* DCG Brand Placement v3 — approved identity lives with the brand, never inside a white picture frame. */
-.wordmark__logo,.slide-identity__mark,.brand-card__identity,.inner-approved-logo,.footer-approved-logo{
-  border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:0!important;
+
+/* DCG brand layout v4: editorial titles, aligned brand marks, generous negative space. */
+:root{--brand-gold:#c9ad7e;--brand-offwhite:#f6f5f1;--brand-lightcopy:#d8e0e4}
+.wordmark__logo,.inner-approved-logo,.footer-approved-logo,.slide-identity__mark{
+  background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;
 }
-.wordmark__logo{flex:0 0 48px;width:48px;height:48px;display:grid;place-items:center;overflow:visible;}
-.wordmark__logo img{width:100%;height:100%;display:block;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,.25));}
-.wordmark__text{letter-spacing:1.1px;line-height:1.35;}
-/* Hero: only the restrained brand symbol alongside the brand name. No large logo floating over cinematic media. */
-.slide-identity{display:flex;align-items:center;gap:14px;max-width:min(90vw,630px);margin:0 0 18px;}
-.slide-identity__mark{width:48px;height:48px;flex:0 0 48px;display:flex;align-items:center;justify-content:center;}
-.slide-identity__mark img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35));}
-.slide-identity .slide-brand{display:block;max-width:calc(100% - 65px);margin:0;font-size:clamp(12px,1.15vw,15px);font-weight:600;letter-spacing:1.15px;line-height:1.6;color:#e2c89d;}
-.story-slide__content{max-width:860px;}
-/* Ecosystem cards: brand icon and typographic name share a single horizontal identity baseline. */
-.brand-card__identity{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 0 12px!important;margin:0 0 14px;border-bottom:1px solid rgba(255,255,255,.38)!important;}
-.brand-card__identity img{display:block;width:40px;height:40px;flex:0 0 40px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));}
-.brand-card__identity small{display:block;flex:1;border:0!important;padding:0!important;margin:0!important;line-height:1.5;font-size:13px;font-weight:600;letter-spacing:.7px;color:#fff;}
-.brand-card__body h3{margin:13px 0 13px;}
-/* Brand overview: full approved logo, transparent with no decoration; heading remains the visual anchor. */
-.inner-approved-logo{display:flex;align-items:center;justify-content:flex-start;width:clamp(125px,14vw,178px);height:auto;min-height:0;max-height:160px;margin:0 0 23px;overflow:visible;}
-.inner-approved-logo img{display:block;width:100%;max-height:160px;height:auto;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(0,0,0,.24));}
-/* Footer: logo visually integrated on midnight-blue background. */
-.footer-approved-logo{display:flex;align-items:center;justify-content:flex-start;flex:0 0 auto;width:clamp(110px,12vw,162px);height:auto;min-height:0;}
-.footer-approved-logo img{display:block;width:100%;height:auto;max-height:150px;object-fit:contain;}
-.footer__bottom{align-items:center;gap:25px;min-height:118px;}
-@media(min-width:1200px){
-  .story-slide__content{width:min(810px,67vw);}
+.wordmark__logo{width:47px;height:47px;flex:0 0 47px;display:grid;place-items:center}
+.wordmark__logo img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+.wordmark__text{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:1.15px}
+.story-slide__content{max-width:810px}
+.slide-identity{display:flex;align-items:center;gap:13px;margin:0 0 22px}
+.slide-identity__mark{width:45px;height:45px;flex:0 0 45px;display:flex;align-items:center;justify-content:center}
+.slide-identity__mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3))}
+.slide-identity .slide-brand{margin:0;color:var(--brand-offwhite);font-size:14px;font-weight:600;line-height:1.6;letter-spacing:1.1px}
+.story-slide h1,.story-slide h2{max-width:720px;text-wrap:balance}
+
+/* Four matching corporate ecosystem cards, 2×2 on desktop/iPad, 1 column on mobile. */
+.brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.2vw,28px)}
+.brand-card{
+  position:relative;isolation:isolate;min-width:0;height:clamp(530px,44vw,630px);
+  overflow:hidden;background:#132332;
+  border:1px solid rgba(255,255,255,.12);
+  transition:border-color .25s ease,transform .3s ease;
+}
+.brand-card:hover{border-color:rgba(205,175,126,.45)}
+.brand-card > img{
+  position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;object-position:center;filter:saturate(.82);
+  transition:transform .8s ease;
+}
+.brand-card:hover > img{transform:scale(1.035)}
+.brand-card:after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(6,17,28,.46) 0%,rgba(6,17,28,.10) 25%,rgba(6,17,28,.50) 49%,rgba(6,17,28,.96) 78%,rgba(6,17,28,.99) 100%);
+}
+.brand-card__top{
+  position:absolute;top:clamp(25px,3vw,36px);left:clamp(25px,3vw,36px);right:clamp(25px,3vw,36px);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:15px;
+  color:#f4f0e8;letter-spacing:1.5px;font-size:11px;font-weight:600;line-height:1.5;
+}
+.brand-card__top-mark{
+  width:52px;height:52px;object-fit:contain;flex:0 0 52px;
+  display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.65));
+}
+.brand-card__body{
+  position:absolute;left:clamp(25px,3vw,38px);right:clamp(25px,3vw,38px);bottom:clamp(26px,3vw,38px);
+  display:flex;flex-direction:column;align-items:flex-start;
+  color:#fff;gap:0;
+}
+.brand-card__kicker{
+  color:var(--brand-gold);font-size:10px;font-weight:600;line-height:1.7;
+  letter-spacing:1.5px;margin:0 0 10px;
+}
+.brand-card__identity{
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  padding:0!important;margin:0 0 12px!important;width:100%;
+  display:block!important;min-height:0!important;
+}
+.brand-card__brandname{
+  display:block;font-size:clamp(14px,1.3vw,17px);letter-spacing:1.1px;
+  line-height:1.6;font-weight:700;color:var(--brand-offwhite);
+}
+.brand-card__body h3{
+  font-size:clamp(25px,2.45vw,36px);line-height:1.39;letter-spacing:-.025em;
+  font-weight:600;margin:0 0 15px;max-width:100%;text-wrap:balance;
+}
+.brand-card__body p{
+  max-width:450px;font-size:13px;line-height:1.95;font-weight:400;
+  color:var(--brand-lightcopy);margin:0 0 23px;
+}
+.brand-card__cta{
+  display:inline-flex;align-items:center;color:#e4bf84;font-size:11px;
+  letter-spacing:1.15px;line-height:1.6;font-weight:600;transition:color .2s;
+}
+.brand-card:hover .brand-card__cta{color:#fff}
+
+/* Full approved logos on brand detail pages and footer, no picture frame. */
+.inner-approved-logo{
+  display:flex;align-items:center;justify-content:flex-start;
+  width:clamp(130px,15vw,190px);max-height:155px;height:auto;min-height:0;margin:0 0 26px;
+}
+.inner-approved-logo img{display:block;width:100%;height:auto;max-height:150px;object-fit:contain;filter:drop-shadow(0 3px 7px rgba(0,0,0,.25))}
+.footer-approved-logo{display:flex;align-items:center;width:clamp(118px,12vw,160px);min-height:0;height:auto}
+.footer-approved-logo img{display:block;width:100%;height:auto;max-height:150px;object-fit:contain}
+.footer__bottom{align-items:center;gap:25px;min-height:120px}
+
+@media(min-width:781px) and (max-width:1120px){
+  .brand-card{height:550px}
+  .brand-card__body h3{font-size:clamp(24px,2.5vw,30px);line-height:1.42}
+  .brand-card__body p{font-size:12px;line-height:1.85;margin-bottom:18px}
+  .brand-card__kicker{font-size:9px;margin-bottom:8px}
+  .brand-card__identity{margin-bottom:9px!important}
+  .brand-card__brandname{font-size:14px}
 }
 @media(max-width:780px){
-  .wordmark__logo{width:40px;height:40px;flex-basis:40px;}
-  .slide-identity{gap:9px;margin-bottom:14px;}
-  .slide-identity__mark{width:36px;height:36px;flex-basis:36px;}
-  .slide-identity .slide-brand{font-size:12px;letter-spacing:.65px;max-width:calc(100% - 45px);}
-  .brand-card__identity{gap:10px;min-height:38px;margin-bottom:11px;}
-  .brand-card__identity img{width:34px;height:34px;flex-basis:34px;}
-  .brand-card__identity small{font-size:12px;}
-  .inner-approved-logo{width:138px;max-height:125px;margin-bottom:15px;}
-  .inner-approved-logo img{max-height:125px;}
-  .footer-approved-logo{width:110px;}
-  .footer__bottom{gap:16px;min-height:86px;}
+  .wordmark__logo{width:40px;height:40px;flex-basis:40px}
+  .slide-identity{gap:10px;margin-bottom:17px}
+  .slide-identity__mark{width:36px;height:36px;flex-basis:36px}
+  .slide-identity .slide-brand{font-size:12px;letter-spacing:.6px}
+  .brand-grid{grid-template-columns:1fr;gap:18px}
+  .brand-card{height:510px}
+  .brand-card__top-mark{width:43px;height:43px;flex-basis:43px}
+  .brand-card__body h3{font-size:clamp(24px,6.4vw,31px);line-height:1.42}
+  .brand-card__body p{font-size:12px;line-height:1.85;margin-bottom:20px}
+  .brand-card__brandname{font-size:14px}
+  .brand-card__kicker{font-size:10px}
+  .inner-approved-logo{width:142px;max-height:126px;margin-bottom:16px}
+  .inner-approved-logo img{max-height:126px}
+  .footer-approved-logo{width:118px}
+  .footer__bottom{gap:15px;min-height:92px}
+}
+@media(max-width:370px){
+  .brand-card{height:530px}
+  .brand-card__body{left:22px;right:22px;bottom:26px}
+  .brand-card__body h3{font-size:23px}
 }
 @media(max-height:640px){
-  .slide-identity__mark{width:32px;height:32px;flex-basis:32px;}
-  .slide-identity{margin-bottom:8px;}
-  .inner-approved-logo{width:118px;max-height:95px;margin-bottom:12px;}
-  .inner-approved-logo img{max-height:95px;}
+  .slide-identity__mark{width:32px;height:32px;flex-basis:32px}
+  .slide-identity{margin-bottom:9px}
+  .inner-approved-logo{width:122px;max-height:98px;margin-bottom:12px}
+  .inner-approved-logo img{max-height:98px}
+}
+@media(prefers-reduced-motion:reduce){
+  .brand-card,.brand-card > img{transition:none!important}
 }
