@@ -263,3 +263,16 @@ body{color:var(--gg-ink)}
  .directory-tile--entertainment .tile-identity{grid-template-columns:64px minmax(0,1fr)}
  .directory-tile--entertainment .brand-mark--tile{width:64px;height:64px}
 }
+
+/* DCG Entertainment: balanced logo lockups without cropping or raster enlargement. */
+.directory-tile--entertainment .brand-mark--tile{width:clamp(56px,5.5vw,70px);height:clamp(56px,5.5vw,70px);padding:5px;box-sizing:border-box;overflow:hidden}
+.directory-tile--entertainment .tile-identity{grid-template-columns:clamp(56px,5.5vw,70px) minmax(0,1fr);align-items:center;gap:14px}
+.brand-row:has(a[href="/entertainment"]) .brand-mark--row{width:76px;height:76px;padding:6px;box-sizing:border-box;overflow:hidden}
+.directory-tile--entertainment .brand-mark__image,
+.brand-row:has(a[href="/entertainment"]) .brand-mark__image{max-width:100%!important;max-height:100%!important;width:100%;height:100%;object-fit:contain!important;object-position:center!important}
+@media(max-width:640px){
+ .directory-tile--entertainment .tile-identity{grid-template-columns:56px minmax(0,1fr);gap:11px}
+ .directory-tile--entertainment .brand-mark--tile{width:56px;height:56px;padding:4px}
+ .brand-row:has(a[href="/entertainment"]) .brand-mark--row{width:60px;height:60px;padding:4px}
+ .directory-tile--entertainment .tile-identity h2{font-size:clamp(13px,3.5vw,16px);overflow-wrap:normal;word-break:normal}
+}
