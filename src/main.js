@@ -23,7 +23,8 @@ brands.forEach(b=>{
 const brandDisplay = [brands[0],brands[1],brands[3],brands[2]];
 const menus = [['/','Trang chủ'],['/gioi-thieu','Giới thiệu'],['/gioi-thieu#ban-lanh-dao','Ban lãnh đạo'],['/he-sinh-thai','Hệ sinh thái'],...brandDisplay.map(b=>['/he-sinh-thai/dcg-'+b.slug,b.name]),['/giai-phap','Giải pháp'],['/du-an','Dự án'],['/goc-nhin','Góc nhìn'],['/lien-he','Liên hệ']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const logo=(name,css='logo-icon')=>`<img class="${css}" src="${A+name}" alt="" decoding="async">`;
+const logo=(name,css='logo-icon')=>`<img class="${css}" src="${A+name}" alt="" width="200" height="200" decoding="async">`;
+const brandMark=(b,size='row')=>`<span class="brand-mark brand-mark--${size}" aria-hidden="true">${logo(b.emblem,'brand-mark__image')}</span>`;
 const cta=(text,href,css='link-arrow',external=false)=>`<a class="${css}" href="${href}"${external?' target="_blank" rel="noopener noreferrer"':''}><span>${text}</span><span aria-hidden="true">↗</span></a>`;
 function shell(content,route){return `<a class="skip-link" href="#content">Bỏ qua điều hướng</a>
 <header class="site-header" id="site-header"><div class="site-header-inner">
@@ -108,7 +109,7 @@ function home(){
  ${insightCards()}<div class="section-read-all">${cta('ĐỌC THÊM GÓC NHÌN','/goc-nhin')}</div></div></section>
  ${endBanner()}`;
 }
-function brandRows(){return `<div class="brand-rows">${brandDisplay.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${b.name}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${esc(b.field)}</p><div class="brand-inline">${logo(b.emblem)}<strong>${b.name}</strong></div><h3>${esc(b.heading)}</h3><p>${esc(b.summary)}</p>${cta('KHÁM PHÁ THƯƠNG HIỆU','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
+function brandRows(){return `<div class="brand-rows">${brandDisplay.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${b.name}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${esc(b.field)}</p><div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div><h3>${esc(b.heading)}</h3><p>${esc(b.summary)}</p>${cta('KHÁM PHÁ THƯƠNG HIỆU','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
 function endBanner(){return `<section class="end-banner"><div class="container"><div>${eyebrow('KẾT NỐI')}<h2>${esc(editorial.home.footerTitle)}</h2><p class="end-note">${esc(editorial.home.footerDescription)}</p></div>${cta('TRAO ĐỔI VỚI DCG','/lien-he','button-outline')}</div></section>`}
 function innerHero(kicker,title,description,image=''){return `<section class="inner-hero${image?' with-image':''}"><div class="inner-hero-text"><div class="inner-hero-text-inner">${eyebrow(kicker)}<h1>${title}</h1><p>${description}</p></div></div>${image?`<div class="inner-hero-media"><img src="${A+image}" alt="" fetchpriority="high"></div>`:''}</section>`}
 
@@ -166,7 +167,7 @@ ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Hệ sinh thái"}])}
 function breadcrumb(items){return `<nav class="breadcrumbs" aria-label="Đường dẫn trang">${items.map((item,i)=>i===items.length-1?`<span aria-current="page">${esc(item.name)}</span>`:`<a href="${item.href}">${esc(item.name)}</a><span aria-hidden="true">/</span>`).join("")}</nav>`;}
 function brandTile(b){return `<a class="directory-tile" href="/he-sinh-thai/dcg-${b.slug}" aria-label="Khám phá ${b.name}">
    <div class="tile-banner"><img src="${A+b.image}" alt="" loading="lazy" decoding="async"><span class="tile-banner-label">DCG GROUP · ${esc(b.field)}</span></div>
-   <div class="tile-meta"><div class="tile-identity">${logo(b.emblem,"tile-logo")}<div><h2>${b.name}</h2><p>${b.field}</p></div></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
+   <div class="tile-meta"><div class="tile-identity">${brandMark(b,'tile')}<div class="tile-identity-copy"><h2>${b.name}</h2><p>${b.field}</p></div></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
    <p class="tile-summary">${b.summary}</p>
    <span class="tile-more">Khám phá thương hiệu <span aria-hidden="true">→</span></span>
  </a>`;}
@@ -204,7 +205,7 @@ function brandPage(b){
  return `<section class="detail-intro"><div class="container">
  ${breadcrumb([{name:'Trang chủ',href:'/'},{name:'Hệ sinh thái',href:'/he-sinh-thai'},{name:b.name}])}
  <div class="detail-head"><div class="detail-head-text"><p class="eyebrow">${esc(b.field)}</p>
- <div class="detail-brand">${logo(b.emblem,'detail-emblem')}<span>${b.name}</span></div><h1>${esc(b.heading)}</h1><p>${esc(b.detailSummary)}</p><div class="detail-status"><span>Định hướng phát triển của DCG GROUP</span></div>
+ <div class="detail-brand">${brandMark(b,'detail')}<span>${b.name}</span></div><h1>${esc(b.heading)}</h1><p>${esc(b.detailSummary)}</p><div class="detail-status"><span>Định hướng phát triển của DCG GROUP</span></div>
  ${cta('TRAO ĐỔI NHU CẦU','/lien-he?linh-vuc='+b.slug,'link-arrow')}
  </div><div class="detail-image"><img src="${A+b.image}" alt="Hình minh họa ${b.name}" fetchpriority="high"></div></div>
  </div></section>
