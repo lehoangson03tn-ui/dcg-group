@@ -1,3 +1,4 @@
+import "./redesign.css";
 import "./styles.css";
 
 const site = {
@@ -43,12 +44,104 @@ const icon=(name)=>({arrow:'↗',down:'↓',left:'←',right:'→',menu:'☰',cl
 function shell(body){
  return `<a class="skip" href="#main">Chuyển đến nội dung</a><header class="header"><a href="/" class="wordmark" aria-label="DCG GROUP — về trang chủ"><span class="wordmark__logo"><img src="${approvedLogos.group.emblem}" alt="" width="52" height="52" decoding="async"></span><span class="wordmark__text">DCG GROUP<small>AI · TECHNOLOGY · CREATIVITY</small></span></a><nav class="nav-inline" aria-label="Menu chính"><a href="/ve-dcg">VỀ DCG</a><a href="/he-sinh-thai">HỆ SINH THÁI</a><a href="/vision">DCG VISION</a><a href="/lien-he">LIÊN HỆ</a></nav><button type="button" class="menu-toggle" aria-controls="drawer" aria-expanded="false" aria-label="Mở menu">☰</button></header><div class="drawer" id="drawer" aria-hidden="true"><div class="drawer__head">KHÁM PHÁ DCG GROUP</div><nav aria-label="Điều hướng toàn trang">${nav.map(([href,label],i)=>`<a href="${href}"><small>${String(i+1).padStart(2,"0")}</small><span>${label}</span><span>↗</span></a>`).join("")}</nav><div class="drawer__foot">VIỆT NAM · 2026</div></div><main id="main">${body}</main><footer class="footer"><div class="footer__grid"><div><p class="eyebrow">DCG GROUP / CONNECT</p><h2>Cùng kiến tạo<br>giá trị mới.</h2><a href="/lien-he" class="text-link">KẾT NỐI VỚI DCG GROUP ↗</a></div><nav aria-label="Thương hiệu thành viên">${branches.map(k=>`<a href="${site[k].path}">${site[k].name} ↗</a>`).join("")}<a href="/mat-than-ai">MẮT THẦN AI ↗</a></nav></div><div class="footer__bottom"><span class="footer-approved-logo"><img src="${approvedLogos.group.full}" alt="DCG GROUP" loading="lazy" decoding="async"></span><span>© 2026 DCG GROUP · Website hệ sinh thái AI & sáng tạo</span></div></footer>`;
 }
+
 function home(){
- return `<section class="story" data-story aria-label="Câu chuyện hệ sinh thái DCG GROUP gồm 5 cảnh"><div class="story__sticky">${order.map((key,i)=>{let x=site[key];return `<article class="story-slide ${i===0?"is-active":""}" data-slide="${i}" aria-hidden="${i!==0}"><img src="${x.image}" alt="" ${i>1?'loading="lazy"':''}><div class="story-slide__shade"></div><div class="story-slide__content"><p class="eyebrow"><span class="gold-line"></span>${esc(x.type)}</p><div class="slide-identity"><span class="slide-identity__mark"><img src="${x.emblem}" alt="" decoding="async"></span><span class="slide-brand">${esc(x.name)}</span></div>${i===0?`<h1>${esc(x.heading)}</h1>`:`<h2>${esc(x.heading)}</h2>`}<p class="slide-desc">${esc(x.description)}</p><a class="text-link" href="${x.path}" tabindex="${i===0?0:-1}">${esc(x.cta)} ↗</a></div></article>`}).join("")}<div class="story-progress"><div class="story-progress__count"><span data-count>01</span> / 05</div><div class="story-progress__dots">${order.map((k,i)=>`<button class="story-dot ${i===0?'is-active':''}" data-jump="${i}" aria-label="Đến cảnh ${i+1}: ${site[k].name}" ${i===0?'aria-current="step"':''}><span></span></button>`).join("")}</div><div class="story-progress__nav"><button data-prev aria-label="Cảnh trước" disabled>↑</button><button data-next aria-label="Cảnh tiếp theo">↓</button></div><span class="scroll-label">CUỘN ĐỂ KHÁM PHÁ ↓</span></div></div></section>
- <section class="intro paper" id="intro"><div class="section-meta">01 / VỀ DCG GROUP <span>OUR PHILOSOPHY</span></div><div class="intro__grid"><div><p class="eyebrow">A CREATIVE TECHNOLOGY ECOSYSTEM</p><h2>Một hệ sinh thái.<br>Nhiều tiềm năng.</h2></div><div><h3>Công nghệ là phương tiện. Con người là trung tâm.</h3><p>DCG GROUP phát triển những hướng đi trong nhân lực, sản xuất sáng tạo, thị giác máy tính và giải trí ứng dụng AI. Mỗi lĩnh vực có định hướng riêng, cùng theo đuổi giá trị thực, trách nhiệm và phát triển lâu dài.</p><a href="/ve-dcg" class="dark-link">TÌM HIỂU VỀ CHÚNG TÔI ↗</a></div></div></section>
- <section class="ecosystem dark"><div class="section-meta">02 / OUR ECOSYSTEM <span>FOUR FIELDS. ONE VISION.</span></div><div class="heading-grid"><h2>Hệ sinh thái<br>DCG GROUP</h2><p>Bốn thương hiệu với những năng lực khác biệt, kết nối qua một định hướng chung: ứng dụng AI có trách nhiệm và sáng tạo có mục đích.</p></div><div class="brand-grid">${branches.map((k,i)=>{let x=site[k];return `<a class="brand-card" href="${x.path}"><img src="${x.image}" alt="" loading="lazy"><div class="brand-card__top"><span class="brand-card__index">0${i+1} / 04</span><img class="brand-card__top-mark" src="${x.emblem}" alt="" width="50" height="50" loading="lazy" decoding="async"></div><div class="brand-card__body"><span class="brand-card__kicker">${esc(x.type)}</span><div class="brand-card__identity"><span class="brand-card__brandname">${esc(x.name)}</span></div><h3>${x.subtitle}</h3><p>${x.description}</p><span class="brand-card__cta">KHÁM PHÁ THƯƠNG HIỆU ↗</span></div></a>`}).join("")}</div></section>
- <section class="feature paper"><div class="section-meta">03 / DỰ ÁN NỔI BẬT <span>IDEAS INTO ACTION</span></div><div class="heading-grid"><h2>Giá trị thực.<br>Tầm nhìn dài hạn.</h2><p>Khám phá những sản phẩm và dự án đang được phát triển trong hệ sinh thái DCG.</p></div><div class="feature__grid"><a class="feature__card" href="/talent"><img src="${site.talent.image}" alt="" loading="lazy"><div><span>DCG TALENT / HR TECHNOLOGY</span><h3>DCG GROWMATCH</h3><p>Đối sánh năng lực và phát triển nghề nghiệp.</p></div></a><a class="feature__card" href="/mat-than-ai"><img src="${site.vision.image}" alt="" loading="lazy"><div><span>DCG VISION / COMPUTER VISION</span><h3>MẮT THẦN AI</h3><p>Dự án camera AI hỗ trợ QA/QC F&B.</p></div></a></div></section>
- <section class="closing"><p class="eyebrow">OUR NEXT CHAPTER</p><h2>Giá trị của tương lai<br>bắt đầu từ hôm nay.</h2><a href="/lien-he" class="text-link">ĐỒNG HÀNH CÙNG DCG GROUP ↗</a></section>`;
+ const hero=`<section class="dcg-hero" id="gioi-thieu" aria-label="Hệ sinh thái DCG GROUP">
+  ${order.map((key,i)=>{
+    const b=site[key],isMain=i===0;
+    const title=isMain?"Cùng kiến tạo những giá trị mới.":b.subtitle;
+    const brief=isMain?"Kết nối công nghệ, con người và sáng tạo trong một hệ sinh thái mang tinh thần Việt Nam.":b.copy||(
+      key==="talent"?"Phát triển nghề nghiệp và công nghệ nhân lực":
+      key==="studio"?"Sáng tạo video, CGI và truyền thông thương mại":
+      key==="vision"?"Ứng dụng camera AI vào quan sát chất lượng":
+      "Phim, âm nhạc và nhân vật AI nguyên bản");
+    return `<article class="dcg-hero-scene ${i===0?"is-current":""}" data-dcg-scene="${i}" aria-hidden="${i!==0}" ${i>0?"inert":""}>
+     <img src="${b.image}" alt="" ${i===0?'fetchpriority="high"':'loading="lazy"'} decoding="async">
+     <div class="dcg-hero-tint"></div>
+     <div class="dcg-hero-copy">
+       <p class="dcg-kicker dcg-kicker-on-dark">DCG GROUP <span class="dcg-separator">/</span> ${isMain?"CÔNG NGHỆ VÀ SÁNG TẠO":b.type}</p>
+       <span class="dcg-hero-brand">${b.name}</span>
+       ${i===0?`<h1>${title}</h1>`:`<h2>${title}</h2>`}
+       <p>${brief}</p>
+       <a href="${isMain?"/ve-dcg":b.path}" class="dcg-hero-cta">KHÁM PHÁ <span aria-hidden="true">↗</span></a>
+     </div>
+    </article>`;
+   }).join("")}
+   <div class="dcg-hero-bottom">
+     <div class="dcg-hero-count"><span data-dcg-current>01</span><span> / 05</span></div>
+     <div class="dcg-hero-dots">
+       ${order.map((k,i)=>`<button type="button" class="dcg-hero-dot ${i===0?"is-current":""}" data-dcg-dot="${i}" aria-label="Cảnh ${i+1}: ${site[k].name}" ${i===0?'aria-current="step"':''}><span></span></button>`).join("")}
+     </div>
+     <div class="dcg-hero-buttons">
+      <button type="button" data-dcg-prev aria-label="Cảnh trước">←</button>
+      <button type="button" data-dcg-next aria-label="Cảnh tiếp theo">→</button>
+     </div>
+     <a href="#tong-quan" class="dcg-hero-down">CUỘN ĐỂ KHÁM PHÁ <span aria-hidden="true">↓</span></a>
+   </div>
+  </section>`;
+ const overview=`<section class="dcg-overview" id="tong-quan">
+  <div class="dcg-container">
+   <div class="dcg-section-number"><span>01 / VỀ DCG GROUP</span><span>GIỚI THIỆU</span></div>
+   <div class="dcg-overview-grid">
+    <div><p class="dcg-kicker">TẦM NHÌN DCG GROUP</p><h2>Một hệ sinh thái.<br>Một mục tiêu chung.</h2></div>
+    <div class="dcg-overview-text">
+     <p class="dcg-lead">Công nghệ chỉ thực sự có giá trị khi phục vụ con người và những nhu cầu thực tế.</p>
+     <p>DCG GROUP là thương hiệu mẹ kết nối các lĩnh vực nhân lực, sản xuất sáng tạo, thị giác máy tính và giải trí ứng dụng AI. Mỗi thương hiệu phát triển một hướng đi riêng, cùng theo đuổi tinh thần đổi mới có trách nhiệm.</p>
+     <a href="/ve-dcg" class="dcg-text-link">TÌM HIỂU VỀ CHÚNG TÔI <span aria-hidden="true">↗</span></a>
+    </div>
+   </div>
+  </div>
+ </section>`;
+ const activities=`<section class="dcg-activities" id="linh-vuc">
+   <div class="dcg-container">
+    <div class="dcg-section-number"><span>02 / HỆ SINH THÁI</span><span>BỐN THƯƠNG HIỆU</span></div>
+    <div class="dcg-activities-intro"><div><p class="dcg-kicker">LĨNH VỰC HOẠT ĐỘNG</p><h2>Bốn lĩnh vực.<br>Những khả năng mới.</h2></div><p>Khám phá từng thương hiệu trong hệ sinh thái DCG GROUP qua những giải pháp và định hướng phát triển riêng.</p></div>
+   </div>
+   ${dcgEditorialRows()}
+ </section>`;
+ const values=`<section class="dcg-values"><div class="dcg-container">
+  <div class="dcg-section-number dcg-section-number-dark"><span>03 / GIÁ TRỊ CỐT LÕI</span><span>DCG GROUP</span></div>
+  <div class="dcg-values-head"><p class="dcg-kicker">ĐỊNH HƯỚNG CHUNG</p><h2>Phát triển từ<br>những giá trị thật.</h2></div>
+  <div class="dcg-values-list">
+   <div><span>01</span><h3>Con người làm trung tâm</h3><p>Thiết kế công nghệ để hỗ trợ con người, không thay thế sự đánh giá có trách nhiệm.</p></div>
+   <div><span>02</span><h3>Sáng tạo có mục đích</h3><p>Mỗi sản phẩm và câu chuyện bắt đầu từ nhu cầu, giá trị hoặc thông điệp rõ ràng.</p></div>
+   <div><span>03</span><h3>Minh bạch trong phát triển</h3><p>Phân biệt ý tưởng, sản phẩm đang nghiên cứu và những kết quả đã có bằng chứng.</p></div>
+  </div>
+ </div></section>`;
+ const work=`<section class="dcg-projects"><div class="dcg-container">
+   <div class="dcg-section-number"><span>04 / DỰ ÁN TIÊU BIỂU</span><span>ỨNG DỤNG THỰC TẾ</span></div>
+   <div class="dcg-projects-head"><p class="dcg-kicker">TỪ Ý TƯỞNG ĐẾN ỨNG DỤNG</p><h2>Những bước đi cụ thể.</h2></div>
+   <div class="dcg-project-rows">
+     <a href="/talent"><span class="dcg-project-index">01</span><div><span class="dcg-project-type">DCG TALENT / SẢN PHẨM</span><h3>DCG GROWMATCH</h3><p>Hỗ trợ đánh giá, đối sánh và phát triển năng lực nghề nghiệp.</p></div><span class="dcg-project-arrow">↗</span></a>
+     <a href="/mat-than-ai"><span class="dcg-project-index">02</span><div><span class="dcg-project-type">DCG VISION / DỰ ÁN</span><h3>Mắt Thần AI</h3><p>Hướng phát triển camera AI hỗ trợ QA/QC ngành F&B.</p></div><span class="dcg-project-arrow">↗</span></a>
+   </div>
+  </div></section>`;
+ const contact=`<section class="dcg-end"><div class="dcg-container"><div><p class="dcg-kicker">CÙNG PHÁT TRIỂN</p><h2>Mọi hành trình lớn<br>bắt đầu từ kết nối.</h2></div><a href="/lien-he" class="dcg-end-link">LIÊN HỆ DCG GROUP <span aria-hidden="true">↗</span></a></div></section>`;
+ return hero+overview+activities+values+work+contact;
+}
+function dcgEditorialRows(){
+ return `<div class="dcg-editorial-list">
+   ${branches.map((key,i)=>{
+    const b=site[key];
+    return `<article class="dcg-editorial-row ${i%2===1?"dcg-editorial-reverse":""}">
+     <div class="dcg-editorial-copy"><div class="dcg-editorial-inner">
+        <div class="dcg-editorial-index"><span>${String(i+1).padStart(2,"0")} — 04</span><span>${b.type}</span></div>
+        <div class="dcg-editorial-brand"><img src="${b.emblem}" alt="" loading="lazy" decoding="async"><strong>${b.name}</strong></div>
+        <h3>${b.subtitle}</h3>
+        <p>${b.description||b.copy||(
+          key==="talent"?"Công nghệ đối sánh và phát triển năng lực nhân lực.":
+          key==="studio"?"Sản xuất video AI, CGI và nội dung thương mại.":
+          key==="vision"?"Thị giác máy tính hỗ trợ quan sát chất lượng.":
+          "Phát triển phim, âm nhạc và những thế giới nhân vật AI.")}</p>
+        <a class="dcg-text-link" href="${b.path}">KHÁM PHÁ THƯƠNG HIỆU <span aria-hidden="true">↗</span></a>
+     </div></div>
+     <a href="${b.path}" class="dcg-editorial-media" aria-label="Xem ${b.name}">
+        <img src="${b.image}" alt="Hình minh họa ${b.name}" loading="lazy" decoding="async">
+        <span aria-hidden="true">↗</span>
+     </a>
+    </article>`;
+   }).join("")}
+ </div>`;
 }
 function inside(d,path){
  const img=d.image||site.group.image;
@@ -56,10 +149,62 @@ function inside(d,path){
  const brandLogo=approvedLogos[brandKey].full;
  return `<section class="inner-hero" style="--inner-bg:url('${img}')"><div class="inner-hero__content"><div class="inner-approved-logo"><img src="${brandLogo}" alt="Logo ${esc(d.name)}" decoding="async"></div><p class="eyebrow"><span class="gold-line"></span>DCG GROUP / ${esc(d.name)}</p><h1>${esc(d.headline)}</h1><p>${esc(d.description)}</p><a href="#content" class="text-link">KHÁM PHÁ NỘI DUNG ↓</a></div></section><section class="details paper" id="content"><div class="section-meta">THÔNG TIN & ĐỊNH HƯỚNG <span>${esc(d.name)}</span></div><div class="details__grid">${d.sections.map((s,i)=>`<article class="detail"><span>0${i+1}</span><div><h2>${esc(s[0])}</h2><p>${esc(s[1])}</p></div></article>`).join("")}</div>${d.action?`<a class="dark-link" href="${d.action.url}" ${d.action.url.startsWith("https")?'target="_blank" rel="noopener noreferrer"':''}>${esc(d.action.text)} ↗</a>`:""}</section><section class="closing"><p class="eyebrow">DCG GROUP</p><h2>Cùng kiến tạo<br>giá trị mới.</h2><a class="text-link" href="/lien-he">LIÊN HỆ HỢP TÁC ↗</a></section>`;
 }
-function ecosystemPage(){return `<section class="inner-hero inner-hero--text"><div class="inner-hero__content"><div class="inner-approved-logo"><img src="${approvedLogos.group.full}" alt="Logo DCG GROUP" decoding="async"></div><p class="eyebrow">DCG GROUP / OUR ECOSYSTEM</p><h1>Những lĩnh vực. Một tầm nhìn.</h1><p>Bốn thương hiệu với bản sắc riêng trong cùng một hệ sinh thái công nghệ và sáng tạo.</p></div></section><section class="ecosystem dark"><div class="section-meta">HỆ SINH THÁI <span>01 — 04</span></div><div class="brand-grid">${branches.map((k,i)=>{let x=site[k];return `<a class="brand-card" href="${x.path}"><img src="${x.image}" alt="" loading="lazy"><div class="brand-card__top"><span class="brand-card__index">0${i+1} / 04</span><img class="brand-card__top-mark" src="${x.emblem}" alt="" width="50" height="50" loading="lazy" decoding="async"></div><div class="brand-card__body"><span class="brand-card__kicker">${esc(x.type)}</span><div class="brand-card__identity"><span class="brand-card__brandname">${esc(x.name)}</span></div><h3>${x.subtitle}</h3><p>${x.description}</p><span class="brand-card__cta">KHÁM PHÁ ↗</span></div></a>`}).join("")}</div></section><section class="intro paper"><div class="section-meta">DỰ ÁN THÀNH VIÊN <span>DCG VISION</span></div><div class="intro__grid"><h2>Mắt Thần AI</h2><div><p>Dự án camera AI hỗ trợ quan sát, đánh giá và cảnh báo các dấu hiệu cần kiểm tra trong quy trình QA/QC ngành F&B.</p><a href="/mat-than-ai" class="dark-link">TÌM HIỂU DỰ ÁN ↗</a></div></div></section>`;}
+
+function ecosystemPage(){
+ return `<section class="dcg-subpage-hero">
+  <div class="dcg-container"><p class="dcg-kicker">DCG GROUP / HỆ SINH THÁI</p><h1>Bốn thương hiệu.<br>Một hệ sinh thái.</h1><p>Khám phá các lĩnh vực hoạt động và định hướng phát triển của DCG GROUP.</p></div>
+ </section>`+
+ `<section class="dcg-activities dcg-ecosystem-standalone"><div class="dcg-container"><div class="dcg-section-number"><span>HỆ SINH THÁI</span><span>01 — 04</span></div></div>${dcgEditorialRows()}</section>`+
+ `<section class="dcg-end"><div class="dcg-container"><div><p class="dcg-kicker">DCG GROUP</p><h2>Cùng kiến tạo<br>những giá trị mới.</h2></div><a href="/lien-he" class="dcg-end-link">KẾT NỐI VỚI CHÚNG TÔI ↗</a></div></section>`;
+}
 function contact(){
  return `<section class="inner-hero inner-hero--text"><div class="inner-hero__content"><div class="inner-approved-logo"><img src="${approvedLogos.group.full}" alt="Logo DCG GROUP" decoding="async"></div><p class="eyebrow">DCG GROUP / CONNECT</p><h1>Khởi đầu một kết nối.</h1><p>Một ý tưởng, một dự án thương mại hoặc một đề nghị hợp tác đều bắt đầu từ cuộc trò chuyện.</p></div></section><section class="contact paper"><div class="section-meta">KẾT NỐI VỚI DCG <span>LET'S CREATE TOGETHER</span></div><div class="contact__grid"><div><h2>Cùng nhau tạo nên khác biệt.</h2><p>Hãy cho biết lĩnh vực bạn quan tâm. Form hiện giúp soạn và sao chép lời nhắn; chưa có hộp thư tiếp nhận chính thức nên không tự gửi thông tin.</p><div class="contact__nav">${branches.map(k=>`<a href="${site[k].path}">${site[k].name} ↗</a>`).join("")}</div></div><form id="contact-form"><h3>Soạn nội dung hợp tác</h3><label for="contact-name">Họ tên *</label><input id="contact-name" name="name" required minlength="2" autocomplete="name" maxlength="120" placeholder="Tên người liên hệ"><label for="contact-email">Email *</label><input id="contact-email" name="email" required type="email" autocomplete="email" maxlength="200" placeholder="name@example.com"><label for="contact-brand">Lĩnh vực quan tâm</label><select id="contact-brand" name="brand">${["DCG GROUP",...branches.map(k=>site[k].name)].map(n=>`<option>${n}</option>`).join("")}</select><label for="contact-message">Nội dung *</label><textarea id="contact-message" name="message" rows="5" required minlength="10" maxlength="4000" placeholder="Mô tả nhu cầu hợp tác (ít nhất 10 ký tự)"></textarea><button class="submit" type="submit">SAO CHÉP THƯ NGỎ ↗</button><p class="form-note" role="status" id="contact-status">Thông tin chỉ được xử lý ngay trên trình duyệt của bạn.</p></form></div></section>`;
 }
+
+function initRedesignHero(){
+ const root=document.querySelector(".dcg-hero");
+ if(!root)return;
+ const cards=[...root.querySelectorAll(".dcg-hero-scene")];
+ const dots=[...root.querySelectorAll(".dcg-hero-dot")];
+ let current=0,lockedUntil=0,acc=0;
+ const show=(index)=>{
+   current=(index+cards.length)%cards.length;
+   cards.forEach((el,i)=>{
+    const on=i===current;el.classList.toggle("is-current",on);el.setAttribute("aria-hidden",String(!on));el.inert=!on;
+   });
+   dots.forEach((el,i)=>{
+    el.classList.toggle("is-current",i===current);
+    if(i===current)el.setAttribute("aria-current","step");else el.removeAttribute("aria-current");
+   });
+   root.querySelector("[data-dcg-current]").textContent=String(current+1).padStart(2,"0");
+ };
+ show(0);
+ dots.forEach((el,i)=>el.addEventListener("click",()=>show(i)));
+ root.querySelector("[data-dcg-prev]").addEventListener("click",()=>show(current-1));
+ root.querySelector("[data-dcg-next]").addEventListener("click",()=>show(current+1));
+ root.addEventListener("wheel",e=>{
+  if(e.ctrlKey||e.altKey||e.metaKey||e.shiftKey||document.body.style.overflow==="hidden")return;
+  const dir=Math.sign(e.deltaY);
+  if(!dir||(dir>0&&current===cards.length-1)||(dir<0&&current===0))return;
+  const rect=root.getBoundingClientRect();
+  if(rect.top>innerHeight*.6||rect.bottom<innerHeight*.25)return;
+  e.preventDefault();
+  if(Date.now()<lockedUntil)return;
+  acc=Math.sign(acc)===dir?acc+e.deltaY:e.deltaY;
+  if(Math.abs(acc)<55)return;
+  acc=0;lockedUntil=Date.now()+650;show(current+dir);
+ },{passive:false});
+ let start=null;
+ root.addEventListener("touchstart",e=>{
+  const t=e.touches[0];if(t)start={x:t.clientX,y:t.clientY};
+ },{passive:true});
+ root.addEventListener("touchend",e=>{
+  const t=e.changedTouches[0];if(!start||!t)return;
+  const dx=t.clientX-start.x,dy=t.clientY-start.y;start=null;
+  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4)show(current+(dx<0?1:-1));
+ },{passive:true});
+}
+
 function render(){
   const path=location.pathname.replace(/\/$/,"")||"/";
   const body=path==="/"?home():path==="/he-sinh-thai"?ecosystemPage():path==="/lien-he"?contact():content[path]?inside(content[path],path):`<section class="inner-hero inner-hero--text"><div class="inner-hero__content"><h1>Không tìm thấy trang</h1><a class="text-link" href="/">VỀ TRANG CHỦ ↗</a></div></section>`;
@@ -68,7 +213,7 @@ function render(){
   document.querySelector(".menu-toggle").addEventListener("click",()=>setMenu(!document.querySelector(".drawer").classList.contains("is-open")));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
   document.querySelectorAll(".drawer a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
-  if(path==="/")initStory();
+  if(path==="/")initRedesignHero();
   if(path==="/lien-he")initContact();
 }
 function setMenu(open){
