@@ -196,3 +196,7 @@ body{color:var(--gg-ink)}
  .leader-photo-motif{width:100px}
 }
 @media(prefers-reduced-motion:reduce){.leader-photo,.leader-portrait-frame{transition:none}}
+
+/* WCAG text-contrast repairs, verified against rendered light backgrounds. */
+.solution-card-body>p:not(.solution-state){color:#465C50}
+.solution-state{color:#81591D}

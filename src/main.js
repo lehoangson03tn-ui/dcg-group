@@ -33,7 +33,7 @@ const leadership = Object.freeze({
 });
 function leadershipSection(full=false){
  const photo = leadership.portrait
-  ? `<img class="leader-photo" src="${esc(leadership.portrait)}" alt="${esc(leadership.portraitAlt)}" width="720" height="900" loading="lazy" decoding="async">`
+  ? `<img class="leader-photo" src="${esc(leadership.portrait)}" alt="${esc(leadership.portraitAlt)}" width="640" height="910" loading="lazy" decoding="async">`
   : `<div class="leader-photo-pending" role="note" aria-label="Ảnh chân dung Trương Quốc Huy chưa được xác minh"><div class="leader-photo-motif" aria-hidden="true"><img src="/assets/dcg-group-emblem.webp" alt="" width="110" height="110" loading="lazy"></div><p>HÌNH ẢNH LÃNH ĐẠO</p><span>Đang chờ ảnh chân dung được xác minh</span></div>`;
  return `<section class="leadership-section page-section" id="${full?'ban-lanh-dao':'lanh-dao'}" aria-labelledby="leadership-heading">
    <div class="container">
