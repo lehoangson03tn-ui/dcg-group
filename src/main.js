@@ -7,8 +7,8 @@ const site = {
   vision: {name:"DCG VISION",type:"COMPUTER VISION",subtitle:"Quan sát thông minh. Nâng tầm chất lượng.",heading:"Biến hình ảnh thành thông tin hữu ích.",description:"Hướng phát triển thị giác máy tính và camera AI, khởi đầu với Mắt Thần hỗ trợ QA/QC ngành F&B.",path:"/vision",image:"/_cdn/static/6a156ddb-434f-4a3c-be39-7e7f7274b476.png",cta:"KHÁM PHÁ DCG VISION"},
   entertainment: {name:"DCG ENTERTAINMENT",type:"AI ENTERTAINMENT",subtitle:"Mở ra những thế giới giải trí mới.",heading:"Khi trí tưởng tượng không còn giới hạn.",description:"Khám phá phim, âm nhạc, nhân vật AI và thế giới nội dung nguyên bản của DCG.",path:"/entertainment",image:"/_cdn/static/ec2e6767-a145-4ca6-8405-7a5d7bab4675.png",cta:"KHÁM PHÁ DCG ENTERTAINMENT"}
 };
-const imageBase="https://dcg-group-ecosystem.floot.app";
-Object.values(site).forEach(x=>x.image=imageBase+x.image);
+const ownedImages={group:'/assets/hero-group.webp',talent:'/assets/hero-talent.webp',studio:'/assets/hero-studio.webp',vision:'/assets/hero-vision.webp',entertainment:'/assets/hero-entertainment.webp'};
+Object.entries(site).forEach(([key,value])=>value.image=ownedImages[key]);
 const order=["group","talent","studio","vision","entertainment"], branches=["talent","studio","vision","entertainment"];
 const nav=[["/","Trang chủ"],["/ve-dcg","Về DCG GROUP"],["/he-sinh-thai","Hệ sinh thái"],["/talent","DCG TALENT"],["/studio","DCG STUDIO"],["/vision","DCG VISION"],["/entertainment","DCG ENTERTAINMENT"],["/mat-than-ai","Mắt Thần AI"],["/lien-he","Liên hệ"]];
 const content = {
@@ -61,7 +61,7 @@ function render(){
   const path=location.pathname.replace(/\/$/,"")||"/";
   const body=path==="/"?home():path==="/he-sinh-thai"?ecosystemPage():path==="/lien-he"?contact():content[path]?inside(content[path],path):`<section class="inner-hero inner-hero--text"><div class="inner-hero__content"><h1>Không tìm thấy trang</h1><a class="text-link" href="/">VỀ TRANG CHỦ ↗</a></div></section>`;
   document.getElementById("app").innerHTML=shell(body);
-  document.title=(content[path]?.name||path==="/he-sinh-thai"?"Hệ sinh thái":path==="/lien-he"?"Liên hệ":"DCG GROUP")+" | DCG GROUP";
+  document.title=(content[path]?.name||(path==="/he-sinh-thai"?"Hệ sinh thái":path==="/lien-he"?"Liên hệ":"DCG GROUP"))+" | DCG GROUP";
   document.querySelector(".menu-toggle").addEventListener("click",()=>setMenu(!document.querySelector(".drawer").classList.contains("is-open")));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
   document.querySelectorAll(".drawer a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
