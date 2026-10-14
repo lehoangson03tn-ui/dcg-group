@@ -185,3 +185,35 @@ body{color:var(--gg-ink)}
 
 /* Logo artwork has transparent source-safe boundaries; restrict photo hover effects to photos. */
 .brand-mark__image{image-rendering:auto;object-fit:contain!important;object-position:center!important;filter:none!important;transform:none!important}
+
+/* Brand directory — legible tablet rows and consistent visual weight.
+   Only the directory cards change; other page components are unchanged. */
+@media (min-width:1120px){
+ .brand-directory-grid .tile-identity{grid-template-columns:84px minmax(0,1fr)}
+ .brand-directory-grid .brand-mark--tile{width:84px}
+}
+@media (min-width:641px) and (max-width:960px){
+ .brand-directory-grid{grid-template-columns:minmax(0,1fr)}
+ .brand-directory-grid .directory-tile{
+   display:grid;
+   grid-template-columns:minmax(0,40%) minmax(0,60%);
+   grid-template-rows:auto minmax(0,1fr) auto;
+   min-height:232px;
+ }
+ .brand-directory-grid .tile-banner{
+   grid-column:1;
+   grid-row:1/4;
+   aspect-ratio:auto;
+   height:100%;
+   min-height:232px;
+ }
+ .brand-directory-grid .tile-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+ .brand-directory-grid .tile-banner-label{font-size:10px;letter-spacing:.35px;max-width:calc(100% - 30px);line-height:1.4}
+ .brand-directory-grid .tile-meta{grid-column:2;grid-row:1;padding:20px 24px 0}
+ .brand-directory-grid .tile-identity{grid-template-columns:76px minmax(0,1fr);gap:15px}
+ .brand-directory-grid .brand-mark--tile{width:76px}
+ .brand-directory-grid .tile-identity h2{font-size:clamp(16px,2vw,20px);line-height:1.4}
+ .brand-directory-grid .tile-identity p{font-size:12px;line-height:1.5}
+ .brand-directory-grid .tile-summary{grid-column:2;grid-row:2;padding:12px 24px 0;font-size:14px;line-height:1.7}
+ .brand-directory-grid .tile-more{grid-column:2;grid-row:3;margin:0 24px 17px;padding-top:10px}
+}
