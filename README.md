@@ -20,3 +20,7 @@ npm run build
 Vercel, project `dcg-group`, production branch `main`, output `dist`.
 
 Lưu ý: website DCG GROUP hoàn toàn độc lập với sản phẩm DCG GROWMATCH. Không tự ý công bố số liệu tài chính hoặc khách hàng chưa được xác minh.
+
+
+## Golden Gate-inspired directory (2026-10-14)
+New routes: `/gioi-thieu`, `/he-sinh-thai`, `/he-sinh-thai/dcg-{talent,studio,vision,entertainment}`, `/giai-phap`, `/du-an`. Details and verified limits: [Implementation Report](docs/GGG_STRUCTURE_IMPLEMENTATION_V1.md).
