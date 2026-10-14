@@ -28,7 +28,7 @@ const leadership = Object.freeze({
   name: 'Trương Quốc Huy',
   role: 'Founder & CEO',
   title: 'Nhà sáng lập & Tổng giám đốc DCG GROUP',
-  portrait: null,
+  portrait: '/images/ceo-founder-dcg.png',
   portraitAlt: 'Trương Quốc Huy — Founder & CEO DCG GROUP'
 });
 function leadershipSection(full=false){
@@ -189,4 +189,23 @@ document.getElementById('app').innerHTML=shell(content,path);document.title=(bra
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+(path==='/ve-dcg'?'/gioi-thieu':path);
  if(path==='/he-sinh-thai')initBrandSearch();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');if(form)form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const data=new FormData(form),msg=`ĐỀ NGHỊ HỢP TÁC — DCG GROUP\n\nHọ tên: ${data.get('name')}\nEmail: ${data.get('email')}\nLĩnh vực: ${data.get('topic')}\n\nNội dung:\n${data.get('note')}`;const status=document.getElementById('form-status');try{await navigator.clipboard.writeText(msg);status.textContent='Đã sao chép lời nhắn. Bạn có thể dán vào kênh liên hệ chính thức khi được công bố.';}catch{const t=document.createElement('textarea');t.rows=9;t.readOnly=true;t.value=msg;status.replaceChildren(t);t.select();}})}
+function scrollToPageAnchor(){
+  const raw=window.location.hash;
+  if(!raw||raw.length>130)return;
+  let id;
+  try{id=decodeURIComponent(raw.slice(1))}catch{return}
+  const target=document.getElementById(id);
+  if(!target)return;
+  const header=document.querySelector('.site-header');
+  const offset=(header?.getBoundingClientRect().height||0)+18;
+  const scroll=()=>{
+    const rect=target.getBoundingClientRect();
+    window.scrollTo({top:Math.max(0,window.scrollY+rect.top-offset),behavior:'instant'});
+  };
+  requestAnimationFrame(()=>requestAnimationFrame(scroll));
+  if(document.fonts?.ready)document.fonts.ready.then(()=>requestAnimationFrame(scroll)).catch(()=>{});
+}
+window.addEventListener('hashchange',scrollToPageAnchor);
+
 init();
+scrollToPageAnchor();
