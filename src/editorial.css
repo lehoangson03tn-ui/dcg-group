@@ -115,3 +115,10 @@ body{color:var(--copy-body)}
 @media(prefers-reduced-motion:reduce){
  .need-card,.insight-card{transition:none}
 }
+
+/* Ecosystem category filters share accessible pressed states with Góc nhìn. */
+.brand-filter{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 18px}
+.brand-filter button{border:1px solid #BBCFC4;border-radius:22px;background:#fff;color:#24352F;min-height:44px;padding:9px 17px;font-size:12px;line-height:1.6;font-weight:650;touch-action:manipulation}
+.brand-filter button:hover{border-color:#17614B}
+.brand-filter button.is-active{background:#17614B;color:#fff;border-color:#17614B}
+.brand-filter button:focus-visible{outline:3px solid #17614B;outline-offset:3px}

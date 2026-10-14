@@ -17,10 +17,11 @@ brands.forEach(b=>{
  const e=editorial.brands[b.slug];
  if(!e)return;
  b.field=e.field; b.heading=e.title; b.summary=e.card; b.detailSummary=e.summary; b.description=e.intro.join(" ");
- b.hero=e.introTitle;b.intro=e.intro;b.focus=e.focus.map(x=>[x.title,x.description]);b.faq=e.faq;
+ b.hero=e.introTitle;b.intro=e.intro;b.focus=e.focus.map(x=>[x.title,x.description]);b.faq=e.faq; b.searchTags=b.slug==='vision'?'thị giác máy tính QA QC kiểm soát chất lượng F&B':'AI';
 });
 
-const menus = [['/','Trang chủ'],['/gioi-thieu','Giới thiệu'],['/gioi-thieu#ban-lanh-dao','Ban lãnh đạo'],['/he-sinh-thai','Hệ sinh thái'],...brands.map(b=>['/he-sinh-thai/dcg-'+b.slug,b.name]),['/giai-phap','Giải pháp'],['/du-an','Dự án'],['/goc-nhin','Góc nhìn'],['/lien-he','Liên hệ']];
+const brandDisplay = [brands[0],brands[1],brands[3],brands[2]];
+const menus = [['/','Trang chủ'],['/gioi-thieu','Giới thiệu'],['/gioi-thieu#ban-lanh-dao','Ban lãnh đạo'],['/he-sinh-thai','Hệ sinh thái'],...brandDisplay.map(b=>['/he-sinh-thai/dcg-'+b.slug,b.name]),['/giai-phap','Giải pháp'],['/du-an','Dự án'],['/goc-nhin','Góc nhìn'],['/lien-he','Liên hệ']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const logo=(name,css='logo-icon')=>`<img class="${css}" src="${A+name}" alt="" decoding="async">`;
 const cta=(text,href,css='link-arrow',external=false)=>`<a class="${css}" href="${href}"${external?' target="_blank" rel="noopener noreferrer"':''}><span>${text}</span><span aria-hidden="true">↗</span></a>`;
@@ -31,7 +32,7 @@ function shell(content,route){return `<a class="skip-link" href="#content">Bỏ 
 <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Mở menu"><span></span><span></span><span></span></button></div></header>
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert><div class="mobile-menu-inner"><p class="eyebrow">KHÁM PHÁ DCG GROUP</p><nav aria-label="Menu toàn bộ">${menus.map(([url,label],i)=>`<a href="${url}"${route===url?' aria-current="page"':''}><span>${String(i+1).padStart(2,'0')}</span><strong>${label}</strong><span aria-hidden="true">↗</span></a>`).join('')}</nav><p class="menu-note">VIỆT NAM · 2026</p></div></div>
 <main id="content">${content}</main>
-<footer class="site-footer"><div class="container"><div class="footer-columns"><div class="footer-brand"><a href="/" class="footer-logo">${logo(group.emblem)}<strong>DCG GROUP</strong></a><p>DCG đang xây dựng hệ sinh thái trong lĩnh vực nhân lực, sáng tạo nội dung, giải trí và ứng dụng AI. Tìm hiểu từng nhánh để bắt đầu từ nhu cầu phù hợp.</p></div><div><p class="footer-title">TÌM HIỂU</p><a href="/gioi-thieu">Giới thiệu</a><a href="/gioi-thieu#ban-lanh-dao">Ban lãnh đạo</a><a href="/he-sinh-thai">Hệ sinh thái</a><a href="/giai-phap">Giải pháp</a><a href="/du-an">Dự án</a><a href="/goc-nhin">Góc nhìn</a><a href="/lien-he">Liên hệ</a></div><div><p class="footer-title">THƯƠNG HIỆU</p>${brands.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}">${b.name}</a>`).join('')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} DCG GROUP. Thông tin giới thiệu các định hướng phát triển.</span><span><a href="/thong-tin-du-lieu">Thông tin xử lý dữ liệu</a> · Kiến tạo từ bản sắc Việt Nam.</span></div></div></footer>`}
+<footer class="site-footer"><div class="container"><div class="footer-columns"><div class="footer-brand"><a href="/" class="footer-logo">${logo(group.emblem)}<strong>DCG GROUP</strong></a><p>DCG đang xây dựng hệ sinh thái trong lĩnh vực nhân lực, sáng tạo nội dung, giải trí và ứng dụng AI. Tìm hiểu từng nhánh để bắt đầu từ nhu cầu phù hợp.</p></div><div><p class="footer-title">TÌM HIỂU</p><a href="/gioi-thieu">Giới thiệu</a><a href="/gioi-thieu#ban-lanh-dao">Ban lãnh đạo</a><a href="/he-sinh-thai">Hệ sinh thái</a><a href="/giai-phap">Giải pháp</a><a href="/du-an">Dự án</a><a href="/goc-nhin">Góc nhìn</a><a href="/lien-he">Liên hệ</a></div><div><p class="footer-title">THƯƠNG HIỆU</p>${brandDisplay.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}">${b.name}</a>`).join('')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} DCG GROUP. Thông tin giới thiệu các định hướng phát triển.</span><span><a href="/thong-tin-du-lieu">Thông tin xử lý dữ liệu</a> · Kiến tạo từ bản sắc Việt Nam.</span></div></div></footer>`}
 
 // Single source of truth for DCG GROUP leadership profile.
 // Portrait remains null until an authentic, owner-approved photo of Trương Quốc Huy is supplied.
@@ -77,7 +78,7 @@ function home(){
  <div class="hero-accent"><span>DCG GROUP</span><div></div><span>${esc(e.heroTagline)}</span></div>
  </div></div>
  <div class="home-hero-media"><div class="hero-image-mosaic" role="img" aria-label="Bốn lĩnh vực nhân lực, hình ảnh, giải trí và camera AI của DCG GROUP">
- ${brands.map((b,i)=>`<img src="${A+b.image}" alt="" ${i===0?'fetchpriority="high"':'loading="eager"'} decoding="async">`).join('')}
+ ${brandDisplay.map((b,i)=>`<img src="${A+b.image}" alt="" ${i===0?'fetchpriority="high"':'loading="eager"'} decoding="async">`).join('')}
  </div><div class="hero-media-tag"><span>DCG GROUP</span><span>VIỆT NAM</span></div></div></section>
 <section class="about-home page-section"><div class="container">
  ${sectionTop('01','VỀ DCG')}
@@ -107,7 +108,7 @@ function home(){
  ${insightCards()}<div class="section-read-all">${cta('ĐỌC THÊM GÓC NHÌN','/goc-nhin')}</div></div></section>
  ${endBanner()}`;
 }
-function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${b.name}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${esc(b.field)}</p><div class="brand-inline">${logo(b.emblem)}<strong>${b.name}</strong></div><h3>${esc(b.heading)}</h3><p>${esc(b.summary)}</p>${cta('KHÁM PHÁ THƯƠNG HIỆU','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
+function brandRows(){return `<div class="brand-rows">${brandDisplay.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${b.name}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${esc(b.field)}</p><div class="brand-inline">${logo(b.emblem)}<strong>${b.name}</strong></div><h3>${esc(b.heading)}</h3><p>${esc(b.summary)}</p>${cta('KHÁM PHÁ THƯƠNG HIỆU','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
 function endBanner(){return `<section class="end-banner"><div class="container"><div>${eyebrow('KẾT NỐI')}<h2>${esc(editorial.home.footerTitle)}</h2><p class="end-note">${esc(editorial.home.footerDescription)}</p></div>${cta('TRAO ĐỔI VỚI DCG','/lien-he','button-outline')}</div></section>`}
 function innerHero(kicker,title,description,image=''){return `<section class="inner-hero${image?' with-image':''}"><div class="inner-hero-text"><div class="inner-hero-text-inner">${eyebrow(kicker)}<h1>${title}</h1><p>${description}</p></div></div>${image?`<div class="inner-hero-media"><img src="${A+image}" alt="" fetchpriority="high"></div>`:''}</section>`}
 
@@ -138,21 +139,27 @@ function ecosystem(){return `
 ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Hệ sinh thái"}])}
 <p class="eyebrow">DCG GROUP / FOUR BRANDS</p>
 <h1>Hệ sinh thái DCG</h1>
-<p class="directory-subtitle">Tìm hiểu bốn thương hiệu và định hướng phát triển trong hệ sinh thái công nghệ, nhân lực và sáng tạo DCG GROUP.</p>
+<p class="directory-subtitle">Bốn nhánh phát triển, từ nhân lực và nội dung đến ứng dụng công nghệ. Tìm hiểu vai trò của từng nhánh để chọn đúng nơi bắt đầu.</p>
 <form class="brand-search" id="brand-search" role="search" autocomplete="off">
   <label for="brand-keyword">Tìm thương hiệu hoặc lĩnh vực</label>
   <div class="brand-search-controls">
-    <input id="brand-keyword" type="search" name="q" placeholder="Tìm thương hiệu hoặc lĩnh vực…" maxlength="80" aria-controls="brand-results">
+    <input id="brand-keyword" type="search" name="q" placeholder="Ví dụ: nhân lực, video, giải trí, camera AI" maxlength="80" aria-controls="brand-results">
     <button type="submit" class="search-submit">Tìm kiếm <span aria-hidden="true">→</span></button>
     <button type="button" id="clear-brand-search" class="search-reset" hidden>Xóa lọc</button>
   </div>
 </form>
+<div class="brand-filter" role="group" aria-label="Lọc theo lĩnh vực">
+ <button type="button" class="is-active" aria-pressed="true" data-brand-filter="all">Tất cả</button>
+ <button type="button" aria-pressed="false" data-brand-filter="talent">Nhân lực</button>
+ <button type="button" aria-pressed="false" data-brand-filter="studio">Sáng tạo nội dung</button>
+ <button type="button" aria-pressed="false" data-brand-filter="entertainment">Giải trí</button>
+ <button type="button" aria-pressed="false" data-brand-filter="vision">Công nghệ vận hành</button></div>
 <p class="brand-result-count" id="brand-result-count" role="status" aria-live="polite">4 thương hiệu</p>
 <div id="brand-results" class="brand-directory-grid">
-  ${brands.map((b)=>brandTile(b)).join("")}
+  ${brandDisplay.map((b)=>brandTile(b)).join("")}
 </div>
 <div id="brand-empty" class="brand-empty" hidden>
-  <h2>Không tìm thấy thương hiệu phù hợp</h2><p>Thử từ khóa khác hoặc xóa bộ lọc để xem toàn bộ hệ sinh thái.</p>
+  <h2>Chưa có thương hiệu phù hợp với từ khóa này</h2><p>Hãy thử một lĩnh vực khác hoặc xem toàn bộ hệ sinh thái.</p>
   <button type="button" id="empty-reset">Xem tất cả thương hiệu</button>
 </div>
 </div></section>`;}
@@ -164,27 +171,35 @@ function brandTile(b){return `<a class="directory-tile" href="/he-sinh-thai/dcg-
    <span class="tile-more">Khám phá thương hiệu <span aria-hidden="true">→</span></span>
  </a>`;}
 function normalizeSearch(value){return String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().trim();}
-function initBrandSearch(){
- const f=document.getElementById("brand-search");if(!f)return;
- const field=f.querySelector("#brand-keyword"),results=document.getElementById("brand-results"),count=document.getElementById("brand-result-count");
- const reset=document.getElementById("clear-brand-search"),empty=document.getElementById("brand-empty");
- const show=(q,writeHistory=false)=>{
-   const needle=normalizeSearch(q).slice(0,80);
-   const filtered=brands.filter(b=>normalizeSearch([b.name,b.field,b.summary,b.description].join(" ")).includes(needle));
-   results.innerHTML=filtered.map(brandTile).join("");
-   field.value=q;reset.hidden=!q.trim();empty.hidden=filtered.length>0;
-   count.textContent=filtered.length+" / "+brands.length+" thương hiệu";
-   if(writeHistory){const url=new URL(location.href);if(q.trim())url.searchParams.set("q",q.trim());else url.searchParams.delete("q");history.pushState(null,"",url.pathname+url.search)}
- };
- const clear=()=>{show("",true);field.focus()};
- f.addEventListener("submit",e=>{e.preventDefault();show(field.value,true)});
- field.addEventListener("input",()=>show(field.value,false));
- reset.addEventListener("click",clear);
- document.getElementById("empty-reset").addEventListener("click",clear);
- window.addEventListener("popstate",()=>show(new URLSearchParams(location.search).get("q")||"",false));
- show(new URLSearchParams(location.search).get("q")||"",false);
-}
 
+function initBrandSearch(){
+ const form=document.getElementById('brand-search');if(!form)return;
+ const field=document.getElementById('brand-keyword'),result=document.getElementById('brand-results'),count=document.getElementById('brand-result-count'),reset=document.getElementById('clear-brand-search'),empty=document.getElementById('brand-empty');
+ const options=[...document.querySelectorAll('[data-brand-filter]')];
+ let active='all';
+ const fromUrl=()=>{
+  const params=new URLSearchParams(location.search);const tag=params.get('f');
+  active=['talent','studio','vision','entertainment'].includes(tag)?tag:'all';
+  options.forEach(b=>{const on=b.dataset.brandFilter===active;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',String(on))});
+  field.value=params.get('q')||'';
+ };
+ const show=(save=false)=>{
+  const needle=normalizeSearch(field.value).slice(0,80);
+  const matches=brandDisplay.filter(b=>(active==='all'||b.slug===active)&&normalizeSearch([b.name,b.field,b.summary,b.detailSummary,b.description,b.searchTags||''].join(' ')).includes(needle));
+  result.innerHTML=matches.map(brandTile).join('');
+  count.textContent=matches.length+' / '+brands.length+' thương hiệu';
+  reset.hidden=!field.value.trim();empty.hidden=matches.length>0;
+  if(save){const url=new URL(location.href);if(field.value.trim())url.searchParams.set('q',field.value.trim());else url.searchParams.delete('q');if(active==='all')url.searchParams.delete('f');else url.searchParams.set('f',active);history.pushState(null,'',url.pathname+url.search)}
+ };
+ form.addEventListener('submit',ev=>{ev.preventDefault();show(true)});
+ field.addEventListener('input',()=>show(false));
+ const clear=()=>{active='all';field.value='';options.forEach(b=>{const on=b.dataset.brandFilter==='all';b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',String(on))});show(true);field.focus()};
+ reset.addEventListener('click',()=>{field.value='';show(true);field.focus()});
+ document.getElementById('empty-reset').addEventListener('click',clear);
+ options.forEach(b=>b.addEventListener('click',()=>{active=b.dataset.brandFilter;options.forEach(other=>{const on=other===b;other.classList.toggle('is-active',on);other.setAttribute('aria-pressed',String(on))});show(true)}));
+ window.addEventListener('popstate',()=>{fromUrl();show()});
+ fromUrl();show();
+}
 function brandPage(b){
  return `<section class="detail-intro"><div class="container">
  ${breadcrumb([{name:'Trang chủ',href:'/'},{name:'Hệ sinh thái',href:'/he-sinh-thai'},{name:b.name}])}
@@ -204,7 +219,7 @@ function brandPage(b){
  <section class="page-section detail-faq"><div class="container">${sectionTop('04','CÂU HỎI THƯỜNG GẶP')}
  ${b.faq.map(q=>`<details><summary>${esc(q.question)}</summary><p>${esc(q.answer)}</p></details>`).join('')}
  </div></section>
- <section class="page-section related-brands"><div class="container">${sectionTop('05','KHÁM PHÁ THÊM')}<h2>Thương hiệu liên quan</h2><div class="related-grid">${brands.filter(x=>x.slug!==b.slug).map(brandTile).join('')}</div></div></section>
+ <section class="page-section related-brands"><div class="container">${sectionTop('05','KHÁM PHÁ THÊM')}<h2>Thương hiệu liên quan</h2><div class="related-grid">${brandDisplay.filter(x=>x.slug!==b.slug).map(brandTile).join('')}</div></div></section>
  ${endBanner()}`;
 }
 function eye(){return `${innerHero('DCG VISION · DỰ ÁN NGHIÊN CỨU','Mắt Thần AI<br>cho QA/QC F&B.','Nghiên cứu ứng dụng camera AI nhằm hỗ trợ nhân sự quan sát chất lượng và quy trình.',brands[2].image)}<section class="page-section"><div class="container">${sectionTop('01','GIỚI THIỆU DỰ ÁN')}<div class="editorial-content"><div>${eyebrow('THỊ GIÁC MÁY TÍNH')}<h2>Hỗ trợ quan sát.<br>Không thay thế con người.</h2></div><div><p class="lead">Những dấu hiệu AI phát hiện cần được xác minh trong bối cảnh thực tế.</p><p>Mắt Thần AI là hướng phát triển của DCG VISION dành cho hoạt động QA/QC ngành thực phẩm và đồ uống. Dự án nghiên cứu khả năng dùng hình ảnh camera để nhận biết các điểm cần kiểm tra trong quá trình vận hành.</p><p>Đây là dự án đang phát triển, chưa công bố tỷ lệ chính xác hay kết quả triển khai thương mại khi chưa có kiểm định thực tế.</p>${cta('TÌM HIỂU DCG VISION','/vision')}</div></div></div></section>${endBanner()}`}
@@ -214,7 +229,7 @@ function contact(){
  <section class="page-section"><div class="container">${sectionTop('01','SOẠN NỘI DUNG LIÊN HỆ')}
  <div class="contact-layout"><div><h2>Bắt đầu từ điều bạn đang cần.</h2>
  <p>Website hiện chưa có kênh tiếp nhận tự động đã xác minh. Biểu mẫu này hỗ trợ soạn và sao chép lời nhắn; việc sao chép không đồng nghĩa với DCG đã nhận yêu cầu.</p>
- <div class="contact-nav">${brands.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}">${b.name}<span aria-hidden="true">↗</span></a>`).join('')}</div>
+ <div class="contact-nav">${brandDisplay.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}">${b.name}<span aria-hidden="true">↗</span></a>`).join('')}</div>
  </div>
  <form id="contact-form" class="contact-form">
  <p class="form-label">SOẠN LỜI NHẮN HỢP TÁC</p>
@@ -253,7 +268,7 @@ function solutionsPage(){
  <p class="eyebrow">DCG GROUP / GIẢI PHÁP</p><h1>Tìm hướng giải quyết phù hợp.</h1>
  <p class="directory-subtitle">Bắt đầu từ nhu cầu của bạn. DCG phân nhóm các hướng phát triển để việc trao đổi đi đúng vấn đề và đúng đầu mối.</p>
  <div class="solution-grid">
- ${brands.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}" class="solution-card">
+ ${brandDisplay.map(b=>`<a href="/he-sinh-thai/dcg-${b.slug}" class="solution-card">
  <img src="${A+b.image}" alt="" loading="lazy"><div class="solution-card-body">
  <p class="solution-state">${esc(b.name)}</p><h2>${esc(b.field)}</h2><p>${esc(b.summary)}</p><span>Xem hướng tiếp cận ↗</span></div></a>`).join('')}
  </div><div class="solutions-contact"><p>Bạn chưa cần biết phải dùng công nghệ nào. Hãy mô tả công việc, khó khăn và kết quả mong muốn.</p>${cta('GỬI NHU CẦU','/lien-he')}</div>
@@ -328,13 +343,31 @@ function trapMenuFocus(e){
  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
 }
+
+const seoTexts={
+ '/': ['DCG GROUP — Nhân lực, sáng tạo và ứng dụng AI','Khám phá DCG GROUP và bốn nhánh phát triển trong nhân lực, hình ảnh, nội dung giải trí và camera AI hỗ trợ vận hành.'],
+ '/gioi-thieu':['Về DCG GROUP — Định hướng và ban lãnh đạo','Tìm hiểu định hướng phát triển, nguyên tắc làm việc và ban lãnh đạo DCG GROUP.'],
+ '/he-sinh-thai':['Hệ sinh thái DCG GROUP','Tìm hiểu DCG TALENT, DCG STUDIO, DCG ENTERTAINMENT và DCG VISION để chọn lĩnh vực phù hợp với nhu cầu của bạn.'],
+ '/giai-phap':['Giải pháp và hướng hợp tác — DCG GROUP','Chọn nhu cầu về nhân lực, nội dung, giải trí hoặc camera AI để trao đổi đúng lĩnh vực với DCG.'],
+ '/du-an':['Dự án và sản phẩm — DCG GROUP','Xem sản phẩm, nội dung và thử nghiệm của DCG với phạm vi thực hiện và trạng thái được giới thiệu rõ ràng.'],
+ '/goc-nhin':['Góc nhìn DCG — Công việc, sáng tạo và công nghệ','Đọc các góc nhìn về lựa chọn nhân lực, phát triển nội dung và những câu hỏi cần đặt ra trước khi ứng dụng công nghệ.'],
+ '/lien-he':['Liên hệ hợp tác — DCG GROUP','Chia sẻ nhu cầu, ý tưởng hoặc công việc cần giải quyết để bắt đầu trao đổi với DCG GROUP.']
+};
+const seoBranches={
+ talent:['DCG TALENT — Nhân lực và phát triển nghề nghiệp','Khám phá hướng phát triển của DCG TALENT trong kết nối nhân lực, tìm hiểu sự phù hợp với công việc và rèn luyện năng lực.'],
+ studio:['DCG STUDIO — Hình ảnh và video thương hiệu','Tìm hiểu cách DCG STUDIO tiếp cận ý tưởng, thông điệp và nội dung hình ảnh, video có ứng dụng AI.'],
+ entertainment:['DCG ENTERTAINMENT — Nội dung giải trí','Khám phá hướng phát triển nội dung giải trí của DCG qua câu chuyện, hình ảnh, âm thanh và chất liệu văn hóa Việt Nam.'],
+ vision:['DCG VISION — Camera AI hỗ trợ vận hành F&B','Tìm hiểu định hướng nghiên cứu camera AI của DCG VISION và các điều kiện cần làm rõ trước khi thử nghiệm trong vận hành F&B.']
+};
+
 function init(){const path=location.pathname.replace(/\/$/,'')||'/';const brand=brands.find(b=>'/'+b.slug===path||'/he-sinh-thai/dcg-'+b.slug===path);
  const solution=solutions.find(x=>'/giai-phap/'+x.slug===path);
  const project=solutions.filter(x=>['dcg-growmatch','mat-than-ai'].includes(x.slug)).find(x=>'/du-an/'+x.slug===path);
  const article=editorial.articles.find(a=>'/goc-nhin/'+a.slug===path);
  const content=path==='/'?home():['/ve-dcg','/gioi-thieu'].includes(path)?about():path==='/he-sinh-thai'?ecosystem():path==='/giai-phap'?solutionsPage():solution?solutionDetail(solution):path==='/du-an'?projectsPage():project?projectDetail(project):path==='/goc-nhin'?insightsIndex():article?insightDetail(article):path==='/mat-than-ai'?eye():path==='/lien-he'?contact():path==='/thong-tin-du-lieu'?dataInfo():brand?brandPage(brand):`<section class="error-404"><div class="container"><h1>Không tìm thấy trang</h1><p>Đường dẫn này không tồn tại hoặc nội dung chưa được xuất bản.</p>${cta('QUAY VỀ TRANG CHỦ','/')}</div></section>`;
-document.getElementById('app').innerHTML=shell(content,path);document.title=(article?.title||brand?.name||solution?.name||project?.name||(path==='/ve-dcg'||path==='/gioi-thieu'?'Giới thiệu':path==='/he-sinh-thai'?'Hệ sinh thái':path==='/giai-phap'?'Giải pháp':path==='/du-an'?'Dự án':path==='/goc-nhin'?'Góc nhìn':path==='/mat-than-ai'?'Mắt Thần AI':path==='/lien-he'?'Liên hệ':path==='/thong-tin-du-lieu'?'Thông tin dữ liệu':'DCG GROUP'))+' | DCG GROUP';
- const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(article?.summary||brand?.detailSummary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
+document.getElementById('app').innerHTML=shell(content,path);const selectedSeo=brand?seoBranches[brand.slug]:(seoTexts[path==='/ve-dcg'?'/gioi-thieu':path]||null);
+ document.title=article?article.title+' — DCG GROUP':selectedSeo?selectedSeo[0]:(solution?.name||project?.name||'DCG GROUP')+' — DCG GROUP';
+ const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=article?.summary||selectedSeo?.[1]||solution?.summary||project?.summary||'DCG GROUP — nhân lực, sáng tạo và ứng dụng AI.';
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+(path==='/ve-dcg'?'/gioi-thieu':path);
  if(path==='/he-sinh-thai')initBrandSearch(); if(path==='/goc-nhin')initInsights();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));
 const form=document.getElementById('contact-form');
