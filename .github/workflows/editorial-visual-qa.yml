@@ -1,0 +1,41 @@
+name: DCG Editorial Visual QA
+on:
+  push:
+    branches: [editorial-founder-20261015]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Prepare previous-version screenshots
+        run: |
+          git worktree add --detach /tmp/dcg-before a2ac37c6a8f09afdefe4c78dabd6b1c53ec22dd8
+      - name: Start both versions and test rendered pages
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/dcg-vite.log 2>&1 &
+          ./node_modules/.bin/vite /tmp/dcg-before --host 127.0.0.1 --port 5174 --strictPort > /tmp/dcg-before-vite.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ > /dev/null && break; sleep 1; done
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5174/ > /dev/null && break; sleep 1; done
+          BEFORE_URL=http://127.0.0.1:5174 node tests/editorial-visual-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-editorial-desktop-mobile
+          path: visual-qa/
+          retention-days: 14
