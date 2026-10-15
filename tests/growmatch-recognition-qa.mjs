@@ -42,17 +42,19 @@ try{
    const homeState=await page.evaluate(()=>{
      const r=e=>{const a=e.getBoundingClientRect();return {x:a.x,y:a.y,bottom:a.bottom,right:a.right,width:a.width}};
      const sum=document.querySelector('.growmatch-recognition-summary');
-     const list=document.querySelector('.project-list');
-     const items=[...list.children];
+     const group=document.querySelector('.growmatch-project-group');
+     const intro=group.querySelector('.growmatch-project-intro .project-line');
+     const following=document.querySelector('.growmatch-following-project .project-line');
      const img=sum.querySelector('img');
      const brand=document.querySelector('.founder-message')?.textContent||'';
-     return {index:items.indexOf(sum),prev:items[items.indexOf(sum)-1]?.querySelector('h3')?.textContent.trim(),next:items[items.indexOf(sum)+1]?.querySelector('h3')?.textContent.trim(),
-       bg:getComputedStyle(sum).backgroundColor,overflow:document.documentElement.scrollWidth-innerWidth,
+     return {insideGroup:group.contains(sum),prev:intro.querySelector('h3').textContent.trim(),next:following.querySelector('h3').textContent.trim(),
+       bg:getComputedStyle(group).backgroundColor,summaryBg:getComputedStyle(sum).backgroundColor,overflow:document.documentElement.scrollWidth-innerWidth,
        grid:getComputedStyle(sum).gridTemplateColumns,photo:r(img),label:r(sum.querySelector('.growmatch-summary-label')),heading:r(sum.querySelector('h3')),
        description:r(sum.querySelector('.growmatch-summary-description')),ceo:brand,logo:document.querySelectorAll('.brand-inline').length,
        imageNatural:[img.naturalWidth,img.naturalHeight],font:getComputedStyle(document.body).fontFamily};
    });
-   assert.equal(homeState.index,1,'Summary immediately after GrowMatch project');
+   assert.equal(homeState.insideGroup,true,'Summary within full-width GrowMatch project group');
+   assert.equal(homeState.summaryBg,'rgba(0, 0, 0, 0)','Summary must not own blue background');
    assert.equal(homeState.prev,'DCG GROWMATCH');
    assert.equal(homeState.next,'LUMIQC');
    assert.equal(homeState.bg,'rgb(240, 245, 250)');
