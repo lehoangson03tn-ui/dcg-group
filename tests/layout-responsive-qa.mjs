@@ -75,7 +75,7 @@ async function open(browser,url,width){
  await page.locator(".brand-rows img").evaluateAll(async imgs=>{
   for(const img of imgs)img.loading="eager";
   await Promise.all(imgs.map(async img=>{
-   if(!img.complete)await new Promise((resolve,reject)=>{img.addEventListener("load",resolve,{once:true});img.addEventListener("error",reject,{once:true});});
+   if(!img.complete)await Promise.race([new Promise(resolve=>{img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true});}),new Promise(resolve=>setTimeout(resolve,8000))]);
    if(img.decode)await img.decode().catch(()=>{});
   }));
  });
