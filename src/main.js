@@ -8,7 +8,7 @@ const brands = [
   {slug:'talent',name:'DCG TALENT',field:'CÔNG NGHỆ NHÂN LỰC',hero:'Kết nối cơ hội nghề nghiệp và phát triển kỹ năng',heading:'Nhân lực và cơ hội nghề nghiệp',summary:'Tập trung vào kết nối ứng viên với cơ hội việc làm phù hợp, đồng thời định hướng phát triển kỹ năng theo nhu cầu tuyển dụng.',description:'DCG TALENT hướng đến hành trình nghề nghiệp xuyên suốt: từ khám phá công việc, hiểu điểm mạnh đến thực hành những năng lực cần thiết. DCG GROWMATCH là sản phẩm công nghệ nhân lực của nhánh này.',image:'hero-talent.webp',emblem:'dcg-talent-emblem-safe.webp',focus:[['Khám phá cơ hội','Đối sánh kỹ năng ứng viên với yêu cầu công việc qua những tiêu chí có thể giải thích.'],['Hiểu rõ năng lực','Phản hồi dựa trên bài đánh giá, tình huống và minh chứng thay vì suy đoán.'],['Phát triển tiếp','Luyện tập kỹ năng nghề nghiệp và theo dõi tiến bộ qua từng lần thực hành.']],action:{label:'TRẢI NGHIỆM DCG GROWMATCH',href:'https://dcg-growmatch.vercel.app',external:true}},
   {slug:'studio',name:'DCG STUDIO',field:'SÁNG TẠO & SẢN XUẤT NỘI DUNG',hero:'Từ ý tưởng đến hình ảnh và video',heading:'Ý tưởng và sản xuất hình ảnh',summary:'Phát triển nội dung hình ảnh và video, kết hợp tư duy sáng tạo với công cụ AI và CGI để thể hiện câu chuyện của thương hiệu.',description:'DCG STUDIO theo đuổi việc kết hợp tư duy thương hiệu, kịch bản và công nghệ mới để phát triển hình ảnh chuyển động, phim quảng cáo và sản phẩm truyền thông có cá tính riêng.',image:'hero-studio.webp',emblem:'dcg-studio-emblem-clean.webp',focus:[['Sản xuất hình ảnh','Phát triển ý tưởng, video, CGI và hình ảnh với sự hỗ trợ của AI.'],['Sáng tạo thương mại','Biến thông điệp thương hiệu thành nội dung rõ ràng, nhất quán và giàu cảm xúc.'],['Chất lượng sáng tạo','Tôn trọng nguồn tư liệu, bản quyền và sự trung thực trong nội dung sản xuất.']],action:{label:'TRAO ĐỔI VỀ SÁNG TẠO',href:'/lien-he'}},
   {slug:'vision',name:'DCG VISION',field:'THỊ GIÁC MÁY TÍNH',hero:'Quan sát và kiểm tra chất lượng bằng hình ảnh',heading:'Thị giác máy tính cho vận hành',summary:'Nghiên cứu ứng dụng thị giác máy tính vào quan sát và kiểm soát chất lượng, với định hướng phục vụ ngành thực phẩm và đồ uống.',description:'DCG VISION tập trung nghiên cứu ứng dụng phân tích hình ảnh vào các quy trình cần quan sát. Dự án Mắt Thần hướng tới hỗ trợ nhân sự QA/QC ngành F&B phát hiện những dấu hiệu cần kiểm tra.',image:'hero-vision.webp',emblem:'dcg-vision-emblem-safe.webp',focus:[['Thị giác máy tính','Nghiên cứu nhận diện và phân tích hình ảnh dựa trên tiêu chí đo lường rõ ràng.'],['Mắt Thần AI','Hướng phát triển camera AI hỗ trợ theo dõi quy trình QA/QC trong ngành F&B.'],['Con người xác minh','Cảnh báo từ AI không phải kết luận vi phạm; con người có trách nhiệm đánh giá lại.']],action:{label:'TÌM HIỂU DỰ ÁN MẮT THẦN',href:'/mat-than-ai'}},
-  {slug:'entertainment',name:'DCG ENTERTAINMENT',field:'GIẢI TRÍ SỐ',hero:'Khám phá nội dung và trải nghiệm giải trí',heading:'Nội dung và trải nghiệm giải trí',summary:'Định hướng phát triển phim, âm nhạc và nhân vật nguyên bản, kết hợp sáng tạo nội dung với công nghệ AI trong quá trình sản xuất.',description:'DCG ENTERTAINMENT khám phá những hình thức giải trí mới từ phim, âm nhạc đến các nhân vật và thế giới hư cấu ứng dụng AI; kết nối công nghệ hiện đại với cảm hứng văn hóa Việt Nam.',image:'hero-entertainment.webp',emblem:'dcg-entertainment-emblem-safe.webp?v=full-20261015',focus:[['Phim & nội dung AI','Phát triển ý tưởng phim ngắn, hoạt hình và những câu chuyện nguyên bản.'],['Âm nhạc & hình ảnh','Khám phá MV, nhạc và trải nghiệm nghe nhìn ứng dụng công nghệ mới.'],['Nhân vật & thế giới','Xây dựng nhân vật có bản sắc, câu chuyện và hệ hình ảnh nhất quán.']],action:{label:'KẾT NỐI VỚI DCG ENTERTAINMENT',href:'/lien-he'}}
+  {slug:'entertainment',name:'DCG ENTERTAINMENT',field:'GIẢI TRÍ SỐ',hero:'Khám phá nội dung và trải nghiệm giải trí',heading:'Sáng tạo nội dung giải trí',summary:'Định hướng phát triển phim, âm nhạc và nhân vật nguyên bản, với sự hỗ trợ của công nghệ AI trong quá trình sản xuất.',description:'DCG ENTERTAINMENT khám phá những hình thức giải trí mới từ phim, âm nhạc đến các nhân vật và thế giới hư cấu ứng dụng AI; kết nối công nghệ hiện đại với cảm hứng văn hóa Việt Nam.',image:'hero-entertainment.webp',emblem:'dcg-entertainment-emblem-safe.webp?v=full-20261015',focus:[['Phim & nội dung AI','Phát triển ý tưởng phim ngắn, hoạt hình và những câu chuyện nguyên bản.'],['Âm nhạc & hình ảnh','Khám phá MV, nhạc và trải nghiệm nghe nhìn ứng dụng công nghệ mới.'],['Nhân vật & thế giới','Xây dựng nhân vật có bản sắc, câu chuyện và hệ hình ảnh nhất quán.']],action:{label:'KẾT NỐI VỚI DCG ENTERTAINMENT',href:'/lien-he'}}
 ];
 const menus = [['/','Trang chủ'],['/gioi-thieu','Giới thiệu'],['/he-sinh-thai','Hệ sinh thái'],...brands.map(b=>['/he-sinh-thai/dcg-'+b.slug,b.name]),['/giai-phap','Giải pháp'],['/du-an','Dự án'],['/lien-he','Liên hệ']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -27,26 +27,23 @@ const sectionTop=(n,caption)=>`<div class="section-serial"><span>${n} <i>/</i> $
 const eyebrow=text=>`<p class="eyebrow">${text}</p>`;
 
 /* Shared, reviewed founder identity; quoted text is editorial-only until approved. */
+/* One confirmed message and identity, shared by home and About. */
 const founder = Object.freeze({
-  name:'Trương Quốc Huy',
-  role:'Nhà sáng lập & Tổng giám đốc DCG GROUP',
-  image:'dcg-founder-portrait.png',
-  proposedQuote:'Điều tôi mong muốn ở DCG là mỗi ý tưởng được theo đuổi đến cùng, để trở thành điều có ích cho người sử dụng.'
+  name: 'Trương Quốc Huy',
+  role: 'Nhà sáng lập & Tổng giám đốc DCG GROUP',
+  image: 'dcg-founder-portrait.png',
+  message: 'Tôi tin vào sức sáng tạo của người Việt. Chúng tôi xây dựng DCG để kết nối con người và công nghệ, biến những ý tưởng tốt thành sản phẩm có ích cho cuộc sống.'
 });
 function founderSection(context='home'){
- const expanded=context==='about';
- const editorialPreview=new URLSearchParams(location.search).get('ceo-draft')==='1' && (['localhost','127.0.0.1'].includes(location.hostname) || location.hostname.includes('git-editorial-founder-20261015'));
+ const onAbout=context==='about';
  return `<section class="founder-section page-section" id="nha-sang-lap" aria-labelledby="founder-heading">
   <div class="container founder-layout">
    <figure class="founder-portrait"><img src="${A+founder.image}" alt="Chân dung ${esc(founder.name)}, Nhà sáng lập DCG GROUP" width="640" height="910" loading="lazy" decoding="async"></figure>
    <div class="founder-copy">
-    ${eyebrow('THÔNG ĐIỆP TỪ NHÀ SÁNG LẬP')}
-    <h2 id="founder-heading">Bắt đầu từ con người <span>Tạo giá trị bằng công nghệ</span></h2>
-    <p class="founder-lead">Định hướng của DCG là kết nối năng lực con người với công nghệ và sáng tạo. Từ cơ hội nghề nghiệp đến sản phẩm nội dung và công cụ hỗ trợ vận hành, mỗi hướng phát triển đều cần bắt đầu bằng một nhu cầu cụ thể.</p>
-    ${expanded?'<p class="founder-context">Điều DCG hướng đến không phải công nghệ vì chính nó, mà là những cách ứng dụng rõ ràng, có thể kiểm chứng và tiếp tục cải thiện từ phản hồi thực tế.</p>':''}
-    ${editorialPreview?`<div class="founder-editorial-note" role="note"><strong>BẢN XEM TRƯỚC BIÊN TẬP — CHƯA ĐƯỢC PHÊ DUYỆT</strong><blockquote>“${esc(founder.proposedQuote)}”</blockquote><p>Đây là câu chữ đề xuất, không phải phát ngôn đã được xác minh. Không dùng để trích dẫn hoặc xuất bản chính thức.</p></div>`:''}
+    <h2 id="founder-heading">Thông điệp từ nhà sáng lập</h2>
+    <blockquote class="founder-message">“${esc(founder.message)}”</blockquote>
     <div class="founder-signature"><strong>${esc(founder.name)}</strong><span>${esc(founder.role)}</span></div>
-    ${expanded?'':cta('Tìm hiểu về DCG','/gioi-thieu#nha-sang-lap','button-secondary')}
+    ${onAbout?'':cta('Tìm hiểu về DCG','/gioi-thieu#nha-sang-lap','button-secondary')}
    </div>
   </div>
  </section>`;
@@ -85,7 +82,7 @@ ${founderSection()}
  <a href="/du-an/mat-than-ai" class="project-line"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>Mắt Thần AI</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><b aria-hidden="true">↗</b></a>
  </div></div></section>${endBanner()}`;
 }
-function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${esc(b.name)}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${b.field}</p><div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div><h3>${b.heading}</h3><p>${b.summary}</p>${cta('Khám phá '+b.name,'/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
+function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${esc(b.name)}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${b.field}</p><div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div><h3>${b.heading}</h3><p>${b.summary}</p>${cta('Khám phá thương hiệu','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
 function endBanner(){return `<section class="end-banner"><div class="container"><div>${eyebrow('KẾT NỐI VỚI DCG GROUP')}<h2>Cùng trao đổi về điều bạn đang cần</h2><p>Chia sẻ bài toán, ý tưởng hoặc nhu cầu hợp tác của bạn để bắt đầu cuộc trao đổi với DCG.</p></div>${cta('Liên hệ DCG','/lien-he','button-outline')}</div></section>`}
 function innerHero(kicker,title,description,image=''){return `<section class="inner-hero${image?' with-image':''}"><div class="inner-hero-text"><div class="inner-hero-text-inner">${eyebrow(kicker)}<h1>${title}</h1><p>${description}</p></div></div>${image?`<div class="inner-hero-media"><img src="${A+image}" alt="" fetchpriority="high"></div>`:''}</section>`}
 
