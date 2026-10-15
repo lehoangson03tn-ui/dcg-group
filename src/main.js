@@ -17,13 +17,13 @@ const visualSources=Object.freeze({
  talent:{alt:'Ảnh tư liệu đội ĐÀN CÁ GỖ tham dự cuộc thi CEO thời đại số của NTTU',author:'Tư liệu sự kiện NTTU',url:'https://ntt.edu.vn/nttu-tim-kiem-nha-quan-tri-tuong-lai-qua-cuoc-thi-ceo-thoi-dai-so/',label:'Tư liệu thật của đội thi DCG GROWMATCH tại NTTU',width:1536,height:1024,kind:'documentary'},
  studio:{alt:'Người vận hành máy quay trong một buổi sản xuất video, ảnh chụp minh họa bên ngoài DCG STUDIO',author:'Jamie Webster',url:'https://unsplash.com/photos/filmmaker-operating-a-camera-indoors-with-another-person-behind-skQLP2oB09k',label:'Ảnh minh họa hậu trường sản xuất',width:1600,height:1066,kind:'illustration'},
  vision:{alt:'Nhân viên chế biến thực phẩm trong bếp chuyên nghiệp, ảnh minh họa, không phải thử nghiệm LUMIQC',author:'Adhitya Sibikumar',url:'https://unsplash.com/photos/people-working-in-a-commercial-kitchen-YFK5dBI6Ftc',label:'Ảnh minh họa quy trình chế biến thực phẩm',width:1600,height:1066,kind:'illustration'},
- entertainment:{alt:'Sân khấu biểu diễn thực tế tại Thành phố Hồ Chí Minh, không phải sự kiện của DCG ENTERTAINMENT',author:'Tony Pham',url:'https://unsplash.com/photos/people-watching-a-band-performing-on-stage-during-nighttime-2L6FJbsWtCg',label:'Ảnh minh họa biểu diễn tại TP.HCM',width:1600,height:942,kind:'illustration'}
+ entertainment:{alt:'Sân khấu biểu diễn thực tế tại Thành phố Hồ Chí Minh, ảnh minh họa, không phải sự kiện của DCG ENTERTAINMENT',author:'Tony Pham',url:'https://unsplash.com/photos/people-watching-a-band-performing-on-stage-during-nighttime-2L6FJbsWtCg',label:'Ảnh minh họa biểu diễn tại TP.HCM',width:1600,height:942,kind:'illustration'}
 });
 const photoMeta=(key)=>visualSources[key]||visualSources.group;
 function editorialImage(filename,key,priority=false){
  const meta=photoMeta(key);
  const srcset=filename.endsWith('-1600.webp')
-   ? ' srcset="'+A+filename.replace('-1600.webp','-960.webp')+' 960w, '+A+filename+' 1600w" sizes="(max-width:768px) 100vw, (max-width:1200px) 52vw, 800px"'
+   ? ' srcset="'+A+filename.replace('-1600.webp','-960.webp')+' 960w, '+A+filename+' 1600w" sizes="(max-width:1099px) 100vw, (max-width:1500px) 52vw, 800px"'
    : '';
  const load=priority?'fetchpriority="high" loading="eager"':'loading="lazy"';
  return '<img class="editorial-photo editorial-photo--'+key+'" src="'+A+filename+'"'+srcset+' alt="'+esc(meta.alt)+'" width="'+meta.width+'" height="'+meta.height+'" '+load+' decoding="async">';
