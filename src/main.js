@@ -203,7 +203,23 @@ function initRecognitionLightbox(){
  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
  dialog.addEventListener('close',()=>{opener?.focus({preventScroll:true})});
 }
-function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image">${editorialImage(b.image,b.slug)}</div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${b.field}</p><div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div><h3>${b.heading}</h3><p>${b.summary}</p>${cta('Khám phá thương hiệu','/he-sinh-thai/dcg-'+b.slug)}<p class="editorial-photo-credit">${editorialCredit(b.slug)}</p></div></div></article>`).join('')}</div>`}
+function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}">
+ <div class="brand-row-copy"><div class="brand-row-copy-inner">
+  <div class="brand-row-identity">
+   <p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${b.field}</p>
+   <div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div>
+   <h3>${b.heading}</h3>
+  </div>
+  <div class="brand-row-narrative">
+   <p>${b.summary}</p>
+   ${cta('Khám phá thương hiệu','/he-sinh-thai/dcg-'+b.slug)}
+  </div>
+ </div></div>
+ <figure class="brand-row-image">
+  <div class="brand-row-photo-frame">${editorialImage(b.image,b.slug)}</div>
+  <figcaption class="editorial-photo-credit">${editorialCredit(b.slug)}</figcaption>
+ </figure>
+</article>`).join('')}</div>`}
 function endBanner(){return `<section class="end-banner"><div class="container"><div>${eyebrow('KẾT NỐI VỚI DCG GROUP')}<h2>Cùng trao đổi về điều bạn đang cần</h2><p>Chia sẻ bài toán, ý tưởng hoặc nhu cầu hợp tác của bạn để bắt đầu cuộc trao đổi với DCG.</p></div>${cta('Liên hệ DCG','/lien-he','button-outline')}</div></section>`}
 function innerHero(kicker,title,description,image=''){return `<section class="inner-hero${image?' with-image':''}"><div class="inner-hero-text"><div class="inner-hero-text-inner">${eyebrow(kicker)}<h1>${title}</h1><p>${description}</p></div></div>${image?`<figure class="inner-hero-media">${editorialImage(image,image===group.image?'group':'vision',true)}<figcaption class="editorial-hero-caption">${editorialCredit(image===group.image?'group':'vision')}</figcaption></figure>`:''}</section>`}
 
