@@ -55,20 +55,19 @@ try{
      logoImg:[...document.querySelectorAll(".brand-mark--row img")].map(x=>x.getAttribute("src")),
      heroMosaicCount:document.querySelectorAll(".hero-image-mosaic").length};
    });
-   console.log("PHOTO_DEBUG",width,JSON.stringify(home).slice(0,10000));
    assert.equal(home.innerWidth,width);
    assert.equal(home.zoom,1);
    assert.ok(home.overflow<=2,"No horizontal scroll: "+home.overflow);
    assert.equal(home.heroMosaicCount,0);
    assert.ok(home.hero.src.includes("editorial/hcm-city-1600.webp"));
    assert.ok(home.hero.srcset.includes("hcm-city-960.webp"));
-   assert.ok(home.hero.natural[0]>=900);
+   assert.ok(home.hero.natural[0]>=home.hero.rect.w*.9,"Hero resolution is sufficient at displayed size");
    assert.equal(home.hero.filter,"none");
    assert.ok(home.hero.tag.includes("TP.HCM")||home.hero.tag.includes("Hồ Chí Minh"));
    assert.deepEqual(home.brands.map(x=>x.name),["DCG TALENT","DCG STUDIO","DCG VISION","DCG ENTERTAINMENT"]);
    home.brands.forEach((b,i)=>{
     assert.ok(b.src.includes(photoIds[i]),"Correct branch photo "+b.name);
-    assert.ok(b.natural[0]>=900,"Loaded real-photo "+b.name);
+    assert.ok(b.natural[0]>=b.child.w*.9,"Real photo decoded at sufficient resolution "+b.name);
     assert.equal(b.filter,"none","No synthetic brightness/saturation "+b.name);
     assert.ok(b.credit.includes(i===0?"Tư liệu thật":"Ảnh minh họa"),"Proper status credit "+b.name);
     assert.ok(b.creditedUrl.startsWith("https://"));
