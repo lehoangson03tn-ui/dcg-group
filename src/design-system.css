@@ -48,9 +48,9 @@ main :is(h1,h2,h3,h4,h5,h6) :is(em){font-style:normal;}
 .lead {font-size:clamp(1.125rem,1.8vw,1.375rem)!important;line-height:1.65!important;}
 .tile-summary,.related-grid .tile-summary,.project-line p,.footer-brand>p {font-size:.9375rem;line-height:1.75;color:var(--text);}
 .tile-identity h2 {color:var(--navy);letter-spacing:.01em;}
-.tile-identity p,.related-grid .tile-identity p {color:var(--navy-soft);font-size:.75rem;}
+.tile-identity p,.related-grid .tile-identity p {color:var(--navy-soft);font-size:.875rem;}
 .eyebrow,.home-hero-copy .eyebrow,.end-banner .eyebrow,.footer-title,.form-label,.solution-state {
-  color:var(--gold);font-size:.75rem;line-height:1.65;letter-spacing:.09em;font-weight:700;
+  color:var(--gold);font-size:.875rem;line-height:1.65;letter-spacing:.045em;font-weight:700;
 }
 .eyebrow {margin-bottom:16px;}
 .section-serial,.micro-index {color:var(--navy-soft);font-size:.6875rem;letter-spacing:.06em;line-height:1.7;border-color:var(--line);}
@@ -71,14 +71,14 @@ main :is(h1,h2,h3,h4,h5,h6) :is(em){font-style:normal;}
 }
 .button-dark:hover,.search-submit:hover,.contact-form button:hover,.brand-empty button:hover {background:var(--blue-hover);border-color:var(--blue-hover);}
 .button-dark,.button-secondary,.contact-form button,.brand-search button,.brand-empty button {
-  min-height:48px;border-radius:8px;font-size:.8125rem;line-height:1.6;letter-spacing:.025em;
+  min-height:48px;border-radius:8px;font-size:.875rem;line-height:1.6;letter-spacing:.025em;
 }
 .button-secondary {color:var(--blue);border-color:var(--line);background:#fff;}
 .button-secondary:hover {color:var(--blue-hover);background:var(--cream);border-color:var(--blue);}
-.link-arrow,.button-outline,.tile-more,.related-grid .tile-more,.solution-card-body>span {font-size:.8125rem;line-height:1.6;color:var(--blue);letter-spacing:.025em;}
+.link-arrow,.button-outline,.tile-more,.related-grid .tile-more,.solution-card-body>span {font-size:.875rem;line-height:1.6;color:var(--blue);letter-spacing:.025em;}
 .link-arrow,.button-outline {border-color:var(--gold-light);}
 .link-arrow:hover,.button-outline:hover,.tile-more:hover {color:var(--blue-hover);}
-.breadcrumbs,.brand-result-count {color:var(--navy-soft);font-size:.8125rem;}
+.breadcrumbs,.brand-result-count {color:var(--navy-soft);font-size:.875rem;}
 .breadcrumbs a {color:var(--blue);}
 .directory-tile,.solution-card,.brand-search,.contact-form,.solution-aside,.process-steps>div {border-color:var(--line);border-radius:12px;}
 .directory-tile:hover,.solution-card:hover {border-color:var(--gold-light);}
@@ -203,7 +203,7 @@ main .founder-copy h2{font-size:clamp(2rem,2.75vw,2.625rem);max-width:26ch;line-
  .founder-editorial-note{padding:16px;}
  .home-hero-copy{padding-block:52px;}
  .home-hero h1{font-size:clamp(2rem,8.5vw,2.25rem);}
- .hero-actions>.button-dark,.hero-actions>.button-secondary{font-size:.8125rem;}
+ .hero-actions>.button-dark,.hero-actions>.button-secondary{font-size:.875rem;}
  .section-serial{padding-bottom:15px;}
  .brand-row-copy-inner>p:not(.micro-index){font-size:1rem;}
 }
