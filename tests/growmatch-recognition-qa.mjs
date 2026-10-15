@@ -34,6 +34,11 @@ try{
    assert.equal(await summary.locator('.growmatch-summary-description').innerText(),'Đội thi DCG GROWMATCH, tham dự dưới tên ĐÀN CÁ GỖ, vào Top 5 vòng chung kết và nhận giải với đề tài ứng dụng AI trong đánh giá năng lực và kết nối cơ hội việc làm.');
    assert.equal(await summary.locator('.growmatch-summary-event').innerText(),'Nhà quản trị tương lai lần 6 · 2026');
    assert.equal(await summary.locator('.growmatch-summary-link').getAttribute('href'),'/du-an/dcg-growmatch#thanh-tich');
+   await summary.locator('img').evaluate(async img=>{
+    img.loading='eager';
+    if(!img.complete)await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject});
+    await img.decode();
+   });
    const homeState=await page.evaluate(()=>{
      const r=e=>{const a=e.getBoundingClientRect();return {x:a.x,y:a.y,bottom:a.bottom,right:a.right,width:a.width}};
      const sum=document.querySelector('.growmatch-recognition-summary');
