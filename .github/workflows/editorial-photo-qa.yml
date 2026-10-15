@@ -1,0 +1,55 @@
+name: DCG Real Photography & Rights QA
+on:
+  push:
+    branches: [editorial-real-photography-20261015]
+    paths:
+      - src/main.js
+      - src/design-system.css
+      - tests/editorial-photo-qa.mjs
+      - .github/workflows/editorial-photo-qa.yml
+      - docs/IMAGE_PROVENANCE.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Validate image inventory, rights and untouched event photos
+        run: |
+          for item in hcm-city studio-crew food-kitchen vietnam-live-stage; do
+            test -s "public/assets/editorial/$item-1600.webp"
+            test -s "public/assets/editorial/$item-960.webp"
+            test -s "public/assets/editorial/$item-licensed-source.jpg"
+          done
+          test -s docs/IMAGE_PROVENANCE.md
+          grep -q 'unsplash.com/license' docs/IMAGE_PROVENANCE.md
+          printf '%s\n' \
+            'd849296cc6cbcaee6c592708d728ea8341059bf0151da1395920e0b3c8741e4c  public/assets/recognition/NTTU_0058.jpeg' \
+            '400b23d0e4885a851b94250d1112e3a44d9edc4bd4868d3a59a45f58691f5d11  public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' \
+            | sha256sum --check
+      - name: Install/build
+        run: |
+          npm ci
+          npm run build
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Render and audit desktop/tablet/mobile images and links
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/photo-qa-vite.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/editorial-photo-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-real-photography-desktop-tablet-mobile-proof
+          path: photo-realism-qa/
+          retention-days: 14
