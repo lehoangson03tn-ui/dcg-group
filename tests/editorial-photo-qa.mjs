@@ -55,6 +55,7 @@ try{
      logoImg:[...document.querySelectorAll(".brand-mark--row img")].map(x=>x.getAttribute("src")),
      heroMosaicCount:document.querySelectorAll(".hero-image-mosaic").length};
    });
+   console.log("PHOTO_DEBUG",width,JSON.stringify(home).slice(0,10000));
    assert.equal(home.innerWidth,width);
    assert.equal(home.zoom,1);
    assert.ok(home.overflow<=2,"No horizontal scroll: "+home.overflow);
