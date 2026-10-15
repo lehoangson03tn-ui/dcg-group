@@ -1,9 +1,5 @@
 name: DCG Ecosystem Layout Regression
 on:
-  push:
-    branches:
-      - fix-ceo-ecosystem-layout-20261015
-      - main
   workflow_dispatch:
 permissions:
   contents: read
