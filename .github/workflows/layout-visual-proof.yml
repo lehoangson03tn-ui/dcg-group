@@ -1,4 +1,5 @@
 name: DCG CEO and Ecosystem Visual Proof
+# Check settled WebKit computed layout after all fonts and styles are ready.
 on:
   push:
     branches: [fix-ceo-ecosystem-layout-20261015]
