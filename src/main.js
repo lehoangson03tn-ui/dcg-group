@@ -80,7 +80,61 @@ ${founderSection()}
  <div class="section-intro"><div>${eyebrow('HƯỚNG PHÁT TRIỂN')}<h2>Từ định hướng đến sản phẩm</h2></div><p>Tìm hiểu các sản phẩm và hướng nghiên cứu trong hệ sinh thái DCG.</p></div>
  <div class="project-list"><a href="/du-an/dcg-growmatch" class="project-line"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><b aria-hidden="true">↗</b></a>
  <a href="/du-an/lumiqc" class="project-line"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>LUMIQC</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><b aria-hidden="true">↗</b></a>
- </div></div></section>${endBanner()}`;
+ </div></div></section>${recognitionSection()}${endBanner()}`;
+}
+function recognitionSection(){return `
+<section class="recognition-section page-section" id="dau-an-va-ghi-nhan" aria-labelledby="recognition-title">
+ <div class="container">
+  ${sectionTop('05','DẤU ẤN VÀ GHI NHẬN')}
+  <header class="recognition-heading"><p class="eyebrow">HÀNH TRÌNH VÀ DẤU ẤN</p><h2 id="recognition-title">Dấu ấn và ghi nhận</h2></header>
+  <div class="recognition-grid">
+   <figure class="recognition-main-photo recognition-figure">
+    <button type="button" class="recognition-photo-trigger" data-photo="main" aria-label="Mở lớn ảnh trao giải cuộc thi Nhà quản trị tương lai lần 6" aria-haspopup="dialog"><img src="/assets/recognition/NTTU_0058.jpeg" alt="Ảnh tư liệu trao giải tại sân khấu cuộc thi Nhà quản trị tương lai lần 6" width="1536" height="1024" loading="lazy" decoding="async"></button>
+    <figcaption>Khoảnh khắc trao giải tại cuộc thi Nhà quản trị tương lai lần 6</figcaption>
+   </figure>
+   <div class="recognition-copy">
+    <p class="recognition-label">TOP 5 VÒNG CHUNG KẾT · 2026</p>
+    <h3>Dấu ấn tại CEO thời đại số</h3>
+    <p>Đội <strong>ĐÀN CÁ GỖ</strong> góp mặt trong Top 5 vòng chung kết cuộc thi ‘Nhà quản trị tương lai lần 6: CEO thời đại số’, do Khoa Quản trị Kinh doanh, Trường Đại học Nguyễn Tất Thành tổ chức.</p>
+    <p>Mang đến đề tài ứng dụng trí tuệ nhân tạo trong đánh giá năng lực và kết nối sinh viên với cơ hội việc làm phù hợp, đội đã trình bày dự án và bảo vệ phương án trước hội đồng giám khảo.</p>
+    <figure class="recognition-secondary-photo recognition-figure">
+      <button type="button" class="recognition-photo-trigger" data-photo="supplement" aria-label="Mở lớn ảnh Trương Quốc Huy tham dự cuộc thi CEO thời đại số" aria-haspopup="dialog"><img src="/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg" alt="Trương Quốc Huy cùng người tham dự tại bàn trong cuộc thi CEO thời đại số" width="1536" height="1024" loading="lazy" decoding="async"></button>
+      <figcaption>Trương Quốc Huy tham dự cuộc thi CEO thời đại số</figcaption>
+    </figure>
+    <a class="recognition-source" href="https://ntt.edu.vn/nttu-tim-kiem-nha-quan-tri-tuong-lai-qua-cuoc-thi-ceo-thoi-dai-so/" target="_blank" rel="noopener noreferrer"><span>Đọc bài viết trên NTTU</span><span aria-hidden="true">↗</span></a>
+   </div>
+  </div>
+ </div>
+</section>
+<dialog id="recognition-lightbox" class="recognition-lightbox" aria-label="Xem ảnh tư liệu cuộc thi CEO thời đại số">
+ <div class="recognition-lightbox-content">
+  <button type="button" class="recognition-lightbox-close" aria-label="Đóng ảnh phóng lớn">Đóng <span aria-hidden="true">×</span></button>
+  <img src="" alt="" width="1536" height="1024" decoding="async">
+  <p id="recognition-lightbox-caption"></p>
+ </div>
+</dialog>`;
+}
+function initRecognitionLightbox(){
+ const dialog=document.getElementById('recognition-lightbox');
+ if(!dialog||typeof dialog.showModal!=='function')return;
+ const img=dialog.querySelector('img');
+ const caption=dialog.querySelector('#recognition-lightbox-caption');
+ const close=dialog.querySelector('.recognition-lightbox-close');
+ const photos={
+  main:{src:'/assets/recognition/NTTU_0058.jpeg',caption:'Khoảnh khắc trao giải tại cuộc thi Nhà quản trị tương lai lần 6',alt:'Ảnh tư liệu trao giải cuộc thi Nhà quản trị tương lai lần 6'},
+  supplement:{src:'/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg',caption:'Trương Quốc Huy tham dự cuộc thi CEO thời đại số',alt:'Ảnh tư liệu hai người ngồi tại bàn tham dự cuộc thi CEO thời đại số'}
+ };
+ let opener=null;
+ document.querySelectorAll('.recognition-photo-trigger').forEach(button=>{
+  button.addEventListener('click',()=>{
+   const chosen=photos[button.dataset.photo];if(!chosen)return;
+   opener=button;img.src=chosen.src;img.alt=chosen.alt;caption.textContent=chosen.caption;
+   dialog.showModal();close.focus();
+  });
+ });
+ close.addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+ dialog.addEventListener('close',()=>{opener?.focus();});
 }
 function brandRows(){return `<div class="brand-rows">${brands.map((b,i)=>`<article class="brand-row${i%2?' reverse':''}"><div class="brand-row-image"><img src="${A+b.image}" alt="Hình minh họa cho lĩnh vực ${esc(b.name)}" loading="lazy" decoding="async"></div><div class="brand-row-copy"><div class="brand-row-copy-inner"><p class="micro-index">${String(i+1).padStart(2,'0')} <span>/</span> 04 · ${b.field}</p><div class="brand-inline">${brandMark(b,'row')}<strong>${b.name}</strong></div><h3>${b.heading}</h3><p>${b.summary}</p>${cta('Khám phá thương hiệu','/he-sinh-thai/dcg-'+b.slug)}</div></div></article>`).join('')}</div>`}
 function endBanner(){return `<section class="end-banner"><div class="container"><div>${eyebrow('KẾT NỐI VỚI DCG GROUP')}<h2>Cùng trao đổi về điều bạn đang cần</h2><p>Chia sẻ bài toán, ý tưởng hoặc nhu cầu hợp tác của bạn để bắt đầu cuộc trao đổi với DCG.</p></div>${cta('Liên hệ DCG','/lien-he','button-outline')}</div></section>`}
@@ -221,5 +275,5 @@ function init(){const requestedPath=location.pathname.replace(/\/$/,'')||'/';con
 document.getElementById('app').innerHTML=shell(content,path);if(location.hash){const anchor=document.getElementById(decodeURIComponent(location.hash.slice(1)));anchor?.scrollIntoView({block:'start',behavior:'instant'});}document.title=(brand?.name||solution?.name||project?.name||(path==='/ve-dcg'||path==='/gioi-thieu'?'Giới thiệu':path==='/he-sinh-thai'?'Hệ sinh thái':path==='/giai-phap'?'Giải pháp':path==='/du-an'?'Dự án':path==='/lien-he'?'Liên hệ':path==='/thong-tin-du-lieu'?'Thông tin dữ liệu':'DCG GROUP'))+' | DCG GROUP';
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+path;
- if(path==='/he-sinh-thai')initBrandSearch();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');if(form)form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const data=new FormData(form),msg=`ĐỀ NGHỊ HỢP TÁC — DCG GROUP\n\nHọ tên: ${data.get('name')}\nEmail: ${data.get('email')}\nLĩnh vực: ${data.get('topic')}\n\nNội dung:\n${data.get('note')}`;const status=document.getElementById('form-status');try{await navigator.clipboard.writeText(msg);status.textContent='Đã sao chép lời nhắn. Bạn có thể dán vào kênh liên hệ chính thức khi được công bố.';}catch{const t=document.createElement('textarea');t.rows=9;t.readOnly=true;t.value=msg;status.replaceChildren(t);t.select();}})}
+ if(path==='/he-sinh-thai')initBrandSearch();if(path==='/')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');if(form)form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const data=new FormData(form),msg=`ĐỀ NGHỊ HỢP TÁC — DCG GROUP\n\nHọ tên: ${data.get('name')}\nEmail: ${data.get('email')}\nLĩnh vực: ${data.get('topic')}\n\nNội dung:\n${data.get('note')}`;const status=document.getElementById('form-status');try{await navigator.clipboard.writeText(msg);status.textContent='Đã sao chép lời nhắn. Bạn có thể dán vào kênh liên hệ chính thức khi được công bố.';}catch{const t=document.createElement('textarea');t.rows=9;t.readOnly=true;t.value=msg;status.replaceChildren(t);t.select();}})}
 init();
