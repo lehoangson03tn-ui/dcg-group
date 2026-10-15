@@ -19,7 +19,7 @@ for(const width of widths){
       name:title.innerText,font:parseFloat(getComputedStyle(title).fontSize),subFont:parseFloat(getComputedStyle(sub).fontSize),
       logo:getComputedStyle(img).objectFit,imgSrc:img.getAttribute("src"),photoY:r(e.querySelector(".brand-row-image")).y,
       photoBottom:r(e.querySelector(".brand-row-image")).bottom,copyY:r(e.querySelector(".brand-row-copy")).y,
-      imageWidth:r(a.querySelector(".brand-mark")).width,
+      imageWidth:r(a.querySelector(".brand-mark")).width,markRight:r(a.querySelector(".brand-mark")).right,nameLeft:r(title).left,
       link:e.querySelector(".link-arrow").getAttribute("href")};
    });
    return {width:innerWidth,scroll:document.documentElement.scrollWidth-innerWidth,photo:{x:r(photo).x,y:r(photo).y,w:r(photo).width,bottom:r(photo).bottom,midY:r(photo).y+r(photo).height/2},
@@ -45,6 +45,8 @@ for(const width of widths){
    assert.equal(b.background,"rgb(240, 245, 250)","background "+i);
    assert.equal(b.identity,"rgba(0, 0, 0, 0)","identity card "+i);
    assert.ok(b.font>b.subFont,"brand text not prominent");
+   assert.ok(Math.abs(b.imageWidth-(width<768?80:width<1100?92:108))<1,"logo box responsive width");
+   if(width>420)assert.ok(b.markRight<=b.nameLeft+2,"logo overlaps brand name");
    assert.ok(b.font>=(width>=1100?28:width>=768?24:23));
    assert.equal(b.logo,"contain");
    assert.equal(b.link,"/he-sinh-thai/dcg-"+["talent","studio","vision","entertainment"][i]);
