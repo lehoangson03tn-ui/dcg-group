@@ -1,0 +1,28 @@
+name: LUMIQC Rename & Route QA
+on:
+  push:
+    branches: [rename-dcg-vision-lumiqc-20261015]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Compile website
+        run: npm ci && npm run build
+      - name: Install headless browser
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Check display text, deep URLs and breakpoints
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/lumiqc-site.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/lumiqc-rename-qa.mjs
