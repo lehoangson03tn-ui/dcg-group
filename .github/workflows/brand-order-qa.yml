@@ -1,0 +1,52 @@
+name: DCG Talent Tablet Image Order QA
+on:
+  push:
+    branches: [fix-talent-image-order-ipad-20261016]
+    paths:
+      - src/main.js
+      - src/site.css
+      - src/design-system.css
+      - tests/brand-order-qa.mjs
+      - .github/workflows/brand-order-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  brand-order:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Build and check real NTTU photograph
+        run: |
+          npm ci
+          npm run build
+          echo '400b23d0e4885a851b94250d1112e3a44d9edc4bd4868d3a59a45f58691f5d11  public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' | sha256sum -c -
+      - name: Install Chromium and WebKit
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium webkit
+      - name: Serve unchanged production source for screenshots
+        run: |
+          git worktree add --detach /tmp/dcg-before 206b9fe2d852cb5004aab2b2ac68269141d03449
+          ./node_modules/.bin/vite /tmp/dcg-before --host 127.0.0.1 --port 5174 --strictPort >/tmp/dcg-before.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5174/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/dcg-before.log
+          exit 1
+      - name: Measure DOM/CSS ordering across tablet and mobile
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-after.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          SITE_URL=http://127.0.0.1:5173 BEFORE_URL=http://127.0.0.1:5174 node tests/brand-order-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-talent-photo-order-ipad-before-after
+          path: brand-order-qa/
+          retention-days: 14
