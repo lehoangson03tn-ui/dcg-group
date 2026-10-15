@@ -218,6 +218,42 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 .detail-brand-action{margin-top:25px;}.detail-brand-action .button-secondary{min-height:48px;max-width:100%;white-space:normal;font-size:.875rem;}
 
 
+
+/* The full-width project group owns the mist-blue canvas, never the nested summary. */
+.projects-home .growmatch-project-group{
+ width:100%;background:#F0F5FA;
+ border-bottom:1px solid var(--line);
+ box-sizing:border-box;
+}
+.projects-home .growmatch-project-group > .growmatch-project-container{
+ width:100%;max-width:1200px;
+ margin-inline:auto;
+ padding-inline:40px;
+ box-sizing:border-box;
+ background:transparent;
+}
+.projects-home .growmatch-project-intro{
+ border-top:0;
+ background:transparent;
+}
+.projects-home .growmatch-project-intro .project-line{
+ border-bottom:0;
+ background:transparent;
+}
+.projects-home .growmatch-following-project{border-top:0;}
+.projects-home .growmatch-recognition-summary,
+.projects-home .growmatch-summary-image,
+.projects-home .growmatch-summary-image img{
+ background:transparent;
+ box-shadow:none;
+}
+@media(max-width:1099px){
+ .projects-home .growmatch-project-group > .growmatch-project-container{padding-inline:32px;}
+}
+@media(max-width:767px){
+ .projects-home .growmatch-project-group > .growmatch-project-container{padding-inline:20px;}
+}
+
 /* DCG GROWMATCH recognition: compact homepage summary and full project article.
    All styles scoped: no global logo, founder, or other brand overrides. */
 .growmatch-recognition-summary{
@@ -227,19 +263,19 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  column-gap:clamp(32px,3vw,40px);
  grid-template-rows:repeat(5,auto);
  align-content:center;
- padding:clamp(32px,4vw,48px) 4px;
- border-bottom:1px solid var(--line);
- background:#F0F5FA;
+ padding:clamp(48px,4vw,64px) 0;
+ border:0;
+ background:transparent;
  min-width:0;
 }
 .growmatch-recognition-summary > *{min-width:0;}
 .growmatch-summary-label{
  grid-area:label;color:#82611F;font-size:.875rem;font-weight:700;
- line-height:1.6;letter-spacing:.06em;margin:0 0 14px;
+ line-height:1.6;letter-spacing:.06em;margin:0 0 12px;
 }
 .growmatch-recognition-summary h3{
  grid-area:title;color:#142D4E;font-size:clamp(1.5rem,2.5vw,2rem);
- font-weight:600;line-height:1.3;text-wrap:balance;margin:0 0 20px;
+ font-weight:600;line-height:1.3;text-wrap:balance;margin:0 0 24px;
 }
 .growmatch-summary-image{grid-area:image;align-self:center;margin:0;width:100%;}
 .growmatch-summary-image img{
@@ -252,7 +288,7 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 }
 .growmatch-summary-event{
  grid-area:event;color:#526278;font-size:.9375rem;
- line-height:1.6;margin:0 0 18px;
+ line-height:1.6;margin:0 0 24px;
 }
 .growmatch-summary-link{
  grid-area:link;justify-self:start;display:inline-flex;align-items:center;gap:8px;
@@ -359,7 +395,7 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  .growmatch-recognition-summary{
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:"label" "title" "image" "description" "event" "link";
-  padding:30px 0 36px;
+  padding:36px 0 40px;
  }
  .growmatch-summary-image{margin:0 0 24px;}
  .growmatch-summary-description{margin-bottom:16px;}

@@ -1,0 +1,58 @@
+name: DCG GrowMatch Full-Width Background QA
+on:
+  push:
+    branches: [fix-growmatch-fullbleed-20261015]
+    paths:
+      - src/main.js
+      - src/design-system.css
+      - tests/growmatch-fullbleed-qa.mjs
+      - tests/growmatch-recognition-qa.mjs
+      - .github/workflows/growmatch-fullbleed-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Verify production build and source image integrity
+        run: |
+          npm ci
+          npm run build
+          printf '%s\n' \
+            'd849296cc6cbcaee6c592708d728ea8341059bf0151da1395920e0b3c8741e4c  public/assets/recognition/NTTU_0058.jpeg' \
+            '400b23d0e4885a851b94250d1112e3a44d9edc4bd4868d3a59a45f58691f5d11  public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' \
+            | sha256sum --check
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Serve former version for actual before screenshots
+        run: |
+          git worktree add --detach /tmp/dcg-before bc0473159efe69e7a1987926491a301a4090a4c5
+          ./node_modules/.bin/vite /tmp/dcg-before --host 127.0.0.1 --port 5174 --strictPort >/tmp/dcg-before.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5174/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/dcg-before.log
+          exit 1
+      - name: Verify computed full-bleed layout and updated GrowMatch content
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-after.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          BEFORE_URL=http://127.0.0.1:5174 SITE_URL=http://127.0.0.1:5173 node tests/growmatch-fullbleed-qa.mjs
+          SITE_URL=http://127.0.0.1:5173 node tests/growmatch-recognition-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-growmatch-fullbleed-before-after
+          path: |
+            growmatch-fullbleed-qa/
+            growmatch-recognition-qa/
+          retention-days: 14
