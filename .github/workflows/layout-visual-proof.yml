@@ -1,0 +1,42 @@
+name: DCG CEO and Ecosystem Visual Proof
+on:
+  push:
+    branches: [fix-ceo-ecosystem-layout-20261015]
+    paths:
+      - .github/workflows/layout-visual-proof.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci && npm run build
+      - name: Browsers
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium webkit
+      - name: Before version
+        run: |
+          git worktree add --detach /tmp/dcg-before 2c4fd32121d51d567de1b5e617d8d552e9c7ac6a
+          ./node_modules/.bin/vite /tmp/dcg-before --host 127.0.0.1 --port 5174 --strictPort >/tmp/before.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5174/ >/dev/null && break; sleep 1; done
+      - name: Render screenshots and verify WebKit
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/after.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/layout-visual-capture.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-layout-before-after-chromium-webkit
+          path: layout-visual/
+          retention-days: 14
