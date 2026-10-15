@@ -72,6 +72,13 @@ async function open(browser,url,width){
  const response=await page.goto(url,{waitUntil:"networkidle",timeout:45000});
  assert.equal(response.status(),200);
  await ready(page,page.locator(".founder-section"));
+ await page.locator(".brand-rows img").evaluateAll(async imgs=>{
+  for(const img of imgs)img.loading="eager";
+  await Promise.all(imgs.map(async img=>{
+   if(!img.complete)await new Promise((resolve,reject)=>{img.addEventListener("load",resolve,{once:true});img.addEventListener("error",reject,{once:true});});
+   if(img.decode)await img.decode().catch(()=>{});
+  }));
+ });
  return page;
 }
 async function baseline(browser){
@@ -163,7 +170,7 @@ try{
  await page.addStyleTag({content:"html{font-size:125% !important}"});
  const big=await collect(page);
  check(big.bodyScroll<=2,"large text 125% no page overflow",big.bodyScroll);
- check(big.brands.every(b=>b.nameRect.right<=innerWidth+1),"large text logo title not cropped",big.brands.map(b=>b.nameRect));
+ check(big.brands.every(b=>b.nameRect.right<=391),"large text logo title not cropped",big.brands.map(b=>b.nameRect));
  summary.push({engine:"chromium",stage:"large-text-125%",width:390,scroll:big.bodyScroll});
  await page.close();
 }finally{await chrome.close();}
