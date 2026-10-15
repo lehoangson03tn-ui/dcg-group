@@ -48,15 +48,18 @@ try{
  for(const width of [390,768,834,1024,1100]){
   const page=await wk.newPage({viewport:{width,height:900},deviceScaleFactor:1,reducedMotion:"reduce"});
   try{
-   await page.goto(AFTER,{waitUntil:"domcontentloaded",timeout:20000});
+   await page.goto(AFTER,{waitUntil:"networkidle",timeout:30000});
+   await page.evaluate(()=>document.fonts.ready);
+   await page.waitForTimeout(250);
    const a=await page.evaluate(()=>{
     const face=document.querySelector(".founder-portrait").getBoundingClientRect();
     const copy=document.querySelector(".founder-copy").getBoundingClientRect();
     return {width:innerWidth,overflow:document.documentElement.scrollWidth-innerWidth,face:{x:face.x,y:face.y,width:face.width,bottom:face.bottom},copy:{x:copy.x,y:copy.y},
       brands:[...document.querySelectorAll(".brand-row")].map(x=>({bg:getComputedStyle(x).backgroundColor,ident:getComputedStyle(x.querySelector(".brand-inline")).backgroundColor}))};
    });
+   console.log("WEBKIT_MEASURE "+width+" "+JSON.stringify(a));
    assert.equal(a.width,width);
-   assert.ok(a.overflow<=2,"No horizontal scroll");
+   assert.ok(a.overflow<=2,"No horizontal scroll: "+a.overflow+"px");
    assert.ok(a.brands.every(x=>x.bg==="rgb(240, 245, 250)"&&x.ident==="rgba(0, 0, 0, 0)"),"Uniform ecosystem");
    if(width>=768)assert.ok(a.copy.x>=a.face.x+a.face.width+27,"CEO two columns");
    else assert.ok(a.copy.y>=a.face.bottom+24,"CEO one column");
