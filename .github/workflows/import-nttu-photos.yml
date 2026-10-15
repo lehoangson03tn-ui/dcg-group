@@ -1,0 +1,37 @@
+name: Import NTTU approved photographs
+on:
+  push:
+    branches: [recognition-nttu-20261015]
+    paths:
+      - .github/workflows/import-nttu-photos.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  originals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact approved files to repository
+        run: |
+          set -euo pipefail
+          mkdir -p public/assets/recognition
+          curl -fL --retry 3 --silent --show-error 'https://dcg-group-ecosystem.floot.app/_cdn/static/169a56be-3869-49f3-8b6d-43d16bd96d96-NTTU_0058.jpeg' -o public/assets/recognition/NTTU_0058.jpeg
+          curl -fL --retry 3 --silent --show-error 'https://dcg-group-ecosystem.floot.app/_cdn/static/2e9ed7bd-06d2-4051-afe9-848f3be82482-FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' -o public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg
+          printf '%s\n' \
+            'd849296cc6cbcaee6c592708d728ea8341059bf0151da1395920e0b3c8741e4c  public/assets/recognition/NTTU_0058.jpeg' \
+            '400b23d0e4885a851b94250d1112e3a44d9edc4bd4868d3a59a45f58691f5d11  public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' \
+            | sha256sum --check --status
+          test "$(file --mime-type -b public/assets/recognition/NTTU_0058.jpeg)" = "image/jpeg"
+          test "$(file --mime-type -b public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg)" = "image/jpeg"
+          printf 'Verified original SHA-256s and JPEG MIME types\n'
+      - name: Commit original images without edits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/recognition/NTTU_0058.jpeg public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: retain NTTU recognition photographs unmodified"
+            git push origin HEAD:recognition-nttu-20261015
+          fi

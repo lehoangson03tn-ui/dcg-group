@@ -216,3 +216,180 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 }
 
 .detail-brand-action{margin-top:25px;}.detail-brand-action .button-secondary{min-height:48px;max-width:100%;white-space:normal;font-size:.875rem;}
+
+/* DCG GROUP · Documentary recognition. One scoped component, no global brand overrides. */
+.recognition-section{
+  background:#F0F5FA;
+  color:#344256;
+}
+.recognition-heading{
+  padding-block:clamp(30px,4vw,50px) clamp(28px,3.4vw,40px);
+}
+.recognition-heading .eyebrow{margin:0 0 14px;color:#82611F;}
+.recognition-heading h2{margin:0;color:#142D4E;font-size:clamp(1.75rem,3vw,2.625rem);line-height:1.3;text-wrap:balance;}
+.recognition-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+  align-items:center;
+  gap:clamp(40px,3.8vw,48px);
+}
+.recognition-grid>*,.recognition-copy{min-width:0;}
+.recognition-figure{margin:0;}
+.recognition-photo-trigger{
+  display:block;
+  width:100%;
+  padding:0;
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:inherit;
+  line-height:0;
+  cursor:zoom-in;
+}
+.recognition-photo-trigger img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/2;
+  object-fit:contain;
+  object-position:center;
+  filter:none;
+  transform:none;
+  border-radius:8px;
+}
+.recognition-photo-trigger:focus-visible,
+.recognition-source:focus-visible,
+.recognition-lightbox-close:focus-visible{
+  outline:3px solid #175B9A;
+  outline-offset:4px;
+}
+.recognition-figure figcaption{
+  color:#526278;
+  font-size:.875rem;
+  line-height:1.65;
+  margin-top:12px;
+}
+.recognition-copy{display:flex;flex-direction:column;align-items:flex-start;}
+.recognition-label{
+  color:#82611F;
+  font-size:.875rem;
+  font-weight:700;
+  letter-spacing:.065em;
+  line-height:1.6;
+  margin:0 0 14px;
+}
+.recognition-copy h3{
+  color:#142D4E;
+  font-size:clamp(1.375rem,2.3vw,1.75rem);
+  line-height:1.35;
+  font-weight:600;
+  margin:0 0 20px;
+  text-wrap:balance;
+}
+.recognition-copy>p:not(.recognition-label){
+  color:#344256;
+  font-size:clamp(1rem,1.15vw,1.0625rem);
+  line-height:1.7;
+  max-width:64ch;
+  margin:0 0 18px;
+  text-align:left;
+}
+.recognition-copy>p strong{font-weight:600;color:#142D4E;}
+.recognition-secondary-photo{
+  width:min(100%,320px);
+  margin:8px 0 0;
+}
+.recognition-secondary-photo figcaption{margin-top:10px;}
+.recognition-source{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  min-height:44px;
+  margin-top:20px;
+  color:#175B9A;
+  font-size:1rem;
+  font-weight:600;
+  text-decoration:none;
+  line-height:1.5;
+}
+.recognition-source:hover{text-decoration:underline;text-underline-offset:4px;}
+.recognition-source span:last-child{flex:none;font-size:1.125rem;}
+.recognition-lightbox{
+  position:fixed;
+  box-sizing:border-box;
+  inset:0;
+  width:min(96vw,1350px);
+  max-width:96vw;
+  max-height:96vh;
+  max-height:96dvh;
+  margin:auto;
+  padding:14px;
+  border:1px solid #DFE6EE;
+  border-radius:12px;
+  background:#FFFFFF;
+  color:#142D4E;
+  box-shadow:0 16px 64px rgba(15,39,70,.24);
+  overflow:auto;
+}
+.recognition-lightbox::backdrop{background:rgba(13,27,48,.82);}
+.recognition-lightbox-content{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:12px;
+}
+.recognition-lightbox-close{
+  align-self:flex-end;
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
+  border:1px solid #DFE6EE;
+  border-radius:6px;
+  min-height:44px;
+  background:#FFFFFF;
+  color:#142D4E;
+  cursor:pointer;
+  font:inherit;
+  font-size:.9375rem;
+}
+.recognition-lightbox-close span{font-size:1.4rem;line-height:1;}
+.recognition-lightbox-content img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:calc(96dvh - 136px);
+  margin-inline:auto;
+  object-fit:contain;
+  border-radius:3px;
+}
+.recognition-lightbox-content p{
+  margin:0;
+  font-size:.9375rem;
+  line-height:1.55;
+  color:#344256;
+  text-align:center;
+}
+@media(max-width:960px){
+  .recognition-grid{grid-template-columns:minmax(0,1fr);gap:28px;}
+  .recognition-main-photo{width:100%;}
+  .recognition-copy{max-width:680px;margin-inline:auto;width:100%;}
+  .recognition-secondary-photo{width:100%;margin-top:12px;}
+  .recognition-copy h3{margin-bottom:16px;}
+  .recognition-source{margin-top:18px;}
+}
+@media(max-width:500px){
+  .recognition-heading{padding-block:22px 28px;}
+  .recognition-grid{gap:26px;}
+  .recognition-copy h3{font-size:1.375rem;}
+  .recognition-figure figcaption{font-size:.875rem;}
+  .recognition-lightbox{padding:10px;border-radius:8px;}
+  .recognition-lightbox-content img{max-height:calc(96dvh - 145px);}
+}
+@media(prefers-reduced-motion:reduce){
+  .recognition-photo-trigger,.recognition-source{scroll-behavior:auto;transition:none;}
+}
