@@ -1,0 +1,26 @@
+name: DCG Fast Layout Gate
+on:
+  push:
+    branches: [fix-ceo-ecosystem-layout-20261015]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci && npm run build
+      - run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Verify computed layout
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/vite.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/layout-fast-smoke.mjs

@@ -60,7 +60,7 @@ main :is(h1,h2,h3,h4,h5,h6) :is(em){font-style:normal;}
 .home-hero,.inner-hero,.directory-intro,.detail-intro {background:linear-gradient(120deg,#fff 15%,var(--cream));}
 .about-home,.projects-home,.about-long,.related-brands,.detail-process {background:#fff;}
 .philosophy,.end-banner {background:var(--sand);}
-.focus-section,.detail-faq,.contact-form,.solution-aside,.process-steps>div,.brand-row:nth-child(even) {background:var(--cream);}
+.focus-section,.detail-faq,.contact-form,.solution-aside,.process-steps>div {background:var(--cream);}
 .end-banner {padding-block:var(--section-space);border-top:1px solid var(--line);}
 .site-header,.mobile-menu {background:#fff;border-color:var(--line);}
 .nav-primary a,.logo-lockup strong,.footer-logo strong {color:var(--navy);}
@@ -127,7 +127,7 @@ main :is(h1,h2,h3,h4,h5,h6), main :is(h1,h2,h3,h4,h5,h6) :is(em,strong,span),
  .tile-identity,.directory-tile--entertainment .tile-identity {--mark-size:64px;grid-template-columns:var(--mark-size) minmax(0,1fr);gap:12px;}
  .related-grid .tile-identity {--mark-size:52px;}
  .tile-identity h2,.related-grid .tile-identity h2 {font-size:14px;letter-spacing:0;}
- .brand-inline strong,.detail-brand>span:not(.brand-mark) {font-size:14px;letter-spacing:0;}
+ .detail-brand>span:not(.brand-mark) {font-size:14px;letter-spacing:0;}
 }
 
 /* Editorial rhythm for every existing DCG page. These are shared rules, not per-page patches. */
@@ -144,7 +144,7 @@ main p{line-height:1.7;}
 .about-home-grid>div:last-child>p{margin-bottom:var(--space-copy);}
 .philosophy-heading{padding-block:32px 36px;}
 .section-intro{padding-block:34px 44px;}
-.brand-row-copy{padding-block:clamp(48px,5vw,86px);}
+
 .brand-row h3{font-size:clamp(1.375rem,1.9vw,1.5rem);line-height:1.35;}
 .brand-row-copy-inner>p:not(.micro-index){font-size:1rem;line-height:1.75;}
 .philosophy-grid p,.focus-grid p,.process-steps p{font-size:1rem;line-height:1.7;}
@@ -161,26 +161,41 @@ main p{line-height:1.7;}
 a,button{touch-action:manipulation;}
 :is(a,button,input,textarea,select,summary):focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
 
-/* Founder section — approved message, no draft/editorial warning. */
+
+/* Founder: desktop and tablet remain two columns while the container can hold readable text. */
 .founder-section{background:var(--sand);border-block:1px solid var(--line);scroll-margin-top:90px;padding-block:clamp(72px,6vw,88px);}
-.founder-layout{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);align-items:center;gap:clamp(48px,4.5vw,64px);}
-.founder-portrait{width:min(100%,360px);margin:0;justify-self:start;}
-.founder-portrait img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;border-radius:12px;box-shadow:0 8px 22px rgba(20,45,78,.08);}
-.founder-copy{width:100%;min-width:0;max-width:600px;text-align:left;}
-main .founder-copy h2{margin:0 0 24px;font-size:clamp(1.75rem,2.6vw,2.125rem);line-height:1.3;font-weight:600;max-width:28ch;}
-.founder-message{margin:0 0 28px;padding:0 0 0 20px;border-left:2px solid var(--gold-light);background:none;color:var(--navy);font-size:clamp(1.5625rem,2vw,1.75rem);font-style:normal;font-weight:400;line-height:1.5;letter-spacing:-.015em;text-wrap:pretty;max-width:600px;}
-.founder-signature{margin:0 0 28px;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;border:0;}
-.founder-signature strong{color:var(--navy);font-size:1.125rem;line-height:1.4;font-weight:600;}
-.founder-signature span{color:var(--navy-soft);font-size:.9375rem;line-height:1.6;}
+.founder-layout{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);align-items:center;gap:clamp(48px,5vw,64px);}
+.founder-portrait{width:min(100%,360px);margin:0;justify-self:center;}
+.founder-portrait img{display:block;width:100%;height:auto;aspect-ratio:640/910;object-fit:contain;object-position:center;border-radius:12px;box-shadow:0 8px 22px rgba(20,45,78,.08);}
+.founder-copy{width:100%;min-width:0;max-width:600px;justify-self:start;text-align:left;}
+main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:28ch;margin:0 0 24px;}
+.founder-message{margin:0 0 28px;padding:0 0 0 20px;border-left:2px solid var(--gold-light);background:none;color:var(--navy);font-size:clamp(25px,2vw,28px);font-style:normal;font-weight:400;line-height:1.5;letter-spacing:-.015em;text-wrap:pretty;max-width:600px;}
+.founder-signature{margin:0 0 28px;padding:0;border:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;}
+.founder-signature strong{color:var(--navy);font-size:18px;line-height:1.4;font-weight:600;}
+.founder-signature span{color:var(--navy-soft);font-size:15px;line-height:1.6;}
 .founder-copy>.button-secondary{margin:0;min-height:48px;width:max-content;max-width:100%;gap:12px;}
-/* The same white identity area contains each emblem and its brand name. */
-.brand-inline,.detail-brand{background:#fff;border-radius:12px;}
-.brand-inline .brand-mark__image,.detail-brand .brand-mark__image{object-fit:contain!important;object-position:center!important;filter:none!important;transform:none!important;}
+/* The ecosystem is intentionally free of nested identity cards. */
+.brands-home .brand-inline{border:0;border-radius:0;box-shadow:none;background:transparent;}
+.brands-home .brand-inline .brand-mark__image{object-fit:contain;object-position:center;filter:none;transform:none;}
 .brand-row-copy-inner>.link-arrow{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;max-width:100%;}
 .brand-row-copy-inner>.link-arrow span:last-child{line-height:1;flex:none;}
-@media(max-width:900px){
- .founder-layout{grid-template-columns:minmax(0,1fr);gap:32px;}
- .founder-portrait{width:min(100%,320px);}
+@media(max-width:1099px) and (min-width:768px){
+ .founder-section .container{width:min(calc(100% - 64px),var(--container));}
+ .founder-layout{grid-template-columns:minmax(0,clamp(260px,29vw,300px)) minmax(0,1fr);gap:clamp(28px,3vw,36px);}
+ .founder-portrait{width:min(100%,300px);}
+ .founder-copy{max-width:none;}
+ main .founder-copy h2{font-size:clamp(28px,3vw,32px);margin-bottom:20px;}
+ .founder-message{font-size:clamp(21px,2.25vw,24px);line-height:1.5;}
+}
+@media(max-width:767px){
+ .founder-section{padding-block:52px;}
+ .founder-section .container{width:min(calc(100% - 44px),var(--container));}
+ .founder-layout{grid-template-columns:minmax(0,1fr);gap:30px;}
+ .founder-portrait{width:min(100%,300px);justify-self:center;}
+ .founder-copy{max-width:640px;justify-self:center;}
+ main .founder-copy h2{font-size:clamp(26px,3.6vw,28px);line-height:1.3;margin-bottom:20px;}
+ .founder-message{font-size:clamp(20px,2.85vw,22px);line-height:1.55;padding-left:16px;margin-bottom:24px;}
+ .founder-signature{margin-bottom:24px;}
 }
 @media(max-width:800px){
  .home-hero h1 span,.about-home h2 span,.editorial-content h2 span,.founder-copy h2 span{display:inline;}
@@ -188,18 +203,10 @@ main .founder-copy h2{margin:0 0 24px;font-size:clamp(1.75rem,2.6vw,2.125rem);li
  .about-home-grid>div:last-child>p{line-height:1.7;}
  .section-intro{padding-block:32px;}
  .philosophy-heading{padding-block:32px;}
- .brand-row-copy{padding-block:48px;}
+
 }
 @media(max-width:500px){
  :root{--gutter:22px;--section-space:52px;}
-  .founder-section{padding-block:52px;}
- .founder-layout{gap:28px;}
- .founder-portrait{width:min(100%,300px);}
- 
- main .founder-copy h2{font-size:clamp(1.625rem,7vw,1.875rem);line-height:1.3;margin-bottom:20px;}
- .founder-message{font-size:clamp(1.3125rem,5.7vw,1.4375rem);line-height:1.5;padding-left:16px;margin-bottom:24px;}
- 
-  .founder-signature{margin-bottom:24px;}
  
  .home-hero-copy{padding-block:52px;}
  .home-hero h1{font-size:clamp(2rem,8.5vw,2.25rem);}
