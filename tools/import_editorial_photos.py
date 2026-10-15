@@ -13,7 +13,7 @@ from urllib.request import Request, urlopen
 OUT = Path("public/assets/editorial")
 OUT.mkdir(parents=True,exist_ok=True)
 PHOTOS = [
- ("hcm-city", "1602479185069-cf2cfc4c463f", "In5ENUxUrO8"),
+ ("hcm-city", "1742311115947-e5023fd20eee", "TJvH2nqycvE"),
  ("studio-crew", "1759187766895-86c46a068315", "skQLP2oB09k"),
  ("food-kitchen", "1771574207826-02f0d845e3a7", "YFK5dBI6Ftc"),
  ("vietnam-live-stage", "1586420085482-0b68a7a227d8", "2L6FJbsWtCg"),
