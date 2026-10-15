@@ -187,6 +187,9 @@ body{color:var(--gg-ink)}
 @media(max-width:1099px) and (min-width:768px){
  .brand-inline .brand-mark--row{width:92px;height:92px;}
 }
+@media(max-width:767px){
+ .brand-inline .brand-mark--row{width:80px;height:80px;}
+}
 @media(max-width:420px){
  .brand-inline .brand-mark--row{width:80px;height:80px;}
 }
