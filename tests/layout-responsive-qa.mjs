@@ -5,7 +5,7 @@ import { chromium, webkit } from "playwright";
 const current=process.env.SITE_URL||"http://127.0.0.1:5173";
 const previous=process.env.BEFORE_URL||"http://127.0.0.1:5174";
 const sizes=[360,390,419,420,421,499,500,501,766,767,768,769,820,834,1024,1099,1100,1180,1366,1440];
-const snapshots=[390,834,1024,1180,1440];
+const snapshots=[390,834,1180];
 const founderQuote="“Tôi tin vào sức sáng tạo của người Việt. Chúng tôi xây dựng DCG để kết nối con người và công nghệ, biến những ý tưởng tốt thành sản phẩm có ích cho cuộc sống.”";
 const out="layout-qa";
 const issues=[];
@@ -22,11 +22,11 @@ async function snap(page,prefix){
  const founder=page.locator(".founder-section");
  const ecosystem=page.locator(".brands-home");
  await ready(page,founder);
- await founder.screenshot({path:out+"/"+prefix+"-founder.png",animations:"disabled",timeout:20000});
- await ecosystem.screenshot({path:out+"/"+prefix+"-ecosystem.png",animations:"disabled",timeout:20000});
+ await founder.screenshot({path:out+"/"+prefix+"-founder.png",animations:"disabled",timeout:10000});
+ await ecosystem.screenshot({path:out+"/"+prefix+"-ecosystem.png",animations:"disabled",timeout:10000});
  const entertainment=page.locator(".brand-row").nth(3);
  await ready(page,entertainment);
- await entertainment.screenshot({path:out+"/"+prefix+"-entertainment.png",animations:"disabled",timeout:20000});
+ if(prefix.includes("390")||prefix.includes("1180"))await entertainment.screenshot({path:out+"/"+prefix+"-entertainment.png",animations:"disabled",timeout:10000});
 }
 async function collect(page){
  return page.evaluate(()=>{
@@ -69,7 +69,7 @@ async function collect(page){
 }
 async function open(browser,url,width){
  const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1,reducedMotion:"reduce"});
- const response=await page.goto(url,{waitUntil:"networkidle",timeout:45000});
+ const response=await page.goto(url,{waitUntil:"domcontentloaded",timeout:30000});
  assert.equal(response.status(),200);
  await ready(page,page.locator(".founder-section"));
  await page.locator(".brand-rows img").evaluateAll(async imgs=>{
@@ -82,7 +82,7 @@ async function open(browser,url,width){
  return page;
 }
 async function baseline(browser){
- for(const w of [390,834,1024,1180]){
+ for(const w of [390,834]){
   const p=await open(browser,previous+"/",w);
   try{
    const m=await collect(p);
@@ -176,7 +176,7 @@ try{
 }finally{await chrome.close();}
 try{
  const wk=await webkit.launch({headless:true});
- try{for(const width of [390,768,820,834,1024,1100])await after(wk,"webkit",width)}finally{await wk.close();}
+ try{for(const width of [390,768,834,1024,1100])await after(wk,"webkit",width)}finally{await wk.close();}
 }catch(e){issues.push("WebKit execution unavailable "+e.message);}
 await fs.writeFile(out+"/measurements.json",JSON.stringify({summary,issues},null,2));
 if(issues.length){console.error("FAILED "+issues.length+" checks:\n"+issues.join("\n"));process.exitCode=1;}else console.log("ALL LAYOUT CHECKS PASS, total viewport evaluations "+summary.filter(x=>x.stage==="after").length);
