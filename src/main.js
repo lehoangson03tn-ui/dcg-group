@@ -76,12 +76,20 @@ ${founderSection()}
  <article><span>02</span><h3>Chọn công nghệ phù hợp</h3><p>Đánh giá công nghệ theo khả năng giải quyết vấn đề, tính khả thi và điều kiện sử dụng thực tế.</p></article>
  <article><span>03</span><h3>Hoàn thiện qua phản hồi</h3><p>Dùng phản hồi để nhận ra điểm chưa phù hợp và xác định điều cần cải thiện tiếp theo.</p></article>
  </div></div></section>
-<section class="projects-home page-section"><div class="container">${sectionTop('04','SẢN PHẨM VÀ DỰ ÁN')}
+<section class="projects-home page-section">
+ <div class="container">${sectionTop('04','SẢN PHẨM VÀ DỰ ÁN')}
  <div class="section-intro"><div>${eyebrow('HƯỚNG PHÁT TRIỂN')}<h2>Từ định hướng đến sản phẩm</h2></div><p>Tìm hiểu các sản phẩm và hướng nghiên cứu trong hệ sinh thái DCG.</p></div>
- <div class="project-list"><a href="/du-an/dcg-growmatch" class="project-line"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><b aria-hidden="true">↗</b></a>
- ${growmatchRecognitionSummary()}
- <a href="/du-an/lumiqc" class="project-line"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>LUMIQC</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><b aria-hidden="true">↗</b></a>
- </div></div></section>${endBanner()}`;
+ </div>
+ <div class="growmatch-project-group">
+   <div class="container growmatch-project-container">
+     <div class="project-list growmatch-project-intro"><a href="/du-an/dcg-growmatch" class="project-line"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><b aria-hidden="true">↗</b></a></div>
+     ${growmatchRecognitionSummary()}
+   </div>
+ </div>
+ <div class="container growmatch-following-container">
+   <div class="project-list growmatch-following-project"><a href="/du-an/lumiqc" class="project-line"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>LUMIQC</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><b aria-hidden="true">↗</b></a></div>
+ </div>
+ </section>${endBanner()}`;
 }
 
 const growmatchAwardAssets=Object.freeze({
