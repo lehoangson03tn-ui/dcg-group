@@ -177,8 +177,8 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 /* The ecosystem is intentionally free of nested identity cards. */
 .brands-home .brand-inline{border:0;border-radius:0;box-shadow:none;background:transparent;}
 .brands-home .brand-inline .brand-mark__image{object-fit:contain;object-position:center;filter:none;transform:none;}
-.brand-row-copy-inner>.link-arrow{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;max-width:100%;}
-.brand-row-copy-inner>.link-arrow span:last-child{line-height:1;flex:none;}
+.brand-row-narrative>.link-arrow{display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;max-width:100%;min-height:44px;}
+.brand-row-narrative>.link-arrow span:last-child{line-height:1;flex:none;}
 @media(max-width:1099px) and (min-width:768px){
  .founder-section .container{width:min(calc(100% - 64px),var(--container));}
  .founder-layout{grid-template-columns:minmax(0,clamp(260px,29vw,300px)) minmax(0,1fr);gap:clamp(28px,3vw,36px);}
@@ -455,9 +455,18 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  text-align:left;overflow-wrap:break-word;
  font-weight:400;letter-spacing:0;
 }
-.brand-row .editorial-photo-credit{
- margin:24px 0 0;
- max-width:65ch;
+.brand-row-image > .editorial-photo-credit{
+ display:block;
+ flex:none;
+ width:100%;
+ box-sizing:border-box;
+ padding:11px clamp(24px,4vw,36px) 14px;
+ margin:0;
+ background:#F0F5FA;
+ color:#526278;
+ font-size:12px;
+ line-height:1.6;
+ text-align:left;
 }
 .editorial-photo-credit::before,
 .editorial-card-credit::before{
@@ -518,7 +527,7 @@ img.editorial-photo--talent{
  .home-hero-media:has(>img.editorial-photo--group){aspect-ratio:4/5;}
  .home-hero-media .hero-media-tag{font-size:10px;gap:5px;padding:12px 16px;}
  .home-hero-media .hero-media-tag a{font-size:10px;}
- .brand-row .editorial-photo-credit{margin-top:18px;font-size:12px;}
+ .brand-row-image > .editorial-photo-credit{padding:10px 24px 14px;font-size:12px;}
  .editorial-detail-figure .detail-image{aspect-ratio:16/10;}
  .editorial-detail-figure .detail-image img.editorial-photo--talent{object-fit:contain;}
  .editorial-card-credit{font-size:11px;}
