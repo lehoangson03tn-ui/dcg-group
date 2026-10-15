@@ -45,14 +45,14 @@ body{color:var(--gg-ink)}
 .tile-meta{padding:24px 26px 0;display:block;min-width:0}
 .tile-identity{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:16px;min-width:0;min-height:76px}
 .tile-identity-copy{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
-.tile-identity h2{font-size:clamp(15px,1.35vw,18px);font-weight:700;letter-spacing:.25px;line-height:1.4;color:#173A32;margin:0;overflow-wrap:normal;word-break:normal}
-.tile-identity p{font-size:12px;line-height:1.5;letter-spacing:.12px;color:#52635C;margin:0;overflow-wrap:break-word}
-.tile-summary{margin:0;padding:18px 26px 0;max-width:100%;font-size:14px;line-height:1.75;color:#52635C;text-wrap:pretty;overflow-wrap:break-word}
+.tile-identity h2{font-size:clamp(15px,1.35vw,18px);font-weight:700;letter-spacing:.25px;line-height:1.4;color:var(--navy);margin:0;overflow-wrap:normal;word-break:normal}
+.tile-identity p{font-size:12px;line-height:1.5;letter-spacing:.12px;color:var(--navy-soft);margin:0;overflow-wrap:break-word}
+.tile-summary{margin:0;padding:18px 26px 0;max-width:100%;font-size:14px;line-height:1.75;color:var(--navy-soft);text-wrap:pretty;overflow-wrap:break-word}
 .tile-more{margin:auto 26px 22px;padding-top:18px;display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;line-height:1.5;font-weight:700;color:#17614B}
-.directory-tile:focus-visible{outline:3px solid #17614B;outline-offset:4px}
+.directory-tile:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
 .brand-empty{border:1px dashed #ccd6da;border-radius:12px;padding:37px 28px;text-align:center;background:#fff}
 .brand-empty h2{font-size:22px;margin:0 0 10px;line-height:1.4}
-.brand-empty p{font-size:14px;color:#526775;line-height:1.75}
+.brand-empty p{font-size:14px;color:var(--text);line-height:1.75}
 .brand-empty button{border:0;background:#245e80;color:#fff;padding:14px 18px;border-radius:9px;font-size:13px;font-weight:700;min-height:44px}
 
 /* Detail pages */
@@ -67,7 +67,7 @@ body{color:var(--gg-ink)}
 .detail-image img{width:100%;height:100%;object-fit:cover;filter:brightness(1.08) saturate(.94)}
 .detail-main-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,100px);padding-top:50px}
 .detail-main-grid h2{font-size:clamp(28px,3vw,41px);line-height:1.4;margin:0}
-.detail-main-grid>div:last-child p{font-size:15px;line-height:1.87;color:#526775}
+.detail-main-grid>div:last-child p{font-size:15px;line-height:1.87;color:var(--text)}
 .detail-process{background:#fff}
 .detail-process h2,.related-brands h2{font-size:clamp(27px,3vw,39px);line-height:1.4;margin:40px 0 33px}
 .process-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}
@@ -99,7 +99,7 @@ body{color:var(--gg-ink)}
 .solution-card-body{padding:23px 26px 26px}
 .solution-state{font-size:11px;letter-spacing:.3px;color:#9a753c;font-weight:700;margin:0 0 10px}
 .solution-card h2{font-size:24px;line-height:1.38;font-weight:650;margin:0 0 11px}
-.solution-card-body>p:not(.solution-state){font-size:15px;color:#526775;line-height:1.8;margin:0 0 18px}
+.solution-card-body>p:not(.solution-state){font-size:15px;color:var(--text);line-height:1.8;margin:0 0 18px}
 .solution-card-body>span{font-size:12px;font-weight:700;color:#245e80}
 .solution-detail{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.7fr);align-items:start;gap:55px;padding-top:5px}
 .solution-detail>div>img,.solution-detail>article>img{display:block;width:100%;aspect-ratio:2.5/1;object-fit:cover;border-radius:10px;filter:brightness(1.10)}
@@ -216,50 +216,4 @@ body{color:var(--gg-ink)}
  .brand-directory-grid .tile-identity p{font-size:12px;line-height:1.5}
  .brand-directory-grid .tile-summary{grid-column:2;grid-row:2;padding:12px 24px 0;font-size:14px;line-height:1.7}
  .brand-directory-grid .tile-more{grid-column:2;grid-row:3;margin:0 24px 17px;padding-top:10px}
-}
-
-
-/* 2026-10-14: Entertainment brand identity alignment across directory, home and detail.
-   Keep the full emblem visible; never crop or stretch brand artwork. */
-.directory-tile--entertainment .tile-identity,
-.brand-row:has(a[href="/entertainment"]) .brand-inline {
-  min-width:0;
-  align-items:center;
-}
-.directory-tile--entertainment .brand-mark,
-.brand-row:has(a[href="/entertainment"]) .brand-mark,
-.detail-brand:has(+ h1) .brand-mark {
-  flex-shrink:0;
-  overflow:visible;
-}
-.directory-tile--entertainment .brand-mark__image,
-.brand-row:has(a[href="/entertainment"]) .brand-mark__image {
-  display:block;
-  width:100%;
-  height:100%;
-  aspect-ratio:1;
-  object-fit:contain!important;
-  object-position:center!important;
-  max-width:none;
-  filter:none!important;
-  transform:none!important;
-}
-.directory-tile--entertainment .tile-identity-copy,
-.brand-row:has(a[href="/entertainment"]) .brand-inline strong {
-  min-width:0;
-  overflow-wrap:break-word;
-  word-break:normal;
-}
-.detail-brand {
-  display:grid;
-  grid-template-columns:100px minmax(0,1fr);
-  align-items:center;
-}
-.detail-brand .brand-mark--detail {width:100px; height:100px}
-.detail-brand > span:not(.brand-mark) {overflow-wrap:anywhere}
-@media(max-width:640px){
- .detail-brand{grid-template-columns:72px minmax(0,1fr);gap:14px}
- .detail-brand .brand-mark--detail{width:72px;height:72px}
- .directory-tile--entertainment .tile-identity{grid-template-columns:64px minmax(0,1fr)}
- .directory-tile--entertainment .brand-mark--tile{width:64px;height:64px}
 }
