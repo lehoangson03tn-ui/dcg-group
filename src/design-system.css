@@ -125,18 +125,3 @@ main :is(h1,h2,h3,h4,h5,h6), main :is(h1,h2,h3,h4,h5,h6) :is(em,strong,span),
  .tile-identity h2,.related-grid .tile-identity h2 {font-size:14px;letter-spacing:0;}
  .brand-inline strong,.detail-brand>span:not(.brand-mark) {font-size:14px;letter-spacing:0;}
 }
-
-/* Entertainment logo: final design-system override (loaded after ggg.css).
-   Match grid track to actual mark width; retain full artwork at every breakpoint. */
-.directory-tile--entertainment .tile-identity{--mark-size:68px;grid-template-columns:var(--mark-size) minmax(0,1fr);gap:14px;align-items:center}
-.directory-tile--entertainment .tile-identity .brand-mark.brand-mark--tile{width:var(--mark-size);height:var(--mark-size);padding:5px;box-sizing:border-box;overflow:hidden}
-.directory-tile--entertainment .brand-mark__image,
-.brand-row:has(a[href="/entertainment"]) .brand-mark__image{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center;transform:none;filter:none}
-.brand-row:has(a[href="/entertainment"]) .brand-inline{display:flex;align-items:center;min-width:0;gap:14px}
-.brand-row:has(a[href="/entertainment"]) .brand-mark--row{width:70px;height:70px;padding:5px;box-sizing:border-box;overflow:hidden;flex:none}
-@media(max-width:640px){
- .directory-tile--entertainment .tile-identity{--mark-size:56px;gap:11px}
- .directory-tile--entertainment .tile-identity .brand-mark.brand-mark--tile{padding:4px}
- .brand-row:has(a[href="/entertainment"]) .brand-mark--row{width:56px;height:56px;padding:4px}
- .brand-row:has(a[href="/entertainment"]) .brand-inline{gap:10px}
-}
