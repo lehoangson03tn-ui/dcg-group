@@ -157,7 +157,7 @@ function initBrandSearch(){
 function brandPage(b){return `
 <section class="detail-intro"><div class="container">
 ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Hệ sinh thái",href:"/he-sinh-thai"},{name:b.name}])}
-<div class="detail-head"><div class="detail-head-text"><p class="eyebrow">${b.field}</p><div class="detail-brand">${brandMark(b,'detail')}<span>${b.name}</span></div><h1>${b.heading}</h1><p>${b.summary}</p><div class="detail-status"><span>Hướng phát triển của DCG GROUP</span></div></div><div class="detail-image"><img src="${A+b.image}" alt="Hình ảnh minh họa lĩnh vực ${b.name}" fetchpriority="high"></div></div>
+<div class="detail-head"><div class="detail-head-text"><p class="eyebrow">${b.field}</p><div class="detail-brand">${brandMark(b,'detail')}<span>${b.name}</span></div><h1>${b.heading}</h1><p>${b.summary}</p><div class="detail-status"><span>Hướng phát triển của DCG GROUP</span></div><div class="detail-brand-action">${cta(b.action.label,b.action.href,"button-secondary",!!b.action.external)}</div></div><div class="detail-image"><img src="${A+b.image}" alt="Hình ảnh minh họa lĩnh vực ${b.name}" fetchpriority="high"></div></div>
 </div></section>
 <section class="page-section detail-main"><div class="container">${sectionTop("01","TỔNG QUAN & ĐỐI TƯỢNG PHỤC VỤ")}
 <div class="detail-main-grid"><div><p class="eyebrow">VỀ ${b.name}</p><h2>${b.hero}</h2></div><div><p class="lead">${b.description}</p><p>Đây là định hướng thuộc hệ sinh thái DCG GROUP. Quy mô, phạm vi triển khai và dịch vụ thương mại được công bố theo từng sản phẩm có bằng chứng thực tế.</p></div></div>
