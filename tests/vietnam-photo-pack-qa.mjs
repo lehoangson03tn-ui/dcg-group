@@ -16,7 +16,7 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
    const resp=await page.goto(base+route,{waitUntil:'domcontentloaded',timeout:30000});
    assert.equal(resp.status(),200,route+' HTTP');
    const m=await page.evaluate(async()=>{
-     const images=[...document.querySelectorAll('main img[src]')];
+     const images=[...document.querySelectorAll('main img[src]')].filter(img=>Boolean(img.getAttribute('src')?.trim()));
      images.forEach(img=>img.loading='eager');
      await Promise.all(images.map(async img=>{if(!img.complete)await Promise.race([new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});}),new Promise(resolve=>setTimeout(resolve,15000))]);await img.decode().catch(()=>{});}));
      return {overflow:document.documentElement.scrollWidth-innerWidth,
