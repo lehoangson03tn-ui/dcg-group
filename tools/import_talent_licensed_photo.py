@@ -1,8 +1,8 @@
 """Download a non-AI, standard free Unsplash photograph for DCG TALENT.
 
-Photographer: Raka Rahmadani
-URL: https://unsplash.com/photos/students-working-on-laptops-at-a-shared-desk-rh4xapY-haI
-Source: https://images.unsplash.com/photo-1756273343749-63f7d6ea0cda
+Photographer: Vitaly Gariev
+URL: https://unsplash.com/photos/diverse-group-of-students-gathered-around-a-laptop-8gAbl776pc0
+Source: https://images.unsplash.com/photo-1758270705317-3ef6142d306f
 License: https://unsplash.com/license (attribution optional, commercial use allowed)
 Not a DCG employee photograph. Preserve original bytes, generate faithful WebP sizes.
 """
