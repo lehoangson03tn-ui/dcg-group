@@ -42,3 +42,16 @@ All approved `dcg-*-emblem-*.webp` and `dcg-entertainment-emblem-transparent-pre
 ## Photo sourcing and content checks
 
 The source IDs are pinned in `tools/import_editorial_photos.py` and `tools/import_talent_licensed_photo.py` and the original source JPEGs are preserved. All replacements should be reviewed against this registry before merging, with browser checks at 390/768/834/1024/1440px, image decoded dimensions and actual URL access. Do not substitute `source.unsplash.com` random image endpoints, Unsplash+ content, or unlicensed Google/blog/reposted images.
+
+## 2026-10-16 — Owner-supplied Vietnam WebP photo pack
+
+Source: `DCG_GROUP_4_ANH_VIET_NAM_WEBP.zip`; all four WebP files preserved byte-for-byte. Publication rights and credits must be confirmed by the project owner; source photographs do not document work completed by DCG.
+
+| Use | File | Dimensions |
+| --- | --- | --- |
+| DCG TALENT primary, all brand/project cards | `public/assets/editorial/dcg-talent-vietnam-career-fair.webp` | 1578×934 |
+| DCG STUDIO primary | `public/assets/editorial/dcg-studio-vietnam-students.webp` | 1248×825 |
+| DCG ENTERTAINMENT primary | `public/assets/editorial/dcg-entertainment-nttu-studio.webp` | 1600×1002 |
+| DCG STUDIO supporting figure only | `public/assets/editorial/dcg-studio-vtv9-camera.webp` | 500×324 |
+
+The Vietnam City group hero and the Vision/LUMIQC kitchen picture are unchanged. Former brand photographs are retained in the repository as rollback assets but are no longer active. Logos, approved founder portrait and CEO competition recognition photos remain untouched. CEO competition images remain limited to the achievements article.

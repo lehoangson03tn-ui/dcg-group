@@ -602,3 +602,10 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  .projects-home .project-line--showcase{grid-template-columns:28px minmax(0,1fr) 22px;gap:10px;padding:14px;}
  .projects-home .project-line--showcase h3{font-size:1.25rem;}
 }
+
+/* Vietnam WebP photo pack · 2026-10-16 — VTV9 is supporting, not a primary brand image. */
+.studio-support-photo{margin:clamp(26px,4vw,46px) 0 0;padding:clamp(17px,3vw,28px);display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:center;gap:clamp(20px,4vw,44px);max-width:100%;border:1px solid #dae5ed;border-radius:18px;background:#f5f9fc}
+.studio-support-photo>img{display:block;max-width:100%;width:100%;height:auto;aspect-ratio:500/324;object-fit:contain;border-radius:11px}
+.studio-support-photo figcaption{display:flex;flex-direction:column;gap:8px;min-width:0;color:var(--navy);font-size:14px;line-height:1.65}
+.studio-support-photo figcaption strong{font-size:16px;font-weight:700;color:var(--navy)}
+@media(max-width:767px){.studio-support-photo{grid-template-columns:minmax(0,1fr);gap:18px}.studio-support-photo>img{max-width:500px}.studio-support-photo figcaption{font-size:13px}}

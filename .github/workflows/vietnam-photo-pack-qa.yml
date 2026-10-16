@@ -1,0 +1,51 @@
+name: DCG Vietnam Photo Pack QA
+on:
+  push:
+    branches: [feature/vietnam-webp-4-photo-pack-20261016, main]
+    paths:
+      - 'public/assets/editorial/dcg-*.webp'
+      - 'src/main.js'
+      - 'src/design-system.css'
+      - 'tests/vietnam-photo-pack-qa.mjs'
+      - '.github/workflows/vietnam-photo-pack-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  device-layout-and-photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Verify assets and build
+        run: |
+          test -s public/assets/editorial/dcg-talent-vietnam-career-fair.webp
+          test -s public/assets/editorial/dcg-studio-vietnam-students.webp
+          test -s public/assets/editorial/dcg-entertainment-nttu-studio.webp
+          test -s public/assets/editorial/dcg-studio-vtv9-camera.webp
+          test -s public/assets/recognition/NTTU_0058.jpeg
+          test -s public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg
+          npm ci
+          npm run build
+      - name: Install browser engines
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium webkit
+      - name: Check phone, tablet and desktop photos
+        env:
+          QA_SCREENSHOTS: '1'
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/vietnam-photo-qa.log 2>&1 &
+          for i in $(seq 1 45); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/vietnam-photo-pack-qa.mjs
+      - name: Save proof
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-vietnam-photos-responsive-proof
+          path: vietnam-webp-qa/
+          retention-days: 14
