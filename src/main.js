@@ -74,7 +74,7 @@ function home(){return `
   <p>DCG phát triển hệ sinh thái trong các lĩnh vực nhân lực, sản xuất nội dung, thị giác máy tính và giải trí. Mỗi hướng đi bắt đầu từ một nhu cầu cụ thể của con người và doanh nghiệp.</p>
   <div class="hero-actions">${cta('Khám phá hệ sinh thái','/he-sinh-thai','button-dark')}${cta('Tìm hiểu về DCG','/gioi-thieu','button-secondary')}</div>
  </div></div>
- <div class="home-hero-media">${editorialImage(group.image,'group',true)}<div class="hero-media-tag"><span>Thành phố Hồ Chí Minh · Ảnh minh họa</span></div></div>
+ <div class="home-hero-media">${editorialImage(group.image,'group',true)}</div>
 </section>
 <section class="about-home page-section"><div class="container">${sectionTop('01','GIỚI THIỆU')}
  <div class="about-home-grid"><div>${eyebrow('VỀ DCG GROUP')}<h2>Bốn lĩnh vực <span>Một định hướng chung</span></h2></div>
