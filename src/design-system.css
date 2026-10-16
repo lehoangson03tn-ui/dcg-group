@@ -362,106 +362,42 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  .recognition-photo-trigger{transition:none;scroll-behavior:auto;}
 }
 
-/* Documentary + licensed editorial photography.
-   Never run synthetic skin-smoothing, colorizing, glow or crop on NTTU documentary assets. */
+
+/* Free-licensed editorial images. Rights and photographer details are retained in
+   docs/IMAGE_PROVENANCE.md; the Unsplash license does not require a visible credit. */
 .home-hero-media>img.editorial-photo--group{
  display:block;width:100%;height:100%;position:absolute;inset:0;
  object-fit:cover;object-position:50% 72%;
  filter:none;transform:none;
 }
 .home-hero-media .hero-media-tag{font-size:11px;gap:16px;flex-wrap:wrap;}
-.home-hero-media .hero-media-tag a{
- color:#142D4E;font-size:11px;letter-spacing:0;
- text-decoration:underline;text-underline-offset:3px;
-}
-.home-hero-media .hero-media-tag a:focus-visible,
-.editorial-photo-credit a:focus-visible,
-.editorial-hero-caption a:focus-visible,
-.editorial-card-credit a:focus-visible{
- outline:2px solid #175B9A;outline-offset:3px;
-}
 .brand-row-image img.editorial-photo{
- filter:none;object-fit:cover;object-position:center;
+ filter:none;object-fit:cover;object-position:50% 50%;
  transition:none;transform:none;
 }
 .brand-row:hover .brand-row-image img.editorial-photo{filter:none;transform:none;}
-.brand-row-image img.editorial-photo--talent{
- object-fit:contain;object-position:center;
- background:#F0F5FA;
-}
+.brand-row-image img.editorial-photo--talent{object-fit:cover;object-position:50% 48%;background:#F0F5FA;}
 .brand-row-image img.editorial-photo--studio{object-position:50% 48%;}
 .brand-row-image img.editorial-photo--vision{object-position:50% 50%;}
 .brand-row-image img.editorial-photo--entertainment{object-position:50% 46%;}
-/* All external photography has readable source credits outside image content. */
-.editorial-photo-credit,
-.editorial-card-credit,
-.editorial-hero-caption{
- display:block;color:#526278;font-size:12px;line-height:1.6;
- text-align:left;overflow-wrap:break-word;
- font-weight:400;letter-spacing:0;
-}
-.brand-row-image > .editorial-photo-credit{
- display:block;
- flex:none;
- width:100%;
- box-sizing:border-box;
- padding:11px clamp(24px,4vw,36px) 14px;
- margin:0;
- background:#F0F5FA;
- color:#526278;
- font-size:12px;
- line-height:1.6;
- text-align:left;
-}
-.editorial-photo-credit::before,
-.editorial-card-credit::before{
- content:"";display:inline-block;vertical-align:middle;
- width:16px;border-top:1px solid #C6A052;margin-right:8px;
-}
-.editorial-photo-credit a,.editorial-card-credit a,.editorial-hero-caption a{
- color:#175B9A;text-decoration:underline;text-underline-offset:2px;
-}
-.editorial-photo-credit a:hover,.editorial-card-credit a:hover,.editorial-hero-caption a:hover{
- color:#142D4E;
-}
 .editorial-detail-figure{margin:0;min-width:0;width:100%;}
 .editorial-detail-figure .detail-image{margin:0;}
 .editorial-detail-figure .detail-image img.editorial-photo{
  display:block;width:100%;height:100%;object-fit:cover;
  filter:none;transform:none;
 }
-.editorial-detail-figure .detail-image img.editorial-photo--talent{
- object-fit:contain;background:#F0F5FA;
-}
-.editorial-detail-figure .editorial-photo-credit{margin:12px 0 0;}
+.editorial-detail-figure .detail-image img.editorial-photo--talent{object-fit:cover;object-position:50% 48%;background:#F0F5FA;}
 .inner-hero-media{margin:0;overflow:hidden;}
 .inner-hero-media img.editorial-photo{
  filter:none;object-fit:cover;object-position:50% 70%;transform:none;
 }
-.inner-hero-media .editorial-hero-caption{
- position:absolute;left:0;bottom:0;right:0;z-index:1;
- background:rgba(255,255,255,.91);
- padding:9px 18px;
-}
-.solution-card img.editorial-photo{
- object-fit:cover;object-position:center;
- filter:none;transform:none;
-}
-.solution-card img.editorial-photo--talent{object-fit:contain;background:#F0F5FA;}
-.solution-card .editorial-card-credit{
- padding:10px 24px 0;margin:0;
- font-size:11px;line-height:1.5;
-}
+.solution-card img.editorial-photo{object-fit:cover;object-position:center;filter:none;transform:none;}
+.solution-card img.editorial-photo--talent{object-fit:cover;object-position:50% 48%;background:#F0F5FA;}
 .editorial-project-figure{margin:0 0 28px;padding:0;max-width:100%;}
 .editorial-project-figure>img.editorial-photo{
  display:block;width:100%;height:auto;
  object-fit:contain;object-position:center;
  filter:none;transform:none;border-radius:9px;
-}
-.editorial-project-figure .editorial-photo-credit{margin:10px 0 0;}
-/* All artwork bearing NTTU's watermark is always shown in full at its natural ratio. */
-img.editorial-photo--talent{
- object-fit:contain;object-position:center;
 }
 @media(max-width:800px){
  .home-hero-media:has(>img.editorial-photo--group){
@@ -471,9 +407,5 @@ img.editorial-photo--talent{
 @media(max-width:500px){
  .home-hero-media:has(>img.editorial-photo--group){aspect-ratio:4/5;}
  .home-hero-media .hero-media-tag{font-size:10px;gap:5px;padding:12px 16px;}
- .home-hero-media .hero-media-tag a{font-size:10px;}
- .brand-row-image > .editorial-photo-credit{padding:10px 24px 14px;font-size:12px;}
  .editorial-detail-figure .detail-image{aspect-ratio:16/10;}
- .editorial-detail-figure .detail-image img.editorial-photo--talent{object-fit:contain;}
- .editorial-card-credit{font-size:11px;}
 }
