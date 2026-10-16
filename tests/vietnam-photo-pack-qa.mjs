@@ -3,8 +3,8 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium,webkit} from 'playwright';
 const base=process.env.SITE_URL||'http://127.0.0.1:5173';
 const viewports=[{width:390,height:844},{width:834,height:1194},{width:1024,height:768},{width:1440,height:900}];
-const routes=['/','/he-sinh-thai','/he-sinh-thai/dcg-talent','/he-sinh-thai/dcg-studio','/he-sinh-thai/dcg-vision','/he-sinh-thai/dcg-entertainment','/giai-phap','/du-an/dcg-growmatch'];
-const expected={talent:'dcg-talent-vietnam-career-fair.webp',studio:'dcg-studio-vietnam-students.webp',vision:'food-kitchen-1600.webp',entertainment:'dcg-entertainment-nttu-studio.webp'};
+const routes=['/','/he-sinh-thai','/he-sinh-thai/dcg-talent','/he-sinh-thai/dcg-studio','/he-sinh-thai/dcg-vision','/he-sinh-thai/dcg-entertainment','/giai-phap','/du-an/lumiqc','/giai-phap/lumiqc','/du-an/dcg-growmatch'];
+const expected={talent:'dcg-talent-vietnam-career-fair.webp',studio:'dcg-studio-vietnam-students.webp',vision:'dcg-vision-vietnam-hospitality-training.webp',entertainment:'dcg-entertainment-nttu-studio.webp'};
 const errors=[],runs=[];
 await mkdir('vietnam-webp-qa',{recursive:true});
 for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
@@ -33,6 +33,7 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
    assert.ok(m.overflow<=2,engine+' '+vp.width+' '+route+' horizontal overflow: '+m.overflow);
    assert.deepEqual(m.broken,[],engine+' '+vp.width+' '+route+' image loading');
    if(route==='/'){
+     assert.ok(m.photos.some(s=>s.endsWith(expected.vision)), 'LUMIQC homepage preview photo');
      assert.deepEqual(m.rows.map(x=>x.name),['DCG TALENT','DCG STUDIO','DCG VISION','DCG ENTERTAINMENT']);
      for(const [key,file] of Object.entries(expected))assert.ok(m.rows.find(x=>x.name==='DCG '+key.toUpperCase())?.src?.endsWith(file),key+' row photo');
    }
@@ -40,9 +41,10 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
      assert.ok(m.detail?.endsWith(file),key+' main detail photo');
      assert.equal(m.vtv9,key==='studio'?1:0,key+' VTV9 support only on STUDIO');
    }
+   if(route==='/du-an/lumiqc'||route==='/giai-phap/lumiqc')assert.ok(m.photos.some(s=>s.endsWith(expected.vision)),route+' LUMIQC primary photo');
    if(route!=='/du-an/dcg-growmatch')assert.ok(!m.photos.some(s=>/recognition\/(NTTU_0058|FBA1C8B9)/.test(s)),route+' CEO event photo outside recognition');
    assert.deepEqual(runtime,[],engine+' '+vp.width+' JS errors');
-   if(process.env.QA_SCREENSHOTS==='1'&&[390,834,1440].includes(vp.width)&&['/','/he-sinh-thai/dcg-studio'].includes(route)){
+   if(process.env.QA_SCREENSHOTS==='1'&&[390,834,1440].includes(vp.width)&&['/','/he-sinh-thai/dcg-studio','/he-sinh-thai/dcg-vision'].includes(route)){
      await page.screenshot({path:'vietnam-webp-qa/'+engine+'-'+vp.width+'-'+route.replaceAll('/','_')+'.png',fullPage:true,animations:'disabled'});
    }
    runs.push({engine,width:vp.width,route,status:'PASS'});

@@ -54,4 +54,11 @@ Source: `DCG_GROUP_4_ANH_VIET_NAM_WEBP.zip`; all four WebP files preserved byte-
 | DCG ENTERTAINMENT primary | `public/assets/editorial/dcg-entertainment-nttu-studio.webp` | 1600×1002 |
 | DCG STUDIO supporting figure only | `public/assets/editorial/dcg-studio-vtv9-camera.webp` | 500×324 |
 
-The Vietnam City group hero and the Vision/LUMIQC kitchen picture are unchanged. Former brand photographs are retained in the repository as rollback assets but are no longer active. Logos, approved founder portrait and CEO competition recognition photos remain untouched. CEO competition images remain limited to the achievements article.
+The Vietnam City group hero remains unchanged. The original Vision/LUMIQC kitchen photograph has now been superseded by the 4:3 owner-approved hospitality visual recorded below; the kitchen photo remains in the repository for rollback. Other former brand photographs also remain as rollback assets. Logos, approved founder portrait and CEO competition recognition photos remain untouched. CEO competition images remain limited to the achievements article.
+
+## 2026-10-16 — DCG VISION owner-approved 4:3 hospitality visual
+
+| Use | File | Dimensions | Source and limitations |
+| --- | --- | --- | --- |
+| DCG VISION primary, ecosystem and all Vision/LUMIQC sections, cards and project previews | `public/assets/editorial/dcg-vision-vietnam-hospitality-training.webp` | 1448×1086 (4:3) | AI-edited/generated illustration based on the NTTU hospitality training photo supplied by the user. Use only as conceptual imagery of Vietnamese F&B service settings, not as evidence of an NTTU partnership, an actual LUMIQC deployment, a real surveillance system, or staff of DCG. Keep previous kitchen photo as rollback asset; do not modify logo artwork. |
+
