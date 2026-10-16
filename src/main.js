@@ -100,11 +100,11 @@ ${founderSection()}
  </div>
  <div class="growmatch-project-group">
    <div class="container growmatch-project-container">
-     <div class="project-list growmatch-project-intro"><a href="/du-an/dcg-growmatch" class="project-line"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><b aria-hidden="true">↗</b></a></div>
+     <div class="project-list growmatch-project-intro"><a href="/du-an/dcg-growmatch" class="project-line project-line--showcase"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><figure class="project-line-media"><img src="/assets/editorial/talent-student-collaboration-1600.webp" alt="Ảnh chụp thật nhóm sinh viên trao đổi quanh máy tính, minh họa lĩnh vực công nghệ nhân lực" loading="lazy" decoding="async"></figure><b aria-hidden="true">↗</b></a></div>
    </div>
  </div>
  <div class="container growmatch-following-container">
-   <div class="project-list growmatch-following-project"><a href="/du-an/lumiqc" class="project-line"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>LUMIQC</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><b aria-hidden="true">↗</b></a></div>
+   <div class="project-list growmatch-following-project"><a href="/du-an/lumiqc" class="project-line project-line--showcase"><span>02</span><div><small>DCG VISION · HƯỚNG NGHIÊN CỨU</small><h3>LUMIQC</h3><p>Hướng nghiên cứu ứng dụng thị giác máy tính để hỗ trợ quan sát và kiểm soát chất lượng trong ngành thực phẩm và đồ uống.</p></div><figure class="project-line-media"><img src="/assets/editorial/food-kitchen-1600.webp" alt="Ảnh chụp thật hoạt động trong bếp chuyên nghiệp, minh họa lĩnh vực QA/QC thực phẩm" loading="lazy" decoding="async"></figure><b aria-hidden="true">↗</b></a></div>
  </div>
  </section>${endBanner()}`;
 }
