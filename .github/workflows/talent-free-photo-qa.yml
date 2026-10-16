@@ -1,0 +1,49 @@
+name: DCG Free Editorial Photography QA
+on:
+  push:
+    branches: [talent-licensed-photo-no-public-credits-20261016]
+    paths:
+      - src/main.js
+      - src/design-system.css
+      - tests/talent-free-photo-qa.mjs
+      - .github/workflows/talent-free-photo-qa.yml
+      - docs/IMAGE_PROVENANCE.md
+      - docs/IMAGE_BOARD.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  responsive-free-photo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Verify images and build
+        run: |
+          for size in 960 1600; do test -s "public/assets/editorial/talent-student-collaboration-$size.webp"; done
+          test -s public/assets/editorial/talent-student-collaboration-licensed-source.jpg
+          printf '%s\n' \
+            'd849296cc6cbcaee6c592708d728ea8341059bf0151da1395920e0b3c8741e4c  public/assets/recognition/NTTU_0058.jpeg' \
+            '400b23d0e4885a851b94250d1112e3a44d9edc4bd4868d3a59a45f58691f5d11  public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg' \
+            | sha256sum --check
+          npm ci
+          npm run build
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Validate 10 routes on mobile, tablet and desktop
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-free-photo.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/talent-free-photo-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-free-photography-talent-mobile-tablet-desktop
+          path: talent-free-photo-qa/
+          retention-days: 14
