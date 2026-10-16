@@ -33,7 +33,7 @@ jobs:
       - name: Install Chromium
         run: |
           npm install --no-save --ignore-scripts playwright@1.57.0
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium webkit
       - name: Serve original site for before screenshots
         run: |
           git worktree add --detach /tmp/dcg-before 27177fde842835192f0956cd01536b47ad8cb840
