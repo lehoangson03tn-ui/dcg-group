@@ -154,5 +154,35 @@ try{
  await large.close();
 }catch(e){failures.push('GENERAL '+e.message);console.error('GENERAL FAIL',e.message)}
 finally{await browser.close()}
+// WebKit engine checks approximate iPad/mobile Safari layout, not physical Safari.
+try{
+ const wk=await webkit.launch({headless:true});
+ try{
+  for(const cfg of [{width:390,height:844},{width:834,height:1194},{width:1024,height:768},{width:844,height:390}]){
+   const page=await wk.newPage({viewport:cfg,deviceScaleFactor:2,reducedMotion:'reduce'});
+   try{
+    await open(page,base+'/he-sinh-thai/dcg-vision');
+    const m=await measureCards(page);checkCards(m,cfg.width);
+    const load=await page.evaluate(async()=>{
+      const imgs=[...document.querySelectorAll('main img')];
+      await Promise.all(imgs.map(async img=>{
+       img.loading='eager';
+       if(!img.complete)await new Promise(ok=>{img.onload=ok;img.onerror=ok;});
+       await img.decode().catch(()=>{});
+      }));
+      return imgs.filter(i=>!i.naturalWidth).map(i=>i.getAttribute('src'));
+    });
+    assert.deepEqual(load,[],'WebKit must load visible images');
+    const faq=page.locator('.detail-faq details').first();
+    await faq.locator('summary').click();assert.equal(await faq.getAttribute('open'),'');
+    await faq.locator('summary').click();assert.equal(await faq.getAttribute('open'),null);
+    if(cfg.width===834)await page.locator('.detail-process').screenshot({path:'responsive-audit-proof/webkit-ipad-process-834.png',animations:'disabled'});
+    console.log('PASS WEBKIT IPAD/MOBILE',cfg.width,cfg.height);
+   }catch(e){failures.push('WEBKIT '+cfg.width+'x'+cfg.height+' '+e.message);console.error('WEBKIT FAIL',e.message)}
+   finally{await page.close()}
+  }
+ }finally{await wk.close()}
+}catch(e){failures.push('WEBKIT startup '+e.message)}
+
 await writeFile('responsive-audit-proof/report.json',JSON.stringify({routes,widths,results,failures},null,2));
 if(failures.length){console.error(failures.join('\n'));process.exitCode=1}else console.log('ALL RESPONSIVE AUDIT CHECKS PASS');
