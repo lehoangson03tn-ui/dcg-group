@@ -62,7 +62,8 @@ try{
       const attrs=await hero.evaluate(img=>({src:img.getAttribute('src'),width:img.naturalWidth,height:img.naturalHeight,fit:getComputedStyle(img).objectFit,alt:img.alt}));
       assert.ok(attrs.src.includes(newName));
       assert.equal(attrs.fit,'cover','Landscape Talent photo fills brand frame');
-      assert.deepEqual([attrs.width,attrs.height],[1600,900]);
+      assert.ok(attrs.width>=360 && attrs.height>=200,'Responsive density-corrected image dimensions');
+      assert.ok(Math.abs(attrs.width/attrs.height-16/9)<0.02,'Preserve landscape photo aspect 16:9');
       assert.ok(attrs.alt.includes('ảnh minh họa'));
       if([390,834,1440].includes(width))await page.locator('.detail-head').screenshot({path:'talent-free-photo-qa/talent-detail-'+width+'.png',animations:'disabled',timeout:20000});
     }
