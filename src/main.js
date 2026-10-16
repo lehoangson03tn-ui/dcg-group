@@ -279,11 +279,11 @@ ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Hệ sinh thái",href:"/he-si
 <div class="detail-main-grid"><div><p class="eyebrow">VỀ ${b.name}</p><h2>${b.hero}</h2></div><div><p class="lead">${b.description}</p><p>Đây là định hướng thuộc hệ sinh thái DCG GROUP. Quy mô, phạm vi triển khai và dịch vụ thương mại được công bố theo từng sản phẩm có bằng chứng thực tế.</p></div></div>
 </div></section>
 <section class="page-section focus-section"><div class="container">${sectionTop("02","NĂNG LỰC & HƯỚNG GIẢI PHÁP")}
-<div class="focus-grid">${b.focus.map((item,i)=>`<article><span>${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div>
+<div class="focus-grid" aria-label="Năng lực và hướng giải pháp">${b.focus.map((item,i)=>`<article class="focus-card"><span>${String(i+1).padStart(2,"0")}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join("")}</div>
 </div></section>
 <section class="page-section detail-process"><div class="container">${sectionTop("03","CÁCH KẾT NỐI")}
-<h2>Từ nhu cầu đến định hướng phù hợp</h2>
-<div class="process-steps"><div><b>01</b><h3>Chia sẻ nhu cầu</h3><p>Trao đổi lĩnh vực và vấn đề cần giải quyết.</p></div><div><b>02</b><h3>Xác định phạm vi</h3><p>Làm rõ điều kiện, dữ liệu đầu vào và giới hạn của giải pháp.</p></div><div><b>03</b><h3>Thống nhất hướng đi</h3><p>Chỉ xác nhận triển khai và đầu ra khi đã có thỏa thuận cụ thể.</p></div></div>
+<h2>Từ nhu cầu đến hướng triển khai</h2>
+<div class="process-steps" aria-label="Ba bước kết nối"><article class="process-step"><b>01</b><h3>Chia sẻ nhu cầu</h3><p>Trao đổi mục tiêu, bối cảnh và vấn đề cần giải quyết.</p></article><article class="process-step"><b>02</b><h3>Xác định phạm vi</h3><p>Làm rõ yêu cầu, dữ liệu đầu vào và giới hạn của giải pháp.</p></article><article class="process-step"><b>03</b><h3>Thống nhất triển khai</h3><p>Thống nhất phạm vi, đầu ra và điều kiện trước khi triển khai.</p></article></div>
 </div></section>
 <section class="page-section detail-faq"><div class="container">${sectionTop("04","CÂU HỎI THƯỜNG GẶP")}
 <details><summary>${b.name} đã cung cấp đầy đủ dịch vụ thương mại chưa?</summary><p>Các năng lực và dự án hiện được giới thiệu theo định hướng phát triển; từng sản phẩm chỉ được xác nhận sẵn sàng khi có thông tin triển khai thực tế.</p></details>
