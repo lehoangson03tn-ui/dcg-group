@@ -2,7 +2,7 @@
 
 **“Tinh thần Việt trong đời sống đương đại”** · Tư liệu kiểm tra nguồn và chất lượng ảnh trên website.
 
-Tất cả ảnh dưới đây đều là ảnh chụp thật, không phải ảnh sinh bằng AI. Ảnh có nguồn Unsplash được công bố là ảnh minh họa bên ngoài DCG; không được dùng để mô tả cơ sở, khách hàng hoặc nhân viên của DCG.
+Tất cả ảnh dưới đây đều là ảnh chụp thật, không phải ảnh sinh bằng AI. Ảnh Unsplash dùng theo giấy phép miễn phí có quyền sử dụng thương mại, không bắt buộc ghi công khai tác giả; nguồn, giấy phép và tên tác giả được lưu ở đây. Không dùng hình minh họa bên ngoài để mô tả cơ sở, khách hàng hoặc nhân viên của DCG.
 
 ## 1. DCG GROUP — Đô thị TP.HCM
 
@@ -14,16 +14,17 @@ Tất cả ảnh dưới đây đều là ảnh chụp thật, không phải ả
 - Focal point: desktop trung tâm hướng sông/cầu (50% x, 70% y); mobile banner dọc 4:5; không ghép logo.
 - Alt: “Đô thị và cầu tại Thành phố Hồ Chí Minh, ảnh chụp minh họa”.
 
-## 2. DCG TALENT / DCG GROWMATCH — Đội thi thật
+## 2. DCG TALENT / DCG GROWMATCH — Học tập và phát triển nghề nghiệp
 
-![Ảnh đội thi ĐÀN CÁ GỖ tham dự cuộc thi CEO thời đại số](../public/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg)
+![Sinh viên cùng trao đổi học tập quanh laptop](../public/assets/editorial/talent-student-collaboration-960.webp)
 
-- Nguồn: Ảnh sự kiện đã được chủ sở hữu chọn; thông tin liên quan tại [NTTU](https://ntt.edu.vn/nttu-tim-kiem-nha-quan-tri-tuong-lai-qua-cuoc-thi-ceo-thoi-dai-so/).
-- Vị trí: thương hiệu DCG TALENT, trang chi tiết và giới thiệu dự án DCG GROWMATCH.
-- Trạng thái: **Ảnh tư liệu đội thi thật**, không phải stock.
-- Cắt ảnh: **không**; giữ nguyên 1536×1024, watermark NTTU.
-- Alt: “Ảnh tư liệu đội ĐÀN CÁ GỖ tham dự cuộc thi CEO thời đại số của NTTU”.
-- **Ảnh trao giải NTTU_0058.jpeg tiếp tục chỉ xuất hiện ở phần thành tích.**
+- Nguồn: [Vitaly Gariev — Unsplash](https://unsplash.com/photos/diverse-group-of-students-gathered-around-a-laptop-8gAbl776pc0); [Unsplash License miễn phí](https://unsplash.com/license).
+- Quyền: Cho phép sử dụng thương mại **không bắt buộc hiển thị tên tác giả trên website**. Hồ sơ nguồn lưu trong repository.
+- Vị trí: hình đại diện DCG TALENT trên Hệ sinh thái, trang thương hiệu, Giải pháp và hình minh họa dự án DCG GROWMATCH.
+- Trạng thái: **Ảnh minh họa**, những người trong ảnh không phải nhân viên hoặc thành viên DCG.
+- Bản ảnh: nguồn JPG không sửa, WebP 1600×900 và 960×540; dùng crop 16:10 ở vị trí thương hiệu với tiêu điểm 50% / 48%; không áp hiệu ứng màu.
+- Alt: “Nhóm sinh viên cùng trao đổi và học tập quanh máy tính, ảnh minh họa, không phải đội ngũ DCG TALENT”.
+- Ảnh NTTU của đội ĐÀN CÁ GỖ **không còn dùng làm ảnh đại diện thương hiệu**, nhưng cả `FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg` và `NTTU_0058.jpeg` vẫn được giữ nguyên trong **bài thành tích DCG GROWMATCH**.
 
 ## 3. DCG STUDIO — Hậu trường máy quay
 
@@ -59,4 +60,4 @@ Tất cả ảnh dưới đây đều là ảnh chụp thật, không phải ả
 
 Đối chiếu chi tiết giấy phép, điểm cắt, trạng thái tư liệu và các nhu cầu còn thiếu trong [IMAGE_PROVENANCE.md](./IMAGE_PROVENANCE.md). Các bản WebP `1600` và `960` được sinh từ ảnh JPG nguồn lưu tại `public/assets/editorial`; không được tô màu xanh-vàng lên nội dung ảnh.
 
-**Lưu ý:** Hình ảnh studio, bếp và sân khấu hiện là minh họa được cấp phép chứ chưa phải ảnh hoạt động sản xuất của DCG. Khi có ảnh tư liệu thật cùng quyền xuất bản, có thể thay tương ứng theo vị trí trong bảng.
+**Lưu ý:** Hình ảnh Talent, Studio, bếp và sân khấu hiện là minh họa được cấp phép chứ chưa phải ảnh hoạt động sản xuất của DCG. Khi có ảnh tư liệu thật cùng quyền xuất bản, có thể thay tương ứng theo vị trí trong bảng.
