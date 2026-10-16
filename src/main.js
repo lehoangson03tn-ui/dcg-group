@@ -105,7 +105,6 @@ ${founderSection()}
  <div class="growmatch-project-group">
    <div class="container growmatch-project-container">
      <div class="project-list growmatch-project-intro"><a href="/du-an/dcg-growmatch" class="project-line"><span>01</span><div><small>DCG TALENT · SẢN PHẨM CÓ WEBSITE RIÊNG</small><h3>DCG GROWMATCH</h3><p>Nền tảng hướng đến việc kết nối ứng viên và nhà tuyển dụng dựa trên thông tin nghề nghiệp, năng lực và nhu cầu tuyển dụng.</p></div><b aria-hidden="true">↗</b></a></div>
-     ${growmatchRecognitionSummary()}
    </div>
  </div>
  <div class="container growmatch-following-container">
@@ -119,18 +118,6 @@ const growmatchAwardAssets=Object.freeze({
   secondary:'/assets/recognition/FBA1C8B9-ED38-42D6-8EF9-50CBECBFA44D.jpeg',
   nttu:'https://ntt.edu.vn/nttu-tim-kiem-nha-quan-tri-tuong-lai-qua-cuoc-thi-ceo-thoi-dai-so/'
 });
-function growmatchRecognitionSummary(){return `
-<aside class="growmatch-recognition-summary" aria-labelledby="growmatch-recognition-summary-title">
-  <p class="growmatch-summary-label">THÀNH TÍCH DCG GROWMATCH</p>
-  <h3 id="growmatch-recognition-summary-title">Top 5 vòng chung kết CEO thời đại số</h3>
-  <figure class="growmatch-summary-image">
-    <img src="${growmatchAwardAssets.main}" alt="Đội thi ĐÀN CÁ GỖ tại lễ trao giải cuộc thi CEO thời đại số" width="1536" height="1024" loading="lazy" decoding="async">
-  </figure>
-  <p class="growmatch-summary-description">Đội thi DCG GROWMATCH, tham dự dưới tên ĐÀN CÁ GỖ, vào Top 5 vòng chung kết và nhận giải với đề tài ứng dụng AI trong đánh giá năng lực và kết nối cơ hội việc làm.</p>
-  <p class="growmatch-summary-event">Nhà quản trị tương lai lần 6 · 2026</p>
-  <a class="growmatch-summary-link" href="/du-an/dcg-growmatch#thanh-tich"><span>Khám phá thành tích</span><span aria-hidden="true">↗</span></a>
-</aside>`;
-}
 function growmatchAwardFigure(kind){
  const main=kind==='main';
  const src=main?growmatchAwardAssets.main:growmatchAwardAssets.secondary;
