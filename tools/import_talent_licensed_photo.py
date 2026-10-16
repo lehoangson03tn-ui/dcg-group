@@ -13,7 +13,7 @@ from PIL import Image, ImageOps
 import hashlib
 out=Path("public/assets/editorial")
 out.mkdir(parents=True,exist_ok=True)
-url="https://images.unsplash.com/photo-1756273343749-63f7d6ea0cda?fm=jpg&fit=max&w=2200&q=86"
+url="https://images.unsplash.com/photo-1758270705317-3ef6142d306f?fm=jpg&fit=max&w=2200&q=86"
 req=Request(url,headers={"User-Agent":"DCG-Image-Provenance/1.0"})
 with urlopen(req, timeout=40) as response:
     data=response.read(13000000)
