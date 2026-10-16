@@ -16,7 +16,7 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
    const resp=await page.goto(base+route,{waitUntil:'domcontentloaded',timeout:30000});
    assert.equal(resp.status(),200,route+' HTTP');
    const m=await page.evaluate(async()=>{
-     const images=[...document.querySelectorAll('main img')];
+     const images=[...document.querySelectorAll('main img[src]')];
      images.forEach(img=>img.loading='eager');
      await Promise.all(images.map(async img=>{if(!img.complete)await Promise.race([new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});}),new Promise(resolve=>setTimeout(resolve,15000))]);await img.decode().catch(()=>{});}));
      return {overflow:document.documentElement.scrollWidth-innerWidth,
@@ -26,6 +26,10 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
        detail:document.querySelector('.editorial-detail-figure img.editorial-photo')?.getAttribute('src'),
        vtv9:document.querySelectorAll('.studio-support-photo img[src$="dcg-studio-vtv9-camera.webp"]').length};
    });
+   if(m.overflow>2){
+     const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect();return{tag:el.tagName,cls:typeof el.className==='string'?el.className.slice(0,60):'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)};}).filter(x=>x.right>innerWidth+3||x.left<-3).sort((a,b)=>b.right-a.right).slice(0,15));
+     console.error('OVERFLOW EVIDENCE',engine,vp.width,route,JSON.stringify(offenders));
+   }
    assert.ok(m.overflow<=2,engine+' '+vp.width+' '+route+' horizontal overflow: '+m.overflow);
    assert.deepEqual(m.broken,[],engine+' '+vp.width+' '+route+' image loading');
    if(route==='/'){
