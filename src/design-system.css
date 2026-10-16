@@ -610,11 +610,10 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 .studio-support-photo figcaption strong{font-size:16px;font-weight:700;color:var(--navy)}
 @media(max-width:767px){.studio-support-photo{grid-template-columns:minmax(0,1fr);gap:18px}.studio-support-photo>img{max-width:500px}.studio-support-photo figcaption{font-size:13px}}
 
-/* Owner-approved 4:3 Vietnam hospitality visual for DCG VISION (2026-10-16).
-   Keep all subjects visible; brand logo and other brand imagery are unchanged. */
+/* DCG VISION visual: the source WebP stays 4:3, but the website photo
+   frames MUST use the same ratios as every other brand at each breakpoint.
+   Crop with cover rather than stretching, or forcing 4:3 onto page layout. */
 .brand-row-image img.editorial-photo--vision,
-.inner-hero-media img.editorial-photo--vision {object-fit:contain;object-position:center;background:#eef3f5;}
-.editorial-detail-figure .detail-image:has(> img.editorial-photo--vision) {aspect-ratio:4/3;}
-@media (max-width:800px) {
- .brand-row-image:has(img.editorial-photo--vision) .brand-row-photo-frame {aspect-ratio:4/3;}
+.inner-hero-media img.editorial-photo--vision {
+ object-fit:cover;object-position:50% 53%;background:#eef3f5;
 }

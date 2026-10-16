@@ -11,7 +11,7 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
  let browser;try{browser=await driver.launch({headless:true});}catch(e){errors.push(engine+' startup '+e.message);continue;}
  try{for(const vp of viewports){
  const page=await browser.newPage({viewport:vp,deviceScaleFactor:2,reducedMotion:'reduce'});
- const runtime=[];page.on('pageerror',e=>runtime.push(e.message));
+ const runtime=[];const measuredDetailRatios={};page.on('pageerror',e=>runtime.push(e.message));
  try{for(const route of routes){
    const resp=await page.goto(base+route,{waitUntil:'domcontentloaded',timeout:30000});
    assert.equal(resp.status(),200,route+' HTTP');
@@ -22,8 +22,15 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
      return {overflow:document.documentElement.scrollWidth-innerWidth,
        broken:images.filter(img=>!img.naturalWidth).map(img=>img.getAttribute('src')),
        photos:images.map(img=>img.getAttribute('src')||''),
-       rows:[...document.querySelectorAll('.brand-row')].map(row=>({name:row.querySelector('.brand-inline strong')?.textContent.trim(),src:row.querySelector('img.editorial-photo')?.getAttribute('src')})),
+       rows:[...document.querySelectorAll('.brand-row')].map(row=>{
+         const img=row.querySelector('img.editorial-photo'),frame=row.querySelector('.brand-row-photo-frame'),rect=frame?.getBoundingClientRect();
+         return {name:row.querySelector('.brand-inline strong')?.textContent.trim(),
+           src:img?.getAttribute('src'),fit:img?getComputedStyle(img).objectFit:'',
+           ratio:rect?.height?rect.width/rect.height:null};
+       }),
        detail:document.querySelector('.editorial-detail-figure img.editorial-photo')?.getAttribute('src'),
+       detailRatio:(()=>{const el=document.querySelector('.editorial-detail-figure .detail-image');if(!el)return null;const rect=el.getBoundingClientRect();return rect.height?rect.width/rect.height:null;})(),
+       detailFit:(()=>{const el=document.querySelector('.editorial-detail-figure img.editorial-photo');return el?getComputedStyle(el).objectFit:null;})(),
        vtv9:document.querySelectorAll('.studio-support-photo img[src$="dcg-studio-vtv9-camera.webp"]').length};
    });
    if(m.overflow>2){
@@ -36,10 +43,21 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
      assert.ok(m.photos.some(s=>s.endsWith(expected.vision)), 'LUMIQC homepage preview photo');
      assert.deepEqual(m.rows.map(x=>x.name),['DCG TALENT','DCG STUDIO','DCG VISION','DCG ENTERTAINMENT']);
      for(const [key,file] of Object.entries(expected))assert.ok(m.rows.find(x=>x.name==='DCG '+key.toUpperCase())?.src?.endsWith(file),key+' row photo');
+     assert.equal(m.rows.find(x=>x.name==='DCG VISION')?.fit,'cover','Vision should fill its frame, same as other brands');
+     if(vp.width<=800){
+       const reference=m.rows.find(x=>x.name==='DCG STUDIO')?.ratio;
+       assert.ok(Math.abs(reference-1.6)<0.03,'Reference brand photo frame must be 16:10 on mobile');
+       for(const row of m.rows)assert.ok(Math.abs(row.ratio-reference)<0.03,'Mismatched brand photo frame ratio: '+row.name+': '+row.ratio+' != '+reference);
+     }
    }
    for(const [key,file] of Object.entries(expected))if(route==='/he-sinh-thai/dcg-'+key){
      assert.ok(m.detail?.endsWith(file),key+' main detail photo');
      assert.equal(m.vtv9,key==='studio'?1:0,key+' VTV9 support only on STUDIO');
+     if(key==='studio')measuredDetailRatios.studio=m.detailRatio;
+     if(key==='vision'){
+       assert.equal(m.detailFit,'cover','Vision detail image must fill frame like Studio');
+       assert.ok(Math.abs(m.detailRatio-measuredDetailRatios.studio)<0.03,'Vision detail frame ratio differs from Studio: '+m.detailRatio+' != '+measuredDetailRatios.studio);
+     }
    }
    if(route==='/du-an/lumiqc'||route==='/giai-phap/lumiqc')assert.ok(m.photos.some(s=>s.endsWith(expected.vision)),route+' LUMIQC primary photo');
    if(route!=='/du-an/dcg-growmatch')assert.ok(!m.photos.some(s=>/recognition\/(NTTU_0058|FBA1C8B9)/.test(s)),route+' CEO event photo outside recognition');
