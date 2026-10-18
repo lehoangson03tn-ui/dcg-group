@@ -112,11 +112,24 @@ try{
  for(const width of [390,768,1024,1440]){
   const page=await wk.newPage({viewport:{width,height:900},deviceScaleFactor:1});
   try{
-   const res=await page.goto(BASE+'/giai-phap',{waitUntil:'domcontentloaded'});
+   const res=await page.goto(BASE+'/giai-phap',{waitUntil:'networkidle'});
    assert.equal(res.status(),200);
-   const info=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,
-     cards:document.querySelectorAll('.solution-card').length,
-     imageWidth:document.querySelector('.solution-card-visual').getBoundingClientRect().width}));
+   await page.evaluate(async()=>{
+     await document.fonts.ready;
+     await Promise.all([...document.querySelectorAll('.solution-card-visual img')].map(i=>i.decode().catch(()=>{})));
+   });
+   const info=await page.evaluate(()=>{
+     const offenders=[...document.querySelectorAll('body *')].filter(e=>{
+       const s=getComputedStyle(e),r=e.getBoundingClientRect();
+       return s.position!=='fixed'&&r.width>0&&r.right>innerWidth+3;
+     }).slice(0,12).map(e=>({tag:e.tagName,className:String(e.className).slice(0,120),
+         width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right,display:getComputedStyle(e).display}));
+     return{viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,
+       overflow:document.documentElement.scrollWidth-innerWidth,
+       cards:document.querySelectorAll('.solution-card').length,
+       imageWidth:document.querySelector('.solution-card-visual').getBoundingClientRect().width,
+       offenders};
+   });
    console.log('WEBKIT MEASURE '+width+'px '+JSON.stringify(info));
    assert.ok(info.overflow<=2&&info.cards===4&&info.imageWidth>150,'WebKit grid '+width+' '+JSON.stringify(info));
    console.log('PASS WEBKIT @ '+width+'px');
