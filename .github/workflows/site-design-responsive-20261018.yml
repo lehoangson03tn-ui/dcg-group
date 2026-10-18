@@ -1,0 +1,40 @@
+name: DCG Full Site 22 Routes Responsive and Solutions Visual QA
+on:
+  push:
+    branches:
+      - fix/solutions-directory-editorial-responsive-20261018
+    paths:
+      - src/main.js
+      - src/design-system.css
+      - tests/site-design-responsive-20261018.mjs
+      - .github/workflows/site-design-responsive-20261018.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install and build website
+        run: npm ci && npm run build
+      - name: Install Chromium and WebKit
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium webkit
+      - name: Check 22 routes at 11 viewport widths and save screenshots
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-directory.log 2>&1 &
+          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/site-design-responsive-20261018.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-full-site-editorial-proof-20261018
+          path: corporate-site-visual-proof/
+          retention-days: 14

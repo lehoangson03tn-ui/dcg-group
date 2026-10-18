@@ -801,3 +801,146 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
 @media(max-width:767px){
  .projects-home .growmatch-project-intro .project-line--showcase{border-radius:16px;}
 }
+
+
+/* 2026-10-18 — Corporate directory layout based on real DCG user-approved
+   project media. Images have their own frame, rather than inheriting a
+   portrait's intrinsic height; this prevents excessively tall cards. */
+.directory-intro.solution-directory{
+  background:linear-gradient(180deg,#f7fafc 0%,#fff 53%);
+  padding-block:clamp(48px,5.2vw,78px) clamp(76px,7vw,112px);
+  min-height:0;
+}
+.solution-directory > .container{max-width:1240px;}
+.solution-directory .breadcrumbs{margin-bottom:clamp(24px,3.2vw,43px);}
+.solution-directory-heading{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(24px,5vw,80px);align-items:end;
+  margin-bottom:clamp(28px,3.7vw,54px);
+}
+.solution-directory-heading > div{min-width:0;}
+.solution-directory-heading .eyebrow{margin-bottom:13px;}
+.solution-directory-heading h1{
+  margin:0;max-width:none;
+  font-size:clamp(36px,3.8vw,55px);line-height:1.2;
+  letter-spacing:-.035em;color:#142d4e;
+}
+.solution-directory-heading .directory-subtitle{
+  max-width:510px;margin:0 0 4px;
+  font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:#526877;
+}
+.directory-intro .solution-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(20px,2.3vw,30px);align-items:stretch;max-width:100%;
+}
+.directory-intro .solution-card{
+  display:flex;flex-direction:column;min-width:0;height:100%;
+  border:1px solid #dce6ee;border-radius:18px;
+  background:#fff;overflow:hidden;
+  box-shadow:0 8px 28px rgba(20,45,78,.045);
+  color:#142d4e;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.directory-intro .solution-card:hover{
+  transform:translateY(-3px);
+  border-color:#bacddd;
+  box-shadow:0 16px 38px rgba(20,45,78,.095);
+}
+.directory-intro .solution-card:focus-visible{
+  outline:3px solid #bd8f36;outline-offset:4px;
+}
+.directory-intro .solution-card-visual{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex:0 0 auto;
+  width:100%;height:auto;aspect-ratio:16/9;
+  margin:0;padding:0;overflow:hidden;
+  background:#eef4f9;border-bottom:1px solid #e5ebf1;
+}
+.directory-intro .solution-card-visual img,
+.directory-intro .solution-card-visual img.editorial-photo{
+  display:block;width:100%;height:100%;max-width:100%;max-height:100%;
+  margin:0;padding:0;aspect-ratio:auto;
+  object-fit:cover;object-position:center;
+  filter:none;transform:none;
+}
+.directory-intro .solution-card--dcg-growmatch .solution-card-visual{
+  background:#f5f8fc;
+}
+.directory-intro .solution-card--dcg-growmatch .solution-card-visual img{
+  object-fit:contain;object-position:center;
+}
+.directory-intro .solution-card--lumiqc .solution-card-visual{
+  background:radial-gradient(ellipse at center,#fff 0%,#fafcff 57%,#eaf2f9 100%);
+}
+.directory-intro .solution-card--lumiqc .solution-card-visual img{
+  width:78%;height:86%;object-fit:contain;object-position:center;
+}
+.directory-intro .solution-card-body{
+  display:flex;flex-direction:column;align-items:flex-start;
+  flex:1;gap:0;min-width:0;padding:clamp(22px,2.3vw,32px);
+}
+.directory-intro .solution-card-body .solution-state{
+  display:block;width:auto;max-width:100%;
+  margin:0 0 12px;font-size:clamp(11px,.85vw,12px);
+  letter-spacing:.055em;line-height:1.55;font-weight:700;
+  color:#987026;
+}
+.directory-intro .solution-card-body h2{
+  margin:0 0 12px;
+  font-size:clamp(22px,1.65vw,28px);
+  line-height:1.32;font-weight:700;letter-spacing:-.02em;
+  overflow-wrap:anywhere;color:#142d4e;
+}
+.directory-intro .solution-card-body>p:not(.solution-state){
+  margin:0 0 18px;max-width:57ch;
+  font-size:clamp(15px,1.05vw,16px);line-height:1.72;color:#4b6270;
+}
+.directory-intro .solution-card-body .solution-card-action{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:15px;
+  margin-top:auto;padding:11px 0 4px;
+  min-height:44px;border-bottom:1px solid #bc8c3e;
+  color:#245b7b;font-size:13px;line-height:1.5;letter-spacing:.01em;font-weight:700;
+}
+.directory-intro .solution-card-body .solution-card-action>span{
+  flex:none;font-size:20px;line-height:1;
+}
+.directory-intro .solution-card:hover .solution-card-action{color:#143e5a;}
+/* Same approved media appear in project and solution detail pages;
+   screenshots and logos must remain legible and uncropped. */
+.directory-intro .editorial-project-figure--dcg-growmatch,
+.directory-intro .editorial-project-figure--lumiqc{
+  display:grid;place-items:center;
+  aspect-ratio:16/9;width:100%;
+  border-radius:14px;overflow:hidden;
+  border:1px solid #dce5ed;background:#f5f9fc;
+}
+.directory-intro .editorial-project-figure--lumiqc{
+  background:radial-gradient(ellipse at center,#fff 0%,#edf4fa 100%);
+}
+.directory-intro .editorial-project-figure--dcg-growmatch img,
+.directory-intro .editorial-project-figure--lumiqc img{
+  display:block;width:100%;height:100%;object-fit:contain;
+  max-height:100%;filter:none;transform:none;
+}
+.directory-intro .editorial-project-figure--lumiqc img{
+  width:82%;height:87%;
+}
+@media(max-width:900px){
+ .solution-directory-heading{grid-template-columns:minmax(0,1fr);gap:12px;}
+ .solution-directory-heading .directory-subtitle{max-width:68ch;}
+ .directory-intro .solution-grid{gap:20px;}
+ .directory-intro .solution-card-body{padding:22px;}
+}
+@media(max-width:680px){
+ .directory-intro .solution-grid{grid-template-columns:minmax(0,1fr);gap:20px;}
+ .directory-intro .solution-card-visual{aspect-ratio:16/9;}
+ .directory-intro .solution-card-body{padding:22px;}
+ .solution-directory-heading h1{font-size:clamp(32px,8vw,40px);}
+}
+@media(max-width:390px){
+ .directory-intro .solution-card-body{padding:19px;}
+ .directory-intro .solution-card-body h2{font-size:22px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .directory-intro .solution-card{transition:none;}
+}
