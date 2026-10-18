@@ -1,0 +1,39 @@
+name: DCG Corporate Ecosystem Desktop QA
+on:
+  push:
+    branches:
+      - fix/desktop-brand-row-proportions-20261018
+    paths:
+      - src/design-system.css
+      - tests/ecosystem-corporate-responsive.mjs
+      - .github/workflows/ecosystem-corporate-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ecosystem-visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Build
+        run: npm ci && npm run build
+      - name: Install browser
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Responsive and visual regression
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-vite.log 2>&1 &
+          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/ecosystem-corporate-responsive.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-ecosystem-corporate-proof
+          path: corporate-visual-proof/
+          retention-days: 14
