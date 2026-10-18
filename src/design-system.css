@@ -782,3 +782,22 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
  .projects-home .project-line--showcase,
  .projects-home .project-line-media img{transition:none;}
 }
+
+
+/* Normalize older GROWMATCH full-bleed wrapper: it carried a more specific
+   40px inner padding which displaced only the first approved project card. */
+.projects-home .growmatch-project-group > .growmatch-project-container{
+ width:min(calc(100% - var(--gutter)*2),var(--container));
+ max-width:var(--container);
+ margin-inline:auto;
+ padding-inline:0;
+ box-sizing:border-box;
+}
+.projects-home .growmatch-project-intro .project-line--showcase{
+ background:#fff;
+ border:1px solid #dce5ef;
+ border-radius:20px;
+}
+@media(max-width:767px){
+ .projects-home .growmatch-project-intro .project-line--showcase{border-radius:16px;}
+}
