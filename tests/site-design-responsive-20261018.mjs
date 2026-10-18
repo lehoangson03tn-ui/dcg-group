@@ -117,7 +117,8 @@ try{
    const info=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,
      cards:document.querySelectorAll('.solution-card').length,
      imageWidth:document.querySelector('.solution-card-visual').getBoundingClientRect().width}));
-   assert.ok(info.overflow<=2&&info.cards===4&&info.imageWidth>150,'WebKit grid '+width);
+   console.log('WEBKIT MEASURE '+width+'px '+JSON.stringify(info));
+   assert.ok(info.overflow<=2&&info.cards===4&&info.imageWidth>150,'WebKit grid '+width+' '+JSON.stringify(info));
    console.log('PASS WEBKIT @ '+width+'px');
   }catch(e){fails.push('WebKit '+width+'px: '+e.message);}
   finally{await page.close();}
