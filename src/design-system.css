@@ -684,3 +684,101 @@ main .founder-copy h2{font-size:34px;line-height:1.3;font-weight:600;max-width:2
   .brands-home .brand-row-image{min-height:0;}
   .brands-home .brand-row-photo-frame{min-height:0;aspect-ratio:4/3;}
 }
+
+
+/* 2026-10-18 — Approved actual website and temporary Vietnamese LUMIQC logo.
+   One visual system for both project cards on desktop, tablet and mobile. */
+.projects-home .growmatch-project-group{margin:0;padding:0;background:transparent;border:0;}
+.projects-home .growmatch-project-container,
+.projects-home .growmatch-following-container{
+  width:min(calc(100% - var(--gutter)*2),var(--container));
+  max-width:var(--container);
+  margin-inline:auto;
+}
+.projects-home .growmatch-following-container{margin-top:20px;}
+.projects-home .project-line--showcase{
+  grid-template-columns:44px minmax(0,1fr) minmax(0,42%) 28px;
+  gap:clamp(14px,2vw,26px);
+  width:100%;min-height:270px;
+  padding:clamp(22px,2.5vw,36px);
+  border:1px solid #dce5ef;border-radius:20px;
+  background:#fff;
+  box-shadow:0 5px 24px rgba(20,45,78,.045);
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.projects-home .project-line--showcase:hover{
+  padding-left:clamp(22px,2.5vw,36px);
+  border-color:#b7cadb;
+  box-shadow:0 12px 32px rgba(20,45,78,.09);
+  transform:translateY(-2px);
+}
+.projects-home .project-line--showcase>span{font-size:17px;color:#9b6f26;}
+.projects-home .project-line--showcase>div{min-width:0;}
+.projects-home .project-line--showcase small{display:block;font-size:11px;line-height:1.55;letter-spacing:.065em;color:#926518;}
+.projects-home .project-line--showcase h3{
+  margin:12px 0 13px;font-size:clamp(30px,3vw,42px);
+  line-height:1.18;letter-spacing:-.025em;color:#142d4e;
+  overflow-wrap:anywhere;
+}
+.projects-home .project-line--showcase p{max-width:54ch;font-size:clamp(15px,1.1vw,17px);line-height:1.72;color:#4b6270;}
+.projects-home .project-line--showcase>b{font-size:25px;line-height:1;justify-self:center;color:#a97c37;}
+.projects-home .project-line-media{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:auto;aspect-ratio:1.95;min-height:0;
+  margin:0;overflow:hidden;border-radius:14px;
+  border:1px solid #e5ecf3;background:#f0f5fa;
+}
+.projects-home .project-line-media img{
+  display:block;width:100%;height:100%;
+  object-fit:contain;object-position:center;
+  transition:transform .25s ease;
+}
+.projects-home .project-line--showcase:hover .project-line-media img{transform:scale(1.015);}
+.projects-home .project-line-media--website{background:#f4f7fa;}
+.projects-home .project-line-media--lumiqc{
+  background:radial-gradient(ellipse at 50% 35%,#fff 25%,#f7faff 72%,#ecf2f8 100%);
+}
+.projects-home .project-line-media--lumiqc img{
+  padding:clamp(12px,1.5vw,22px);object-fit:contain;
+}
+@media(min-width:1024px){
+ .projects-home .project-line--showcase{align-items:center;}
+ .projects-home .project-line--showcase>div{padding-inline:0 6px;}
+}
+@media(min-width:768px) and (max-width:1023px){
+ .projects-home .project-line--showcase{
+   grid-template-columns:34px minmax(0,1fr) minmax(0,38%) 23px;
+   padding:22px;gap:15px;min-height:215px;
+ }
+ .projects-home .project-line--showcase h3{font-size:clamp(26px,3vw,32px);}
+ .projects-home .project-line-media{aspect-ratio:1.6;}
+}
+@media(max-width:767px){
+ .projects-home .growmatch-following-container{margin-top:16px;}
+ .projects-home .project-line--showcase{
+   display:grid;grid-template-columns:30px minmax(0,1fr) 26px;
+   grid-template-rows:auto auto auto;align-items:center;
+   padding:18px;gap:14px;min-height:0;border-radius:16px;
+ }
+ .projects-home .project-line--showcase:hover{padding-left:18px;transform:none;}
+ .projects-home .project-line--showcase>span{grid-column:1;grid-row:1;}
+ .projects-home .project-line--showcase>b{grid-column:3;grid-row:1;justify-self:end;}
+ .projects-home .project-line-media{
+   grid-column:1/-1;grid-row:2;
+   width:100%;height:auto;aspect-ratio:1.95;border-radius:11px;
+ }
+ .projects-home .project-line--showcase>div{grid-column:1/-1;grid-row:3;}
+ .projects-home .project-line--showcase h3{font-size:clamp(25px,6.5vw,33px);margin:9px 0 12px;}
+ .projects-home .project-line--showcase p{font-size:15px;line-height:1.65;}
+ .projects-home .project-line--showcase small{font-size:10px;}
+ .projects-home .project-line-media--lumiqc img{padding:12px;}
+}
+@media(max-width:390px){
+ .projects-home .project-line--showcase{padding:14px;gap:10px;}
+ .projects-home .project-line--showcase:hover{padding-left:14px;}
+ .projects-home .project-line--showcase h3{font-size:25px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .projects-home .project-line--showcase,
+ .projects-home .project-line-media img{transition:none;}
+}
