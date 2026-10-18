@@ -1,0 +1,86 @@
+name: Import approved GROWMATCH screenshot and LUMIQC lotus logo
+on:
+  push:
+    branches: [fix/growmatch-lumiqc-authentic-project-images-20261018]
+    paths:
+      - .github/workflows/import-approved-project-showcase.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Retrieve and verify the exact two user-approved originals
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/dcg-approved public/assets/projects
+          curl --fail --location --retry 3 --silent --show-error --max-time 90 \
+            'https://dcg-group-ecosystem.floot.app/_cdn/static/413aba38-ee9a-446b-8a48-1f1d9d1d75a9-dcg_growmatch_real_home_20261018.png' \
+            -o /tmp/dcg-approved/growmatch-website.png
+          curl --fail --location --retry 3 --silent --show-error --max-time 90 \
+            'https://dcg-group-ecosystem.floot.app/_cdn/static/2cce4b91-e142-44a9-82fa-774e81df5cc9-lumiqc_lotus_vision_approved.png' \
+            -o /tmp/dcg-approved/lumiqc-logo.png
+          printf '%s\n' \
+            '37e465cd8fd09c795b14a2c78ac85537808e3976ae15ebf054bfd4ba91904048  /tmp/dcg-approved/growmatch-website.png' \
+            '7ae403ba1a76d4cd7e2779e36b93c4161838d836c640a1e78d5d51c6f3ab71df  /tmp/dcg-approved/lumiqc-logo.png' \
+            | sha256sum --check
+          test "$(file --mime-type -b /tmp/dcg-approved/growmatch-website.png)" = "image/png"
+          test "$(file --mime-type -b /tmp/dcg-approved/lumiqc-logo.png)" = "image/png"
+      - name: Convert to optimized WebP without modifying the artwork
+        run: |
+          python -m pip install pillow
+          python - <<'PY'
+          from PIL import Image
+          assets=[
+            ('/tmp/dcg-approved/growmatch-website.png','public/assets/projects/dcg-growmatch-real-website.webp',1600),
+            ('/tmp/dcg-approved/lumiqc-logo.png','public/assets/projects/lumiqc-approved-lotus-logo.webp',900),
+          ]
+          for src,dst,max_width in assets:
+              with Image.open(src) as photo:
+                  photo.thumbnail((max_width,max_width*3),Image.Resampling.LANCZOS)
+                  photo.save(dst,format='WEBP',quality=86,method=6)
+              with Image.open(dst) as checked:
+                  checked.verify()
+              print('Saved',dst)
+          PY
+      - name: Build and launch site for visual regression
+        run: |
+          npm ci
+          npm run build
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+          npm run dev -- --host 127.0.0.1 --port 5173 > /tmp/dcg-projects-vite.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:5173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node tests/project-showcase-authentic-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dcg-approved-project-showcase-visual-proof
+          path: project-showcase-proof/
+          retention-days: 14
+      - name: Commit the two locally hosted images only after QA passes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/projects/dcg-growmatch-real-website.webp public/assets/projects/lumiqc-approved-lotus-logo.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: embed approved GROWMATCH website screenshot and LUMIQC identity"
+            git pull --rebase origin fix/growmatch-lumiqc-authentic-project-images-20261018
+            git push origin HEAD:fix/growmatch-lumiqc-authentic-project-images-20261018
+          fi
