@@ -4,6 +4,9 @@ on:
     branches: [fix/growmatch-lumiqc-authentic-project-images-20261018]
     paths:
       - .github/workflows/import-approved-project-showcase.yml
+      - src/design-system.css
+      - src/main.js
+      - tests/project-showcase-authentic-qa.mjs
   workflow_dispatch:
 permissions:
   contents: write
