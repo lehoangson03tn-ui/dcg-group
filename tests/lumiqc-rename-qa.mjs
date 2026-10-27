@@ -77,6 +77,43 @@ try{
           }
           const teamCards=await page.locator('.lq-person').count();
           assert.equal(teamCards,2,'team must contain exactly two profiles');
+          assert.equal(await page.locator('.lq-team-slide').count(),2,'exactly two member slides');
+          assert.equal(await page.locator('.lq-team-slide:visible').count(),1,'display one member per slide');
+          assert.equal(await page.locator('.lq-person-photo').count(),2,'actual meeting photographs on both profiles');
+          assert.equal(await page.locator('.lq-team-logo img').count(),2,'real logo on both profiles');
+          const memberAssets=await page.locator('.lq-person-photo,.lq-team-logo img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
+          assert.equal(new Set(memberAssets).size,2,'only supplied original photo and real logo');
+          assert.ok(memberAssets.every(src=>src.startsWith('https://dcg-group-ecosystem.floot.app/_cdn/static/')),'team assets must be uploaded and hosted');
+          assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Lê Hoàng Sơn','original slide shows team lead');
+          await page.locator('[data-lq-member-next]').click();
+          assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Trương Quốc Huy','next button shows second member');
+          assert.equal(await page.locator('.lq-team-index-current').textContent(),'02','pagination follows active slide');
+          await page.locator('[data-lq-member-prev]').click();
+          assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Lê Hoàng Sơn','previous returns to first member');
+          await page.locator('[data-lq-member-dot="1"]').click();
+          assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Trương Quốc Huy','dot navigation works');
+          await page.locator('#lq-team-track').focus();
+          await page.keyboard.press('ArrowLeft');
+          assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Lê Hoàng Sơn','arrow keyboard navigation');
+          if(width===1440){
+            for(const img of [...new Set(memberAssets)]){
+              const response=await page.request.get(img,{timeout:15000});
+              assert.equal(response.status(),200,'real team photo or logo unavailable '+img);
+              assert.ok(response.headers()['content-type']?.startsWith('image/'),'team asset must be image '+img);
+            }
+          }
+          const cardGeom=await page.locator('.lq-team-slide:visible').evaluate(el=>{
+            const pic=el.querySelector('.lq-person-media').getBoundingClientRect();
+            const info=el.querySelector('.lq-person-info').getBoundingClientRect();
+            return {pic:{x:pic.x,y:pic.y,w:pic.width,h:pic.height},info:{x:info.x,y:info.y,w:info.width,h:info.height}};
+          });
+          if(width>=768){
+            assert.ok(cardGeom.pic.x < cardGeom.info.x,'profile photo should appear on left');
+            assert.ok(Math.abs(cardGeom.pic.y-cardGeom.info.y)<=2,'team photo and details tops align');
+          } else {
+            assert.ok(cardGeom.info.y >= cardGeom.pic.y+cardGeom.pic.h-2,'on mobile photo stacks above details');
+          }
+
           for(const section of ['bai-toan','giai-phap','quy-trinh','giao-dien','doi-thi','lo-trinh-vecom']){
             assert.equal(await page.locator('#'+section).count(),1,'missing section '+section);
           }
