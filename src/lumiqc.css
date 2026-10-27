@@ -663,3 +663,249 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
   .lq .lq-context-status{font-size:9px}
   .lq .lq-tablist button{font-size:13px}
 }
+
+
+
+/* LUMIQC dark-section palette & layout refinement / 2026-10-27 */
+.lq{
+  --lq-dark-base:#0b1c25;
+  --lq-dark-panel:#152e3a;
+  --lq-dark-panel-raised:#193641;
+  --lq-dark-border:#42616d;
+  --lq-dark-heading:#f8fafc;
+  --lq-dark-body:#d5e2e8;
+  --lq-dark-secondary:#bbced7;
+  --lq-dark-accent:#a9e5da;
+  --lq-dark-warning:#ffd18a;
+}
+
+/* A single cohesive dark palette for the operational blueprint and final chapter. */
+.lq .lq-workflow{
+  color:var(--lq-dark-body);
+  background:radial-gradient(ellipse 70% 85% at 88% 13%,rgba(31,110,111,.16),transparent 72%),var(--lq-dark-base);
+  border-top:1px solid #335361;
+}
+.lq .lq-closing{
+  color:var(--lq-dark-body);
+  background:radial-gradient(ellipse 65% 130% at 100% 0%,rgba(38,124,112,.15),transparent 72%),#102733;
+  border-top:1px solid #305361;
+  padding-block:clamp(86px,8vw,124px);
+}
+
+/* Keep dark sections generous and legible even on wide displays. */
+.lq .lq-workflow>.lq-wrap,
+.lq .lq-closing>.lq-wrap{
+  width:min(1360px,calc(100% - 2*clamp(20px,4vw,64px)));
+}
+.lq .lq-workflow .lq-section-intro{
+  margin-bottom:clamp(32px,4vw,52px);
+}
+.lq .lq-workflow .lq-section-intro h2,
+.lq .lq-closing h2{
+  font-size:clamp(33px,3.6vw,52px);
+  line-height:1.42;
+  letter-spacing:-.016em;
+  font-weight:650;
+}
+main .lq .lq-workflow :is(h2,h3),
+main .lq .lq-workflow :is(h2,h3) :is(span,em,strong),
+main .lq .lq-closing h2,
+main .lq .lq-closing h2 :is(span,em,strong){
+  color:var(--lq-dark-heading)!important;
+}
+
+/* Category identifiers are the only teal typography, not random highlighted heading words. */
+.lq .lq-workflow .lq-overline,
+.lq .lq-workflow .lq-lane-owner>span,
+.lq .lq-closing .lq-overline,
+.lq .lq-closing .lq-brand-lineage span{
+  color:var(--lq-dark-accent);
+}
+.lq .lq-workflow .lq-overline{
+  font-size:12px;
+  letter-spacing:.04em;
+}
+.lq .lq-workflow .lq-section-intro--dark>p:last-child,
+.lq .lq-workflow .lq-lane-owner p,
+.lq .lq-workflow .lq-lane-steps li span,
+.lq .lq-workflow .lq-workflow-caption,
+.lq .lq-closing .lq-closing-grid p{
+  color:var(--lq-dark-body);
+}
+.lq .lq-workflow .lq-section-intro--dark>p:last-child,
+.lq .lq-closing .lq-closing-grid p{
+  font-size:clamp(15px,1.18vw,17px);
+  line-height:1.85;
+}
+.lq .lq-workflow .lq-section-intro--dark>p:last-child{max-width:72ch}
+.lq .lq-workflow .lq-workflow-caption{
+  font-size:11px;
+  line-height:1.8;
+  letter-spacing:.02em;
+  margin-top:23px;
+}
+
+/* Operational panel: stronger separation, bigger labels, clear sequencing. */
+.lq .lq-swimlanes{
+  background:#10252f;
+  border:1px solid var(--lq-dark-border);
+  border-radius:16px;
+  box-shadow:0 24px 60px rgba(0,0,0,.16);
+  padding:clamp(22px,2.9vw,42px);
+}
+.lq .lq-swimlane{
+  grid-template-columns:minmax(185px,2.4fr) minmax(0,9.6fr);
+  gap:clamp(18px,2.8vw,38px);
+}
+.lq .lq-lane-owner{padding:20px 16px 20px 0}
+.lq .lq-lane-owner>span{
+  font-size:11px;
+  letter-spacing:.04em;
+}
+.lq .lq-lane-owner h3{
+  font-size:clamp(20px,1.7vw,25px);
+  font-weight:650;
+  line-height:1.45;
+  margin:12px 0 9px;
+}
+.lq .lq-lane-owner p{
+  font-size:13px;
+  line-height:1.7;
+}
+.lq .lq-lane-steps{gap:clamp(9px,1.1vw,16px)}
+.lq .lq-lane-steps li{
+  background:var(--lq-dark-panel);
+  border:1px solid var(--lq-dark-border);
+  border-radius:9px;
+  min-height:159px;
+  padding:clamp(18px,1.65vw,26px);
+}
+.lq .lq-lane-steps li:not(:last-child):after{
+  border-color:#a7c5cb;
+  width:clamp(9px,1.1vw,16px);
+}
+.lq .lq-lane-steps li small{
+  font-size:12px;
+  color:var(--lq-dark-accent);
+  margin-bottom:17px;
+}
+.lq .lq-lane-steps li strong{
+  color:var(--lq-dark-heading);
+  font-size:clamp(15px,1.15vw,17px);
+  font-weight:700;
+  line-height:1.5;
+}
+.lq .lq-lane-steps li span{
+  color:var(--lq-dark-secondary);
+  font-size:12px;
+  line-height:1.75;
+  margin-top:9px;
+}
+.lq .lq-swimlane--qc .lq-lane-steps li:first-child{
+  background:#36232e;
+  border-color:#996078;
+}
+.lq .lq-swimlane--qc .lq-lane-outcome{
+  background:#183b34;
+  border-color:#478f7b;
+}
+.lq .lq-lane-down{color:#93d6cb;height:61px}
+.lq .lq-lane-down--warn{color:var(--lq-dark-warning)}
+.lq .lq-lane-down--warn span{
+  color:var(--lq-dark-warning);
+  font-size:11px;
+}
+
+/* Final invitation: same dark family, a slightly lighter chapter for visual pacing. */
+.lq .lq-closing-grid{
+  grid-template-columns:minmax(0,8fr) minmax(270px,4fr);
+  gap:clamp(35px,5vw,96px);
+  align-items:center;
+}
+.lq .lq-brand-lineage{margin-bottom:26px;gap:13px}
+.lq .lq-brand-lineage span{
+  font-size:12px;
+  font-weight:750;
+  letter-spacing:.035em;
+}
+.lq .lq-brand-lineage svg{
+  width:17px;
+  height:17px;
+  stroke:#9dbac4;
+}
+.lq .lq-closing h2{
+  max-width:20ch;
+  margin:0 0 24px;
+}
+.lq .lq-closing .lq-closing-grid p{
+  max-width:66ch;
+}
+.lq .lq-closing-actions{
+  align-items:stretch;
+  justify-content:center;
+  gap:23px;
+  max-width:340px;
+  width:100%;
+}
+.lq .lq-closing-actions .lq-btn--light{
+  min-height:57px;
+  border:1px solid #d5f8ed;
+  background:#c9f0e4;
+  color:#0c3440;
+  font-size:15px;
+  font-weight:750;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
+.lq .lq-closing-actions .lq-btn--light:hover{
+  background:#e2fff4;
+  color:#092934;
+}
+.lq .lq-closing .lq-closing-back{
+  min-height:44px;
+  color:#e2eff3;
+  font-size:14px;
+  justify-content:center;
+}
+.lq .lq-closing .lq-closing-back:hover{color:var(--lq-dark-accent)}
+.lq .lq-closing .lq-closing-back svg{stroke:currentColor}
+@media(max-width:767px){
+  .lq .lq-workflow>.lq-wrap,
+  .lq .lq-closing>.lq-wrap{
+    width:min(100% - 36px,680px);
+  }
+  .lq .lq-swimlane{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .lq .lq-lane-owner{padding:7px 0 0}
+  .lq .lq-lane-steps li{
+    min-height:0;
+    padding:16px 18px;
+  }
+  .lq .lq-lane-steps li:not(:last-child):after{
+    width:1px;
+    height:9px;
+    border:0;
+    border-left:1px solid #a7c5cb;
+  }
+  .lq .lq-closing-grid{grid-template-columns:1fr;gap:31px}
+  .lq .lq-closing h2{max-width:24ch}
+  .lq .lq-closing-actions{max-width:420px}
+}
+@media(max-width:430px){
+  .lq .lq-workflow>.lq-wrap,
+  .lq .lq-closing>.lq-wrap{
+    width:calc(100% - 36px);
+  }
+  .lq .lq-swimlanes{padding:18px 15px}
+  .lq .lq-lane-steps li{padding:15px}
+  .lq .lq-workflow .lq-section-intro h2,
+  .lq .lq-closing h2{font-size:clamp(29px,7.1vw,35px)}
+  .lq .lq-lane-down--warn span{
+    left:calc(50% + 22px);
+    width:min(130px,calc(50% - 22px));
+    font-size:9px;
+  }
+  .lq .lq-brand-lineage span{font-size:10px}
+  .lq .lq-closing .lq-closing-grid p{font-size:14px}
+}
