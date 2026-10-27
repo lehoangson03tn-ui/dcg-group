@@ -357,6 +357,10 @@ document.getElementById('app').innerHTML=shell(content,path);if(location.hash){c
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+path;
  if(path==='/du-an/lumiqc')initLumiqcPage();if(path==='/he-sinh-thai')initBrandSearch();if(path==='/du-an/dcg-growmatch')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');
+  if(form && new URLSearchParams(location.search).get('topic')==='lumiqc'){
+    const topic=form.querySelector('#contact-topic');
+    if(topic) topic.value='LUMIQC – ĐÀN CÁ GỖ';
+  }
   if(form) form.addEventListener('submit',async e=>{
     e.preventDefault();
     if(!form.reportValidity()) return;
