@@ -426,3 +426,298 @@
   .lq *, .lq *::before,.lq *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
   .lq .lq-btn:hover{transform:none}
 }
+
+
+/* LUMIQC heading, content contrast and Vietnamese type clarity / 2026-10-27 */
+.lq{
+  --lq-body:#263c50;
+  --lq-muted:#465a6d;
+  --lq-teal:#0b6e65;
+  --lq-rule:#d6e1e8;
+}
+.lq h1,.lq h2,.lq h3,.lq h4{
+  line-height:1.42;
+  letter-spacing:-.014em;
+  font-synthesis:none;
+  word-break:normal;
+  overflow-wrap:break-word;
+  text-wrap:balance;
+}
+.lq .lq-title{
+  line-height:1.19;
+  letter-spacing:-.048em;
+}
+.lq .lq-title>span{
+  display:block;
+  line-height:1.42;
+  letter-spacing:-.014em;
+  font-weight:600;
+  margin-top:16px;
+}
+/* DCG's shared design system uses !important on emphasized heading
+   descendants. Override it only inside this specific project page. */
+main .lq .lq-hero .lq-title>span{
+  color:#0c6863!important;
+}
+main .lq .lq-editorial h2 em,
+main .lq .lq-section-intro h2 em,
+main .lq .lq-team h2 em{
+  color:#0b6e65!important;
+}
+main .lq .lq-workflow .lq-section-intro--dark h2 em{
+  color:#a9e7dd!important;
+}
+main .lq .lq-closing h2 em{
+  color:#9de5d7!important;
+}
+.lq .lq-editorial h2,
+.lq .lq-section-intro h2,
+.lq .lq-team h2{
+  line-height:1.39;
+  letter-spacing:-.016em;
+  font-weight:650;
+}
+.lq .lq-feature-copy h3,
+.lq .lq-concept-copy h3{
+  line-height:1.47;
+  letter-spacing:-.012em;
+}
+.lq .lq-person h3,
+.lq .lq-roadmap-list h3{
+  line-height:1.45;
+}
+.lq .lq-hero{
+  background-color:#f6fafb;
+}
+.lq .lq-hero-copy{
+  max-width:740px;
+}
+.lq .lq-lead{
+  color:#314759;
+  line-height:1.82;
+}
+.lq .lq-disclaimer{
+  color:#435767;
+  font-size:13px;
+  line-height:1.8;
+}
+.lq .lq-hero-keys{
+  border-top-color:#c5d5dc;
+  gap:12px 20px;
+}
+.lq .lq-hero-keys span{
+  color:#354b5c;
+  font-size:12px;
+}
+.lq .lq-hero-keys b{
+  color:#096c63;
+  font-size:12px;
+}
+.lq .lq-overline{
+  color:#0d635c;
+  font-size:12px;
+  letter-spacing:.025em;
+}
+.lq .lq-context{
+  background:rgba(249,251,252,.98);
+  border-bottom:1px solid #d5e1e8;
+}
+.lq .lq-context-links a{
+  font-size:12px;
+  color:#354b5c;
+}
+.lq .lq-context-links a:hover,
+.lq .lq-context-links a:focus-visible{
+  color:#065f56;
+}
+.lq .lq-context-status{
+  font-size:10px;
+  color:#0b645b;
+  background:#e8f6f0;
+}
+.lq .lq-architecture,
+.lq .lq-lineage,
+.lq .lq-timechart,
+.lq .lq-gate{
+  border-color:#cbdde3;
+  box-shadow:0 12px 35px rgba(20,50,65,.04);
+}
+.lq .lq-architecture-head,
+.lq .lq-architecture-foot{
+  color:#36596b;
+  background:#eef5f7;
+  font-size:11px;
+}
+.lq .lq-sample-tag,
+.lq .lq-timechart-top,
+.lq .lq-gate-header,
+.lq .lq-diagram-eyebrow{
+  font-size:11px;
+  color:#405a69;
+}
+.lq .lq-sample-row strong{
+  color:#183747;
+  font-size:14px;
+}
+.lq .lq-sample-row p{
+  font-size:12px;
+  color:#456172;
+}
+.lq .lq-sample-row small,
+.lq .lq-meter-caption,
+.lq .lq-gate-evidence small{
+  font-size:11px;
+  color:#526a78;
+}
+.lq .lq-sample-connector span{
+  color:#395566;
+  font-size:10px;
+}
+.lq .lq-state{
+  font-size:11px;
+  font-weight:800;
+}
+.lq .lq-state--trace{color:#0a6159;background:#d5f5eb}
+.lq .lq-state--warn{color:#8a470b;background:#fff0c3}
+.lq .lq-state--hold{color:#961137;background:#ffe3ea}
+.lq .lq-state--release{color:#166534;background:#d9f8e3}
+.lq .lq-outcomes span{
+  font-size:10px;
+}
+.lq .lq-editorial-lede>p:last-child,
+.lq .lq-section-intro>p:last-child,
+.lq .lq-feature-copy p{
+  color:#40576b;
+  font-size:16px;
+  line-height:1.82;
+}
+.lq .lq-fracture h3{
+  color:#18364a;
+  line-height:1.48;
+}
+.lq .lq-fracture p,
+.lq .lq-fracture-inline{
+  color:#41596b;
+}
+.lq .lq-fracture p{
+  font-size:15px;
+  line-height:1.84;
+}
+.lq .lq-feature-index{
+  font-size:12px;
+}
+.lq .lq-feature-foot,
+.lq .lq-ops-num,
+.lq .lq-operations-head span{
+  font-size:11px;
+  color:#4e6373;
+}
+.lq .lq-lineage-start small,
+.lq .lq-lineage-stage small,
+.lq .lq-lineage-pair small,
+.lq .lq-gate-decision strong,
+.lq .lq-timechart-events strong{
+  font-size:11px;
+}
+.lq .lq-lineage-start span,
+.lq .lq-lineage-stage span,
+.lq .lq-lineage-pair span,
+.lq .lq-gate>p,
+.lq .lq-timechart-events span,
+.lq .lq-timechart-note{
+  font-size:11px;
+  color:#4e6575;
+}
+.lq .lq-ops-grid>div{
+  background:#fff;
+  border-color:#d6e2e8;
+}
+.lq .lq-ops-grid h4{
+  font-size:16px;
+  color:#172f43;
+}
+.lq .lq-ops-grid p{
+  color:#435b6e;
+  font-size:13px;
+  line-height:1.8;
+}
+.lq .lq-lane-owner p,
+.lq .lq-lane-steps li span{
+  color:#bdd0d9;
+  font-size:12px;
+}
+.lq .lq-lane-steps li strong{
+  font-size:15px;
+}
+.lq .lq-section-intro--dark>p:last-child,
+.lq .lq-workflow-caption{
+  color:#c2d2da;
+}
+.lq .lq-concept-disclaimer p{
+  color:#274859;
+  font-size:13px;
+}
+.lq .lq-tablist button{
+  font-size:14px;
+  color:#364f60;
+}
+.lq .lq-tablist button[aria-selected=true]{
+  color:#096c64;
+  font-weight:750;
+}
+.lq .lq-concept-copy p,
+.lq .lq-concept-copy li{
+  color:#40586c;
+  font-size:15px;
+}
+.lq .lq-team-intro>p,
+.lq .lq-person-info>p:not(.lq-person-badge),
+.lq .lq-roadmap-list p,
+.lq .lq-closing p{
+  font-size:14px;
+  line-height:1.85;
+}
+.lq .lq-person-info>p:not(.lq-person-badge),
+.lq .lq-roadmap-list p{
+  color:#3e5769;
+}
+.lq .lq-person-meta b{
+  font-size:12px;
+  color:#203b4a;
+}
+.lq .lq-team-caption{
+  color:#526776;
+  font-size:13px;
+}
+.lq .lq-person-count,
+.lq .lq-roadmap-label,
+.lq .lq-mock-hint{
+  font-size:11px;
+}
+.lq .lq-btn:focus-visible,
+.lq .lq-tablist button:focus-visible{
+  outline-color:#0f766e;
+  outline-offset:3px;
+}
+@media(max-width:1000px){
+  .lq .lq-context-links a{font-size:11px}
+}
+@media(max-width:500px){
+  .lq .lq-overline{font-size:11px}
+  .lq .lq-title{line-height:1.25}
+  .lq .lq-title>span{line-height:1.43;letter-spacing:-.01em}
+  .lq .lq-editorial h2,
+  .lq .lq-section-intro h2,
+  .lq .lq-team h2{line-height:1.45}
+  .lq .lq-fracture p,
+  .lq .lq-section-intro>p:last-child,
+  .lq .lq-editorial-lede>p:last-child,
+  .lq .lq-feature-copy p{font-size:14px}
+  .lq .lq-sample-row strong{font-size:12px}
+  .lq .lq-sample-row small,
+  .lq .lq-meter-caption{font-size:10px}
+  .lq .lq-sample-tag{font-size:10px}
+  .lq .lq-state{font-size:10px}
+  .lq .lq-context-status{font-size:9px}
+  .lq .lq-tablist button{font-size:13px}
+}
