@@ -267,7 +267,7 @@ export function lumiqcPage() {
           </article>
           <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-huy-black-jacket-official-dcg-background.webp" alt="Chân dung minh họa Trương Quốc Huy mặc áo khoác đen, nền có logo DCG Group theo mẫu chính thức" width="900" height="793" decoding="async" loading="lazy">
+              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-huy-black-jacket-official-dcg-background-v3.webp" alt="Chân dung minh họa Trương Quốc Huy mặc áo khoác đen, nền có logo DCG Group theo mẫu chính thức" width="900" height="793" decoding="async" loading="lazy">
               <span class="lq-person-photo-label">CHÂN DUNG MINH HỌA AI / TRƯƠNG QUỐC HUY</span>
             </div>
             <div class="lq-person-info">
