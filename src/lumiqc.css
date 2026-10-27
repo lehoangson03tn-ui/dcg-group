@@ -1401,3 +1401,264 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
   .lq .lq-flow-v2 .lq-flow-step{transition:none!important}
   .lq .lq-flow-v2 .lq-flow-step:hover{transform:none!important}
 }
+
+
+/* Three equal-height editorial pairs: F&B problem, Trace-Safe, Evidence Gap Resolver.
+   Images are AI illustrations; all copy and diagrams remain accessible DOM text. */
+.lq .lq-balanced-pair{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(20px,2.8vw,38px);
+  align-items:stretch;
+}
+.lq .lq-balanced-pair > .lq-balanced-left,
+.lq .lq-balanced-pair > .lq-balanced-right{
+  min-width:0;
+  width:100%;
+  height:100%;
+  box-sizing:border-box;
+  align-self:stretch;
+}
+.lq .lq-balanced-pair > .lq-balanced-left{
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  top:auto;
+  background:linear-gradient(145deg,#fff 0%,#fbfdfd 100%);
+  border:1px solid #d9e6ec;
+  border-radius:15px;
+  padding:clamp(22px,2.2vw,34px);
+  box-shadow:0 8px 29px rgba(19,53,69,.035);
+}
+.lq .lq-balanced-pair .lq-balanced-left .lq-photo{
+  width:100%;
+  max-width:none;
+  min-height:215px;
+  height:auto;
+  aspect-ratio:auto;
+  flex:1 1 215px;
+  position:relative;
+  display:block;
+  margin:clamp(20px,2vw,29px) 0 0;
+  overflow:hidden;
+  border-radius:11px;
+}
+.lq .lq-balanced-pair .lq-balanced-left .lq-photo img{
+  display:block;
+  position:absolute;
+  width:100%;
+  height:100%;
+  inset:0;
+  object-fit:cover;
+}
+.lq .lq-balanced-pair--problem{
+  min-height:610px;
+  gap:clamp(20px,3vw,42px);
+}
+.lq .lq-balanced-pair--problem .lq-editorial-lede{
+  position:relative;
+  top:auto;
+  max-height:none;
+}
+.lq .lq-balanced-pair--problem .lq-editorial-lede > p:not(.lq-overline){
+  max-width:58ch;
+  margin:23px 0 0;
+}
+.lq .lq-balanced-pair--problem .lq-fractures{
+  display:grid;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  row-gap:13px;
+  border:0;
+}
+.lq .lq-balanced-pair--problem .lq-fracture{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr);
+  gap:clamp(13px,1.35vw,20px);
+  align-items:start;
+  min-height:0;
+  padding:clamp(16px,1.7vw,24px);
+  background:#fff;
+  border:1px solid #d9e6ec;
+  border-radius:13px;
+  box-shadow:0 8px 28px rgba(19,53,69,.034);
+}
+.lq .lq-balanced-pair--problem .lq-fracture-id{
+  font-size:clamp(29px,2.6vw,39px);
+  color:#96b8bd;
+  line-height:1.12;
+}
+.lq .lq-balanced-pair--problem .lq-fracture-id span{
+  font-size:9px;
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+  line-height:1.4;
+}
+.lq .lq-balanced-pair--problem .lq-fracture h3{
+  font-size:clamp(17px,1.45vw,20px);
+  line-height:1.48;
+  margin:0 0 8px;
+}
+.lq .lq-balanced-pair--problem .lq-fracture p{
+  font-size:clamp(12px,1.02vw,14px);
+  line-height:1.75;
+}
+.lq .lq-balanced-pair--problem .lq-fracture-inline{
+  margin-top:13px;
+  gap:5px;
+}
+.lq .lq-balanced-pair--problem .lq-fracture-inline span:not(.lq-break-line){
+  padding:4px 6px;
+  font-size:9px;
+}
+/* Two parallel panels with matching top/bottom edges. */
+.lq .lq-feature.lq-balanced-pair{
+  min-height:515px;
+  border-top:1px solid #d6e1e8;
+  gap:clamp(20px,2.8vw,38px);
+  padding-block:clamp(27px,3.2vw,46px);
+}
+.lq .lq-feature.lq-balanced-pair .lq-feature-copy h3{
+  font-size:clamp(24px,2.2vw,32px);
+  margin:0 0 18px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-feature-copy > p{
+  margin:0;
+  line-height:1.82;
+}
+.lq .lq-feature.lq-balanced-pair .lq-feature-foot{
+  margin-top:20px;
+  font-size:11px;
+}
+.lq .lq-feature.lq-balanced-pair > .lq-balanced-right{
+  border:1px solid #d4e3e9;
+  border-radius:15px;
+  background:#fff;
+  padding:clamp(20px,2.3vw,32px);
+  box-shadow:0 8px 29px rgba(19,53,69,.035);
+}
+.lq .lq-feature.lq-balanced-pair .lq-lineage{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:0;
+}
+.lq .lq-feature.lq-balanced-pair .lq-lineage .lq-diagram-eyebrow{
+  align-self:stretch;
+  margin-bottom:27px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-lineage-start,
+.lq .lq-feature.lq-balanced-pair .lq-lineage-stage{
+  width:min(310px,78%);
+  max-width:none;
+  margin-inline:auto;
+  padding:14px 15px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-lineage-branch{height:30px;flex:0 0 30px}
+.lq .lq-feature.lq-balanced-pair .lq-lineage-split{height:34px;flex:0 0 34px}
+.lq .lq-feature.lq-balanced-pair .lq-lineage-pair{width:100%;gap:14px}
+.lq .lq-feature.lq-balanced-pair .lq-lineage-pair > div{padding:16px 10px}
+.lq .lq-feature.lq-balanced-pair .lq-lineage > p{
+  margin:22px auto 0;
+  font-size:12px;
+  max-width:48ch;
+  color:#4b6170;
+  line-height:1.7;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:0;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-header{
+  padding-bottom:17px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-evidence{
+  flex:1 1 auto;
+  min-height:80px;
+  padding:16px 0;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-evidence strong{
+  font-size:clamp(13px,1.08vw,16px);
+  line-height:1.52;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-evidence small{
+  font-size:12px;
+  line-height:1.75;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-decision{
+  padding-top:17px;
+  gap:11px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate-decision > div{
+  min-height:100px;
+  justify-content:center;
+  padding:15px;
+  border-radius:9px;
+}
+.lq .lq-feature.lq-balanced-pair .lq-gate > p{
+  font-size:12px;
+  line-height:1.7;
+  color:#4b6170;
+  margin:17px 0 0;
+}
+@media(min-width:901px) and (max-width:1140px){
+  .lq .lq-balanced-pair--problem .lq-fracture{
+    grid-template-columns:38px minmax(0,1fr);
+    gap:12px;
+    padding:17px 15px;
+  }
+  .lq .lq-balanced-pair--problem .lq-fracture-id{font-size:29px}
+  .lq .lq-balanced-pair--problem .lq-fracture h3{font-size:17px}
+  .lq .lq-balanced-pair--problem .lq-fracture p{font-size:12px}
+  .lq .lq-balanced-pair--problem .lq-fracture-inline .lq-break-line{width:9px}
+  .lq .lq-feature.lq-balanced-pair .lq-gate-decision > div{padding:11px}
+}
+/* Tablet and mobile stack the balanced pair, without fixed heights or cropped copy. */
+@media(max-width:900px){
+  .lq .lq-balanced-pair,
+  .lq .lq-feature.lq-balanced-pair{
+    grid-template-columns:minmax(0,1fr);
+    min-height:0;
+    gap:18px;
+  }
+  .lq .lq-balanced-pair > .lq-balanced-left,
+  .lq .lq-balanced-pair > .lq-balanced-right{
+    height:auto;
+  }
+  .lq .lq-balanced-pair--problem .lq-fractures{grid-template-rows:auto}
+  .lq .lq-balanced-pair--problem .lq-fracture{min-height:0}
+  .lq .lq-balanced-pair .lq-balanced-left .lq-photo{
+    flex:none;
+    aspect-ratio:16/9;
+    height:auto;
+    min-height:0;
+  }
+  .lq .lq-balanced-pair .lq-balanced-left .lq-photo img{
+    position:absolute;
+    inset:0;
+  }
+  .lq .lq-feature.lq-balanced-pair .lq-lineage,
+  .lq .lq-feature.lq-balanced-pair .lq-gate{
+    min-height:380px;
+  }
+}
+@media(max-width:500px){
+  .lq .lq-balanced-pair--problem .lq-fracture{
+    grid-template-columns:40px minmax(0,1fr);
+    padding:18px 15px;
+  }
+  .lq .lq-balanced-pair > .lq-balanced-left,
+  .lq .lq-feature.lq-balanced-pair > .lq-balanced-right{
+    padding:20px 17px;
+    border-radius:12px;
+  }
+  .lq .lq-balanced-pair--problem .lq-fracture h3{font-size:17px}
+  .lq .lq-feature.lq-balanced-pair .lq-lineage,
+  .lq .lq-feature.lq-balanced-pair .lq-gate{min-height:0}
+  .lq .lq-feature.lq-balanced-pair .lq-lineage-start,
+  .lq .lq-feature.lq-balanced-pair .lq-lineage-stage{width:min(275px,86%)}
+  .lq .lq-feature.lq-balanced-pair .lq-lineage-pair{gap:8px}
+  .lq .lq-feature.lq-balanced-pair .lq-lineage-pair>div{padding:10px 6px}
+  .lq .lq-feature.lq-balanced-pair .lq-gate-decision>div{min-height:84px;padding:10px}
+}
