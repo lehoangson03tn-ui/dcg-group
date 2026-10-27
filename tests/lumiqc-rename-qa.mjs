@@ -7,6 +7,8 @@ const routes=[
   ['/he-sinh-thai/dcg-vision','LUMIQC'],
   ['/giai-phap','LUMIQC'],
   ['/du-an','LUMIQC'],
+  ['/lien-he','DCG GROUP'],
+  ['/thong-tin-du-lieu','Thông tin xử lý dữ liệu'],
   ['/du-an/lumiqc','LUMIQC'],
   ['/giai-phap/lumiqc','LUMIQC'],
   ['/du-an/mat-than-ai','LUMIQC'],
@@ -188,6 +190,32 @@ try{
             lineHeight:Number.parseFloat(getComputedStyle(el).lineHeight)/Number.parseFloat(getComputedStyle(el).fontSize)
           })));
           assert.ok(headings.every(x=>x.lineHeight>=1.22),'Vietnamese headings need adequate line height '+JSON.stringify(headings));
+        }
+        if(route==='/lien-he'){
+          assert.equal(await page.locator('#contact-form').count(),1,'contact form available');
+          assert.equal(await page.locator('input[name="consent"][required]').count(),1,'mandatory data-use consent');
+          assert.equal(await page.locator('input[name="website"]').count(),1,'honeypot exists');
+          assert.equal(await page.locator('select[name="topic"] option').filter({hasText:'LUMIQC'}).count(),1,'LUMIQC can be selected');
+          assert.ok((await page.locator('.contact-form button[type="submit"]').textContent()).includes('GỬI LỜI NHẮN'),'must offer real send, not copy');
+          await page.route('https://mbynmifozkuvwoghvewi.supabase.co/functions/v1/dcg-contact-submit',async route=>{
+            const data=route.request().postDataJSON();
+            assert.equal(data.name,'Nguyen Van Demo','test sender');
+            assert.equal(data.topic,'LUMIQC – ĐÀN CÁ GỖ','category');
+            assert.ok(data.note.includes('nghiệp vụ'),'message included');
+            await route.fulfill({status:201,contentType:'application/json',
+              headers:{'Access-Control-Allow-Origin':base},
+              body:JSON.stringify({ok:true,message:'Lời nhắn đã được ghi nhận'})});
+          });
+          await page.locator('#contact-name').fill('Nguyen Van Demo');
+          await page.locator('#contact-email').fill('test@invalid.example');
+          await page.locator('#contact-topic').selectOption({label:'LUMIQC – ĐÀN CÁ GỖ'});
+          await page.locator('#contact-note').fill('Tôi muốn trao đổi thêm về nghiệp vụ truy vết lô nguyên liệu.');
+          await page.locator('.contact-consent input').check();
+          await page.locator('.contact-form button[type="submit"]').click();
+          await page.locator('#form-status[data-state="success"]').waitFor({timeout:6000});
+          assert.ok((await page.locator('#form-status').textContent()).includes('Gửi thành công'),'positive user feedback');
+          assert.equal(await page.locator('#contact-email').inputValue(),'','reset after successful send');
+          await page.unrouteAll();
         }
         if(route.includes('mat-than-ai')){
           const destination=route.includes('/giai-phap/')?'/giai-phap/lumiqc':'/du-an/lumiqc';
