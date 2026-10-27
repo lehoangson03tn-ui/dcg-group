@@ -84,7 +84,7 @@ try{
           const memberAssets=await page.locator('.lq-person-photo').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
           assert.equal(new Set(memberAssets).size,2,'Sơn and Huy must use different portraits');
           assert.ok(memberAssets[0].endsWith('/lumiqc-son-portrait-website.webp'),'Sơn must use his white-shirt studio portrait');
-          assert.ok(memberAssets[1].endsWith('/lumiqc-huy-black-jacket-official-dcg-background.webp'),'Huy must use the confirmed black-jacket portrait with real DCG emblem');
+          assert.ok(memberAssets[1].endsWith('/lumiqc-huy-black-jacket-official-dcg-background-v3.webp'),'Huy must use the confirmed black-jacket portrait with real DCG emblem');
           assert.ok((await page.locator('[data-lq-member="0"] .lq-person-photo').getAttribute('alt')).includes('sơ mi trắng'),'Sơn image must be attributed correctly');
           assert.ok((await page.locator('[data-lq-member="1"] .lq-person-photo-label').textContent()).includes('MINH HỌA AI'),'AI-edited Huy image must be labeled transparently');
 
