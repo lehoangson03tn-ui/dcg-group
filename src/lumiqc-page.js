@@ -267,7 +267,7 @@ export function lumiqcPage() {
           </article>
           <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-huy-black-jacket-official-dcg-background-v3.webp" alt="Chân dung minh họa Trương Quốc Huy mặc áo khoác đen, nền có logo DCG Group theo mẫu chính thức" width="900" height="793" decoding="async" loading="lazy">
+              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/30e8b869-4cc0-4d9f-b31f-7ad08d2940bc-lumiqc-truong-quoc-huy-vest-user-confirmed.jpeg" alt="Chân dung biên tập của Trương Quốc Huy mặc vest đen, áo sơ mi trắng và cà vạt đen" width="1122" height="1402" decoding="async" loading="lazy">
               <span class="lq-person-photo-label">CHÂN DUNG MINH HỌA AI / TRƯƠNG QUỐC HUY</span>
             </div>
             <div class="lq-person-info">
@@ -303,7 +303,7 @@ export function lumiqcPage() {
           <button type="button" class="lq-team-arrow" data-lq-member-next aria-controls="lq-team-track" aria-label="Thành viên tiếp theo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
         </div>
       </div>
-      <p class="lq-team-caption">Ảnh Sơn do thành viên cung cấp; ảnh Huy được chỉnh sửa từ hình minh họa AI và thay bằng biểu trưng DCG Group thật. Nội dung là vai trò, đóng góp trong đề án, không phải thành tích hay chứng nhận đã kiểm chứng độc lập.</p>
+      <p class="lq-team-caption">Ảnh Sơn do thành viên cung cấp; chân dung vest của Huy là hình biên tập AI theo mẫu nhóm lựa chọn. Thông tin mô tả vai trò và đóng góp trong đề án, không phải thành tích hoặc chứng nhận đã được kiểm chứng độc lập.</p>
     </div>
   </section>
 
