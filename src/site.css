@@ -74,3 +74,35 @@
 @media(prefers-reduced-motion:reduce){
   .brand-row-image img{transition:none}
 }
+
+
+/* Real DCG Group contact inbox: consent, spam trap and asynchronous feedback. */
+.contact-honeypot{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%);left:-10000px}
+.contact-form .contact-consent{
+  display:flex;gap:12px;align-items:flex-start;
+  font-size:12px;line-height:1.75;font-weight:500;color:#3b4f60;
+  margin:21px 0 0;
+}
+.contact-form .contact-consent input[type="checkbox"]{
+  flex:0 0 18px;width:18px;height:18px;margin:3px 0 0;
+  padding:0;accent-color:#0b665e;
+}
+.contact-form .contact-consent span{flex:1;min-width:0}
+.contact-form button[type="submit"]{
+  cursor:pointer;min-height:52px;
+  background:#164b60;
+  transition:background-color .15s ease;
+}
+.contact-form button[type="submit"]:hover:not(:disabled){background:#0d695f}
+.contact-form button[type="submit"]:disabled{cursor:progress;opacity:.72}
+.contact-form .form-status{
+  margin-top:15px;padding:12px 15px;font-size:12px;line-height:1.8;
+  border-left:3px solid #9baab5;background:#f0f5f7;color:#33495b;
+}
+.contact-form .form-status[data-state="sending"]{border-left-color:#397b9d;background:#eaf4fb;color:#224b68}
+.contact-form .form-status[data-state="success"]{border-left-color:#14845a;background:#e8f7ef;color:#145d3b}
+.contact-form .form-status[data-state="error"]{border-left-color:#b84752;background:#fff0f0;color:#88303b}
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible,
+.contact-form button:focus-visible{outline:3px solid #6cb7b0;outline-offset:3px}
