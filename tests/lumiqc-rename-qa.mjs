@@ -62,6 +62,29 @@ try{
             assert.equal(await page.locator('#'+section).count(),1,'missing section '+section);
           }
           assert.equal(await page.locator('.lq .lq-title').count(),1,'editorial hero');
+          const visualRules=await page.evaluate(()=>{
+            const root=document.querySelector('.lq');
+            const headings=[...root.querySelectorAll('h1,h2,h3,h4')].map(el=>el.textContent.trim());
+            const cssColor=selector=>getComputedStyle(root.querySelector(selector)).color;
+            const fontSize=selector=>Number.parseFloat(getComputedStyle(root.querySelector(selector)).fontSize);
+            return {
+              headings,
+              hero:cssColor('.lq-title'),
+              heroAccent:cssColor('.lq-title>span'),
+              solutionAccent:cssColor('#lq-solution-title em'),
+              workflowAccent:cssColor('#lq-workflow-title em'),
+              closingAccent:cssColor('#lq-closing-title em'),
+              introSize:fontSize('.lq-editorial-lede>p:last-child')
+            };
+          });
+          assert.ok(visualRules.headings.every(h=>!h.includes('.')),'remove full stops from all main headings: '+visualRules.headings.filter(h=>h.includes('.')));
+          assert.notEqual(visualRules.hero,visualRules.heroAccent,'hero emphasis should have its own color');
+          assert.equal(visualRules.heroAccent,'rgb(12, 104, 99)','hero title accent should be teal');
+          assert.equal(visualRules.solutionAccent,'rgb(11, 110, 101)','solution heading emphasis should be teal');
+          assert.equal(visualRules.workflowAccent,'rgb(169, 231, 221)','dark workflow accent must be legible');
+          assert.equal(visualRules.closingAccent,'rgb(157, 229, 215)','dark closing accent must be legible');
+          assert.ok(visualRules.introSize>=14,'body content font size should stay readable');
+
           assert.equal(await page.locator('.lq-swimlane').count(),3,'three operational swimlanes');
           assert.equal(await page.locator('.lq-tablist [role="tab"]').count(),3,'three product concepts');
           await page.locator('#lq-tab-check').click();
