@@ -13,7 +13,7 @@ export function lumiqcPage() {
       <div class="lq-context-links">
         <a href="#bai-toan">Bài toán</a><a href="#giai-phap">Giải pháp</a><a href="#quy-trinh">Quy trình</a><a href="#giao-dien">UI Concept</a><a href="#doi-thi">Đội thi</a><a href="#lo-trinh-vecom">Nghiên cứu</a>
       </div>
-      <span class="lq-context-status">ĐỀ ÁN VECoM 2026</span>
+      <span class="lq-context-status">ĐỀ ÁN Vecom 2026</span>
     </div>
   </nav>
 
@@ -27,7 +27,7 @@ export function lumiqcPage() {
           <a class="lq-btn lq-btn--primary" href="#giai-phap">Khám phá giải pháp <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
           <a class="lq-btn lq-btn--secondary" href="#quy-trinh">Xem luồng vận hành <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
         </div>
-        <p class="lq-disclaimer"><span class="lq-info-mark" aria-hidden="true">i</span> Đang nghiên cứu và kiểm chứng cho VECoM Digital Business Contest 2026. Chưa phải hệ thống được nghiệm thu thương mại.</p>
+        <p class="lq-disclaimer"><span class="lq-info-mark" aria-hidden="true">i</span> Đang nghiên cứu và kiểm chứng cho Vecom Digital Business Contest 2026. Chưa phải hệ thống được nghiệm thu thương mại.</p>
         <div class="lq-hero-keys"><span><b>01</b> Truy vết QR</span><span><b>02</b> SOP & thời gian</span><span><b>03</b> Bằng chứng QA/QC</span></div>
       </div>
 
@@ -236,7 +236,7 @@ export function lumiqcPage() {
     <div class="lq-wrap">
       <div class="lq-team-intro">
         <div><p class="lq-overline">05 / ĐỘI NGŨ THỰC HIỆN</p><h2 id="lq-team-title">Đội ĐÀN CÁ GỖ<br><em>Hai thành viên cùng phát triển LUMIQC</em></h2></div>
-        <p>Nhóm sinh viên Trường Đại học Nguyễn Tất Thành tham gia VECoM Digital Business Contest 2026 – Nội dung 3. Vuốt ngang hoặc nhấn mũi tên để tìm hiểu về từng thành viên. Vai trò của đội thi được phân biệt với vai trò tại DCG Group.</p>
+        <p>Nhóm sinh viên Trường Đại học Nguyễn Tất Thành tham gia Vecom Digital Business Contest 2026 – Nội dung 3. Vuốt ngang hoặc nhấn mũi tên để tìm hiểu về từng thành viên. Vai trò của đội thi được phân biệt với vai trò tại DCG Group.</p>
       </div>
       <div class="lq-team-carousel" role="region" aria-roledescription="Bộ trình chiếu thành viên" aria-label="Hồ sơ thành viên đội ĐÀN CÁ GỖ">
         <div class="lq-team-track lq-team-grid" id="lq-team-track" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để xem thành viên">
@@ -254,7 +254,7 @@ export function lumiqcPage() {
                 <p class="lq-team-detail-title">TRÁCH NHIỆM & ĐÓNG GÓP</p>
                 <ul>
                   <li>Định hướng đề án và mô hình kinh doanh LUMIQC.</li>
-                  <li>Tổng hợp nội dung dự thi VECoM và kế hoạch kiểm chứng.</li>
+                  <li>Tổng hợp nội dung dự thi Vecom và kế hoạch kiểm chứng.</li>
                   <li>Điều phối xây dựng nội dung, thiết kế và hình ảnh dự án.</li>
                 </ul>
               </div>
@@ -320,7 +320,7 @@ export function lumiqcPage() {
 
   <section class="lq-closing" aria-labelledby="lq-closing-title">
     <div class="lq-wrap lq-closing-grid">
-      <div><div class="lq-brand-lineage"><span>DCG GROUP</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>DCG VISION</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>LUMIQC</span></div><h2 id="lq-closing-title">Từ một đề án sinh viên<br><em>Hướng tới chất lượng có thể giải trình</em></h2><p>Đội ĐÀN CÁ GỖ trân trọng các ý kiến phản biện của giám khảo VECoM, chuyên gia QA/QC và các đơn vị vận hành F&B để tiếp tục hoàn thiện thiết kế sản phẩm.</p><p class="lq-closing-image-note">Ảnh bếp công nghệ được tạo bằng AI để minh họa định hướng sản phẩm.</p></div>
+      <div><div class="lq-brand-lineage"><span>DCG GROUP</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>DCG VISION</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>LUMIQC</span></div><h2 id="lq-closing-title">Từ một đề án sinh viên<br><em>Hướng tới chất lượng có thể giải trình</em></h2><p>Đội ĐÀN CÁ GỖ trân trọng các ý kiến phản biện của giám khảo Vecom, chuyên gia QA/QC và các đơn vị vận hành F&B để tiếp tục hoàn thiện thiết kế sản phẩm.</p><p class="lq-closing-image-note">Ảnh bếp công nghệ được tạo bằng AI để minh họa định hướng sản phẩm.</p></div>
       <div class="lq-closing-actions"><a class="lq-btn lq-btn--light" href="/lien-he?topic=lumiqc">Trao đổi về đề án <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a><a class="lq-closing-back" href="/">Về DCG Group <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></div>
     </div>
   </section>
