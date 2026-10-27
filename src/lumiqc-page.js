@@ -242,9 +242,8 @@ export function lumiqcPage() {
         <div class="lq-team-track lq-team-grid" id="lq-team-track" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để xem thành viên">
           <article class="lq-person lq-team-slide" data-lq-member="0" aria-label="Thành viên 1: Lê Hoàng Sơn">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--son" src="https://dcg-group-ecosystem.floot.app/_cdn/static/b189c566-0ebb-416e-bfb3-9910f65d52c1-team_lumiqc_meeting_original.jpeg" alt="Lê Hoàng Sơn mặc áo xanh đang tham dự một buổi họp tại Trường Đại học Nguyễn Tất Thành, ảnh tư liệu nhóm" width="1536" height="1024" decoding="async" loading="lazy">
-              <div class="lq-team-logo"><img src="https://dcg-group-ecosystem.floot.app/_cdn/static/b63395cf-1b94-464f-9844-5b46511cc029-dcg_brand_logo_real_original.jpeg" alt="Logo DCG Group do đội cung cấp" width="1254" height="1254" decoding="async" loading="lazy"></div>
-              <span class="lq-person-photo-label">ẢNH TƯ LIỆU THỰC TẾ / ĐÀN CÁ GỖ</span>
+              <img class="lq-person-photo lq-person-photo--son" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-son-portrait-website.webp" alt="Lê Hoàng Sơn mặc áo sơ mi trắng, ảnh chân dung do thành viên cung cấp" width="850" height="1153" decoding="async" loading="lazy">
+              <span class="lq-person-photo-label">ẢNH CHÂN DUNG / LÊ HOÀNG SƠN</span>
             </div>
             <div class="lq-person-info">
               <span class="lq-person-count">01 / 02 · TRƯỞNG NHÓM</span>
@@ -268,9 +267,8 @@ export function lumiqcPage() {
           </article>
           <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/b189c566-0ebb-416e-bfb3-9910f65d52c1-team_lumiqc_meeting_original.jpeg" alt="Trương Quốc Huy mặc áo sơ mi trắng trong buổi họp tại Trường Đại học Nguyễn Tất Thành, ảnh tư liệu nhóm" width="1536" height="1024" decoding="async" loading="lazy">
-              <div class="lq-team-logo"><img src="https://dcg-group-ecosystem.floot.app/_cdn/static/b63395cf-1b94-464f-9844-5b46511cc029-dcg_brand_logo_real_original.jpeg" alt="Logo DCG Group do đội cung cấp" width="1254" height="1254" decoding="async" loading="lazy"></div>
-              <span class="lq-person-photo-label">ẢNH TƯ LIỆU THỰC TẾ / ĐÀN CÁ GỖ</span>
+              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-huy-black-jacket-official-dcg-background.webp" alt="Chân dung minh họa Trương Quốc Huy mặc áo khoác đen, nền có logo DCG Group theo mẫu chính thức" width="900" height="793" decoding="async" loading="lazy">
+              <span class="lq-person-photo-label">CHÂN DUNG MINH HỌA AI / TRƯƠNG QUỐC HUY</span>
             </div>
             <div class="lq-person-info">
               <span class="lq-person-count">02 / 02 · THÀNH VIÊN</span>
@@ -305,7 +303,7 @@ export function lumiqcPage() {
           <button type="button" class="lq-team-arrow" data-lq-member-next aria-controls="lq-team-track" aria-label="Thành viên tiếp theo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
         </div>
       </div>
-      <p class="lq-team-caption">Ảnh tư liệu do nhóm cung cấp. Thông tin đóng góp mô tả phạm vi công việc trong đề án; không phải thành tích hoặc chứng nhận đã được xác minh độc lập.</p>
+      <p class="lq-team-caption">Ảnh Sơn do thành viên cung cấp; ảnh Huy được chỉnh sửa từ hình minh họa AI và thay bằng biểu trưng DCG Group thật. Nội dung là vai trò, đóng góp trong đề án, không phải thành tích hay chứng nhận đã kiểm chứng độc lập.</p>
     </div>
   </section>
 
