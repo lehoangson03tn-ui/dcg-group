@@ -84,6 +84,13 @@ try{
               ],
               darkCopy:cssColor('.lq-workflow .lq-section-intro--dark>p:last-child'),
               closingCopy:cssColor('.lq-closing>div p'),
+              workflowBackground:getComputedStyle(root.querySelector('.lq-workflow')).backgroundColor,
+              closingBackground:getComputedStyle(root.querySelector('.lq-closing')).backgroundColor,
+              workflowCardBackground:getComputedStyle(root.querySelector('.lq-lane-steps li')).backgroundColor,
+              workflowCardTitle:cssColor('.lq-lane-steps li strong'),
+              closingButtonBackground:getComputedStyle(root.querySelector('.lq-closing-actions .lq-btn--light')).backgroundColor,
+              workflowIntroFont:fontSize('.lq-workflow .lq-section-intro--dark>p:last-child'),
+              closingIntroFont:fontSize('.lq-closing .lq-closing-grid p'),
               introSize:fontSize('.lq-editorial-lede>p:last-child'),
               pageOverflow:document.documentElement.scrollWidth-innerWidth
             };
@@ -97,8 +104,15 @@ try{
             }
           }
           assert.ok(visualRules.bodyExamples.every(c=>c==='rgb(59, 79, 96)'),'body paragraphs share one slate color: '+JSON.stringify(visualRules.bodyExamples));
-          assert.equal(visualRules.darkCopy,'rgb(200, 215, 223)','workflow body text should use inverse slate');
-          assert.equal(visualRules.closingCopy,'rgb(200, 215, 223)','closing body text should use inverse slate');
+          assert.equal(visualRules.darkCopy,'rgb(213, 226, 232)','workflow body text should have accessible inverse contrast');
+          assert.equal(visualRules.closingCopy,'rgb(213, 226, 232)','closing body text should have accessible inverse contrast');
+          assert.equal(visualRules.workflowBackground,'rgb(11, 28, 37)','workflow dark background should be unified');
+          assert.equal(visualRules.closingBackground,'rgb(16, 39, 51)','closing dark background should complement workflow');
+          assert.equal(visualRules.workflowCardBackground,'rgb(21, 46, 58)','workflow tiles need a distinct readable panel shade');
+          assert.equal(visualRules.workflowCardTitle,'rgb(248, 250, 252)','workflow tile titles should be bright white');
+          assert.equal(visualRules.closingButtonBackground,'rgb(201, 240, 228)','closing CTA should visibly contrast dark background');
+          assert.ok(visualRules.workflowIntroFont>=15,'workflow explanation too small');
+          assert.ok(visualRules.closingIntroFont>=14,'closing explanation too small');
           assert.ok(visualRules.introSize>=14,'body content font size should stay readable');
           assert.ok(visualRules.pageOverflow<=2,'uniform palette should not change width');
 
