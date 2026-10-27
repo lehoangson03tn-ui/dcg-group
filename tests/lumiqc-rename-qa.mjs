@@ -64,30 +64,44 @@ try{
           assert.equal(await page.locator('.lq .lq-title').count(),1,'editorial hero');
           const visualRules=await page.evaluate(()=>{
             const root=document.querySelector('.lq');
-            const headings=[...root.querySelectorAll('h1,h2,h3,h4')].map(el=>el.textContent.trim());
+            const elements=[...root.querySelectorAll('h1,h2,h3,h4')];
+            const check=el=>{
+              const dark=Boolean(el.closest('.lq-workflow,.lq-closing'));
+              const color=getComputedStyle(el).color;
+              const nested=[...el.querySelectorAll('span,em,strong')].map(x=>({text:x.textContent.trim(),color:getComputedStyle(x).color}));
+              return {text:el.textContent.trim(),dark,color,nested};
+            };
             const cssColor=selector=>getComputedStyle(root.querySelector(selector)).color;
             const fontSize=selector=>Number.parseFloat(getComputedStyle(root.querySelector(selector)).fontSize);
             return {
-              headings,
-              hero:cssColor('.lq-title'),
-              problemTitle:cssColor('#lq-problem-title'),
-              problemEmphasis:cssColor('#lq-problem-title em'),
-              heroAccent:cssColor('.lq-title>span'),
-              solutionAccent:cssColor('#lq-solution-title em'),
-              workflowAccent:cssColor('#lq-workflow-title em'),
-              closingAccent:cssColor('#lq-closing-title em'),
-              introSize:fontSize('.lq-editorial-lede>p:last-child')
+              headings:elements.map(check),
+              bodyExamples:[
+                cssColor('.lq-fracture p'),
+                cssColor('.lq-feature-copy p'),
+                cssColor('.lq-concept-copy p'),
+                cssColor('.lq-person-info>p:not(.lq-person-badge)'),
+                cssColor('.lq-roadmap-list p')
+              ],
+              darkCopy:cssColor('.lq-workflow .lq-section-intro--dark>p:last-child'),
+              closingCopy:cssColor('.lq-closing>div p'),
+              introSize:fontSize('.lq-editorial-lede>p:last-child'),
+              pageOverflow:document.documentElement.scrollWidth-innerWidth
             };
           });
-          assert.ok(visualRules.headings.every(h=>!h.includes('.')),'remove full stops from all main headings: '+visualRules.headings.filter(h=>h.includes('.')));
-          assert.equal(visualRules.problemTitle,visualRules.problemEmphasis,'problem headline must use a single color');
-          assert.equal(visualRules.problemTitle,'rgb(15, 23, 42)','problem headline should be uniform navy');
-          assert.notEqual(visualRules.hero,visualRules.heroAccent,'hero emphasis should have its own color');
-          assert.equal(visualRules.heroAccent,'rgb(12, 104, 99)','hero title accent should be teal');
-          assert.equal(visualRules.solutionAccent,'rgb(11, 110, 101)','solution heading emphasis should be teal');
-          assert.equal(visualRules.workflowAccent,'rgb(169, 231, 221)','dark workflow accent must be legible');
-          assert.equal(visualRules.closingAccent,'rgb(157, 229, 215)','dark closing accent must be legible');
+          assert.ok(visualRules.headings.every(x=>!x.text.includes('.')),'section headings contain periods');
+          for(const h of visualRules.headings){
+            const wanted=h.dark?'rgb(248, 250, 252)':'rgb(15, 23, 42)';
+            assert.equal(h.color,wanted,'uniform heading color: '+h.text);
+            for(const span of h.nested){
+              assert.equal(span.color,wanted,'no different-color emphasis: '+h.text+' / '+span.text);
+            }
+          }
+          assert.ok(visualRules.bodyExamples.every(c=>c==='rgb(59, 79, 96)'),'body paragraphs share one slate color: '+JSON.stringify(visualRules.bodyExamples));
+          assert.equal(visualRules.darkCopy,'rgb(200, 215, 223)','workflow body text should use inverse slate');
+          assert.equal(visualRules.closingCopy,'rgb(200, 215, 223)','closing body text should use inverse slate');
           assert.ok(visualRules.introSize>=14,'body content font size should stay readable');
+          assert.ok(visualRules.pageOverflow<=2,'uniform palette should not change width');
+
 
           assert.equal(await page.locator('.lq-swimlane').count(),3,'three operational swimlanes');
           assert.equal(await page.locator('.lq-tablist [role="tab"]').count(),3,'three product concepts');
