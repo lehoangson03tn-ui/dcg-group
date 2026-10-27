@@ -56,6 +56,19 @@ try{
             const imageResponse=await page.request.get(base+src);
             assert.equal(imageResponse.status(),200,'project image missing '+src);
           }
+          const illustratedPhotos=await page.locator('.lq-photo img').evaluateAll(els=>els.map(x=>({src:x.getAttribute('src'),alt:x.alt})));
+          assert.equal(illustratedPhotos.length,3,'three distinct AI photos in problem and feature sections');
+          assert.ok(illustratedPhotos.every(x=>x.alt.toLowerCase().includes('minh họa ai')),'AI photographs need clear alt labels');
+          assert.equal(new Set(illustratedPhotos.map(x=>x.src)).size,3,'photos must not repeat');
+          const bgImages=await page.locator('.lq-hero,.lq-workflow,.lq-closing').evaluateAll(els=>els.map(el=>({section:el.className,background:getComputedStyle(el).backgroundImage})));
+          assert.ok(bgImages.every(x=>x.background.includes('floot.app/_cdn/static/')),'each editorial section must load its generated AI background '+JSON.stringify(bgImages));
+          const allAssetUrls=[...illustratedPhotos.map(x=>x.src),...bgImages.map(x=>x.background.match(/url\\?\(["']?(https?:[^)"']+)/)?.[1]).filter(Boolean)];
+          assert.equal(allAssetUrls.length,6,'require all six AI illustrations');
+          for(const u of allAssetUrls){
+            const result=await page.request.get(u,{timeout:15000});
+            assert.equal(result.status(),200,'AI asset unavailable '+u);
+            assert.ok(result.headers()['content-type']?.startsWith('image/'),'AI URL is not an image '+u);
+          }
           const teamCards=await page.locator('.lq-person').count();
           assert.equal(teamCards,2,'team must contain exactly two profiles');
           for(const section of ['bai-toan','giai-phap','quy-trinh','giao-dien','doi-thi','lo-trinh-vecom']){
@@ -66,7 +79,7 @@ try{
             const root=document.querySelector('.lq');
             const elements=[...root.querySelectorAll('h1,h2,h3,h4')];
             const check=el=>{
-              const dark=Boolean(el.closest('.lq-workflow,.lq-closing'));
+              const dark=Boolean(el.closest('.lq-workflow'));
               const color=getComputedStyle(el).color;
               const nested=[...el.querySelectorAll('span,em,strong')].map(x=>({text:x.textContent.trim(),color:getComputedStyle(x).color}));
               return {text:el.textContent.trim(),dark,color,nested};
@@ -105,9 +118,9 @@ try{
           }
           assert.ok(visualRules.bodyExamples.every(c=>c==='rgb(59, 79, 96)'),'body paragraphs share one slate color: '+JSON.stringify(visualRules.bodyExamples));
           assert.equal(visualRules.darkCopy,'rgb(213, 226, 232)','workflow body text should have accessible inverse contrast');
-          assert.equal(visualRules.closingCopy,'rgb(213, 226, 232)','closing body text should have accessible inverse contrast');
+          assert.equal(visualRules.closingCopy,'rgb(59, 79, 96)','light closing body copy should be readable slate');
           assert.equal(visualRules.workflowBackground,'rgb(11, 28, 37)','workflow dark background should be unified');
-          assert.equal(visualRules.closingBackground,'rgb(16, 39, 51)','closing dark background should complement workflow');
+          assert.equal(visualRules.closingBackground,'rgb(246, 251, 250)','closing should switch to fresh light background');
           assert.equal(visualRules.workflowCardBackground,'rgb(21, 46, 58)','workflow tiles need a distinct readable panel shade');
           assert.equal(visualRules.workflowCardTitle,'rgb(248, 250, 252)','workflow tile titles should be bright white');
           assert.equal(visualRules.closingButtonBackground,'rgb(201, 240, 228)','closing CTA should visibly contrast dark background');
