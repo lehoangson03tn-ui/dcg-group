@@ -1928,3 +1928,26 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
     height:clamp(325px,96vw,435px);
   }
 }
+
+
+/* Member portrait fine-tuning: modest zoom for Sơn; tailored vest crop for Huy. */
+.lq .lq-team-carousel .lq-person-photo--son{
+  transform:scale(1.14);
+  transform-origin:50% 41%;
+  object-position:50% 36%;
+}
+.lq .lq-team-carousel .lq-person-photo--huy{
+  transform:none;
+  object-position:50% 38%;
+  background:#f2f5f9;
+}
+@media(max-width:650px){
+  .lq .lq-team-carousel .lq-person-photo--son{
+    transform:scale(1.11);
+    transform-origin:50% 42%;
+    object-position:50% 32%;
+  }
+  .lq .lq-team-carousel .lq-person-photo--huy{
+    object-position:50% 35%;
+  }
+}
