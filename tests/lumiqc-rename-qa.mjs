@@ -107,7 +107,7 @@ try{
               closingButtonBackground:getComputedStyle(root.querySelector('.lq-closing-actions .lq-btn--light')).backgroundColor,
               workflowIntroFont:fontSize('.lq-workflow .lq-section-intro--dark>p:last-child'),
               closingIntroFont:fontSize('.lq-closing .lq-closing-grid p'),
-              introSize:fontSize('.lq-editorial-lede>p:last-child'),
+              introSize:fontSize('.lq-editorial-lede>p:not(.lq-overline)'),
               pageOverflow:document.documentElement.scrollWidth-innerWidth
             };
           });
