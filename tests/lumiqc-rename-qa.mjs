@@ -102,7 +102,7 @@ try{
               closingCopy:cssColor('.lq-closing>div p'),
               workflowBackground:getComputedStyle(root.querySelector('.lq-workflow')).backgroundColor,
               closingBackground:getComputedStyle(root.querySelector('.lq-closing')).backgroundColor,
-              workflowCardBackground:getComputedStyle(root.querySelector('.lq-lane-steps li')).backgroundColor,
+              workflowCardBackground:getComputedStyle(root.querySelector('.lq-lane-steps li')).backgroundImage,
               workflowCardTitle:cssColor('.lq-lane-steps li strong'),
               closingButtonBackground:getComputedStyle(root.querySelector('.lq-closing-actions .lq-btn--light')).backgroundColor,
               workflowIntroFont:fontSize('.lq-workflow .lq-section-intro--dark>p:last-child'),
@@ -124,7 +124,7 @@ try{
           assert.equal(visualRules.closingCopy,'rgb(59, 79, 96)','light closing body copy should be readable slate');
           assert.equal(visualRules.workflowBackground,'rgb(11, 28, 37)','workflow dark background should be unified');
           assert.equal(visualRules.closingBackground,'rgb(246, 251, 250)','closing should switch to fresh light background');
-          assert.equal(visualRules.workflowCardBackground,'rgb(25, 59, 78)','workflow tiles need vibrant but readable blue-teal');
+          assert.ok(visualRules.workflowCardBackground.includes('linear-gradient')&&visualRules.workflowCardBackground.includes('25, 59, 78'),'workflow tiles need blue-teal gradient background');
           assert.equal(visualRules.workflowCardTitle,'rgb(248, 250, 252)','workflow tile titles should be bright white');
           assert.equal(visualRules.closingButtonBackground,'rgb(201, 240, 228)','closing CTA should visibly contrast dark background');
           assert.ok(visualRules.workflowIntroFont>=15,'workflow explanation too small');
