@@ -1951,3 +1951,6 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
     object-position:50% 35%;
   }
 }
+
+/* Photo labels removed at owner request: keep portraits clean without a dark caption overlay. */
+.lq .lq-team-carousel .lq-person-media::after{display:none}
