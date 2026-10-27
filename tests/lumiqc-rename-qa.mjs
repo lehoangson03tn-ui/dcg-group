@@ -84,9 +84,9 @@ try{
           const memberAssets=await page.locator('.lq-person-photo').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
           assert.equal(new Set(memberAssets).size,2,'Sơn and Huy must use different portraits');
           assert.ok(memberAssets[0].endsWith('/lumiqc-son-portrait-website.webp'),'Sơn must use his white-shirt studio portrait');
-          assert.ok(memberAssets[1].endsWith('/lumiqc-huy-black-jacket-official-dcg-background-v3.webp'),'Huy must use the confirmed black-jacket portrait with real DCG emblem');
+          assert.ok(memberAssets[1].endsWith('/30e8b869-4cc0-4d9f-b31f-7ad08d2940bc-lumiqc-truong-quoc-huy-vest-user-confirmed.jpeg'),'Huy must use the newly selected formal-vest portrait');
           assert.ok((await page.locator('[data-lq-member="0"] .lq-person-photo').getAttribute('alt')).includes('sơ mi trắng'),'Sơn image must be attributed correctly');
-          assert.ok((await page.locator('[data-lq-member="1"] .lq-person-photo-label').textContent()).includes('MINH HỌA AI'),'AI-edited Huy image must be labeled transparently');
+          assert.equal(await page.locator('.lq-person-photo-label,.lq-team-caption').count(),0,'team photo captions and notes should not appear');
 
           assert.ok(memberAssets.every(src=>src.startsWith('https://dcg-group-ecosystem.floot.app/_cdn/static/')),'team assets must be uploaded and hosted');
           assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Lê Hoàng Sơn','original slide shows team lead');
