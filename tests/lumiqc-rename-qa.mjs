@@ -70,6 +70,8 @@ try{
             return {
               headings,
               hero:cssColor('.lq-title'),
+              problemTitle:cssColor('#lq-problem-title'),
+              problemEmphasis:cssColor('#lq-problem-title em'),
               heroAccent:cssColor('.lq-title>span'),
               solutionAccent:cssColor('#lq-solution-title em'),
               workflowAccent:cssColor('#lq-workflow-title em'),
@@ -78,6 +80,8 @@ try{
             };
           });
           assert.ok(visualRules.headings.every(h=>!h.includes('.')),'remove full stops from all main headings: '+visualRules.headings.filter(h=>h.includes('.')));
+          assert.equal(visualRules.problemTitle,visualRules.problemEmphasis,'problem headline must use a single color');
+          assert.equal(visualRules.problemTitle,'rgb(15, 23, 42)','problem headline should be uniform navy');
           assert.notEqual(visualRules.hero,visualRules.heroAccent,'hero emphasis should have its own color');
           assert.equal(visualRules.heroAccent,'rgb(12, 104, 99)','hero title accent should be teal');
           assert.equal(visualRules.solutionAccent,'rgb(11, 110, 101)','solution heading emphasis should be teal');
