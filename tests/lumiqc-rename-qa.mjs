@@ -62,9 +62,11 @@ try{
           assert.equal(new Set(illustratedPhotos.map(x=>x.src)).size,3,'photos must not repeat');
           const bgImages=await page.locator('.lq-hero,.lq-workflow,.lq-closing').evaluateAll(els=>els.map(el=>({section:el.className,background:getComputedStyle(el).backgroundImage})));
           assert.ok(bgImages.every(x=>x.background.includes('floot.app/_cdn/static/')),'each editorial section must load its generated AI background '+JSON.stringify(bgImages));
-          const allAssetUrls=[...illustratedPhotos.map(x=>x.src),...bgImages.map(x=>x.background.match(/url\(["']?(https?:\/\/[^)"']+)/)?.[1]).filter(Boolean)];
+          const expectedBgUrls=["https://dcg-group-ecosystem.floot.app/_cdn/static/e5a6d5a5-7c94-4cad-bd30-2d7b93e3a5f2.png","https://dcg-group-ecosystem.floot.app/_cdn/static/329cab55-1965-4198-ac7b-d56e5d92c719-lumiqc-workflow-ai-background.png","https://dcg-group-ecosystem.floot.app/_cdn/static/887228e0-5054-4309-8744-01ff4ff9fa56-lumiqc-closing-ai-background.png"];
+          assert.ok(bgImages.every((x,i)=>x.background.includes(expectedBgUrls[i])),'illustrations missing from hero/workflow/closing CSS');
+          const allAssetUrls=[...illustratedPhotos.map(x=>x.src),...expectedBgUrls];
           assert.equal(allAssetUrls.length,6,'require all six AI illustrations');
-          for(const u of allAssetUrls){
+          if(width===1440) for(const u of allAssetUrls){
             const result=await page.request.get(u,{timeout:15000});
             assert.equal(result.status(),200,'AI asset unavailable '+u);
             assert.ok(result.headers()['content-type']?.startsWith('image/'),'AI URL is not an image '+u);
