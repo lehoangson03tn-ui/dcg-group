@@ -234,18 +234,78 @@ export function lumiqcPage() {
 
   <section class="lq-team lq-section" id="doi-thi" aria-labelledby="lq-team-title">
     <div class="lq-wrap">
-      <div class="lq-team-intro"><div><p class="lq-overline">05 / NHỮNG NGƯỜI PHÁT TRIỂN</p><h2 id="lq-team-title">Đội ĐÀN CÁ GỖ<br><em>Hai thành viên cùng phát triển LUMIQC</em></h2></div><p>Những thành viên thuộc hệ sinh thái DCG Group đại diện đội ĐÀN CÁ GỖ của Trường Đại học Nguyễn Tất Thành tham gia VECoM Digital Business Contest 2026 – Nội dung 3: Ý tưởng kinh doanh số. Vai trò trong đội thi được phân biệt với vai trò tại DCG Group.</p></div>
-      <div class="lq-team-grid">
-        <article class="lq-person">
-          <div class="lq-person-id"><span>TEAM FILE / 001</span><div class="lq-monogram" aria-label="Chữ viết tắt LHS">LHS</div><span>ĐÀN CÁ GỖ · VECoM 2026</span></div>
-          <div class="lq-person-info"><span class="lq-person-count">01 / TRƯỞNG NHÓM DỰ THI</span><h3>Lê Hoàng Sơn</h3><p class="lq-person-badge">Trưởng nhóm · ĐÀN CÁ GỖ</p><p>Phụ trách định hướng sản phẩm LUMIQC, mô hình kinh doanh, bài toán nghiệp vụ QA/QC và điều phối đề án dự thi.</p><div class="lq-person-meta"><span>TRƯỜNG</span><b>Đại học Nguyễn Tất Thành</b><span>HỆ SINH THÁI</span><b>DCG Group</b></div></div>
-        </article>
-        <article class="lq-person">
-          <div class="lq-person-id"><span>TEAM FILE / 002</span><div class="lq-monogram" aria-label="Chữ viết tắt TQH">TQH</div><span>ĐÀN CÁ GỖ · VECoM 2026</span></div>
-          <div class="lq-person-info"><span class="lq-person-count">02 / THÀNH VIÊN DỰ THI</span><h3>Trương Quốc Huy</h3><p class="lq-person-badge">Thành viên · ĐÀN CÁ GỖ</p><p>Phối hợp nghiên cứu kiến trúc giải pháp và luồng vận hành; kết nối định hướng LUMIQC với DCG Vision.</p><div class="lq-person-meta"><span>TRƯỜNG</span><b>Đại học Nguyễn Tất Thành</b><span>VAI TRÒ DCG GROUP</span><b>Nhà sáng lập & Tổng giám đốc</b></div></div>
-        </article>
+      <div class="lq-team-intro">
+        <div><p class="lq-overline">05 / ĐỘI NGŨ THỰC HIỆN</p><h2 id="lq-team-title">Đội ĐÀN CÁ GỖ<br><em>Hai thành viên cùng phát triển LUMIQC</em></h2></div>
+        <p>Nhóm sinh viên Trường Đại học Nguyễn Tất Thành tham gia VECoM Digital Business Contest 2026 – Nội dung 3. Vuốt ngang hoặc nhấn mũi tên để tìm hiểu về từng thành viên. Vai trò của đội thi được phân biệt với vai trò tại DCG Group.</p>
       </div>
-      <p class="lq-team-caption">Hình đại diện sử dụng chữ viết tắt để giữ thống nhất hồ sơ khi chưa có bộ ảnh chân dung được xác thực và chuẩn hóa cho cả hai thành viên.</p>
+      <div class="lq-team-carousel" role="region" aria-roledescription="Bộ trình chiếu thành viên" aria-label="Hồ sơ thành viên đội ĐÀN CÁ GỖ">
+        <div class="lq-team-track lq-team-grid" id="lq-team-track" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để xem thành viên">
+          <article class="lq-person lq-team-slide" data-lq-member="0" aria-label="Thành viên 1: Lê Hoàng Sơn">
+            <div class="lq-person-media">
+              <img class="lq-person-photo lq-person-photo--son" src="https://dcg-group-ecosystem.floot.app/_cdn/static/b189c566-0ebb-416e-bfb3-9910f65d52c1-team_lumiqc_meeting_original.jpeg" alt="Lê Hoàng Sơn mặc áo xanh đang tham dự một buổi họp tại Trường Đại học Nguyễn Tất Thành, ảnh tư liệu nhóm" width="1536" height="1024" decoding="async" loading="lazy">
+              <div class="lq-team-logo"><img src="https://dcg-group-ecosystem.floot.app/_cdn/static/b63395cf-1b94-464f-9844-5b46511cc029-dcg_brand_logo_real_original.jpeg" alt="Logo DCG Group do đội cung cấp" width="1254" height="1254" decoding="async" loading="lazy"></div>
+              <span class="lq-person-photo-label">ẢNH TƯ LIỆU THỰC TẾ / ĐÀN CÁ GỖ</span>
+            </div>
+            <div class="lq-person-info">
+              <span class="lq-person-count">01 / 02 · TRƯỞNG NHÓM</span>
+              <h3>Lê Hoàng Sơn</h3>
+              <p class="lq-person-badge">Trưởng nhóm · ĐÀN CÁ GỖ</p>
+              <p>Phụ trách định hướng sản phẩm LUMIQC, mô hình kinh doanh, bài toán nghiệp vụ QA/QC và điều phối đề án dự thi.</p>
+              <div class="lq-team-detail">
+                <p class="lq-team-detail-title">TRÁCH NHIỆM & ĐÓNG GÓP</p>
+                <ul>
+                  <li>Định hướng đề án và mô hình kinh doanh LUMIQC.</li>
+                  <li>Tổng hợp nội dung dự thi VECoM và kế hoạch kiểm chứng.</li>
+                  <li>Điều phối xây dựng nội dung, thiết kế và hình ảnh dự án.</li>
+                </ul>
+              </div>
+              <div class="lq-person-meta">
+                <span>TRƯỜNG</span><b>Đại học Nguyễn Tất Thành</b>
+                <span>CHUYÊN NGÀNH</span><b>Quản trị kinh doanh</b>
+                <span>HỆ SINH THÁI</span><b>DCG Group</b>
+              </div>
+            </div>
+          </article>
+          <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
+            <div class="lq-person-media">
+              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/b189c566-0ebb-416e-bfb3-9910f65d52c1-team_lumiqc_meeting_original.jpeg" alt="Trương Quốc Huy mặc áo sơ mi trắng trong buổi họp tại Trường Đại học Nguyễn Tất Thành, ảnh tư liệu nhóm" width="1536" height="1024" decoding="async" loading="lazy">
+              <div class="lq-team-logo"><img src="https://dcg-group-ecosystem.floot.app/_cdn/static/b63395cf-1b94-464f-9844-5b46511cc029-dcg_brand_logo_real_original.jpeg" alt="Logo DCG Group do đội cung cấp" width="1254" height="1254" decoding="async" loading="lazy"></div>
+              <span class="lq-person-photo-label">ẢNH TƯ LIỆU THỰC TẾ / ĐÀN CÁ GỖ</span>
+            </div>
+            <div class="lq-person-info">
+              <span class="lq-person-count">02 / 02 · THÀNH VIÊN</span>
+              <h3>Trương Quốc Huy</h3>
+              <p class="lq-person-badge">Thành viên · ĐÀN CÁ GỖ</p>
+              <p>Phối hợp nghiên cứu kiến trúc giải pháp và luồng vận hành; kết nối định hướng LUMIQC với DCG Vision.</p>
+              <div class="lq-team-detail">
+                <p class="lq-team-detail-title">TRÁCH NHIỆM & ĐÓNG GÓP</p>
+                <ul>
+                  <li>Phối hợp nghiên cứu luồng công nghệ và giải pháp QA/QC.</li>
+                  <li>Hỗ trợ hoàn thiện nội dung nghiệp vụ và định hướng triển khai.</li>
+                  <li>Tham gia xây dựng và phản biện đề án cùng nhóm.</li>
+                </ul>
+              </div>
+              <div class="lq-person-meta">
+                <span>TRƯỜNG</span><b>Đại học Nguyễn Tất Thành</b>
+                <span>CHUYÊN NGÀNH</span><b>Quản trị kinh doanh</b>
+                <span>VAI TRÒ DCG</span><b>Nhà sáng lập & Tổng giám đốc</b>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="lq-team-navigation" aria-label="Điều hướng thành viên">
+          <button type="button" class="lq-team-arrow" data-lq-member-prev aria-controls="lq-team-track" aria-label="Thành viên trước"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+          <div class="lq-team-pagination">
+            <span class="lq-team-position" aria-live="polite"><span class="lq-team-index-current">01</span> / 02</span>
+            <div class="lq-team-dots" aria-label="Chọn thành viên">
+              <button type="button" data-lq-member-dot="0" aria-label="Xem Lê Hoàng Sơn" aria-pressed="true" aria-current="true"></button>
+              <button type="button" data-lq-member-dot="1" aria-label="Xem Trương Quốc Huy" aria-pressed="false"></button>
+            </div>
+          </div>
+          <button type="button" class="lq-team-arrow" data-lq-member-next aria-controls="lq-team-track" aria-label="Thành viên tiếp theo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <p class="lq-team-caption">Ảnh tư liệu do nhóm cung cấp. Thông tin đóng góp mô tả phạm vi công việc trong đề án; không phải thành tích hoặc chứng nhận đã được xác minh độc lập.</p>
     </div>
   </section>
 
@@ -297,4 +357,54 @@ export function initLumiqcPage() {
       activate(tabs[next]);
     });
   });
+  // One profile at a time; photo on the left, verified information on the right.
+  const teamTrack = root.querySelector('#lq-team-track');
+  if (teamTrack) {
+    const teamMembers = [...teamTrack.querySelectorAll('[data-lq-member]')];
+    const dots = [...root.querySelectorAll('[data-lq-member-dot]')];
+    const previous = root.querySelector('[data-lq-member-prev]');
+    const next = root.querySelector('[data-lq-member-next]');
+    const indexLabel = root.querySelector('.lq-team-index-current');
+    let current = 0;
+    const setTeamMember = index => {
+      current = (index + teamMembers.length) % teamMembers.length;
+      teamMembers.forEach((member, i) => {
+        member.hidden = i !== current;
+        member.setAttribute('aria-hidden', String(i !== current));
+      });
+      dots.forEach((dot, i) => {
+        dot.setAttribute('aria-pressed', String(i === current));
+        if (i === current) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+      if (indexLabel) indexLabel.textContent = String(current + 1).padStart(2, '0');
+    };
+    previous?.addEventListener('click', () => setTeamMember(current - 1));
+    next?.addEventListener('click', () => setTeamMember(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => setTeamMember(i)));
+    teamTrack.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') { event.preventDefault(); setTeamMember(current + 1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); setTeamMember(current - 1); }
+      if (event.key === 'Home') { event.preventDefault(); setTeamMember(0); }
+      if (event.key === 'End') { event.preventDefault(); setTeamMember(teamMembers.length - 1); }
+    });
+    let pointerStart = null;
+    const carousel = root.querySelector('.lq-team-carousel');
+    carousel?.addEventListener('touchstart', event => {
+      const touch = event.changedTouches[0];
+      pointerStart = touch ? { x: touch.clientX, y: touch.clientY } : null;
+    }, { passive: true });
+    carousel?.addEventListener('touchend', event => {
+      if (!pointerStart) return;
+      const touch = event.changedTouches[0];
+      if (!touch) { pointerStart = null; return; }
+      const dx = touch.clientX - pointerStart.x;
+      const dy = touch.clientY - pointerStart.y;
+      pointerStart = null;
+      if (Math.abs(dx) >= 55 && Math.abs(dx) > Math.abs(dy) * 1.3)
+        setTeamMember(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    setTeamMember(0);
+  }
+
 }
