@@ -91,7 +91,7 @@
 .lq .lq-editorial-lede{position:sticky;top:171px}
 .lq .lq-editorial h2,.lq .lq-section-intro h2,.lq .lq-team h2{font-size:clamp(29px,3.15vw,42px);font-weight:650;max-width:900px}
 .lq h2 em,.lq h3 em{font-style:normal;color:#0f766e}
-.lq .lq-editorial-lede>p:last-child{color:#5c6d7b;font-size:15px;margin-top:23px}
+.lq .lq-editorial-lede>p:not(.lq-overline){color:#5c6d7b;font-size:15px;margin-top:23px}
 .lq .lq-fractures{border-top:1px solid #d5e0e7}
 .lq .lq-fracture{display:grid;grid-template-columns:108px minmax(0,1fr);gap:20px;padding:33px 0;border-bottom:1px solid #d5e0e7}
 .lq .lq-fracture-id{font-size:37px;font-weight:650;letter-spacing:-.05em;line-height:1.2;color:#aec5c7}
@@ -322,7 +322,7 @@
   .lq .lq-architecture{max-width:640px;width:100%;margin:auto}
   .lq .lq-editorial{grid-template-columns:minmax(0,1fr);gap:30px}
   .lq .lq-editorial-lede{position:static}
-  .lq .lq-editorial-lede>p:last-child{max-width:65ch}
+  .lq .lq-editorial-lede>p:not(.lq-overline){max-width:65ch}
   .lq .lq-feature,.lq .lq-feature--policy{gap:28px}
   .lq .lq-ops-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lq .lq-team-intro{grid-template-columns:1fr}
@@ -497,7 +497,7 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
 .lq .lq-lead,
 .lq .lq-lead strong,
 .lq .lq-disclaimer,
-.lq .lq-editorial-lede>p:last-child,
+.lq .lq-editorial-lede>p:not(.lq-overline),
 .lq .lq-fracture p,
 .lq .lq-section-intro>p:last-child,
 .lq .lq-feature-copy p,
@@ -513,7 +513,7 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
 }
 .lq .lq-lead{line-height:1.82}
 .lq .lq-disclaimer{font-size:13px;line-height:1.8}
-.lq .lq-editorial-lede>p:last-child,
+.lq .lq-editorial-lede>p:not(.lq-overline),
 .lq .lq-section-intro>p:last-child,
 .lq .lq-feature-copy p{
   font-size:16px;
@@ -654,7 +654,7 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
   .lq .lq-team h2{line-height:1.45}
   .lq .lq-fracture p,
   .lq .lq-section-intro>p:last-child,
-  .lq .lq-editorial-lede>p:last-child,
+  .lq .lq-editorial-lede>p:not(.lq-overline),
   .lq .lq-feature-copy p{font-size:14px}
   .lq .lq-sample-row strong{font-size:12px}
   .lq .lq-sample-row small,
