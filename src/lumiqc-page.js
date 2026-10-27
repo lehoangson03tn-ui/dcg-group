@@ -60,7 +60,11 @@ export function lumiqcPage() {
 
   <section class="lq-problem lq-section" id="bai-toan" aria-labelledby="lq-problem-title">
     <div class="lq-wrap lq-editorial">
-      <div class="lq-editorial-lede"><p class="lq-overline">01 / BÀI TOÁN NGÀNH F&B</p><h2 id="lq-problem-title">Tem giấy không lưu được <em>toàn bộ hành trình chất lượng</em></h2><p>Vấn đề không chỉ là biết thực phẩm hết hạn ngày nào, mà là biết điều gì xảy ra trong suốt quá trình nhận hàng, sơ chế, bảo quản và bàn giao.</p></div>
+      <div class="lq-editorial-lede"><p class="lq-overline">01 / BÀI TOÁN NGÀNH F&B</p><h2 id="lq-problem-title">Tem giấy không lưu được <em>toàn bộ hành trình chất lượng</em></h2><p>Vấn đề không chỉ là biết thực phẩm hết hạn ngày nào, mà là biết điều gì xảy ra trong suốt quá trình nhận hàng, sơ chế, bảo quản và bàn giao.</p>
+        <figure class="lq-photo lq-problem-photo">
+          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/1247c286-08c7-4122-849b-d200a540e841.png" width="1024" height="1024" alt="Ảnh minh họa AI các hộp thực phẩm được phân loại tại khu bếp thương mại" loading="lazy" decoding="async">
+          <figcaption>HÌNH MINH HỌA AI / QUẢN LÝ LÔ VÀ HỘP</figcaption>
+        </figure></div>
       <div class="lq-fractures" aria-label="Ba điểm đứt gãy cần giải quyết">
         <div class="lq-fracture"><div class="lq-fracture-id">01<span>VẬT LÝ / DIGITAL</span></div><div class="lq-fracture-body"><h3>Tem giấy tĩnh, nguyên liệu liên tục thay đổi</h3><p>Một dòng hạn dùng trên tem không cho biết chính xác lịch sử lấy ra và trả lại tủ bảo quản. Việc chia hộp hay đổi ca dễ khiến dữ liệu bị tách rời.</p><div class="lq-fracture-inline"><span>TEM GIẤY</span><span class="lq-break-line" aria-hidden="true"></span><span>TAKE / RETURN</span><span class="lq-break-line" aria-hidden="true"></span><span>THỜI GIAN</span></div></div></div>
         <div class="lq-fracture"><div class="lq-fracture-id">02<span>CA LÀM VIỆC</span></div><div class="lq-fracture-body"><h3>Ảnh, checklist và báo hủy nằm rải rác</h3><p>Nhật ký ca ở sổ tay, ảnh vệ sinh ở nhóm chat và ghi nhận xử lý trong biểu mẫu riêng làm việc đối chiếu tốn nhiều công sức.</p><div class="lq-fracture-inline"><span>CHECKLIST</span><span class="lq-break-line" aria-hidden="true"></span><span>ẢNH HIỆN TRƯỜNG</span><span class="lq-break-line" aria-hidden="true"></span><span>BÀN GIAO</span></div></div></div>
@@ -74,7 +78,11 @@ export function lumiqcPage() {
       <div class="lq-section-intro"><p class="lq-overline">02 / KIẾN TRÚC GIẢI PHÁP</p><h2 id="lq-solution-title">Ba trụ cột cho <em>một chuỗi bằng chứng liền mạch</em></h2><p>Ba lớp hỗ trợ nhau: định danh đối tượng, áp dụng quy tắc theo trạng thái và lưu vết xử lý ngoại lệ. Đây là phạm vi thiết kế CORE, không đồng nghĩa toàn bộ chức năng đã lập trình hay nghiệm thu.</p></div>
 
       <div class="lq-feature lq-feature--trace">
-        <div class="lq-feature-copy"><span class="lq-feature-index">01 <i></i> TRACE-SAFE</span><h3>Từ một hộp thực phẩm truy ngược về lô ban đầu</h3><p>Mã QR và nhật ký liên kết lô nguyên liệu, mẻ sơ chế và các hộp tại chi nhánh. Khi chia hộp hoặc xử lý hủy, quan hệ nguồn gốc không bị đánh mất.</p><span class="lq-feature-foot">TRUY VẾT XUÔI & NGƯỢC / THIẾT KẾ CORE</span></div>
+        <div class="lq-feature-copy"><span class="lq-feature-index">01 <i></i> TRACE-SAFE</span><h3>Từ một hộp thực phẩm truy ngược về lô ban đầu</h3><p>Mã QR và nhật ký liên kết lô nguyên liệu, mẻ sơ chế và các hộp tại chi nhánh. Khi chia hộp hoặc xử lý hủy, quan hệ nguồn gốc không bị đánh mất.</p><span class="lq-feature-foot">TRUY VẾT XUÔI & NGƯỢC / THIẾT KẾ CORE</span>
+        <figure class="lq-photo lq-feature-photo">
+          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/5aa054db-4c55-4a3a-aaca-4db587ccc349.png" width="1024" height="1024" alt="Ảnh minh họa AI nhân viên quét mã trên hộp thực phẩm trong bếp" loading="lazy" decoding="async">
+          <figcaption>MINH HỌA AI / QUÉT MÃ HỘP THỰC PHẨM</figcaption>
+        </figure></div>
         <div class="lq-lineage" aria-label="Sơ đồ phả hệ truy vết minh họa">
           <span class="lq-diagram-eyebrow">LINEAGE VIEW / DỮ LIỆU GIẢ LẬP</span>
           <div class="lq-lineage-start"><small>NGUYÊN LIỆU ĐẦU VÀO</small><strong>LOT-DEMO-881</strong><span>Kho / Bếp trung tâm</span></div>
@@ -103,7 +111,11 @@ export function lumiqcPage() {
       </div>
 
       <div class="lq-feature lq-feature--evidence">
-        <div class="lq-feature-copy"><span class="lq-feature-index">03 <i></i> EVIDENCE GAP RESOLVER</span><h3>Mỗi ngoại lệ cần bằng chứng và người chịu trách nhiệm</h3><p>Khi có ngoại lệ, hồ sơ chứa mã hộp, ảnh, nhật ký, người phụ trách và quyết định xử lý. Hàng bị giữ ở trạng thái HOLD cho đến khi được người có thẩm quyền đánh giá.</p><span class="lq-feature-foot">HỒ SƠ NGOẠI LỆ / THIẾT KẾ CORE</span></div>
+        <div class="lq-feature-copy"><span class="lq-feature-index">03 <i></i> EVIDENCE GAP RESOLVER</span><h3>Mỗi ngoại lệ cần bằng chứng và người chịu trách nhiệm</h3><p>Khi có ngoại lệ, hồ sơ chứa mã hộp, ảnh, nhật ký, người phụ trách và quyết định xử lý. Hàng bị giữ ở trạng thái HOLD cho đến khi được người có thẩm quyền đánh giá.</p><span class="lq-feature-foot">HỒ SƠ NGOẠI LỆ / THIẾT KẾ CORE</span>
+        <figure class="lq-photo lq-feature-photo">
+          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/1f2349be-d00c-42ba-aaaa-9e495f514348.png" width="1024" height="1024" alt="Ảnh minh họa AI giám sát viên kiểm tra vệ sinh bằng thiết bị số trong bếp thương mại" loading="lazy" decoding="async">
+          <figcaption>MINH HỌA AI / THU THẬP BẰNG CHỨNG</figcaption>
+        </figure></div>
         <div class="lq-gate" aria-label="Sơ đồ xử lý HOLD, đánh giá bằng chứng và quyết định cuối">
           <div class="lq-gate-header"><span>EXCEPTION CASE / DEMO-017</span><span class="lq-state lq-state--hold">HOLD</span></div>
           <div class="lq-gate-evidence"><span class="lq-gate-index">01</span><div><strong>Chi nhánh ghi nhận ngoại lệ</strong><small>Ảnh hiện trường · Nhật ký TAKE/RETURN · Lý do</small></div></div>
@@ -141,7 +153,7 @@ export function lumiqcPage() {
           <ol class="lq-lane-steps"><li><small>07</small><strong>HOLD</strong><span>Giữ hàng, yêu cầu bằng chứng</span></li><li><small>08</small><strong>Thẩm định hồ sơ</strong><span>Kiểm tra SOP và lịch sử</span></li><li class="lq-lane-outcome"><small>09</small><strong>RELEASE / HỦY</strong><span>Quyết định có người chịu trách nhiệm</span></li></ol>
         </div>
       </div>
-      <p class="lq-workflow-caption">NGUYÊN TẮC: Trạng thái dữ liệu, trạng thái bảo quản và trường hợp thiếu bằng chứng cần được phân biệt khi đánh giá.</p>
+      <p class="lq-workflow-caption">NGUYÊN TẮC: Trạng thái dữ liệu, trạng thái bảo quản và trường hợp thiếu bằng chứng cần được phân biệt khi đánh giá. Ảnh nền là hình minh họa AI, không phải ảnh bếp triển khai thực tế.</p>
     </div>
   </section>
 
@@ -201,7 +213,7 @@ export function lumiqcPage() {
 
   <section class="lq-closing" aria-labelledby="lq-closing-title">
     <div class="lq-wrap lq-closing-grid">
-      <div><div class="lq-brand-lineage"><span>DCG GROUP</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>DCG VISION</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>LUMIQC</span></div><h2 id="lq-closing-title">Từ một đề án sinh viên<br><em>Hướng tới chất lượng có thể giải trình</em></h2><p>Đội ĐÀN CÁ GỖ trân trọng các ý kiến phản biện của giám khảo VECoM, chuyên gia QA/QC và các đơn vị vận hành F&B để tiếp tục hoàn thiện thiết kế sản phẩm.</p></div>
+      <div><div class="lq-brand-lineage"><span>DCG GROUP</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>DCG VISION</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>LUMIQC</span></div><h2 id="lq-closing-title">Từ một đề án sinh viên<br><em>Hướng tới chất lượng có thể giải trình</em></h2><p>Đội ĐÀN CÁ GỖ trân trọng các ý kiến phản biện của giám khảo VECoM, chuyên gia QA/QC và các đơn vị vận hành F&B để tiếp tục hoàn thiện thiết kế sản phẩm.</p><p class="lq-closing-image-note">Ảnh bếp công nghệ được tạo bằng AI để minh họa định hướng sản phẩm.</p></div>
       <div class="lq-closing-actions"><a class="lq-btn lq-btn--light" href="/lien-he">Trao đổi về đề án <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a><a class="lq-closing-back" href="/">Về DCG Group <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></div>
     </div>
   </section>
