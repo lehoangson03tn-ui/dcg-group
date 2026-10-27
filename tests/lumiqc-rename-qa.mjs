@@ -78,6 +78,31 @@ try{
             assert.equal(await page.locator('#'+section).count(),1,'missing section '+section);
           }
           assert.equal(await page.locator('.lq .lq-title').count(),1,'editorial hero');
+          const balancedPairs=await page.locator('.lq-balanced-pair').evaluateAll(nodes=>nodes.map(parent=>{
+            const left=parent.querySelector('.lq-balanced-left').getBoundingClientRect();
+            const right=parent.querySelector('.lq-balanced-right').getBoundingClientRect();
+            const figure=parent.querySelector('.lq-balanced-left .lq-photo')?.getBoundingClientRect();
+            const parentRect=parent.getBoundingClientRect();
+            return {
+              type:parent.className,
+              left:{top:left.top,bottom:left.bottom,width:left.width,height:left.height},
+              right:{top:right.top,bottom:right.bottom,width:right.width,height:right.height},
+              figure:figure?{height:figure.height,width:figure.width}:null,
+              parentWidth:parentRect.width
+            };
+          }));
+          assert.equal(balancedPairs.length,3,'three sections must use balanced paired layout');
+          for(const pair of balancedPairs){
+            assert.ok(pair.figure?.height>130,'left-side visual should be meaningful '+JSON.stringify(pair));
+            if(width>=1024){
+              assert.ok(Math.abs(pair.left.top-pair.right.top)<3,'top edges should align '+JSON.stringify(pair));
+              assert.ok(Math.abs(pair.left.bottom-pair.right.bottom)<3,'bottom edges should align '+JSON.stringify(pair));
+              assert.ok(Math.abs(pair.left.width-pair.right.width)<3,'columns should be equal width '+JSON.stringify(pair));
+            }else{
+              assert.ok(pair.right.top>=pair.left.bottom-2,'stack panels rather than squeeze mobile columns '+JSON.stringify(pair));
+            }
+          }
+
           const visualRules=await page.evaluate(()=>{
             const root=document.querySelector('.lq');
             const elements=[...root.querySelectorAll('h1,h2,h3,h4')];
