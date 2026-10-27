@@ -459,7 +459,11 @@
 main .lq .lq-hero .lq-title>span{
   color:#0c6863!important;
 }
-main .lq .lq-editorial h2 em,
+/* Problem-section headline uses one uniform ink color, including emphasized text. */
+main .lq #lq-problem-title,
+main .lq #lq-problem-title em{
+  color:#0f172a!important;
+}
 main .lq .lq-section-intro h2 em,
 main .lq .lq-team h2 em{
   color:#0b6e65!important;
