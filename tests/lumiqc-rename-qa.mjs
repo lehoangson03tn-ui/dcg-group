@@ -53,7 +53,8 @@ try{
           assert.ok(data.hrefs.some(x=>x.href==='#doi-thi'),'team anchor is present');
           const imageSources=await page.locator('.lq img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
           for(const src of imageSources){
-            const imageResponse=await page.request.get(base+src);
+            if(src.startsWith('https://dcg-group-ecosystem.floot.app/')) continue; // CDN images checked once at desktop width.
+            const imageResponse=await page.request.get(new URL(src,base).toString());
             assert.equal(imageResponse.status(),200,'project image missing '+src);
           }
           const illustratedPhotos=await page.locator('.lq-photo img').evaluateAll(els=>els.map(x=>({src:x.getAttribute('src'),alt:x.alt})));
