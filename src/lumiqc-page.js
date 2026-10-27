@@ -263,7 +263,7 @@ export function lumiqcPage() {
   <section class="lq-closing" aria-labelledby="lq-closing-title">
     <div class="lq-wrap lq-closing-grid">
       <div><div class="lq-brand-lineage"><span>DCG GROUP</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>DCG VISION</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span>LUMIQC</span></div><h2 id="lq-closing-title">Từ một đề án sinh viên<br><em>Hướng tới chất lượng có thể giải trình</em></h2><p>Đội ĐÀN CÁ GỖ trân trọng các ý kiến phản biện của giám khảo VECoM, chuyên gia QA/QC và các đơn vị vận hành F&B để tiếp tục hoàn thiện thiết kế sản phẩm.</p><p class="lq-closing-image-note">Ảnh bếp công nghệ được tạo bằng AI để minh họa định hướng sản phẩm.</p></div>
-      <div class="lq-closing-actions"><a class="lq-btn lq-btn--light" href="/lien-he">Trao đổi về đề án <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a><a class="lq-closing-back" href="/">Về DCG Group <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></div>
+      <div class="lq-closing-actions"><a class="lq-btn lq-btn--light" href="/lien-he?topic=lumiqc">Trao đổi về đề án <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a><a class="lq-closing-back" href="/">Về DCG Group <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></div>
     </div>
   </section>
 </article>
