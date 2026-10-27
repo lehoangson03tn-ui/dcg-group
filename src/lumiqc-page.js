@@ -137,20 +137,69 @@ export function lumiqcPage() {
   <section class="lq-workflow lq-section" id="quy-trinh" aria-labelledby="lq-workflow-title">
     <div class="lq-wrap">
       <div class="lq-section-intro lq-section-intro--dark"><p class="lq-overline">03 / LUỒNG VẬN HÀNH LIÊN THÔNG</p><h2 id="lq-workflow-title">Một hành trình nguyên liệu <em>ba cấp độ kiểm soát</em></h2><p>Sơ đồ mô tả luồng thiết kế từ bếp trung tâm đến chi nhánh và bộ phận QA/QC; không mô tả việc đã triển khai tại bếp thật.</p></div>
-      <div class="lq-swimlanes" aria-label="Ba làn quy trình của kiến trúc LUMIQC">
-        <div class="lq-swimlane">
-          <div class="lq-lane-owner"><span>01 / ORIGIN</span><h3>Bếp trung tâm</h3><p>Khởi tạo nguồn gốc và quy tắc</p></div>
-          <ol class="lq-lane-steps"><li><small>01</small><strong>Tiếp nhận lô</strong><span>Nhật ký nguồn gốc</span></li><li><small>02</small><strong>Sơ chế / chia hộp</strong><span>Liên kết lô – mẻ – hộp</span></li><li><small>03</small><strong>Gắn QR & SOP</strong><span>Điều chuyển chi nhánh</span></li></ol>
+      <div class="lq-swimlanes lq-flow-v2" aria-label="Ba làn quy trình của kiến trúc LUMIQC">
+        <span class="lq-flow-ornament" aria-hidden="true"></span>
+        <div class="lq-swimlane lq-swimlane--origin">
+          <div class="lq-lane-owner">
+            <div class="lq-lane-glyph"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M4 20h16M6 20V7l6-3 6 3v13M10 20v-5h4v5M9 10h.01M15 10h.01"/></svg></div>
+            <div class="lq-lane-owner-copy"><span class="lq-lane-meta">01 / ORIGIN</span><h3>Bếp trung tâm</h3><p>Khởi tạo nguồn gốc và quy tắc</p></div>
+          </div>
+          <ol class="lq-lane-steps">
+            <li class="lq-flow-step">
+              <small class="lq-step-number">01</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="m12 3 9 4.5v9L12 21l-9-4.5v-9L12 3ZM3 7.5l9 5 9-5M12 12.5V21"/></svg></span>
+              <div class="lq-flow-text"><strong>Tiếp nhận lô</strong><span>Nhật ký nguồn gốc</span></div>
+            </li>
+            <li class="lq-flow-step">
+              <small class="lq-step-number">02</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M3 6h18M5 10h14M7 14h10M9 18h6M7 6l2 4M17 6l-2 4"/></svg></span>
+              <div class="lq-flow-text"><strong>Sơ chế / chia hộp</strong><span>Liên kết lô – mẻ – hộp</span></div>
+            </li>
+            <li class="lq-flow-step">
+              <small class="lq-step-number">03</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M6 6h1M17 6h1M6 17h1M14 14h3v3h-3v4h7v-4h-4M19 12h2"/></svg></span>
+              <div class="lq-flow-text"><strong>Gắn QR & SOP</strong><span>Điều chuyển chi nhánh</span></div>
+            </li>
+          </ol>
         </div>
         <div class="lq-lane-down" aria-hidden="true"><svg viewBox="0 0 24 36"><path d="M12 1v33m-8-8 8 8 8-8"/></svg></div>
-        <div class="lq-swimlane">
-          <div class="lq-lane-owner"><span>02 / FRONTLINE</span><h3>Chi nhánh F&B</h3><p>Ghi nhận sự kiện trong ca</p></div>
-          <ol class="lq-lane-steps"><li><small>04</small><strong>Quét nhận hàng</strong><span>Kiểm soát FEFO / FIFO</span></li><li><small>05</small><strong>TAKE / RETURN</strong><span>Thời gian theo SOP</span></li><li><small>06</small><strong>Checklist & bàn giao</strong><span>Ảnh, nhật ký, cảnh báo</span></li></ol>
+        <div class="lq-swimlane lq-swimlane--frontline">
+          <div class="lq-lane-owner">
+            <div class="lq-lane-glyph"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M3 10h18l-2-6H5l-2 6ZM5 10v10h14V10M9 20v-6h6v6M3 10c0 2 3 2 4 0 1 2 4 2 5 0 1 2 4 2 5 0 1 2 4 2 4 0"/></svg></div>
+            <div class="lq-lane-owner-copy"><span class="lq-lane-meta">02 / FRONTLINE</span><h3>Chi nhánh F&B</h3><p>Ghi nhận sự kiện trong ca</p></div>
+          </div>
+          <ol class="lq-lane-steps">
+            <li class="lq-flow-step">
+              <small class="lq-step-number">04</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3M21 16v3a2 2 0 0 1-2 2h-3M3 12h18"/></svg></span>
+              <div class="lq-flow-text"><strong>Quét nhận hàng</strong><span>Kiểm soát FEFO / FIFO</span></div>
+            </li>
+            <li class="lq-flow-step">
+              <small class="lq-step-number">05</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M4 7h16m-5-5 5 5-5 5M20 17H4m5-5-5 5 5 5"/></svg></span>
+              <div class="lq-flow-text"><strong>TAKE / RETURN</strong><span>Thời gian theo SOP</span></div>
+            </li>
+            <li class="lq-flow-step">
+              <small class="lq-step-number">06</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M9 4h6M9 3H6a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-3M8 10l2 2 3-3M14 11h3M8 17l2 2 3-3M14 18h3"/></svg></span>
+              <div class="lq-flow-text"><strong>Checklist & bàn giao</strong><span>Ảnh, nhật ký, cảnh báo</span></div>
+            </li>
+          </ol>
         </div>
         <div class="lq-lane-down lq-lane-down--warn" aria-hidden="true"><svg viewBox="0 0 24 36"><path d="M12 1v33m-8-8 8 8 8-8"/></svg><span>NẾU PHÁT SINH NGOẠI LỆ</span></div>
         <div class="lq-swimlane lq-swimlane--qc">
-          <div class="lq-lane-owner"><span>03 / GOVERNANCE</span><h3>QA/QC trung tâm</h3><p>Xác minh và quyết định</p></div>
-          <ol class="lq-lane-steps"><li><small>07</small><strong>HOLD</strong><span>Giữ hàng, yêu cầu bằng chứng</span></li><li><small>08</small><strong>Thẩm định hồ sơ</strong><span>Kiểm tra SOP và lịch sử</span></li><li class="lq-lane-outcome"><small>09</small><strong>RELEASE / HỦY</strong><span>Quyết định có người chịu trách nhiệm</span></li></ol>
+          <div class="lq-lane-owner">
+            <div class="lq-lane-glyph"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"/><path d="m8 12 3 3 5-6"/></svg></div>
+            <div class="lq-lane-owner-copy"><span class="lq-lane-meta">03 / GOVERNANCE</span><h3>QA/QC trung tâm</h3><p>Xác minh và quyết định</p></div>
+          </div>
+          <ol class="lq-lane-steps">
+            <li class="lq-flow-step lq-flow-step--hold">
+              <small class="lq-step-number">07</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5M12 17h.01"/></svg></span>
+              <div class="lq-flow-text"><strong>HOLD</strong><span>Giữ hàng, yêu cầu bằng chứng</span></div>
+            </li>
+            <li class="lq-flow-step">
+              <small class="lq-step-number">08</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M13 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h9M13 2v6h6M13 2l6 6v5M7 12h7M7 16h4M18 21l3 3M16 20a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span>
+              <div class="lq-flow-text"><strong>Thẩm định hồ sơ</strong><span>Kiểm tra SOP và lịch sử</span></div>
+            </li>
+            <li class="lq-flow-step lq-lane-outcome lq-flow-step--release">
+              <small class="lq-step-number">09</small><span class="lq-flow-symbol"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7 12 3.5 3.5L17 9"/></svg></span>
+              <div class="lq-flow-text"><strong>RELEASE / HỦY</strong><span>Quyết định có người chịu trách nhiệm</span></div>
+            </li>
+          </ol>
         </div>
       </div>
       <p class="lq-workflow-caption">NGUYÊN TẮC: Trạng thái dữ liệu, trạng thái bảo quản và trường hợp thiếu bằng chứng cần được phân biệt khi đánh giá. Ảnh nền là hình minh họa AI, không phải ảnh bếp triển khai thực tế.</p>
