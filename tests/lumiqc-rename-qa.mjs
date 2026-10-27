@@ -8,6 +8,7 @@ const routes=[
   ['/giai-phap','LUMIQC'],
   ['/du-an','LUMIQC'],
   ['/lien-he','DCG GROUP'],
+  ['/lien-he?topic=lumiqc','DCG GROUP'],
   ['/thong-tin-du-lieu','Thông tin xử lý dữ liệu'],
   ['/du-an/lumiqc','LUMIQC'],
   ['/giai-phap/lumiqc','LUMIQC'],
@@ -191,6 +192,9 @@ try{
           })));
           assert.ok(headings.every(x=>x.lineHeight>=1.22),'Vietnamese headings need adequate line height '+JSON.stringify(headings));
         }
+        if(route==='/lien-he?topic=lumiqc'){
+          assert.equal(await page.locator('#contact-topic').inputValue(),'LUMIQC – ĐÀN CÁ GỖ','project CTA should preselect the topic');
+        }
         if(route==='/lien-he'){
           assert.equal(await page.locator('#contact-form').count(),1,'contact form available');
           assert.equal(await page.locator('input[name="consent"][required]').count(),1,'mandatory data-use consent');
@@ -215,6 +219,19 @@ try{
           await page.locator('#form-status[data-state="success"]').waitFor({timeout:6000});
           assert.ok((await page.locator('#form-status').textContent()).includes('Gửi thành công'),'positive user feedback');
           assert.equal(await page.locator('#contact-email').inputValue(),'','reset after successful send');
+          await page.unrouteAll();
+          // A server error must not clear the visitor's message or falsely report success.
+          await page.route('https://mbynmifozkuvwoghvewi.supabase.co/functions/v1/dcg-contact-submit',async route=>{
+            await route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({ok:false,error:'Kênh đang bận'})});
+          });
+          await page.locator('#contact-name').fill('Nguyen Van Demo');
+          await page.locator('#contact-email').fill('test@invalid.example');
+          await page.locator('#contact-note').fill('Xin trao đổi về trường hợp cần kiểm soát ngoại lệ từ chi nhánh.');
+          await page.locator('.contact-consent input').check();
+          await page.locator('.contact-form button[type="submit"]').click();
+          await page.locator('#form-status[data-state="error"]').waitFor({timeout:6000});
+          assert.ok((await page.locator('#form-status').textContent()).includes('Kênh đang bận'),'API errors are visible');
+          assert.equal(await page.locator('#contact-email').inputValue(),'test@invalid.example','retain form data when send fails');
           await page.unrouteAll();
         }
         if(route.includes('mat-than-ai')){
