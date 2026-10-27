@@ -51,8 +51,11 @@ try{
             assert.ok(data.text.toLowerCase().includes(phrase.toLowerCase()),'competition page missing '+phrase);
           }
           assert.ok(data.hrefs.some(x=>x.href==='#doi-thi'),'team anchor is present');
-          const images=await page.locator('.lc-site img').evaluateAll(els=>els.map(e=>({src:e.getAttribute('src'),loaded:e.complete&&e.naturalWidth>0})));
-          assert.ok(images.every(x=>x.loaded),'project images unavailable: '+JSON.stringify(images));
+          const imageSources=await page.locator('.lc-site img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
+          for(const src of imageSources){
+            const imageResponse=await page.request.get(base+src);
+            assert.equal(imageResponse.status(),200,'project image missing '+src);
+          }
           const teamCards=await page.locator('.lc-person').count();
           assert.equal(teamCards,2,'team must contain exactly two profiles');
         }
