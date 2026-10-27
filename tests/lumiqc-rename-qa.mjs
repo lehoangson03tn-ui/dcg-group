@@ -124,7 +124,7 @@ try{
           assert.equal(visualRules.closingCopy,'rgb(59, 79, 96)','light closing body copy should be readable slate');
           assert.equal(visualRules.workflowBackground,'rgb(11, 28, 37)','workflow dark background should be unified');
           assert.equal(visualRules.closingBackground,'rgb(246, 251, 250)','closing should switch to fresh light background');
-          assert.equal(visualRules.workflowCardBackground,'rgb(21, 46, 58)','workflow tiles need a distinct readable panel shade');
+          assert.equal(visualRules.workflowCardBackground,'rgb(25, 59, 78)','workflow tiles need vibrant but readable blue-teal');
           assert.equal(visualRules.workflowCardTitle,'rgb(248, 250, 252)','workflow tile titles should be bright white');
           assert.equal(visualRules.closingButtonBackground,'rgb(201, 240, 228)','closing CTA should visibly contrast dark background');
           assert.ok(visualRules.workflowIntroFont>=15,'workflow explanation too small');
@@ -134,6 +134,21 @@ try{
 
 
           assert.equal(await page.locator('.lq-swimlane').count(),3,'three operational swimlanes');
+          assert.equal(await page.locator('.lq-flow-v2 .lq-flow-step').count(),9,'workflow must include nine real HTML steps');
+          assert.equal(await page.locator('.lq-flow-v2 .lq-lane-glyph svg').count(),3,'three lane identity icons');
+          assert.equal(await page.locator('.lq-flow-v2 .lq-flow-symbol svg').count(),9,'all nine steps have illustrative SVG icons');
+          assert.equal(await page.locator('.lq-flow-v2 .lq-flow-step--hold').count(),1,'HOLD state has unique styling');
+          assert.equal(await page.locator('.lq-flow-v2 .lq-flow-step--release').count(),1,'decision state has unique styling');
+          const processCards=await page.locator('.lq-flow-v2 .lq-flow-step').evaluateAll(nodes=>nodes.map(el=>({
+            width:el.getBoundingClientRect().width,
+            height:el.getBoundingClientRect().height,
+            title:el.querySelector('strong')?.textContent?.trim(),
+            titleColor:getComputedStyle(el.querySelector('strong')).color,
+            hasIcon:!!el.querySelector('svg'),
+            lane:el.closest('.lq-swimlane')?.className
+          })));
+          assert.ok(processCards.every(x=>x.width>90&&x.height>70),'workflow steps are too small '+JSON.stringify(processCards));
+          assert.ok(processCards.every(x=>x.titleColor==='rgb(248, 250, 252)'),'workflow step title not readable '+JSON.stringify(processCards));
           assert.equal(await page.locator('.lq-tablist [role="tab"]').count(),3,'three product concepts');
           await page.locator('#lq-tab-check').click();
           assert.equal(await page.locator('#lq-tab-check').getAttribute('aria-selected'),'true','checklist tab selected');
