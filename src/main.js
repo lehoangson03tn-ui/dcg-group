@@ -289,14 +289,14 @@ ${b.slug==='studio'?`<figure class="studio-support-photo"><img src="${A}editoria
 </div></section>
 <section class="page-section detail-faq"><div class="container">${sectionTop("04","CÂU HỎI THƯỜNG GẶP")}
 <details><summary>${b.name} đã cung cấp đầy đủ dịch vụ thương mại chưa?</summary><p>Các năng lực và dự án hiện được giới thiệu theo định hướng phát triển; từng sản phẩm chỉ được xác nhận sẵn sàng khi có thông tin triển khai thực tế.</p></details>
-<details><summary>Tôi có thể trao đổi một nhu cầu cụ thể không?</summary><p>Bạn có thể chuẩn bị nội dung tại trang liên hệ. Biểu mẫu hiện hỗ trợ sao chép lời nhắn và chưa gửi tự động đến DCG.</p></details>
+<details><summary>Tôi có thể trao đổi một nhu cầu cụ thể không?</summary><p>Bạn có thể gửi lời nhắn trực tiếp tại trang Liên hệ. Khi hệ thống tiếp nhận thành công, nội dung sẽ được lưu trong hộp thư riêng của DCG Group.</p></details>
 </div></section>
 <section class="page-section related-brands"><div class="container">${sectionTop("05","KHÁM PHÁ THÊM")}
 <h2>Thương hiệu liên quan</h2><div class="related-grid">${brands.filter(x=>x.slug!==b.slug).map(brandTile).join("")}</div></div></section>
 ${endBanner()}
 `;}
 function eye(){return `${innerHero('DCG VISION · DỰ ÁN NGHIÊN CỨU','LUMIQC — AI Visual Quality Control','Nghiên cứu ứng dụng camera AI nhằm hỗ trợ nhân sự quan sát chất lượng và quy trình.',brands[2].image)}<section class="page-section"><div class="container">${sectionTop('01','GIỚI THIỆU DỰ ÁN')}<div class="editorial-content"><div>${eyebrow('THỊ GIÁC MÁY TÍNH')}<h2>Hỗ trợ quan sát Không thay thế con người</h2></div><div><p class="lead">Những dấu hiệu AI phát hiện cần được xác minh trong bối cảnh thực tế.</p><p>LUMIQC là dự án nghiên cứu của DCG VISION, hướng đến hỗ trợ hoạt động QA/QC ngành thực phẩm và đồ uống. Dự án nghiên cứu khả năng dùng hình ảnh camera để nhận biết các điểm cần kiểm tra trong quá trình vận hành.</p><p>Đây là dự án đang phát triển, chưa công bố tỷ lệ chính xác hay kết quả triển khai thương mại khi chưa có kiểm định thực tế.</p>${cta('TÌM HIỂU DCG VISION','/vision')}</div></div></div></section>${endBanner()}`}
-function contact(){return `${innerHero('LIÊN HỆ · DCG GROUP','Bắt đầu một cuộc trò chuyện','Mọi ý tưởng hợp tác đều bắt đầu từ việc lắng nghe và trao đổi rõ ràng.')}<section class="page-section"><div class="container">${sectionTop('01','THÔNG TIN KẾT NỐI')}<div class="contact-layout"><div><h2>Cùng trao đổi về điều bạn đang cần</h2><p>Hãy chuẩn bị lời nhắn về lĩnh vực bạn quan tâm. Hiện website chưa công bố địa chỉ tiếp nhận chính thức nên biểu mẫu chỉ giúp soạn và sao chép nội dung, không tự gửi hay lưu thông tin.</p><div class="contact-nav">${brands.map(b=>`<a href="/${b.slug}">${b.name} <span aria-hidden="true">↗</span></a>`).join('')}</div></div><form id="contact-form" class="contact-form"><p class="form-label">SOẠN LỜI NHẮN HỢP TÁC</p><label for="contact-name">Họ và tên *</label><input required minlength="2" maxlength="120" name="name" id="contact-name" autocomplete="name" placeholder="Tên người liên hệ"><label for="contact-email">Email *</label><input required type="email" maxlength="200" name="email" id="contact-email" autocomplete="email" placeholder="name@example.com"><label for="contact-topic">Lĩnh vực quan tâm</label><select name="topic" id="contact-topic"><option>DCG GROUP</option>${brands.map(b=>`<option>${b.name}</option>`).join('')}</select><label for="contact-note">Nội dung *</label><textarea required minlength="10" maxlength="4000" rows="5" name="note" id="contact-note" placeholder="Nhu cầu hoặc ý tưởng cần trao đổi"></textarea><button type="submit">SAO CHÉP LỜI NHẮN ↗</button><p class="form-status" id="form-status" role="status">Dữ liệu không được gửi lên máy chủ từ biểu mẫu này.</p></form></div></div></section>`}
+function contact(){return `${innerHero('LIÊN HỆ · DCG GROUP','Bắt đầu một cuộc trò chuyện','Mọi ý tưởng hợp tác đều bắt đầu từ việc lắng nghe và trao đổi rõ ràng.')}<section class="page-section"><div class="container">${sectionTop('01','THÔNG TIN KẾT NỐI')}<div class="contact-layout"><div><h2>Cùng trao đổi về điều bạn đang cần</h2><p>Điền thông tin bên dưới để gửi trực tiếp lời nhắn đến DCG Group. Nội dung được lưu trong hệ thống tiếp nhận riêng để đội ngũ xem xét và phản hồi qua email khi phù hợp.</p><div class="contact-nav">${brands.map(b=>`<a href="/${b.slug}">${b.name} <span aria-hidden="true">↗</span></a>`).join('')}</div></div><form id="contact-form" class="contact-form"><p class="form-label">GỬI LỜI NHẮN TRỰC TIẾP</p><label for="contact-name">Họ và tên *</label><input required minlength="2" maxlength="120" name="name" id="contact-name" autocomplete="name" placeholder="Tên người liên hệ"><label for="contact-email">Email *</label><input required type="email" maxlength="200" name="email" id="contact-email" autocomplete="email" placeholder="name@example.com"><label for="contact-topic">Lĩnh vực quan tâm</label><select name="topic" id="contact-topic"><option>DCG GROUP</option><option>LUMIQC – ĐÀN CÁ GỖ</option>${brands.map(b=>`<option>${b.name}</option>`).join('')}</select><label for="contact-note">Nội dung *</label><textarea required minlength="10" maxlength="4000" rows="5" name="note" id="contact-note" placeholder="Nhu cầu hoặc ý tưởng cần trao đổi"></textarea><div class="contact-honeypot" aria-hidden="true"><label for="contact-website">Website</label><input id="contact-website" name="website" tabindex="-1" autocomplete="off"></div><label class="contact-consent"><input required type="checkbox" name="consent" value="yes"><span>Tôi đồng ý để DCG Group lưu và sử dụng thông tin đã cung cấp nhằm liên hệ, xử lý yêu cầu. Không gửi mật khẩu hoặc dữ liệu nhạy cảm.</span></label><button type="submit">GỬI LỜI NHẮN ↗</button><p class="form-status" id="form-status" role="status" aria-live="polite">Lời nhắn sẽ được lưu khi bạn nhấn gửi thành công.</p></form></div></div></section>`}
 const solutions=[
  {slug:"dcg-growmatch",name:"DCG GROWMATCH",branch:"DCG TALENT",state:"Sản phẩm có website riêng",summary:"Nền tảng hỗ trợ đánh giá, đối sánh và phát triển năng lực nghề nghiệp.",detail:"DCG GROWMATCH phát triển các chức năng hồ sơ ứng viên, bài đánh giá và luyện kỹ năng. Khả năng hoạt động từng tính năng phải được xác nhận trên hệ thống sản phẩm riêng.",img:brands[0].image,link:"https://dcg-growmatch.vercel.app",external:true},
  {slug:"sang-tao-video-ai",name:"Sáng tạo video AI & CGI",branch:"DCG STUDIO",state:"Định hướng phát triển",summary:"Khám phá các phương pháp ứng dụng AI trong hình ảnh chuyển động và nội dung thương mại.",detail:"Định hướng phát triển kịch bản, ý tưởng, hình ảnh và video với AI. Chưa công bố biểu giá, năng lực sản xuất hay số lần chỉnh sửa khi chưa được phê duyệt.",img:brands[1].image},
@@ -331,7 +331,7 @@ ${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Giải pháp",href:"/giai-pha
 function projectsPage(){return `<section class="directory-intro"><div class="container">${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Dự án"}])}<p class="eyebrow">DCG GROUP / DỰ ÁN</p><h1>Dự án và sản phẩm</h1><p class="directory-subtitle">Các dự án được giới thiệu với trạng thái rõ ràng, không dùng số liệu thành tựu chưa có bằng chứng.</p>
 <div class="solution-grid">${[solutions[0],solutions[2]].map(p=>solutionCard(p,"/du-an","Đọc giới thiệu dự án")).join("")}</div></div></section>`;}
 function projectDetail(item){return `<section class="directory-intro"><div class="container">${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Dự án",href:"/du-an"},{name:item.name}])}<p class="eyebrow">${esc(item.branch)} / ${esc(item.state)}</p><h1>${esc(item.name)}</h1><p class="directory-subtitle">${esc(item.summary)}</p><div class="solution-detail"><article><figure class="editorial-project-figure editorial-project-figure--${item.slug}">${solutionVisual(item)}</figure><h2>Bối cảnh và mục tiêu</h2><p>${esc(item.detail)}</p><h2>Giới hạn bằng chứng</h2><p>Trang này giới thiệu phạm vi và định hướng dự án. Chưa công bố số liệu kết quả, chứng nhận, hợp đồng hay trường hợp khách hàng thực tế khi không có nguồn kiểm chứng đi kèm.</p></article><aside class="solution-aside"><h3>Trao đổi dự án</h3>${cta("LIÊN HỆ HỢP TÁC","/lien-he","button-dark")}</aside></div></div></section>${item.slug==='dcg-growmatch'?growmatchRecognitionArticle():''}`;}
-function dataInfo(){return `<section class="directory-intro"><div class="container">${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Thông tin xử lý dữ liệu"}])}<p class="eyebrow">DCG GROUP / THÔNG TIN DỮ LIỆU</p><h1>Thông tin xử lý dữ liệu trên website</h1><div class="data-info"><h2>Biểu mẫu liên hệ</h2><p>Biểu mẫu tại trang liên hệ hiện giúp người dùng soạn và sao chép thông tin ngay trên thiết bị. Trang này chưa kết nối backend tiếp nhận, không lưu nội dung biểu mẫu lên máy chủ DCG qua chức năng đó.</p><h2>Website bên ngoài</h2><p>Liên kết đến DCG GROWMATCH và các website bên ngoài sẽ đưa bạn sang hệ thống khác với phương thức xử lý dữ liệu riêng. Hãy kiểm tra chính sách trên hệ thống đích trước khi cung cấp thông tin.</p><h2>Giới hạn</h2><p>Đây là thông tin về cách hoạt động hiện tại của biểu mẫu, chưa phải một chính sách bảo mật pháp lý hoàn chỉnh. Các thông tin về analytics, cookie và nhà cung cấp hạ tầng cần được xác minh và bổ sung trước khi công bố chính sách đầy đủ.</p></div></div></section>`;}
+function dataInfo(){return `<section class="directory-intro"><div class="container">${breadcrumb([{name:"Trang chủ",href:"/"},{name:"Thông tin xử lý dữ liệu"}])}<p class="eyebrow">DCG GROUP / THÔNG TIN DỮ LIỆU</p><h1>Thông tin xử lý dữ liệu trên website</h1><div class="data-info"><h2>Biểu mẫu liên hệ</h2><p>Biểu mẫu liên hệ gửi tên, email, lĩnh vực quan tâm và nội dung tới API tiếp nhận của DCG Group trên Supabase; dữ liệu được lưu trong bảng riêng dcg_contact_messages, không nằm trong các bảng tuyển dụng hoặc đánh giá của DCG GROWMATCH. Hệ thống sử dụng mã băm mạng để hạn chế spam, không công khai dữ liệu liên hệ cho khách truy cập. Người gửi có thể đề nghị xem, sửa hoặc xóa thông tin qua kênh phản hồi khi được thiết lập.</p><h2>Website bên ngoài</h2><p>Liên kết đến DCG GROWMATCH và các website bên ngoài sẽ đưa bạn sang hệ thống khác với phương thức xử lý dữ liệu riêng. Hãy kiểm tra chính sách trên hệ thống đích trước khi cung cấp thông tin.</p><h2>Giới hạn</h2><p>Đây là mô tả kỹ thuật về biểu mẫu, chưa phải chính sách bảo mật pháp lý hoàn chỉnh. Nhà cung cấp hạ tầng xử lý lưu trữ là Supabase; email thông báo chỉ hoạt động khi được cấu hình. Những nội dung về thời gian lưu giữ, quy trình thực hiện yêu cầu dữ liệu, analytics và cookie cần tiếp tục được rà soát trước khi công bố chính sách đầy đủ.</p></div></div></section>`;}
 
 function setMenuState(open){
  const btn=document.getElementById('nav-toggle'),menu=document.getElementById('mobile-menu');
@@ -356,5 +356,50 @@ function init(){const requestedPath=location.pathname.replace(/\/$/,'')||'/';if(
 document.getElementById('app').innerHTML=shell(content,path);if(location.hash){const anchor=document.getElementById(decodeURIComponent(location.hash.slice(1)));anchor?.scrollIntoView({block:'start',behavior:'instant'});}document.title=(brand?.name||solution?.name||project?.name||(path==='/ve-dcg'||path==='/gioi-thieu'?'Giới thiệu':path==='/he-sinh-thai'?'Hệ sinh thái':path==='/giai-phap'?'Giải pháp':path==='/du-an'?'Dự án':path==='/lien-he'?'Liên hệ':path==='/thong-tin-du-lieu'?'Thông tin dữ liệu':'DCG GROUP'))+' | DCG GROUP';
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+path;
- if(path==='/du-an/lumiqc')initLumiqcPage();if(path==='/he-sinh-thai')initBrandSearch();if(path==='/du-an/dcg-growmatch')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');if(form)form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const data=new FormData(form),msg=`ĐỀ NGHỊ HỢP TÁC — DCG GROUP\n\nHọ tên: ${data.get('name')}\nEmail: ${data.get('email')}\nLĩnh vực: ${data.get('topic')}\n\nNội dung:\n${data.get('note')}`;const status=document.getElementById('form-status');try{await navigator.clipboard.writeText(msg);status.textContent='Đã sao chép lời nhắn. Bạn có thể dán vào kênh liên hệ chính thức khi được công bố.';}catch{const t=document.createElement('textarea');t.rows=9;t.readOnly=true;t.value=msg;status.replaceChildren(t);t.select();}})}
+ if(path==='/du-an/lumiqc')initLumiqcPage();if(path==='/he-sinh-thai')initBrandSearch();if(path==='/du-an/dcg-growmatch')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');
+  if(form) form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    const button=form.querySelector('button[type="submit"]');
+    const status=document.getElementById('form-status');
+    if(button.disabled) return;
+    const data=new FormData(form);
+    const payload={
+      name:String(data.get('name')||'').trim(),
+      email:String(data.get('email')||'').trim(),
+      topic:String(data.get('topic')||'DCG GROUP'),
+      note:String(data.get('note')||'').trim(),
+      website:String(data.get('website')||'')
+    };
+    button.disabled=true;
+    button.textContent='ĐANG GỬI…';
+    status.textContent='Đang gửi lời nhắn đến hệ thống tiếp nhận…';
+    status.dataset.state='sending';
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),16000);
+    try{
+      const response=await fetch('https://mbynmifozkuvwoghvewi.supabase.co/functions/v1/dcg-contact-submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        signal:controller.signal,
+        body:JSON.stringify(payload)
+      });
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok||!result.ok) throw new Error(result.error||'Chưa thể gửi lời nhắn. Vui lòng thử lại.');
+      status.textContent='Gửi thành công! Lời nhắn đã được lưu trong hộp thư DCG Group. Chúng tôi sẽ xem xét và phản hồi qua email khi phù hợp.';
+      status.dataset.state='success';
+      form.reset();
+    }catch(err){
+      status.textContent=err.name==='AbortError'
+        ? 'Kết nối hết thời gian chờ. Vui lòng kiểm tra kết quả trước khi gửi lại.'
+        : (err instanceof TypeError?'Không thể kết nối đến hệ thống. Vui lòng thử lại sau.':err.message);
+      status.dataset.state='error';
+    }finally{
+      clearTimeout(timeout);
+      button.disabled=false;
+      button.textContent='GỬI LỜI NHẮN ↗';
+    }
+  });
+}
+
 init();
