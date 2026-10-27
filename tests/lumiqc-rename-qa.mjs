@@ -79,10 +79,15 @@ try{
           assert.equal(teamCards,2,'team must contain exactly two profiles');
           assert.equal(await page.locator('.lq-team-slide').count(),2,'exactly two member slides');
           assert.equal(await page.locator('.lq-team-slide:visible').count(),1,'display one member per slide');
-          assert.equal(await page.locator('.lq-person-photo').count(),2,'actual meeting photographs on both profiles');
-          assert.equal(await page.locator('.lq-team-logo img').count(),2,'real logo on both profiles');
-          const memberAssets=await page.locator('.lq-person-photo,.lq-team-logo img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
-          assert.equal(new Set(memberAssets).size,2,'only supplied original photo and real logo');
+          assert.equal(await page.locator('.lq-person-photo').count(),2,'one confirmed portrait per member');
+          assert.equal(await page.locator('.lq-team-logo').count(),0,'floating logo badges must be removed from both profiles');
+          const memberAssets=await page.locator('.lq-person-photo').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
+          assert.equal(new Set(memberAssets).size,2,'Sơn and Huy must use different portraits');
+          assert.ok(memberAssets[0].endsWith('/lumiqc-son-portrait-website.webp'),'Sơn must use his white-shirt studio portrait');
+          assert.ok(memberAssets[1].endsWith('/lumiqc-huy-black-jacket-official-dcg-background.webp'),'Huy must use the confirmed black-jacket portrait with real DCG emblem');
+          assert.ok((await page.locator('[data-lq-member="0"] .lq-person-photo').getAttribute('alt')).includes('sơ mi trắng'),'Sơn image must be attributed correctly');
+          assert.ok((await page.locator('[data-lq-member="1"] .lq-person-photo-label').textContent()).includes('MINH HỌA AI'),'AI-edited Huy image must be labeled transparently');
+
           assert.ok(memberAssets.every(src=>src.startsWith('https://dcg-group-ecosystem.floot.app/_cdn/static/')),'team assets must be uploaded and hosted');
           assert.equal(await page.locator('.lq-team-slide:visible h3').textContent(),'Lê Hoàng Sơn','original slide shows team lead');
           await page.locator('[data-lq-member-next]').click();
@@ -98,7 +103,7 @@ try{
           if(width===1440){
             for(const img of [...new Set(memberAssets)]){
               const response=await page.request.get(img,{timeout:15000});
-              assert.equal(response.status(),200,'real team photo or logo unavailable '+img);
+              assert.equal(response.status(),200,'corrected portrait unavailable '+img);
               assert.ok(response.headers()['content-type']?.startsWith('image/'),'team asset must be image '+img);
             }
           }
