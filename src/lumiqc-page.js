@@ -243,7 +243,7 @@ export function lumiqcPage() {
           <article class="lq-person lq-team-slide" data-lq-member="0" aria-label="Thành viên 1: Lê Hoàng Sơn">
             <div class="lq-person-media">
               <img class="lq-person-photo lq-person-photo--son" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-son-portrait-website.webp" alt="Lê Hoàng Sơn mặc áo sơ mi trắng, ảnh chân dung do thành viên cung cấp" width="850" height="1153" decoding="async" loading="lazy">
-              <span class="lq-person-photo-label">ẢNH CHÂN DUNG / LÊ HOÀNG SƠN</span>
+              
             </div>
             <div class="lq-person-info">
               <span class="lq-person-count">01 / 02 · TRƯỞNG NHÓM</span>
@@ -268,7 +268,7 @@ export function lumiqcPage() {
           <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
             <div class="lq-person-media">
               <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/30e8b869-4cc0-4d9f-b31f-7ad08d2940bc-lumiqc-truong-quoc-huy-vest-user-confirmed.jpeg" alt="Chân dung biên tập của Trương Quốc Huy mặc vest đen, áo sơ mi trắng và cà vạt đen" width="1122" height="1402" decoding="async" loading="lazy">
-              <span class="lq-person-photo-label">CHÂN DUNG MINH HỌA AI / TRƯƠNG QUỐC HUY</span>
+              
             </div>
             <div class="lq-person-info">
               <span class="lq-person-count">02 / 02 · THÀNH VIÊN</span>
@@ -303,7 +303,7 @@ export function lumiqcPage() {
           <button type="button" class="lq-team-arrow" data-lq-member-next aria-controls="lq-team-track" aria-label="Thành viên tiếp theo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
         </div>
       </div>
-      <p class="lq-team-caption">Ảnh Sơn do thành viên cung cấp; chân dung vest của Huy là hình biên tập AI theo mẫu nhóm lựa chọn. Thông tin mô tả vai trò và đóng góp trong đề án, không phải thành tích hoặc chứng nhận đã được kiểm chứng độc lập.</p>
+      
     </div>
   </section>
 
