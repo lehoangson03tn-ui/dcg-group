@@ -44,7 +44,7 @@ try{
         assert.ok(!data.text.includes(';'),'semicolon remains in main page copy: '+route);
         assert.ok(!data.visibleText.includes(';'),'semicolon remains in visible site text: '+route);
         const competitionSpelling=[...data.visibleText.matchAll(/vecom/gi)].map(m=>m[0]);
-        assert.ok(competitionSpelling.every(x=>x==='VECoM'),'competition brand must use VECoM consistently: '+route+' '+competitionSpelling);
+        assert.ok(competitionSpelling.every(x=>x==='Vecom'),'competition brand must use Vecom consistently: '+route+' '+competitionSpelling);
         assert.ok(data.overflow<=2,'horizontal overflow '+width+' '+route+': '+data.overflow);
         assert.equal(errors.length,0,'JavaScript errors '+route+' '+errors.join('; '));
         if(route==='/'){
@@ -58,7 +58,7 @@ try{
           assert.ok(data.title.includes('LUMIQC'),'browser title updated '+route);
         }
         if(route==='/du-an/lumiqc'){
-          for(const phrase of ['ĐÀN CÁ GỖ','Lê Hoàng Sơn','Trương Quốc Huy','Trace-Safe','Policy-Time Twin','HOLD/RELEASE','VECoM']){
+          for(const phrase of ['ĐÀN CÁ GỖ','Lê Hoàng Sơn','Trương Quốc Huy','Trace-Safe','Policy-Time Twin','HOLD/RELEASE','Vecom']){
             assert.ok(data.text.toLowerCase().includes(phrase.toLowerCase()),'competition page missing '+phrase);
           }
           assert.ok(data.hrefs.some(x=>x.href==='#doi-thi'),'team anchor is present');
@@ -303,7 +303,7 @@ try{
       assert.equal(response.status(),200,'site copy route should load '+route);
       const content=await copyPage.evaluate(()=>document.body.innerText);
       assert.ok(!content.includes(';'),'semicolon remains on site route '+route);
-      assert.ok([...content.matchAll(/vecom/gi)].every(x=>x[0]==='VECoM'),'incorrect VECoM spelling on '+route);
+      assert.ok([...content.matchAll(/vecom/gi)].every(x=>x[0]==='Vecom'),'incorrect Vecom spelling on '+route);
     }
   }finally{await copyPage.close();}
 }finally{await browser.close()}
