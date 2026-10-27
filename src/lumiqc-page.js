@@ -44,7 +44,7 @@ export function lumiqcPage() {
           <div class="lq-sample-item lq-sample-item--policy">
             <div class="lq-sample-top"><span class="lq-sample-tag">02 / POLICY-TIME TWIN</span><span class="lq-state lq-state--warn">CẢNH BÁO SOP</span></div>
             <div class="lq-sample-row"><div><strong>Giám sát thời gian ngoài bảo quản</strong><p>TAKE → Theo dõi → RETURN</p></div><span class="lq-sample-time">45<span>phút*</span></span></div>
-            <div class="lq-meter"><span></span></div><small class="lq-meter-caption">*Ngưỡng ví dụ phục vụ hình dung; phải được xác nhận bằng SOP thực tế.</small>
+            <div class="lq-meter"><span></span></div><small class="lq-meter-caption">*Ngưỡng ví dụ phục vụ hình dung, phải được xác nhận bằng SOP thực tế.</small>
           </div>
           <div class="lq-sample-connector"><span>Ngoại lệ cần xác minh</span></div>
           <div class="lq-sample-item lq-sample-item--evidence">
@@ -90,7 +90,7 @@ export function lumiqcPage() {
           <div class="lq-lineage-stage"><small>SƠ CHẾ / CHIA MẺ</small><strong>PREP-DEMO-04</strong><span>Nhật ký + quy tắc SOP</span></div>
           <div class="lq-lineage-split" aria-hidden="true"></div>
           <div class="lq-lineage-pair"><div><small>HỘP A</small><strong>BOX-04A</strong><span>Chi nhánh 01</span></div><div><small>HỘP B</small><strong>BOX-04B</strong><span>Chi nhánh 02</span></div></div>
-          <p>Liên kết nguồn gốc được giữ khi chia hộp; thao tác sử dụng và hủy tạo thành nhật ký riêng.</p>
+          <p>Liên kết nguồn gốc được giữ khi chia hộp, thao tác sử dụng và hủy tạo thành nhật ký riêng.</p>
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export function lumiqcPage() {
           <div class="lq-gate-evidence"><span class="lq-gate-index">01</span><div><strong>Chi nhánh ghi nhận ngoại lệ</strong><small>Ảnh hiện trường · Nhật ký TAKE/RETURN · Lý do</small></div></div>
           <div class="lq-gate-evidence"><span class="lq-gate-index">02</span><div><strong>QA/QC trung tâm xem xét</strong><small>Đối chiếu SOP, hồ sơ lô và bằng chứng</small></div></div>
           <div class="lq-gate-decision"><div><span class="lq-state lq-state--release">RELEASE</span><strong>Chấp thuận có căn cứ</strong></div><div><span class="lq-state lq-state--hold">BÁO HỦY</span><strong>Xử lý có kiểm soát</strong></div></div>
-          <p>RELEASE không được suy ra tự động chỉ từ ảnh; phải qua người có thẩm quyền và SOP hợp lệ.</p>
+          <p>RELEASE không được suy ra tự động chỉ từ ảnh, phải qua người có thẩm quyền và SOP hợp lệ.</p>
         </div>
       </div>
 
@@ -136,7 +136,7 @@ export function lumiqcPage() {
 
   <section class="lq-workflow lq-section" id="quy-trinh" aria-labelledby="lq-workflow-title">
     <div class="lq-wrap">
-      <div class="lq-section-intro lq-section-intro--dark"><p class="lq-overline">03 / LUỒNG VẬN HÀNH LIÊN THÔNG</p><h2 id="lq-workflow-title">Một hành trình nguyên liệu <em>ba cấp độ kiểm soát</em></h2><p>Sơ đồ mô tả luồng thiết kế từ bếp trung tâm đến chi nhánh và bộ phận QA/QC; không mô tả việc đã triển khai tại bếp thật.</p></div>
+      <div class="lq-section-intro lq-section-intro--dark"><p class="lq-overline">03 / LUỒNG VẬN HÀNH LIÊN THÔNG</p><h2 id="lq-workflow-title">Một hành trình nguyên liệu <em>ba cấp độ kiểm soát</em></h2><p>Sơ đồ mô tả luồng thiết kế từ bếp trung tâm đến chi nhánh và bộ phận QA/QC, không mô tả việc đã triển khai tại bếp thật.</p></div>
       <div class="lq-swimlanes lq-flow-v2" aria-label="Ba làn quy trình của kiến trúc LUMIQC">
         <span class="lq-flow-ornament" aria-hidden="true"></span>
         <div class="lq-swimlane lq-swimlane--origin">
@@ -274,7 +274,7 @@ export function lumiqcPage() {
               <span class="lq-person-count">02 / 02 · THÀNH VIÊN</span>
               <h3>Trương Quốc Huy</h3>
               <p class="lq-person-badge">Thành viên · ĐÀN CÁ GỖ</p>
-              <p>Phối hợp nghiên cứu kiến trúc giải pháp và luồng vận hành; kết nối định hướng LUMIQC với DCG Vision.</p>
+              <p>Phối hợp nghiên cứu kiến trúc giải pháp và luồng vận hành, kết nối định hướng LUMIQC với DCG Vision.</p>
               <div class="lq-team-detail">
                 <p class="lq-team-detail-title">TRÁCH NHIỆM & ĐÓNG GÓP</p>
                 <ul>
