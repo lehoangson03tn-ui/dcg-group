@@ -16,6 +16,10 @@ const routes=[
   ['/giai-phap/mat-than-ai','LUMIQC'],
   ['/mat-than-ai','LUMIQC'],
 ];
+const remainingCopyRoutes=['/ve-dcg','/gioi-thieu','/he-sinh-thai',
+  '/he-sinh-thai/dcg-talent','/he-sinh-thai/dcg-studio',
+  '/he-sinh-thai/dcg-entertainment','/giai-phap/dcg-growmatch',
+  '/du-an/dcg-growmatch'];
 const browser=await chromium.launch({headless:true});
 const failures=[];
 try{
@@ -31,12 +35,16 @@ try{
           return {text:main?.textContent||'',html:main?.innerHTML||'',h1:main?.querySelectorAll('h1').length||0,title:document.title,
            canonical:document.querySelector('link[rel="canonical"]')?.href,
            hrefs:[...main.querySelectorAll('a[href]')].map(e=>({text:e.textContent.trim(),href:e.getAttribute('href')})),
-           overflow:document.documentElement.scrollWidth-window.innerWidth,
+           visibleText:document.body.innerText,overflow:document.documentElement.scrollWidth-window.innerWidth,
            path:location.pathname};
         });
         assert.equal(data.h1,1,'one H1 '+route);
         assert.ok(data.text.includes(term),'LUMIQC displayed '+route);
         assert.ok(!data.text.includes('Mắt Thần'),'old public name found '+route);
+        assert.ok(!data.text.includes(';'),'semicolon remains in main page copy: '+route);
+        assert.ok(!data.visibleText.includes(';'),'semicolon remains in visible site text: '+route);
+        const competitionSpelling=[...data.visibleText.matchAll(/vecom/gi)].map(m=>m[0]);
+        assert.ok(competitionSpelling.every(x=>x==='VECoM'),'competition brand must use VECoM consistently: '+route+' '+competitionSpelling);
         assert.ok(data.overflow<=2,'horizontal overflow '+width+' '+route+': '+data.overflow);
         assert.equal(errors.length,0,'JavaScript errors '+route+' '+errors.join('; '));
         if(route==='/'){
@@ -287,5 +295,16 @@ try{
     }catch(err){failures.push(width+'px '+err.message)}
     finally{await page.close()}
   }
+  // Inspect the remaining public routes once, without repeating heavyweight responsive checks.
+  const copyPage=await browser.newPage({viewport:{width:1440,height:900}});
+  try{
+    for(const route of remainingCopyRoutes){
+      const response=await copyPage.goto(base+route,{waitUntil:'domcontentloaded',timeout:20000});
+      assert.equal(response.status(),200,'site copy route should load '+route);
+      const content=await copyPage.evaluate(()=>document.body.innerText);
+      assert.ok(!content.includes(';'),'semicolon remains on site route '+route);
+      assert.ok([...content.matchAll(/vecom/gi)].every(x=>x[0]==='VECoM'),'incorrect VECoM spelling on '+route);
+    }
+  }finally{await copyPage.close();}
 }finally{await browser.close()}
 if(failures.length){console.error(failures.join('\n'));process.exitCode=1}else console.log('LUMIQC ROUTE AND RESPONSIVE CHECKS PASS');
