@@ -43,8 +43,18 @@ try{
           assert.ok(data.hrefs.some(x=>x.href==='/du-an/lumiqc'),'Vision CTA targets new project');
         }
         if(route==='/du-an/lumiqc'||route==='/giai-phap/lumiqc'){
-          assert.ok(data.text.includes('Dự án nghiên cứu'),'research status retained '+route);
+          assert.ok(data.text.includes('LUMIQC'),'project is identified '+route);
           assert.ok(data.title.includes('LUMIQC'),'browser title updated '+route);
+        }
+        if(route==='/du-an/lumiqc'){
+          for(const phrase of ['ĐÀN CÁ GỖ','Lê Hoàng Sơn','Trương Quốc Huy','Trace-Safe','Policy-Time Twin','HOLD/RELEASE','VECoM']){
+            assert.ok(data.text.toLowerCase().includes(phrase.toLowerCase()),'competition page missing '+phrase);
+          }
+          assert.ok(data.hrefs.some(x=>x.href==='#doi-thi'),'team anchor is present');
+          const images=await page.locator('.lc-site img').evaluateAll(els=>els.map(e=>({src:e.getAttribute('src'),loaded:e.complete&&e.naturalWidth>0})));
+          assert.ok(images.every(x=>x.loaded),'project images unavailable: '+JSON.stringify(images));
+          const teamCards=await page.locator('.lc-person').count();
+          assert.equal(teamCards,2,'team must contain exactly two profiles');
         }
         if(route.includes('mat-than-ai')){
           const destination=route.includes('/giai-phap/')?'/giai-phap/lumiqc':'/du-an/lumiqc';
