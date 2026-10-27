@@ -16,7 +16,7 @@ const routes=[
 const browser=await chromium.launch({headless:true});
 const failures=[];
 try{
-  for(const width of [390,768,1440]){
+  for(const width of [360,390,768,1024,1440]){
     const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
     try{
       for(const [route,term] of routes){
@@ -51,13 +51,32 @@ try{
             assert.ok(data.text.toLowerCase().includes(phrase.toLowerCase()),'competition page missing '+phrase);
           }
           assert.ok(data.hrefs.some(x=>x.href==='#doi-thi'),'team anchor is present');
-          const imageSources=await page.locator('.lc-site img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
+          const imageSources=await page.locator('.lq img').evaluateAll(els=>els.map(e=>e.getAttribute('src')));
           for(const src of imageSources){
             const imageResponse=await page.request.get(base+src);
             assert.equal(imageResponse.status(),200,'project image missing '+src);
           }
-          const teamCards=await page.locator('.lc-person').count();
+          const teamCards=await page.locator('.lq-person').count();
           assert.equal(teamCards,2,'team must contain exactly two profiles');
+          for(const section of ['bai-toan','giai-phap','quy-trinh','giao-dien','doi-thi','lo-trinh-vecom']){
+            assert.equal(await page.locator('#'+section).count(),1,'missing section '+section);
+          }
+          assert.equal(await page.locator('.lq .lq-title').count(),1,'editorial hero');
+          assert.equal(await page.locator('.lq-swimlane').count(),3,'three operational swimlanes');
+          assert.equal(await page.locator('.lq-tablist [role="tab"]').count(),3,'three product concepts');
+          await page.locator('#lq-tab-check').click();
+          assert.equal(await page.locator('#lq-tab-check').getAttribute('aria-selected'),'true','checklist tab selected');
+          assert.ok(await page.locator('#lq-panel-check').isVisible(),'checklist concept visible');
+          assert.ok(!(await page.locator('#lq-panel-take').isVisible()),'previous concept hidden');
+          await page.locator('#lq-tab-qc').click();
+          assert.ok(await page.locator('#lq-panel-qc').isVisible(),'QA center concept visible');
+          await page.locator('#lq-tab-qc').press('Home');
+          assert.ok(await page.locator('#lq-panel-take').isVisible(),'keyboard Home activates first tab');
+          const headings=await page.locator('.lq h1,.lq h2').evaluateAll(els=>els.map(el=>({
+            tag:el.tagName,
+            lineHeight:Number.parseFloat(getComputedStyle(el).lineHeight)/Number.parseFloat(getComputedStyle(el).fontSize)
+          })));
+          assert.ok(headings.every(x=>x.lineHeight>=1.22),'Vietnamese headings need adequate line height '+JSON.stringify(headings));
         }
         if(route.includes('mat-than-ai')){
           const destination=route.includes('/giai-phap/')?'/giai-phap/lumiqc':'/du-an/lumiqc';
