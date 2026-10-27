@@ -62,7 +62,7 @@ try{
           assert.equal(new Set(illustratedPhotos.map(x=>x.src)).size,3,'photos must not repeat');
           const bgImages=await page.locator('.lq-hero,.lq-workflow,.lq-closing').evaluateAll(els=>els.map(el=>({section:el.className,background:getComputedStyle(el).backgroundImage})));
           assert.ok(bgImages.every(x=>x.background.includes('floot.app/_cdn/static/')),'each editorial section must load its generated AI background '+JSON.stringify(bgImages));
-          const allAssetUrls=[...illustratedPhotos.map(x=>x.src),...bgImages.map(x=>x.background.match(/url\\?\(["']?(https?:[^)"']+)/)?.[1]).filter(Boolean)];
+          const allAssetUrls=[...illustratedPhotos.map(x=>x.src),...bgImages.map(x=>x.background.match(/url\(["']?(https?:\/\/[^)"']+)/)?.[1]).filter(Boolean)];
           assert.equal(allAssetUrls.length,6,'require all six AI illustrations');
           for(const u of allAssetUrls){
             const result=await page.request.get(u,{timeout:15000});
