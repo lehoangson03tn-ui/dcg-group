@@ -1662,3 +1662,233 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
   .lq .lq-feature.lq-balanced-pair .lq-lineage-pair>div{padding:10px 6px}
   .lq .lq-feature.lq-balanced-pair .lq-gate-decision>div{min-height:84px;padding:10px}
 }
+
+
+/* LUMIQC | verified photography member carousel, user supplied 2026-10-27 */
+.lq .lq-team{
+  background:linear-gradient(155deg,#f6fbff 0%,#fff 53%,#f2f7fc 100%);
+}
+.lq .lq-team-intro{align-items:center}
+.lq .lq-team-carousel{
+  position:relative;
+  max-width:1200px;
+  margin:0 auto;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:pan-y;
+}
+.lq .lq-team-grid.lq-team-track{
+  display:block;
+  min-width:0;
+  border:0;
+  outline-offset:5px;
+}
+.lq .lq-team-carousel .lq-person{
+  display:grid;
+  grid-template-columns:minmax(0,43%) minmax(0,57%);
+  min-width:0;
+  min-height:clamp(465px,42vw,555px);
+  border:1px solid #d2e1ea;
+  border-radius:23px;
+  overflow:hidden;
+  box-shadow:0 22px 65px rgba(18,60,90,.12);
+  background:#fff;
+}
+.lq .lq-team-carousel .lq-person[hidden]{display:none!important}
+.lq .lq-person-media{
+  position:relative;
+  overflow:hidden;
+  min-height:0;
+  background:#183f59;
+  isolation:isolate;
+}
+.lq .lq-person-media::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  pointer-events:none;
+  inset:54% 0 0;
+  background:linear-gradient(0deg,rgba(3,29,43,.62),rgba(3,29,43,0));
+}
+.lq .lq-person-photo{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.98) contrast(1.035);
+}
+.lq .lq-person-photo--son{object-position:0% 48%}
+.lq .lq-person-photo--huy{object-position:100% 48%}
+.lq .lq-team-logo{
+  position:absolute;
+  top:23px;left:23px;
+  z-index:2;
+  width:91px;height:91px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.96);
+  padding:8px;
+  border-radius:13px;
+  box-shadow:0 6px 22px rgba(0,0,0,.15);
+}
+.lq .lq-team-logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius:8px}
+.lq .lq-person-photo-label{
+  position:absolute;
+  z-index:2;
+  left:23px;bottom:20px;
+  right:15px;
+  font:800 10px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.04em;
+  color:#edfafe;
+}
+.lq .lq-team-carousel .lq-person-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:0;
+  padding:clamp(25px,3.6vw,52px);
+  min-width:0;
+  text-align:left;
+}
+.lq .lq-team-carousel .lq-person-count{font-size:11px;color:#087b78;letter-spacing:.085em}
+.lq .lq-team-carousel .lq-person h3{
+  font-size:clamp(31px,3vw,45px);
+  line-height:1.32;
+  color:#0f172a;
+  margin:12px 0 11px;
+}
+.lq .lq-team-carousel .lq-person-badge{
+  width:max-content;
+  max-width:100%;
+  color:#095f71;
+  background:#e0f3f3;
+  border-radius:999px;
+  padding:9px 16px;
+  font-size:12px;
+  margin-bottom:18px;
+  line-height:1.5;
+}
+.lq .lq-team-carousel .lq-person-info>p:not(.lq-person-badge){
+  font-size:clamp(13px,1.18vw,16px);
+  line-height:1.84;
+  color:#3b4f60;
+  margin:0 0 18px;
+}
+.lq .lq-team-detail{
+  border-top:1px solid #dbe8ed;
+  padding:17px 0 12px;
+  margin-top:1px;
+}
+.lq .lq-team-detail-title{
+  margin:0 0 10px;
+  color:#0f665f;
+  font:800 10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.05em;
+}
+.lq .lq-team-detail ul{
+  padding:0;
+  margin:0;
+  list-style:none;
+  display:grid;
+  gap:9px;
+}
+.lq .lq-team-detail li{
+  position:relative;
+  padding-left:19px;
+  color:#365469;
+  font-size:clamp(12px,1.06vw,14px);
+  line-height:1.62;
+}
+.lq .lq-team-detail li::before{
+  content:"";
+  position:absolute;
+  top:.62em;
+  left:0;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#45a8a3;
+  box-shadow:0 0 0 3px #e5f5f3;
+}
+.lq .lq-team-carousel .lq-person-meta{
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr);
+  gap:8px 13px;
+  border-top:1px solid #dbe8ed;
+  padding:17px 0 0;
+  margin-top:auto;
+}
+.lq .lq-team-carousel .lq-person-meta span{font-size:10px;line-height:1.55}
+.lq .lq-team-carousel .lq-person-meta b{font-size:12px;line-height:1.65}
+.lq .lq-team-navigation{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:clamp(18px,3vw,44px);
+  padding:24px 0 7px;
+}
+.lq .lq-team-arrow{
+  display:grid;
+  place-items:center;
+  width:47px;height:47px;
+  flex:0 0 47px;
+  border:1px solid #c7dce7;
+  background:#fff;
+  color:#115b76;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 5px 18px rgba(16,74,111,.08);
+  transition:background .16s ease,transform .16s ease,border-color .16s ease;
+}
+.lq .lq-team-arrow:hover{background:#e8f4f8;border-color:#70bfc8;transform:translateY(-2px)}
+.lq .lq-team-arrow svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lq .lq-team-pagination{display:flex;gap:15px;align-items:center}
+.lq .lq-team-position{color:#416071;font:800 12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em}
+.lq .lq-team-dots{display:flex;gap:10px;align-items:center}
+.lq .lq-team-dots button{
+  width:11px;height:11px;padding:0;border:0;border-radius:999px;
+  background:#a9bfcc;cursor:pointer;transition:width .2s ease,background .2s ease;
+}
+.lq .lq-team-dots button[aria-pressed="true"]{width:29px;background:#10899b}
+.lq .lq-team-arrow:focus-visible,
+.lq .lq-team-dots button:focus-visible,
+.lq .lq-team-track:focus-visible{outline:3px solid #1a8ca7;outline-offset:4px}
+.lq .lq-team-caption{
+  text-align:center;
+  font-size:12px;
+  line-height:1.8;
+  color:#607787;
+  max-width:850px;
+  margin:17px auto 0;
+}
+@media(max-width:900px){
+  .lq .lq-team-carousel .lq-person{grid-template-columns:minmax(0,44%) minmax(0,56%);min-height:470px}
+  .lq .lq-team-carousel .lq-person-info{padding:clamp(19px,3vw,30px)}
+  .lq .lq-team-carousel .lq-person h3{font-size:clamp(26px,3.5vw,34px)}
+  .lq .lq-team-carousel .lq-person-meta{grid-template-columns:92px minmax(0,1fr);gap:7px}
+}
+@media(max-width:650px){
+  .lq .lq-team-carousel .lq-person{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    border-radius:17px;
+  }
+  .lq .lq-person-media{
+    height:clamp(310px,95vw,430px);
+    width:100%;
+    flex:0 0 auto;
+  }
+  .lq .lq-person-photo--son{object-position:0% 37%}
+  .lq .lq-person-photo--huy{object-position:100% 37%}
+  .lq .lq-team-logo{width:69px;height:69px;top:14px;left:14px;padding:5px;border-radius:10px}
+  .lq .lq-team-carousel .lq-person-info{padding:25px 21px 28px}
+  .lq .lq-team-carousel .lq-person h3{font-size:clamp(28px,7vw,36px)}
+  .lq .lq-team-carousel .lq-person-meta{margin-top:10px}
+  .lq .lq-team-navigation{padding-top:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .lq .lq-team-arrow,.lq .lq-team-dots button{transition:none}
+  .lq .lq-team-arrow:hover{transform:none}
+}
