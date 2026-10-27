@@ -1,0 +1,34 @@
+name: LUMIQC VECoM Showcase QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/main.js"
+      - "src/lumiqc-page.js"
+      - "src/lumiqc.css"
+      - "tests/lumiqc-rename-qa.mjs"
+      - ".github/workflows/lumiqc-competition-qa.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-responsive-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Compile DCG Group
+        run: npm ci && npm run build
+      - name: Prepare responsive browser test
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Check LUMIQC deep links, profiles and responsive widths
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/lumiqc-site.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/lumiqc-rename-qa.mjs
