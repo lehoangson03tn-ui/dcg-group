@@ -1,0 +1,51 @@
+name: GrowMatch practical user guide QA
+on:
+  push:
+    branches:
+      - feature/growmatch-real-screenshot-user-guide-20261030
+      - main
+    paths:
+      - 'src/growmatch-guide.js'
+      - 'src/growmatch-guide.css'
+      - 'src/growmatch-page.js'
+      - 'src/growmatch-page.css'
+      - 'public/assets/guide/**'
+      - 'tests/growmatch-guide-qa.mjs'
+      - '.github/workflows/growmatch-guide-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Require six real-screen captures
+        run: |
+          test -s public/assets/guide/capture-manifest.json
+          for name in home jobs register login employer develop; do
+            test -s "public/assets/guide/growmatch-${name}-public-20261030.jpg"
+          done
+      - name: Build
+        run: npm ci && npm run build
+      - name: Install browsers
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium webkit
+      - name: Verify guides on phones, iPad and desktop in Chromium and WebKit
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-guide.log 2>&1 &
+          for i in $(seq 1 35); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
+          node tests/growmatch-guide-qa.mjs
+      - name: Keep screenshot audit artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: growmatch-guide-responsive-qa
+          path: qa-growmatch-guide/
+          retention-days: 14
