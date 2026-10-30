@@ -88,7 +88,7 @@ export function growmatchGuideHtml(){
    <div class="gm-container">
     <div class="gm-guide-header">
       <div><p class="gm-kicker">HƯỚNG DẪN / TRẢI NGHIỆM SẢN PHẨM</p><h2 id="gm-guide-title">Bắt đầu cùng <span>DCG GROWMATCH</span></h2><p class="gm-guide-subtitle">Hướng dẫn từng bước bằng hình ảnh giao diện thực tế. Chọn vai trò để biết nên bắt đầu từ đâu và thực hiện bước tiếp theo như thế nào.</p></div>
-      <div class="gm-guide-verification"><span class="gm-guide-verified-dot" aria-hidden="true"></span><b>Ảnh chụp từ website sản phẩm</b><small>Trang công khai, không sử dụng tài khoản hoặc dữ liệu cá nhân</small></div>
+      <div class="gm-guide-verification" role="note" aria-label="Nguồn ảnh hướng dẫn"><span class="gm-guide-verified-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span class="gm-guide-verification-text"><strong>Ảnh chụp từ website sản phẩm</strong><small>Trang công khai, không chứa dữ liệu cá nhân</small></span></div>
     </div>
     <div class="gm-guide-tabs" role="tablist" aria-label="Chọn hành trình hướng dẫn">
       ${flows.map((flow,index)=>`<button type="button" id="gm-guide-tab-${flow.id}" role="tab" aria-controls="gm-guide-panel-${flow.id}" aria-selected="${index===0?'true':'false'}" tabindex="${index===0?'0':'-1'}" data-gm-guide-tab="${flow.id}">${escapeHtml(flow.label)}</button>`).join('')}

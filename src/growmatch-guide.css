@@ -2,16 +2,16 @@
 /* DCG GROWMATCH / Bắt đầu cùng DCG GROWMATCH
    Uses existing DCG GROUP typography, colors and container size. */
 .gm .gm-guide{background:linear-gradient(180deg,#f2f7fc 0%,#f9fbfd 70%,#fff 100%);border-block:1px solid var(--gm-rule);scroll-margin-top:155px}
-.gm .gm-guide-header{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.34fr);gap:clamp(24px,4vw,65px);align-items:end;margin-bottom:33px}
+.gm .gm-guide-header{display:flex;flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:23px}
 .gm .gm-guide-header .gm-kicker{margin-bottom:15px}
 .gm .gm-guide-header h2{font-size:clamp(31px,3.6vw,46px);font-weight:700;line-height:1.33;letter-spacing:-.04em;max-width:800px;margin:0 0 16px}
 .gm .gm-guide-header h2 span{color:var(--gm-primary)}
 .gm .gm-guide-subtitle{font-size:clamp(15px,1.35vw,17px);line-height:1.75;max-width:72ch;margin:0}
-.gm .gm-guide-verification{display:grid;gap:4px;background:#fff;border:1px solid #d6e4f1;border-radius:13px;padding:20px 20px 20px 25px;position:relative;box-shadow:0 9px 25px rgba(20,45,78,.03)}
-.gm .gm-guide-verified-dot{position:absolute;left:11px;top:25px;width:7px;height:7px;background:#1976b6;border-radius:50%}
-.gm .gm-guide-verification b{font-size:12px;color:var(--gm-navy)}
-.gm .gm-guide-verification small{font-size:11px;color:#677a8b;line-height:1.55}
-.gm .gm-guide-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.gm .gm-guide-verification{display:inline-flex;align-items:center;gap:12px;width:fit-content;max-width:100%;min-height:62px;margin:0;background:#fff;border:1px solid #d8e5f0;border-radius:12px;padding:11px 17px 11px 13px;box-shadow:0 5px 17px rgba(20,45,78,.035)}
+.gm .gm-guide-verified-icon{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:50%;color:var(--gm-primary);background:#eaf3fb;border:1px solid #d3e5f4}.gm .gm-guide-verified-icon svg{width:16px;height:16px;display:block}
+.gm .gm-guide-verification-text{display:flex;flex-direction:column;gap:2px;min-width:0;max-width:100%}.gm .gm-guide-verification strong{font-size:13px;font-weight:750;line-height:1.45;color:var(--gm-navy)}
+.gm .gm-guide-verification small{font-size:11px;color:#65788b;line-height:1.5}
+.gm .gm-guide-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 19px}
 .gm .gm-guide-tabs button{appearance:none;min-height:46px;min-width:120px;padding:11px 20px;border-radius:100px;border:1px solid #c6d7e7;background:white;color:#355a77;font-size:13px;font-weight:700;line-height:1.5;cursor:pointer;transition:background .2s,border-color .2s}
 .gm .gm-guide-tabs button:hover{background:#e7f1fa}
 .gm .gm-guide-tabs button[aria-selected="true"]{background:var(--gm-primary);border-color:var(--gm-primary);color:white;box-shadow:0 5px 15px rgba(23,91,154,.17)}
@@ -61,8 +61,8 @@
 .gm .gm-guide-dialog img{display:block;width:100%;height:auto}
 .gm .gm-guide button:focus-visible,.gm .gm-guide a:focus-visible{outline:3px solid var(--gm-primary);outline-offset:3px}
 @media(max-width:1000px){
- .gm .gm-guide-header{grid-template-columns:1fr;gap:18px}
- .gm .gm-guide-verification{max-width:440px}
+ .gm .gm-guide-header{gap:17px}
+ .gm .gm-guide-verification{max-width:min(100%,440px)}
  .gm .gm-guide-stage{grid-template-columns:1fr;gap:20px;padding:24px 0 20px}
  .gm .gm-guide-media{max-width:100%;min-width:0}
  .gm .gm-guide-browser img{max-height:470px}
@@ -71,6 +71,11 @@
 @media(max-width:690px){
  .gm .gm-guide{scroll-margin-top:100px}
  .gm .gm-guide-header h2{font-size:clamp(28px,8vw,36px)}
+ .gm .gm-guide-header{gap:15px;margin-bottom:22px}
+ .gm .gm-guide-verification{display:flex;width:100%;max-width:100%;min-height:55px;padding:10px 12px;border-radius:11px;gap:10px}
+ .gm .gm-guide-verified-icon{width:28px;height:28px;flex-basis:28px}
+ .gm .gm-guide-verification strong{font-size:12px}
+ .gm .gm-guide-verification small{font-size:10.5px;line-height:1.45}
  .gm .gm-guide-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:6px}
  .gm .gm-guide-tabs button{font-size:11px;padding:10px 14px;min-height:44px;flex:0 0 auto}
  .gm .gm-guide-flow{padding:14px;border-radius:13px}
