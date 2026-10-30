@@ -2,6 +2,7 @@ import './site.css';
 import './ggg.css';
 import './design-system.css';
 import { lumiqcPage, initLumiqcPage } from './lumiqc-page.js';
+import { growmatchPage } from './growmatch-page.js';
 
 const A = '/assets/';
 const group = {name:'DCG GROUP', emblem:'dcg-group-emblem-safe.webp', image:'editorial/hcm-city-1600.webp'};
@@ -352,7 +353,7 @@ function trapMenuFocus(e){
 function init(){const requestedPath=location.pathname.replace(/\/$/,'')||'/';if(requestedPath==='/'&&location.hash==='#dau-an-va-ghi-nhan'){location.replace('/du-an/dcg-growmatch#thanh-tich');return;}const legacyRoutes={'/du-an/mat-than-ai':'/du-an/lumiqc','/giai-phap/mat-than-ai':'/giai-phap/lumiqc','/mat-than-ai':'/du-an/lumiqc'};const path=legacyRoutes[requestedPath]||requestedPath;if(path!==requestedPath)history.replaceState(history.state,'',path+location.search+location.hash);const brand=brands.find(b=>'/'+b.slug===path||'/he-sinh-thai/dcg-'+b.slug===path);
  const solution=solutions.find(x=>'/giai-phap/'+x.slug===path);
  const project=solutions.filter(x=>['dcg-growmatch','lumiqc'].includes(x.slug)).find(x=>'/du-an/'+x.slug===path);
- const content=path==='/'?home():['/ve-dcg','/gioi-thieu'].includes(path)?about():path==='/he-sinh-thai'?ecosystem():path==='/giai-phap'?solutionsPage():solution?solutionDetail(solution):path==='/du-an'?projectsPage():path==='/du-an/lumiqc'?lumiqcPage():project?projectDetail(project):path==='/lien-he'?contact():path==='/thong-tin-du-lieu'?dataInfo():brand?brandPage(brand):`<section class="error-404"><div class="container"><h1>Không tìm thấy trang</h1><p>Đường dẫn này không tồn tại hoặc nội dung chưa được xuất bản.</p>${cta('QUAY VỀ TRANG CHỦ','/')}</div></section>`;
+ const content=path==='/'?home():['/ve-dcg','/gioi-thieu'].includes(path)?about():path==='/he-sinh-thai'?ecosystem():path==='/giai-phap'?solutionsPage():solution?solutionDetail(solution):path==='/du-an'?projectsPage():path==='/du-an/lumiqc'?lumiqcPage():path==='/du-an/dcg-growmatch'?growmatchPage(growmatchRecognitionArticle()):project?projectDetail(project):path==='/lien-he'?contact():path==='/thong-tin-du-lieu'?dataInfo():brand?brandPage(brand):`<section class="error-404"><div class="container"><h1>Không tìm thấy trang</h1><p>Đường dẫn này không tồn tại hoặc nội dung chưa được xuất bản.</p>${cta('QUAY VỀ TRANG CHỦ','/')}</div></section>`;
 document.getElementById('app').innerHTML=shell(content,path);if(location.hash){const anchor=document.getElementById(decodeURIComponent(location.hash.slice(1)));anchor?.scrollIntoView({block:'start',behavior:'instant'});}document.title=(brand?.name||solution?.name||project?.name||(path==='/ve-dcg'||path==='/gioi-thieu'?'Giới thiệu':path==='/he-sinh-thai'?'Hệ sinh thái':path==='/giai-phap'?'Giải pháp':path==='/du-an'?'Dự án':path==='/lien-he'?'Liên hệ':path==='/thong-tin-du-lieu'?'Thông tin dữ liệu':'DCG GROUP'))+' | DCG GROUP';
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+path;
