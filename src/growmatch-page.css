@@ -692,3 +692,148 @@
   }
   .gm #gm-solution .gm-editorial-copy{max-width:100%;justify-self:stretch}
 }
+
+/* 31 Oct 2026 | Vecom media alignment for phone, tablet and desktop. */
+/* Keep this editorial refinement local to section 08, not the footer or
+   other DCG cards. A wide, shorter media composition is intentional. */
+.gm #gm-vecom.gm-section{
+  padding-block:clamp(54px,6vw,84px);
+}
+.gm #gm-vecom .gm-vecom-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+  align-items:center;
+  gap:clamp(28px,4.2vw,64px);
+}
+.gm #gm-vecom .gm-vecom-layout > div:first-child{
+  width:100%;
+  max-width:620px;
+  min-width:0;
+  justify-self:start;
+  align-self:center;
+}
+.gm #gm-vecom .gm-vecom-layout > div:first-child > p:not(.gm-kicker){
+  max-width:61ch;
+  font-size:clamp(14px,1.2vw,16px);
+  line-height:1.75;
+}
+.gm #gm-vecom .gm-vecom-panel{
+  display:flex;
+  flex-direction:column;
+  justify-self:end;
+  align-self:center;
+  width:100%;
+  max-width:540px;
+  min-width:0;
+  padding:0;
+  gap:0;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid #d9e5ee;
+  background:#fff;
+  box-shadow:0 16px 40px rgba(20,45,78,.065);
+}
+/* Higher specificity explicitly replaces the original 5:4 rule that
+   previously made the card taller than its corresponding text column. */
+.gm #gm-vecom .gm-vecom-panel img.gm-vecom-photo{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  object-position:50% 43%;
+  border-radius:0;
+  transform:none;
+}
+.gm #gm-vecom .gm-vecom-signature{
+  box-sizing:border-box;
+  display:grid;
+  grid-template-columns:46px minmax(0,1fr);
+  align-items:center;
+  gap:15px;
+  width:100%;
+  min-height:78px;
+  padding:14px 19px;
+  border-top:1px solid #e7edf2;
+}
+.gm #gm-vecom .gm-vecom-signature img{
+  display:block;
+  width:46px;
+  height:46px;
+  min-width:0;
+  object-fit:contain;
+}
+.gm #gm-vecom .gm-vecom-signature > div{min-width:0}
+.gm #gm-vecom .gm-vecom-signature span{
+  display:block;
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.025em;
+}
+.gm #gm-vecom .gm-vecom-signature strong{
+  display:block;
+  font-size:clamp(12px,1.12vw,14px);
+  font-weight:700;
+  line-height:1.48;
+  letter-spacing:-.015em;
+  overflow-wrap:break-word;
+}
+/* Landscape iPad / compact laptop: two balanced columns with a slim card. */
+@media(min-width:901px) and (max-width:1180px){
+  .gm #gm-vecom .gm-vecom-layout{
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:clamp(24px,3.5vw,42px);
+  }
+  .gm #gm-vecom .gm-vecom-panel{max-width:100%}
+  .gm #gm-vecom .gm-vecom-signature{
+    grid-template-columns:40px minmax(0,1fr);
+    gap:11px;
+    padding:12px 14px;
+    min-height:70px;
+  }
+  .gm #gm-vecom .gm-vecom-signature img{width:40px;height:40px}
+  .gm #gm-vecom .gm-vecom-signature strong{font-size:12px}
+}
+/* Portrait iPad: single reading column, photo centered under the copy. */
+@media(min-width:701px) and (max-width:900px){
+  .gm #gm-vecom .gm-vecom-layout{
+    grid-template-columns:minmax(0,1fr);
+    gap:30px;
+  }
+  .gm #gm-vecom .gm-vecom-layout > div:first-child{
+    max-width:760px;
+  }
+  .gm #gm-vecom .gm-vecom-panel{
+    width:min(100%,640px);
+    max-width:640px;
+    justify-self:center;
+  }
+}
+/* Phone: content first, then a compact wide image and readable brand caption. */
+@media(max-width:700px){
+  .gm #gm-vecom.gm-section{padding-block:46px 54px}
+  .gm #gm-vecom .gm-vecom-layout{
+    grid-template-columns:minmax(0,1fr);
+    gap:24px;
+  }
+  .gm #gm-vecom .gm-vecom-layout > div:first-child{max-width:100%}
+  .gm #gm-vecom .gm-vecom-panel{
+    max-width:100%;
+    justify-self:stretch;
+    border-radius:15px;
+  }
+  .gm #gm-vecom .gm-vecom-panel img.gm-vecom-photo{
+    aspect-ratio:16 / 10;
+    object-position:50% 42%;
+  }
+  .gm #gm-vecom .gm-vecom-signature{
+    grid-template-columns:40px minmax(0,1fr);
+    min-height:68px;
+    gap:11px;
+    padding:12px 14px;
+  }
+  .gm #gm-vecom .gm-vecom-signature img{width:40px;height:40px}
+  .gm #gm-vecom .gm-vecom-signature span{font-size:9px}
+  .gm #gm-vecom .gm-vecom-signature strong{font-size:12px}
+}

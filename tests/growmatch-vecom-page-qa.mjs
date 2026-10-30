@@ -306,6 +306,52 @@ for (const width of widths) {
   assert.equal(await page.locator('.gm-story-gallery img').count(), 2);
   assert.equal(await page.locator('.gm-concept-image img').count(), 1);
   assert.equal(await page.locator('.gm-vecom-photo').count(), 1);
+  // Section 08 image-card geometry regression for all 11 viewport widths.
+  const vecomLayout = await page.evaluate(() => {
+    const section=document.querySelector('#gm-vecom');
+    const layout=section.querySelector('.gm-vecom-layout');
+    const copy=layout.firstElementChild;
+    const panel=section.querySelector('.gm-vecom-panel');
+    const photo=section.querySelector('.gm-vecom-photo');
+    const brand=section.querySelector('.gm-vecom-signature');
+    const box=el=>{const r=el.getBoundingClientRect();return {
+      x:r.x,y:r.y,left:r.left,right:r.right,top:r.top,bottom:r.bottom,
+      width:r.width,height:r.height
+    }};
+    return { copy:box(copy),panel:box(panel),photo:box(photo),brand:box(brand),
+      fit:getComputedStyle(photo).objectFit,
+      overflow:panel.scrollWidth > panel.clientWidth + 2 };
+  });
+  assert.equal(vecomLayout.fit,'cover','Vecom media should crop, not stretch');
+  assert.ok(!vecomLayout.overflow,'Vecom card must never have internal overflow');
+  assert.ok(Math.abs(vecomLayout.photo.width - vecomLayout.panel.width) <= 3,
+    'Vecom photo should span the card without a side gutter');
+  assert.ok(Math.abs(vecomLayout.brand.width - vecomLayout.panel.width) <= 3,
+    'Vecom signature must align with the image edges');
+  assert.ok(vecomLayout.photo.height <= vecomLayout.photo.width / 1.5,
+    'Vecom image must not revert to tall 5:4 crop');
+  if(width >= 901){
+    assert.ok(vecomLayout.panel.left >= vecomLayout.copy.right + 16,
+      'desktop/iPad landscape photo must sit right of content: '+JSON.stringify(vecomLayout));
+    const center = box => (box.top+box.bottom)/2;
+    assert.ok(Math.abs(center(vecomLayout.copy)-center(vecomLayout.panel)) < 10,
+      'Vecom columns must be vertically centered: '+JSON.stringify(vecomLayout));
+    if(width>=1024){
+      assert.ok(Math.abs(vecomLayout.copy.height-vecomLayout.panel.height) < 125,
+        'photo and copy should have balanced visual height: '+JSON.stringify(vecomLayout));
+    }
+  } else {
+    assert.ok(vecomLayout.panel.top >= vecomLayout.copy.bottom + 12,
+      'portrait iPad and phone must stack image beneath content');
+    assert.ok(vecomLayout.panel.width <= vecomLayout.copy.width + 3,
+      'stacked media must not overflow the content column');
+  }
+  if([390,820,1024,1440].includes(width)){
+    await page.locator('#gm-vecom').screenshot({
+      path:'qa-growmatch-vecom/vecom-balanced-'+width+'.png',animations:'disabled'
+    });
+  }
+
   assert.equal(await page.locator('.gm-end-visual').count(), 1);
   if([390,820,1440].includes(width)){
    const checkImage=page.locator('.gm-hero-visual img');
