@@ -4,6 +4,7 @@ on:
     branches:
       - feature/growmatch-vecom-editorial-20261030
       - feature/growmatch-carousel-ai-gallery-20261030
+      - fix/growmatch-ipad-hero-media-team-20261030
       - main
     paths:
       - src/growmatch-page.js
@@ -34,7 +35,7 @@ jobs:
       - run: |
           npm install --no-save --ignore-scripts playwright@1.57.0
           npx playwright install --with-deps chromium
-      - name: Test DCG GROWMATCH at 8 breakpoints
+      - name: Test GrowMatch layout and media at 11 breakpoints
         run: |
           npm run dev -- --host 127.0.0.1 --port 5173 >/tmp/dcg-growmatch.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:5173/ >/dev/null && break; sleep 1; done
