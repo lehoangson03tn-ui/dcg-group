@@ -103,8 +103,11 @@ for (const width of widths) {
     };
   });
   assert.equal(teamGeometry.photoFit,'cover');
-  assert.ok(Math.abs(teamGeometry.photoHeight-teamGeometry.frameHeight)<=2,
-    'member portrait must entirely fill its image frame: '+JSON.stringify(teamGeometry));
+  // Cropped portraits intentionally have a mild transform: the rendered image
+  // can be larger than its clipping frame, but must never be smaller.
+  assert.ok(teamGeometry.photoHeight>=teamGeometry.frameHeight-2 &&
+            teamGeometry.photoWidth>=teamGeometry.frameWidth-2,
+    'member portrait must cover its entire image frame: '+JSON.stringify(teamGeometry));
   if(width>=701 && width<=1180){
     assert.ok(Math.abs(teamGeometry.cardHeight-teamGeometry.frameHeight)<=4,
       'iPad member photo must fill entire height of the card: '+JSON.stringify(teamGeometry));
