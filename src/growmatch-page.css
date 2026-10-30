@@ -598,3 +598,97 @@
 @media(prefers-reduced-motion:reduce){
   .gm #gm-problem .gm-tile{scroll-behavior:auto}
 }
+
+/* 31 Oct 2026 | Solution portrait corrected across desktop, iPad and phone. */
+/* Restrict the correction to the 02 / Giải pháp section. The source photo
+   keeps its aspect without stretching and never expands to the full text row. */
+.gm #gm-solution.gm-section{padding-block:clamp(54px,6vw,86px)}
+.gm #gm-solution .gm-editorial-grid{
+  grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);
+  align-items:center;
+  gap:clamp(26px,4vw,58px);
+}
+.gm #gm-solution .gm-editorial-media{
+  display:block;
+  justify-self:center;
+  align-self:center;
+  width:100%;
+  max-width:530px;
+  margin:0;
+  overflow:hidden;
+  border-radius:16px;
+}
+.gm #gm-solution .gm-editorial-media img{
+  display:block;
+  width:100%;
+  height:clamp(390px,33vw,468px);
+  max-height:468px;
+  aspect-ratio:auto;
+  object-fit:cover;
+  object-position:50% 43%;
+  border-radius:16px;
+  transform:none;
+}
+.gm #gm-solution .gm-editorial-copy{
+  width:100%;
+  max-width:580px;
+  min-width:0;
+  justify-self:start;
+  align-self:center;
+}
+/* Landscape iPads, smaller laptops: maintain two balanced side-by-side
+   columns instead of a full-height narrow portrait. */
+@media(min-width:901px) and (max-width:1180px){
+  .gm #gm-solution .gm-editorial-grid{
+    grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+    gap:clamp(23px,3vw,36px);
+  }
+  .gm #gm-solution .gm-editorial-media{max-width:100%}
+  .gm #gm-solution .gm-editorial-media img{
+    height:clamp(315px,32vw,405px);
+    max-height:405px;
+    object-position:50% 42%;
+  }
+  .gm #gm-solution .gm-editorial-copy h2{font-size:clamp(27px,3vw,36px)}
+  .gm #gm-solution .gm-editorial-copy p:not(.gm-kicker){
+    font-size:clamp(14px,1.4vw,16px);
+    line-height:1.72;
+  }
+}
+/* Portrait iPad: editorial landscape photo on top, copy below.
+   A generous width keeps both people visible without distorting the image. */
+@media(min-width:701px) and (max-width:900px){
+  .gm #gm-solution .gm-editorial-grid{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    gap:26px;
+  }
+  .gm #gm-solution .gm-editorial-media{max-width:650px;justify-self:center}
+  .gm #gm-solution .gm-editorial-media img{
+    height:clamp(300px,43vw,386px);
+    max-height:386px;
+    object-position:50% 41%;
+  }
+  .gm #gm-solution .gm-editorial-copy{max-width:700px;justify-self:center}
+}
+/* Phone: one short landscape image; never let the picture push the
+   explanation far below the fold. */
+@media(max-width:700px){
+  .gm #gm-solution .gm-editorial-grid{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    gap:22px;
+  }
+  .gm #gm-solution .gm-editorial-media{
+    width:100%;
+    max-width:100%;
+    justify-self:stretch;
+  }
+  .gm #gm-solution .gm-editorial-media img{
+    height:clamp(230px,69vw,338px);
+    max-height:338px;
+    object-position:50% 41%;
+    border-radius:14px;
+  }
+  .gm #gm-solution .gm-editorial-copy{max-width:100%;justify-self:stretch}
+}

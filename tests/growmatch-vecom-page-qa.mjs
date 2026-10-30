@@ -140,6 +140,39 @@ for (const width of widths) {
       mediaFit:getComputedStyle(screen).objectFit
     };
   });
+
+  // Solution-image regression: avoid tall/narrow photo next to short copy.
+  // Check desktop, iPad portrait/landscape and phone at every existing width.
+  const solution = await page.evaluate(() => {
+    const image = document.querySelector('#gm-solution .gm-editorial-media img');
+    const copy = document.querySelector('#gm-solution .gm-editorial-copy');
+    const box = node => {
+      const r = node.getBoundingClientRect();
+      return { top:r.top, bottom:r.bottom, left:r.left, right:r.right,
+        width:r.width, height:r.height };
+    };
+    return { image:box(image), copy:box(copy),
+      imageFit:getComputedStyle(image).objectFit,
+      overflow:image.scrollWidth > image.clientWidth + 2 };
+  });
+  assert.equal(solution.imageFit,'cover','solution image should crop, never distort');
+  assert.ok(!solution.overflow,'solution image must not overflow its frame');
+  assert.ok(solution.image.height <= 470,'solution image should not dominate the entire page');
+  if (width >= 901) {
+    assert.ok(solution.image.right <= solution.copy.left - 12,
+      'wide views keep image on left and copy on right: '+JSON.stringify(solution));
+    assert.ok(solution.image.width > solution.image.height,
+      'wide views use a balanced landscape image, not an elongated portrait');
+    assert.ok(solution.image.height >= 300,
+      'solution image retains readable height on wide views');
+  } else {
+    assert.ok(solution.image.bottom <= solution.copy.top - 8,
+      'narrow views stack the solution image above its copy');
+    if (width <= 700) assert.ok(solution.image.height <= 340,
+      'phone photo is compact');
+    else assert.ok(solution.image.height <= 390,
+      'portrait iPad photo is compact');
+  }
   if(width>=701 && width<=1180){
     assert.equal(geometry.navPosition,'relative','iPad project nav must not cover headings');
     assert.ok(geometry.title.top >= geometry.nav.bottom+20,
