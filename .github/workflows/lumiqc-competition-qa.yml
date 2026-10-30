@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - "src/main.js"
+      - "src/growmatch-page.js"
       - "src/lumiqc-page.js"
       - "src/lumiqc.css"
       - "tests/lumiqc-rename-qa.mjs"
