@@ -23,6 +23,42 @@ for(const [engine,driver,widths] of browsers){
     const guide=page.locator('#gm-guide');
     assert.equal(await guide.count(),1);
     assert.ok((await guide.locator('h2').innerText()).includes('Bắt đầu cùng'));
+    // Visual regression: source note is a compact provenance cue, not a large empty card.
+    const note=guide.locator('.gm-guide-verification');
+    assert.equal(await note.count(),1);
+    assert.ok((await note.locator('strong').innerText()).includes('Ảnh chụp từ website'));
+    assert.equal(await note.locator('.gm-guide-verified-icon svg').count(),1);
+    const noteMetrics=await guide.evaluate(el=>{
+      const get=x=>x.getBoundingClientRect();
+      const head=get(el.querySelector('.gm-guide-header'));
+      const label=get(el.querySelector('.gm-guide-verification'));
+      const tabs=get(el.querySelector('.gm-guide-tabs'));
+      const subtitle=get(el.querySelector('.gm-guide-subtitle'));
+      const content=get(el.querySelector('.gm-container'));
+      return {
+        note:{x:label.x,y:label.y,width:label.width,height:label.height,bottom:label.bottom},
+        head:{x:head.x,width:head.width,bottom:head.bottom},
+        subtitleBottom:subtitle.bottom,
+        tabs:{x:tabs.x,y:tabs.y,width:tabs.width},
+        content:{x:content.x,width:content.width}
+      }
+    });
+    assert.ok(noteMetrics.note.height>=50 && noteMetrics.note.height<=90,
+      'verification cue must be short and tidy '+JSON.stringify(noteMetrics));
+    assert.ok(noteMetrics.note.width<=460 && noteMetrics.note.width>200,
+      'verification cue must not stretch into large white box '+JSON.stringify(noteMetrics));
+    assert.ok(Math.abs(noteMetrics.note.x-noteMetrics.content.x)<=2,
+      'verification cue aligned with content '+JSON.stringify(noteMetrics));
+    assert.ok(noteMetrics.note.y>=noteMetrics.subtitleBottom+8 &&
+              noteMetrics.note.y<=noteMetrics.subtitleBottom+30,
+      'verification follows subtitle without excessive whitespace '+JSON.stringify(noteMetrics));
+    assert.ok(noteMetrics.tabs.y>=noteMetrics.note.bottom+12 &&
+              noteMetrics.tabs.y<=noteMetrics.note.bottom+40,
+      'tabs follow compact verification with balanced spacing '+JSON.stringify(noteMetrics));
+    if(width<=690){
+      assert.ok(Math.abs(noteMetrics.note.width-noteMetrics.content.width)<=2,
+        'mobile provenance note fits same container '+JSON.stringify(noteMetrics));
+    }
     const tabs=guide.locator('[role="tab"]');
     assert.equal(await tabs.count(),3,'3 role flows');
     assert.equal(await guide.locator('[data-gm-guide-flow]').count(),3);
@@ -76,6 +112,7 @@ for(const [engine,driver,widths] of browsers){
      const first=guide.locator('[data-gm-guide-flow="overview"] [data-gm-guide-stage="0"] img');
      await first.evaluate(async element=>{element.loading='eager';await element.decode()});
      await guide.screenshot({path:'qa-growmatch-guide/'+engine+'-'+width+'.png',animations:'disabled'});
+     await guide.locator('.gm-guide-header').screenshot({path:'qa-growmatch-guide/verification-'+engine+'-'+width+'.png',animations:'disabled'});
     }
     result.push({engine,width,status:'PASS'});console.log('PASS GUIDE',engine,width);
    }catch(e){
