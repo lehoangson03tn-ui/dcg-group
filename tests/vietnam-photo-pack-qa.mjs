@@ -63,7 +63,7 @@ for(const [engine,driver] of [['chromium',chromium],['webkit',webkit]]){
      assert.equal(await page.locator('article.lq').count(),1,'LUMIQC has its dedicated project presentation');
      assert.ok(m.photos.length>=3,'LUMIQC project visuals and member portraits present');
    }
-   if(route==='/giai-phap/lumiqc')assert.ok(m.photos.some(s=>s.endsWith(expected.vision)),route+' editorial photo');
+   if(route==='/giai-phap/lumiqc')assert.ok(m.photos.some(s=>s.endsWith('/assets/projects/lumiqc-approved-lotus-logo.webp')),route+' approved project logo');
    if(route!=='/du-an/dcg-growmatch')assert.ok(!m.photos.some(s=>/recognition\/(NTTU_0058|FBA1C8B9)/.test(s)),route+' CEO event photo outside recognition');
    assert.deepEqual(runtime,[],engine+' '+vp.width+' JS errors');
    if(process.env.QA_SCREENSHOTS==='1'&&[390,834,1440].includes(vp.width)&&['/','/he-sinh-thai/dcg-studio','/he-sinh-thai/dcg-vision'].includes(route)){
