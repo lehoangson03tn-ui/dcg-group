@@ -1,0 +1,34 @@
+name: Prepare self-hosted DCG images
+on:
+  push:
+    branches: [fix/growmatch-selfhost-all-images-20261030]
+    paths:
+      - 'scripts/optimize-dcg-images.mjs'
+      - '.github/workflows/dcg-images-prepare.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm install --no-save --ignore-scripts sharp@0.34.4
+      - name: Convert to compact browser-native WebP and verify decoding
+        run: node scripts/optimize-dcg-images.mjs
+      - name: Commit optimized original artwork safely to feature branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A public/assets/selfhosted/
+          git diff --cached --quiet && exit 0
+          git commit -m "assets(dcg): convert original AI imagery into optimized local WebP"
+          git fetch origin fix/growmatch-selfhost-all-images-20261030
+          git rebase origin/fix/growmatch-selfhost-all-images-20261030
+          git push origin HEAD:fix/growmatch-selfhost-all-images-20261030
