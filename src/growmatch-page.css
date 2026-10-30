@@ -327,3 +327,7 @@
   .gm .gm-person-photo--son{object-position:50% 31%}
   .gm .gm-person-photo--huy{object-position:50% 34%}
 }
+
+/* Guided, role-aware visual walkthrough CTA (scoped). */
+.gm .gm-product-guide-link{display:inline-flex;gap:10px;align-items:center;min-height:44px;margin-top:12px;padding:6px 0;border-bottom:1px solid var(--gm-gold);color:var(--gm-primary);font-weight:750;font-size:13px;line-height:1.6}
+.gm .gm-product-guide-link:hover{color:var(--gm-navy)}
