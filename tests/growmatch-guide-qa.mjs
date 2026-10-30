@@ -1,6 +1,7 @@
 
 import assert from 'node:assert/strict';
-import {existsSync, mkdir, writeFile} from 'node:fs';
+import {existsSync} from 'node:fs';
+import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium,webkit} from 'playwright';
 
 const assets=['home','jobs','register','login','employer','develop'];
