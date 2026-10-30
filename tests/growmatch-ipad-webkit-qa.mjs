@@ -45,6 +45,27 @@ try{
     assert.ok(data.coachingImage.height<=410,'Safari phone coaching photo cropped');
     assert.ok(data.teamMedia>=310&&data.teamMedia<=440,'Safari phone portrait height');
    }
+
+   const product=page.locator('.gm-product-showcase');
+   const screen=product.locator('.gm-product-shot img');
+   assert.equal(await screen.getAttribute('src'),'/assets/guide/growmatch-home-public-20261030.jpg');
+   await screen.evaluate(async img=>{img.loading='eager';await img.decode()});
+   assert.equal(await screen.evaluate(img=>img.naturalWidth),1440,'Safari product screenshot decodes');
+   const buttons=product.locator('.gm-product-actions > a.gm-button');
+   assert.equal(await buttons.count(),2,'two product CTAs on Safari');
+   const sizes=await buttons.evaluateAll(links=>links.map(x=>{
+     const r=x.getBoundingClientRect();
+     return {width:r.width,height:r.height,bg:getComputedStyle(x).backgroundColor};
+   }));
+   assert.ok(Math.abs(sizes[0].width-sizes[1].width)<=2 &&
+     Math.abs(sizes[0].height-sizes[1].height)<=2,
+     'Safari product CTAs match sizes: '+JSON.stringify(sizes));
+   assert.ok(sizes.every(x=>x.height>=53),'Safari buttons are touch sized');
+   assert.notEqual(sizes[0].bg,sizes[1].bg,'Safari primary/secondary hierarchy');
+   if([390,820,1024,1440].includes(width)){
+     await product.screenshot({path:'qa-growmatch-webkit/product-showcase-'+width+'.png',animations:'disabled'});
+   }
+
    await page.locator('[data-gm-member-next]').click();
    assert.equal(await page.locator('[data-gm-member="1"]').isVisible(),true,'Safari carousel next');
    await page.locator('[data-gm-member-prev]').click();
