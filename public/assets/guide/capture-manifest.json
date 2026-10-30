@@ -1,0 +1,85 @@
+{
+  "source": "https://dcg-growmatch.vercel.app/",
+  "method": "Playwright public unauthenticated screenshots",
+  "date": "2026-10-30",
+  "result": [
+    {
+      "id": "home",
+      "hash": "#home",
+      "expected": "",
+      "title": "Trang chủ",
+      "h1": "Hiểu rõ năng lực\nChọn đúng cơ hội",
+      "hasLoginForm": false,
+      "hasRegisterForm": false,
+      "url": "https://dcg-growmatch.vercel.app/#home",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-home-public-20261030.jpg"
+    },
+    {
+      "id": "jobs",
+      "hash": "#jobs",
+      "expected": "Tìm cơ hội phù hợp với bạn",
+      "title": "Khám phá việc làm",
+      "h1": "Tìm cơ hội phù hợp với bạn",
+      "hasLoginForm": false,
+      "hasRegisterForm": false,
+      "url": "https://dcg-growmatch.vercel.app/#jobs",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-jobs-public-20261030.jpg"
+    },
+    {
+      "id": "register",
+      "hash": "#register",
+      "expected": "Tạo tài khoản",
+      "title": "Đăng ký",
+      "h1": "Bắt đầu từ hôm nay — Phát triển từng bước",
+      "hasLoginForm": false,
+      "hasRegisterForm": true,
+      "url": "https://dcg-growmatch.vercel.app/#register",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-register-public-20261030.jpg"
+    },
+    {
+      "id": "login",
+      "hash": "#login",
+      "expected": "Chào mừng trở lại",
+      "title": "Đăng nhập",
+      "h1": "Tiếp tục hành trình\nphát triển của bạn",
+      "hasLoginForm": true,
+      "hasRegisterForm": false,
+      "url": "https://dcg-growmatch.vercel.app/#login",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-login-public-20261030.jpg"
+    },
+    {
+      "id": "employer",
+      "hash": "#employer",
+      "expected": "Hiểu rõ ứng viên",
+      "title": "Dành cho doanh nghiệp",
+      "h1": "Hiểu rõ ứng viên\nTuyển dụng có căn cứ\nPhát triển bền vững",
+      "hasLoginForm": false,
+      "hasRegisterForm": false,
+      "url": "https://dcg-growmatch.vercel.app/#employer",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-employer-public-20261030.jpg"
+    },
+    {
+      "id": "develop",
+      "hash": "#develop",
+      "expected": "Phát triển có mục tiêu",
+      "title": "Giới thiệu phát triển nhân sự",
+      "h1": "Phát triển có mục tiêu\nTiến bộ có minh chứng",
+      "hasLoginForm": false,
+      "hasRegisterForm": false,
+      "url": "https://dcg-growmatch.vercel.app/#develop",
+      "hasPrivateAccount": false,
+      "error": false,
+      "path": "public/assets/guide/growmatch-develop-public-20261030.jpg"
+    }
+  ]
+}
