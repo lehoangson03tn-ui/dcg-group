@@ -2,7 +2,7 @@ import './site.css';
 import './ggg.css';
 import './design-system.css';
 import { lumiqcPage, initLumiqcPage } from './lumiqc-page.js';
-import { growmatchPage } from './growmatch-page.js';
+import { growmatchPage, initGrowmatchPage } from './growmatch-page.js';
 
 const A = '/assets/';
 const group = {name:'DCG GROUP', emblem:'dcg-group-emblem-safe.webp', image:'editorial/hcm-city-1600.webp'};
@@ -357,7 +357,7 @@ function init(){const requestedPath=location.pathname.replace(/\/$/,'')||'/';if(
 document.getElementById('app').innerHTML=shell(content,path);if(location.hash){const anchor=document.getElementById(decodeURIComponent(location.hash.slice(1)));anchor?.scrollIntoView({block:'start',behavior:'instant'});}document.title=(brand?.name||solution?.name||project?.name||(path==='/ve-dcg'||path==='/gioi-thieu'?'Giới thiệu':path==='/he-sinh-thai'?'Hệ sinh thái':path==='/giai-phap'?'Giải pháp':path==='/du-an'?'Dự án':path==='/lien-he'?'Liên hệ':path==='/thong-tin-du-lieu'?'Thông tin dữ liệu':'DCG GROUP'))+' | DCG GROUP';
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(brand?.summary||solution?.summary||project?.summary||'DCG GROUP — hệ sinh thái công nghệ, sáng tạo, phát triển nhân lực và ứng dụng AI.');
  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href='https://dcg-group.vercel.app'+path;
- if(path==='/du-an/lumiqc')initLumiqcPage();if(path==='/he-sinh-thai')initBrandSearch();if(path==='/du-an/dcg-growmatch')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');
+ if(path==='/du-an/lumiqc')initLumiqcPage();if(path==='/du-an/dcg-growmatch')initGrowmatchPage();if(path==='/he-sinh-thai')initBrandSearch();if(path==='/du-an/dcg-growmatch')initRecognitionLightbox();const nav=document.getElementById('nav-toggle');nav.addEventListener('click',()=>setMenuState(nav.getAttribute('aria-expanded')!=='true'));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.getAttribute('aria-expanded')==='true')setMenuState(false);trapMenuFocus(e)});document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenuState(false)));const form=document.getElementById('contact-form');
   if(form && new URLSearchParams(location.search).get('topic')==='lumiqc'){
     const topic=form.querySelector('#contact-topic');
     if(topic) topic.value='LUMIQC – ĐÀN CÁ GỖ';

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/growmatch-vecom-editorial-20261030
+      - feature/growmatch-carousel-ai-gallery-20261030
       - main
     paths:
       - src/growmatch-page.js
