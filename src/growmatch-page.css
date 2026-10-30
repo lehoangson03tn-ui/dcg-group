@@ -197,3 +197,6 @@
 
 /* Ensure event image is not restricted by the small logo rule. */
 .gm .gm-vecom-panel img.gm-vecom-photo{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:center}
+
+/* Neutral blue placeholders while lazy-loaded editorial photographs decode. */
+.gm .gm-story-gallery img,.gm .gm-editorial-media img,.gm .gm-concept-image img,.gm .gm-vecom-photo{background:#eaf2f9}
