@@ -1,0 +1,41 @@
+name: Capture real GrowMatch public guide screenshots
+on:
+  push:
+    branches: [feature/growmatch-real-screenshot-user-guide-20261030]
+    paths:
+      - 'scripts/capture-growmatch-public-guide.mjs'
+      - '.github/workflows/growmatch-capture-guide.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium screenshot runner
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Capture six actual public pages (no accounts / no mock-ups)
+        run: node scripts/capture-growmatch-public-guide.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: growmatch-public-guide-screenshots
+          path: public/assets/guide/
+          retention-days: 14
+      - name: Add verified screenshots to project-website branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/assets/guide/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "assets(growmatch): capture six real public app screens for Vecom guide"
+          git push origin HEAD:feature/growmatch-real-screenshot-user-guide-20261030
