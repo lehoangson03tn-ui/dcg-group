@@ -5,6 +5,7 @@ on:
       - feature/growmatch-vecom-editorial-20261030
       - feature/growmatch-carousel-ai-gallery-20261030
       - fix/growmatch-ipad-hero-media-team-20261030
+      - fix/growmatch-product-cta-photo-20261030
       - main
     paths:
       - src/growmatch-page.js

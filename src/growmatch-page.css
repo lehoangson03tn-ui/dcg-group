@@ -328,6 +328,108 @@
   .gm .gm-person-photo--huy{object-position:50% 34%}
 }
 
-/* Guided, role-aware visual walkthrough CTA (scoped). */
-.gm .gm-product-guide-link{display:inline-flex;gap:10px;align-items:center;min-height:44px;margin-top:12px;padding:6px 0;border-bottom:1px solid var(--gm-gold);color:var(--gm-primary);font-weight:750;font-size:13px;line-height:1.6}
-.gm .gm-product-guide-link:hover{color:var(--gm-navy)}
+
+
+/* 30 Oct 2026 · Product showcase: two equal-weight CTAs with clear hierarchy.
+   Scoped to GM so header, LUMIQC and existing global buttons are unchanged. */
+.gm .gm-product-showcase .gm-product-actions{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-auto-rows:minmax(54px,1fr);
+  width:100%;
+  gap:12px;
+  margin-top:22px;
+}
+.gm .gm-product-showcase .gm-product-actions > .gm-button{
+  box-sizing:border-box;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 19px;
+  align-items:center;
+  column-gap:13px;
+  width:100%;
+  min-height:54px;
+  height:100%;
+  padding:13px 17px;
+  margin:0;
+  border-radius:12px;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:750;
+  line-height:1.45;
+  text-align:left;
+  text-decoration:none;
+  letter-spacing:0;
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
+  transition:background-color .18s,border-color .18s,box-shadow .18s,transform .18s;
+}
+.gm .gm-product-showcase .gm-product-main-cta{
+  color:#fff;
+  background:var(--gm-primary);
+  border:1px solid var(--gm-primary);
+  box-shadow:0 7px 20px rgba(23,91,154,.15);
+}
+.gm .gm-product-showcase .gm-product-main-cta:hover{
+  background:var(--blue-hover,#124879);
+  color:#fff;
+  border-color:var(--blue-hover,#124879);
+}
+.gm .gm-product-showcase .gm-product-second-cta{
+  color:var(--gm-primary);
+  background:#fff;
+  border:1px solid #aec9df;
+  box-shadow:0 3px 12px rgba(20,45,78,.035);
+}
+.gm .gm-product-showcase .gm-product-second-cta:hover{
+  color:var(--gm-navy);
+  background:#f0f6fc;
+  border-color:var(--gm-primary);
+}
+.gm .gm-product-showcase .gm-product-actions .gm-product-cta-icon{
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  font-weight:700;
+  line-height:1;
+  width:19px;
+  height:19px;
+  justify-self:end;
+}
+.gm .gm-product-shot img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:8/5;
+  object-fit:contain;
+  object-position:center top;
+  background:#f3f7fa;
+}
+@media (min-width:901px) and (max-width:1180px){
+ .gm .gm-product-showcase{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+ .gm .gm-product-showcase aside{padding:clamp(24px,2.7vw,35px)}
+ .gm .gm-product-showcase .gm-product-actions > .gm-button{font-size:13px;padding:12px 14px;column-gap:8px}
+}
+@media (max-width:900px){
+ .gm .gm-product-showcase .gm-product-actions{
+   grid-auto-rows:minmax(56px,1fr);
+   gap:12px;
+ }
+ .gm .gm-product-showcase .gm-product-actions > .gm-button{
+   min-height:56px;
+   padding:13px 18px;
+   font-size:clamp(13px,2vw,15px);
+   border-radius:12px;
+ }
+}
+@media (max-width:390px){
+ .gm .gm-product-showcase .gm-product-actions > .gm-button{
+   padding:13px 13px;
+   font-size:13px;
+   column-gap:8px;
+ }
+}
+@media (prefers-reduced-motion:reduce){
+ .gm .gm-product-showcase .gm-product-actions > .gm-button{transition:none}
+ .gm .gm-product-showcase .gm-product-actions > .gm-button:hover{transform:none}
+}

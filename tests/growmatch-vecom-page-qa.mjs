@@ -86,6 +86,47 @@ for (const width of widths) {
   assert.ok(metrics.aiImgCount >= 6, 'six AI illustration occurrences');
   assert.equal(metrics.carouselCount, 1, 'one accessible team carousel');
   assert.ok(metrics.archivePhotoCaptionsHidden && metrics.noNewFigcaptions, 'no visible photo captions');
+
+  // Product showcase regression: two matched CTAs and a genuine decodable JPG.
+  const productShowcase=page.locator('.gm-product-showcase');
+  const productButtons=productShowcase.locator('.gm-product-actions > a.gm-button');
+  assert.equal(await productButtons.count(),2,'two matching product CTAs');
+  assert.equal(await productButtons.nth(0).getAttribute('href'),'https://dcg-growmatch.vercel.app/');
+  assert.equal(await productButtons.nth(1).getAttribute('href'),'#gm-guide');
+  const productImage=productShowcase.locator('.gm-product-shot img');
+  assert.equal(await productImage.getAttribute('src'),'/assets/guide/growmatch-home-public-20261030.jpg','product uses genuine public screenshot');
+  await productImage.evaluate(async img=>{
+    img.loading='eager';
+    await img.decode();
+  });
+  assert.equal(await productImage.evaluate(img=>img.naturalWidth),1440,'screenshot loads and decodes');
+  const productDesign=await productShowcase.evaluate(el=>{
+    const links=[...el.querySelectorAll('.gm-product-actions > a.gm-button')];
+    const boxes=links.map(link=>{
+      const rect=link.getBoundingClientRect(), style=getComputedStyle(link);
+      const label=link.querySelector('span')?.getBoundingClientRect();
+      return {x:rect.x,y:rect.y,width:rect.width,height:rect.height,bg:style.backgroundColor,
+        borderRadius:style.borderRadius,labelHeight:label?.height||0,
+        fontSize:Number.parseFloat(style.fontSize)};
+    });
+    const group=el.querySelector('.gm-product-actions').getBoundingClientRect();
+    const shot=el.querySelector('.gm-product-shot img').getBoundingClientRect();
+    return {boxes,group:{width:group.width,height:group.height},shot:{width:shot.width,height:shot.height}};
+  });
+  assert.ok(Math.abs(productDesign.boxes[0].width-productDesign.boxes[1].width)<=2,
+    'product CTAs same width: '+JSON.stringify(productDesign));
+  assert.ok(Math.abs(productDesign.boxes[0].height-productDesign.boxes[1].height)<=2,
+    'product CTAs same height: '+JSON.stringify(productDesign));
+  assert.ok(productDesign.boxes.every(box=>box.height>=53),
+    'product CTAs maintain accessible touch heights: '+JSON.stringify(productDesign));
+  assert.notEqual(productDesign.boxes[0].bg,productDesign.boxes[1].bg,'primary and secondary styles distinct');
+  assert.ok(productDesign.shot.height>60 && productDesign.shot.width>100,'screenshot visible');
+  assert.ok(productDesign.boxes.every(box=>box.labelHeight<box.height-12),
+    'CTA text not cut off or wrapped too tall: '+JSON.stringify(productDesign));
+  if([390,820,1024,1440].includes(width)){
+    await productShowcase.screenshot({path:'qa-growmatch-vecom/product-showcase-'+width+'.png',animations:'disabled'});
+  }
+
   const team = page.locator('.gm-team-carousel');
   const teamGeometry = await page.evaluate(() => {
     const member=document.querySelector('[data-gm-member="0"]');
@@ -208,7 +249,10 @@ for (const width of widths) {
  } catch (e) {
   results.push({ width, status: 'FAIL', error: e.message });
   await page.screenshot({ path: 'qa-growmatch-vecom/failure-' + width + '.png', fullPage: true }).catch(() => {});
-  console.error('FAIL', width, e.message);
+  const imageState=await page.locator('.gm img').evaluateAll(imgs => imgs.map(img=>({
+    src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,loading:img.loading
+  }))).catch(()=>[]);
+  console.error('FAIL', width, e.message, JSON.stringify(imageState.filter(img=>img.complete&&img.naturalWidth===0)));
  } finally { await page.close(); }
 }
 await browser.close();
