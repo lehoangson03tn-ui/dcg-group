@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
 const base = process.env.SITE_URL || 'http://127.0.0.1:5173';
-const widths = [360, 390, 430, 768, 820, 1024, 1440, 1920];
+const widths = [360, 390, 430, 768, 820, 834, 1024, 1180, 1280, 1440, 1920];
 const browser = await chromium.launch({ headless: true });
 const results = [];
 await mkdir('qa-growmatch-vecom', { recursive: true });
@@ -43,16 +43,92 @@ for (const width of widths) {
   }));
   assert.ok(metrics.overflow <= 2, 'horizontal overflow: ' + metrics.overflow);
   assert.ok(metrics.header && metrics.footer && metrics.articleText, 'shell and article preserved');
+  // Three device classes: verify actual browser geometry, not just element presence.
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior='auto';
+    window.scrollTo(0,0);
+  });
+  const geometry = await page.evaluate(() => {
+    const box = selector => {
+      const r=document.querySelector(selector)?.getBoundingClientRect();
+      return r ? {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height} : null;
+    };
+    const nav=document.querySelector('.gm-context');
+    const screen=document.querySelector('.gm-editorial-media img');
+    return {
+      navPosition:getComputedStyle(nav).position,
+      nav:box('.gm-context'),
+      title:box('#gm-title'),
+      heroCopy:box('.gm-hero-copy'),
+      heroPhoto:box('.gm-hero-visual'),
+      media:box('.gm-editorial-media img'),
+      mediaFit:getComputedStyle(screen).objectFit
+    };
+  });
+  if(width>=701 && width<=1180){
+    assert.equal(geometry.navPosition,'relative','iPad project nav must not cover headings');
+    assert.ok(geometry.title.top >= geometry.nav.bottom+20,
+       'iPad hero title must be below project nav: '+JSON.stringify(geometry));
+    assert.ok(geometry.heroPhoto.top >= geometry.heroCopy.bottom-2,
+       'iPad hero must be a true single-column composition: '+JSON.stringify(geometry));
+    assert.ok(geometry.media.height<=500 && geometry.media.height>=300,
+       'iPad AI coaching photo must be a short landscape crop: '+JSON.stringify(geometry));
+    assert.ok(geometry.media.width > geometry.media.height,
+       'iPad coaching image should be wider than tall');
+    assert.equal(geometry.mediaFit,'cover');
+  }
+  if(width<=700){
+    assert.equal(geometry.navPosition,'relative','mobile project bar must not hide hero');
+    assert.ok(geometry.media.height<=410,'mobile coaching image has a bounded height');
+  }
+
   assert.ok(metrics.heroImg.endsWith('growmatch-ai-hero-launch.png'), 'AI hero launch art');
   assert.ok(metrics.aiImgCount >= 6, 'six AI illustration occurrences');
   assert.equal(metrics.carouselCount, 1, 'one accessible team carousel');
   assert.ok(metrics.archivePhotoCaptionsHidden && metrics.noNewFigcaptions, 'no visible photo captions');
   const team = page.locator('.gm-team-carousel');
+  const teamGeometry = await page.evaluate(() => {
+    const member=document.querySelector('[data-gm-member="0"]');
+    const media=member.querySelector('.gm-person-media');
+    const img=member.querySelector('img.gm-person-photo');
+    const card=member.getBoundingClientRect();
+    const frame=media.getBoundingClientRect();
+    const photo=img.getBoundingClientRect();
+    return {
+      cardHeight:card.height, frameHeight:frame.height, frameWidth:frame.width,
+      frameTop:frame.top, frameBottom:frame.bottom, cardBottom:card.bottom,
+      photoHeight:photo.height, photoWidth:photo.width,
+      cardWidth:card.width, framePosition:getComputedStyle(media).position,
+      photoFit:getComputedStyle(img).objectFit
+    };
+  });
+  assert.equal(teamGeometry.photoFit,'cover');
+  assert.ok(Math.abs(teamGeometry.photoHeight-teamGeometry.frameHeight)<=2,
+    'member portrait must entirely fill its image frame: '+JSON.stringify(teamGeometry));
+  if(width>=701 && width<=1180){
+    assert.ok(Math.abs(teamGeometry.cardHeight-teamGeometry.frameHeight)<=4,
+      'iPad member photo must fill entire height of the card: '+JSON.stringify(teamGeometry));
+    assert.ok(teamGeometry.frameHeight>=470,'portrait fills iPad card vertically');
+  }
+  if(width<=700){
+    assert.ok(teamGeometry.frameHeight>=310 && teamGeometry.frameHeight<=440,
+      'mobile portrait has deliberate balanced height');
+  }
+
   const members = page.locator('[data-gm-member]');
   assert.equal(await members.count(), 2);
   assert.equal(await members.nth(0).isVisible(), true, 'Sơn first profile');
   assert.equal(await members.nth(1).isVisible(), false, 'Huy starts hidden');
   await team.locator('[data-gm-member-next]').click();
+  if(width>=701 && width<=1180){
+    const second=await page.evaluate(()=>{
+      const card=document.querySelector('[data-gm-member="1"]');
+      const photo=card.querySelector('.gm-person-media');
+      return {card:card.getBoundingClientRect().height,media:photo.getBoundingClientRect().height};
+    });
+    assert.ok(Math.abs(second.card-second.media)<=4,
+      'second iPad portrait must fill entire card too: '+JSON.stringify(second));
+  }
   assert.equal(await members.nth(0).isVisible(), false);
   assert.equal(await members.nth(1).isVisible(), true, 'next arrow opens Huy');
   assert.equal(await page.locator('.gm-team-index-current').innerText(), '02');
@@ -88,7 +164,7 @@ for (const width of widths) {
    assert.ok(await checkImage.evaluate(img=>img.naturalWidth)>500,'AI hero must load from media library');
   }
   assert.deepEqual(errors, [], 'no JS runtime errors');
-  if ([390, 820, 1440].includes(width)) {
+  if ([390, 820, 834, 1024, 1440].includes(width)) {
    const aiImages = page.locator('.gm img[src*="growmatch-ai-"]');
    await aiImages.evaluateAll(async imgs => {
     imgs.forEach(img => { img.loading='eager'; });
@@ -117,6 +193,12 @@ for (const width of widths) {
     await Promise.all(imgs.map(img => img.decode()));
    });
    await page.screenshot({ path: 'qa-growmatch-vecom/project-' + width + '.png', fullPage: true, animations: 'disabled' });
+   // Focused visual evidence lets a reviewer inspect each of the three reported bugs.
+   if([390,820,834,1024,1440].includes(width)){
+     await page.locator('.gm-hero').screenshot({path:'qa-growmatch-vecom/hero-'+width+'.png',animations:'disabled'});
+     await page.locator('.gm-editorial-grid').screenshot({path:'qa-growmatch-vecom/coaching-'+width+'.png',animations:'disabled'});
+     await page.locator('.gm-team-carousel').screenshot({path:'qa-growmatch-vecom/team-'+width+'.png',animations:'disabled'});
+   }
   }
   results.push({ width, status: 'PASS', overflow: metrics.overflow });
   console.log('PASS', width);
