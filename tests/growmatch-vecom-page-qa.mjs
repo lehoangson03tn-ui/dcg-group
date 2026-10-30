@@ -88,7 +88,24 @@ for (const width of widths) {
    assert.ok(await checkImage.evaluate(img=>img.naturalWidth)>500,'AI hero must load from media library');
   }
   assert.deepEqual(errors, [], 'no JS runtime errors');
-  if ([390, 820, 1440].includes(width)) await page.screenshot({ path: 'qa-growmatch-vecom/project-' + width + '.png', fullPage: true, animations: 'disabled' });
+  if ([390, 820, 1440].includes(width)) {
+   const aiImages = page.locator('.gm img[src*="growmatch-ai-"]');
+   await aiImages.evaluateAll(async imgs => {
+    imgs.forEach(img => { img.loading='eager'; });
+    await Promise.all(imgs.map(img => Promise.race([
+      img.decode(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('AI asset timeout')), 18000))
+    ])));
+   });
+   const aiStatus=await aiImages.evaluateAll(imgs=>imgs.map(img=>({src:img.currentSrc.split('/').pop(),naturalWidth:img.naturalWidth})));
+   assert.ok(aiStatus.every(img=>img.naturalWidth>500), 'all AI media must fully load');
+   const archive=page.locator('.growmatch-award-figure img');
+   await archive.evaluateAll(async imgs => {
+    imgs.forEach(img => { img.loading='eager'; });
+    await Promise.all(imgs.map(img => img.decode()));
+   });
+   await page.screenshot({ path: 'qa-growmatch-vecom/project-' + width + '.png', fullPage: true, animations: 'disabled' });
+  }
   results.push({ width, status: 'PASS', overflow: metrics.overflow });
   console.log('PASS', width);
  } catch (e) {
