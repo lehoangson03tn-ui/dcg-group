@@ -200,3 +200,130 @@
 
 /* Neutral blue placeholders while lazy-loaded editorial photographs decode. */
 .gm .gm-story-gallery img,.gm .gm-editorial-media img,.gm .gm-concept-image img,.gm .gm-vecom-photo{background:#eaf2f9}
+
+
+/* 30/10/2026 | iPad hero, long illustration and half-height team portrait fixes.
+   Only affect DCG GROWMATCH; preserve the DCG GROUP shell and LUMIQC. */
+.gm .gm-hero{scroll-margin-top:100px}
+.gm .gm-hero h1{scroll-margin-top:110px}
+@media (min-width:701px) and (max-width:1180px){
+  /* On iPad, use an editorial single-column hero; never squeeze the heading
+     beside the illustration or let the secondary sticky bar cover its top. */
+  .gm .gm-context{position:relative;top:auto;z-index:10}
+  .gm .gm-context-inner{gap:16px}
+  .gm .gm-context-links{min-width:0;justify-content:flex-start;gap:clamp(12px,1.6vw,20px)}
+  .gm .gm-hero-grid{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    gap:clamp(25px,3.5vw,42px);
+    padding-block:clamp(52px,6.5vw,74px) 42px;
+  }
+  .gm .gm-hero-copy{max-width:850px}
+  .gm .gm-hero h1{
+    font-size:clamp(40px,5.2vw,56px);
+    line-height:1.24;
+    letter-spacing:-.045em;
+    margin:0 0 22px;
+  }
+  .gm .gm-hero h1 span{
+    max-width:33ch;
+    font-size:clamp(23px,2.7vw,31px);
+    line-height:1.4;
+    margin-top:13px;
+  }
+  .gm .gm-lead{max-width:65ch}
+  .gm .gm-hero-visual{width:100%;max-width:none}
+  .gm .gm-visual-frame--ai img{
+    width:100%;
+    height:clamp(320px,48vw,520px);
+    max-height:520px;
+    aspect-ratio:auto;
+    object-fit:cover;
+    object-position:center 49%;
+  }
+  /* Constrain the AI conversation visual to a horizontal landscape frame.
+     Explicit height is important: aspect-ratio alone did not constrain this
+     replaced image reliably on iPad Safari. */
+  .gm .gm-editorial-grid{grid-template-columns:minmax(0,1fr);align-items:start}
+  .gm .gm-editorial-media{width:100%;max-width:100%;overflow:hidden;border-radius:16px}
+  .gm .gm-editorial-media img{
+    display:block;
+    width:100%;
+    height:clamp(310px,43vw,495px);
+    max-height:495px;
+    aspect-ratio:auto;
+    object-fit:cover;
+    object-position:50% 35%;
+    border-radius:16px;
+  }
+  /* The old 290px fixed height applied to .gm-person-media on iPad.
+     Stretch the portrait to the actual height of the entire member card. */
+  .gm .gm-team-carousel .gm-person{
+    display:grid;
+    grid-template-columns:minmax(0,42%) minmax(0,58%);
+    align-items:stretch;
+    min-height:500px;
+  }
+  .gm .gm-team-carousel .gm-person-media{
+    display:block;
+    position:relative;
+    align-self:stretch;
+    width:100%;
+    height:auto;
+    min-height:100%;
+    overflow:hidden;
+  }
+  .gm .gm-team-carousel .gm-person-photo{
+    position:absolute;
+    inset:0;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .gm .gm-team-carousel .gm-person-photo--son{
+    transform:none;
+    object-position:50% 39%;
+  }
+  .gm .gm-team-carousel .gm-person-photo--huy{
+    transform:none;
+    object-position:50% 38%;
+  }
+  .gm .gm-team-carousel .gm-person-info{padding:clamp(25px,3vw,38px)}
+}
+@media (max-width:700px){
+  /* Keep touch navigation fluid and avoid a second sticky header covering titles. */
+  .gm .gm-context{position:relative;top:auto;z-index:10}
+  .gm .gm-hero-grid{padding-block:43px 36px}
+  .gm .gm-hero h1{line-height:1.24;letter-spacing:-.035em}
+  .gm .gm-hero h1 span{line-height:1.42;margin-top:13px}
+  .gm .gm-visual-frame--ai img{height:auto;max-height:390px;aspect-ratio:4/3;object-fit:cover}
+  .gm .gm-editorial-media{overflow:hidden;border-radius:14px}
+  .gm .gm-editorial-media img{
+    width:100%;
+    height:clamp(250px,76vw,405px);
+    max-height:405px;
+    aspect-ratio:auto;
+    object-fit:cover;
+    object-position:50% 37%;
+  }
+  .gm .gm-team-carousel .gm-person{display:flex;flex-direction:column;min-height:0}
+  .gm .gm-team-carousel .gm-person-media{
+    position:relative;
+    height:clamp(315px,92vw,430px);
+    min-height:0;
+    width:100%;
+    flex:0 0 auto;
+    align-self:stretch;
+    overflow:hidden;
+  }
+  .gm .gm-team-carousel .gm-person-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .gm .gm-person-photo--son{object-position:50% 31%}
+  .gm .gm-person-photo--huy{object-position:50% 34%}
+}
