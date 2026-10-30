@@ -99,6 +99,18 @@ for (const width of widths) {
    });
    const aiStatus=await aiImages.evaluateAll(imgs=>imgs.map(img=>({src:img.currentSrc.split('/').pop(),naturalWidth:img.naturalWidth})));
    assert.ok(aiStatus.every(img=>img.naturalWidth>500), 'all AI media must fully load');
+   const realProduct = page.locator('.gm-product-shot img');
+   await realProduct.evaluateAll(async imgs => {
+    imgs.forEach(img => { img.loading='eager'; });
+    await Promise.all(imgs.map(img => img.decode()));
+   });
+   assert.ok(await realProduct.first().evaluate(img => img.naturalWidth >= 1000), 'real product website screenshot loads');
+   const portraits = page.locator('.gm-person-photo');
+   await portraits.evaluateAll(async imgs => {
+    imgs.forEach(img => { img.loading='eager'; });
+    await Promise.all(imgs.map(img => img.decode()));
+   });
+   assert.ok((await portraits.evaluateAll(imgs=>imgs.map(img=>img.naturalWidth))).every(n=>n>300), 'both real member photos load');
    const archive=page.locator('.growmatch-award-figure img');
    await archive.evaluateAll(async imgs => {
     imgs.forEach(img => { img.loading='eager'; });
