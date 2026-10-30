@@ -22,6 +22,41 @@ for (const width of widths) {
    assert.equal(await page.locator('#' + id).count(), 1, id + ' section');
   }
   assert.equal(await page.locator('.growmatch-award-figure').count(), 2, 'exactly two original award figures');
+  // Each team member uses three self-contained rows, not six loose grid cells.
+  const memberMetas = page.locator('.gm-team-carousel .gm-person-meta');
+  assert.equal(await memberMetas.count(), 2, 'both profiles have metadata');
+  for (let memberIndex = 0; memberIndex < 2; memberIndex++) {
+   assert.equal(await memberMetas.nth(memberIndex).locator('.gm-person-meta-row').count(), 3,
+     'three aligned facts for team member ' + memberIndex);
+  }
+  const alignedMeta = await memberMetas.first().evaluate(meta => {
+    const rows = [...meta.querySelectorAll('.gm-person-meta-row')];
+    return {
+      overflow: meta.scrollWidth > meta.clientWidth + 2,
+      rows: rows.map(row => {
+        const label=row.querySelector('span').getBoundingClientRect();
+        const value=row.querySelector('b').getBoundingClientRect();
+        return { labelX: label.left, valueX: value.left, labelTop: label.top,
+          valueTop: value.top, labelBottom: label.bottom, valueWidth: value.width };
+      })
+    };
+  });
+  assert.ok(!alignedMeta.overflow, 'team facts must not overflow the card');
+  assert.ok(alignedMeta.rows.every(r=>r.valueWidth >= 80), 'team facts need readable value width');
+  for (let i = 1; i < alignedMeta.rows.length; i++) {
+   assert.ok(Math.abs(alignedMeta.rows[i].labelX - alignedMeta.rows[0].labelX)<2,
+      'all team labels must align');
+   assert.ok(Math.abs(alignedMeta.rows[i].valueX - alignedMeta.rows[0].valueX)<2,
+      'all team values must align');
+  }
+  if (width <= 700) {
+   assert.ok(alignedMeta.rows.every(r=>r.valueTop >= r.labelBottom-1),
+     'on phones, values must sit under labels');
+  } else {
+   assert.ok(alignedMeta.rows.every(r=>Math.abs(r.labelTop-r.valueTop)<7),
+     'on tablet and desktop, label and value share the same row');
+  }
+
   assert.equal(await page.locator('.growmatch-award-title').innerText(), 'DCG GROWMATCH ghi dấu ấn tại CEO thời đại số');
   assert.equal(await page.locator('.growmatch-award-result').innerText(), 'Top 5 vòng chung kết');
   assert.equal(await page.locator('a.recognition-source').getAttribute('href'), 'https://ntt.edu.vn/nttu-tim-kiem-nha-quan-tri-tuong-lai-qua-cuoc-thi-ceo-thoi-dai-so/');

@@ -140,9 +140,12 @@
 .gm .gm-team-detail ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .gm .gm-team-detail li{position:relative;padding-left:19px;color:#365469;font-size:clamp(12px,1.05vw,14px);line-height:1.62}
 .gm .gm-team-detail li::before{content:"";position:absolute;top:.63em;left:0;width:8px;height:8px;border-radius:50%;background:var(--gm-primary);box-shadow:0 0 0 3px #e7f1f9}
-.gm .gm-team-carousel .gm-person-meta{display:grid;width:100%;grid-template-columns:110px minmax(0,1fr);gap:8px 13px;padding:17px 0 0;margin-top:auto;border-top:1px solid #dbe8ed}
-.gm .gm-team-carousel .gm-person-meta span{font-size:10px;font-weight:750;line-height:1.55;color:#758897}
-.gm .gm-team-carousel .gm-person-meta b{font-size:12px;line-height:1.65;font-weight:650;color:#314b5b}
+/* Team profile facts: consistent row geometry across desktop, tablet and phone. */
+.gm .gm-team-carousel .gm-person-meta{display:grid;width:100%;grid-template-columns:minmax(0,1fr);gap:0;padding:10px 0 0;margin:auto 0 0;border-top:1px solid #dbe8ed;min-width:0}
+.gm .gm-team-carousel .gm-person-meta-row{display:grid;grid-template-columns:minmax(118px,31%) minmax(0,1fr);align-items:baseline;column-gap:clamp(12px,1.5vw,20px);padding:9px 0;border-bottom:1px solid #eaf0f3;min-width:0}
+.gm .gm-team-carousel .gm-person-meta-row:last-child{border-bottom:0}
+.gm .gm-team-carousel .gm-person-meta span{display:block;min-width:0;font-size:10px;font-weight:800;letter-spacing:.035em;line-height:1.55;color:#6e8391}
+.gm .gm-team-carousel .gm-person-meta b{display:block;min-width:0;font-size:clamp(12px,1.04vw,14px);line-height:1.58;font-weight:700;color:#25475b;overflow-wrap:break-word}
 .gm .gm-team-navigation{display:flex;justify-content:center;align-items:center;gap:clamp(18px,3vw,44px);padding:24px 0 7px}
 .gm .gm-team-arrow{display:grid;place-items:center;width:47px;height:47px;flex:0 0 47px;border:1px solid #c7dce7;background:#fff;color:var(--gm-primary);border-radius:50%;cursor:pointer;box-shadow:0 5px 18px rgba(16,74,111,.08);transition:background .16s ease,transform .16s ease}
 .gm .gm-team-arrow:hover{background:#e8f4f8;border-color:#86b7e1;transform:translateY(-2px)}
@@ -169,7 +172,7 @@
  .gm .gm-team-carousel .gm-person{grid-template-columns:minmax(0,44%) minmax(0,56%);min-height:470px}
  .gm .gm-team-carousel .gm-person-info{padding:clamp(19px,3vw,30px)}
  .gm .gm-team-carousel .gm-person-info h3{font-size:clamp(26px,3.5vw,34px)}
- .gm .gm-team-carousel .gm-person-meta{grid-template-columns:92px minmax(0,1fr);gap:7px}
+ .gm .gm-team-carousel .gm-person-meta-row{grid-template-columns:minmax(105px,30%) minmax(0,1fr);column-gap:12px}
 }
 @media(max-width:650px){
  .gm .gm-visual-frame--ai img{aspect-ratio:16/11;object-fit:cover}
@@ -188,7 +191,7 @@
 }
 @media(max-width:390px){
  .gm .gm-team-carousel .gm-person-info h3{font-size:28px}
- .gm .gm-team-carousel .gm-person-meta{grid-template-columns:90px minmax(0,1fr)}
+ .gm .gm-team-carousel .gm-person-meta b{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){
  .gm .gm-team-arrow,.gm .gm-team-dots button{transition:none}
@@ -432,4 +435,14 @@
 @media (prefers-reduced-motion:reduce){
  .gm .gm-product-showcase .gm-product-actions > .gm-button{transition:none}
  .gm .gm-product-showcase .gm-product-actions > .gm-button:hover{transform:none}
+}
+
+/* Compact single-column facts when the team card itself stacks on phones. */
+@media(max-width:700px){
+ .gm .gm-team-carousel .gm-person-meta-row{grid-template-columns:minmax(0,1fr);row-gap:3px;align-items:start;padding:10px 0}
+ .gm .gm-team-carousel .gm-person-meta span{font-size:10px;letter-spacing:.045em}
+ .gm .gm-team-carousel .gm-person-meta b{font-size:14px;line-height:1.5}
+}
+@media(max-width:390px){
+ .gm .gm-team-carousel .gm-person-meta b{font-size:13px}
 }
