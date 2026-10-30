@@ -61,7 +61,7 @@ function renderStep(step,index,flowId){
     <p class="gm-guide-step-kicker">BƯỚC ${String(index+1).padStart(2,'0')} / ${String(flows.find(f=>f.id===flowId).steps.length).padStart(2,'0')}</p>
     <h3>${escapeHtml(step.title)}</h3>
     <p class="gm-guide-summary">${escapeHtml(step.summary)}</p>
-    <ol>${step.items.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ol>
+    <ol>${step.items.map(item=>`<li><span class="gm-guide-item-text">${escapeHtml(item)}</span></li>`).join('')}</ol>
     <p class="gm-guide-access"><span aria-hidden="true">●</span> ${escapeHtml(step.access)}</p>
     <a class="gm-button gm-button-primary" href="${PRODUCT_URL+step.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(step.cta)} <span aria-hidden="true">↗</span></a>
    </div>

@@ -65,13 +65,49 @@ for(const [engine,driver,widths] of browsers){
     assert.equal(await guide.locator('img[src*="growmatch-"]').count(),11,'all walkthrough screens');
     assert.equal(await page.locator('.growmatch-award-figure').count(),2,'original CEO article preserved');
 
+
+    // Regression: numbered badges share a stable first-line axis with their
+    // text on phones, iPads and desktop, even when a sentence wraps.
+    const assertNumberedRows=async(stage,label)=>{
+      const layout=await stage.locator('.gm-guide-explain ol').evaluate(ol=>{
+        const rows=[...ol.querySelectorAll(':scope > li')];
+        return rows.map(li=>{
+          const copy=li.querySelector('.gm-guide-item-text');
+          const item=li.getBoundingClientRect();
+          const word=copy?.getBoundingClientRect();
+          const badge=getComputedStyle(li,'::before');
+          const grid=getComputedStyle(li);
+          return {labelX:item.left,copyX:word?.left,copyY:word?.top,
+            itemY:item.top,itemRight:item.right,copyRight:word?.right,
+            badgePosition:badge.position,badgeWidth:parseFloat(badge.width),
+            badgeHeight:parseFloat(badge.height),
+            gap:parseFloat(grid.columnGap),columns:grid.gridTemplateColumns,
+            copyHeight:word?.height,overflow:li.scrollWidth>li.clientWidth+2};
+        });
+      });
+      assert.equal(layout.length,3,label+' should have three numbered instructions');
+      assert.ok(layout.every(x=>x.badgePosition==='static'),
+        label+' badges must remain in the document layout');
+      assert.ok(layout.every(x=>x.badgeWidth>=27&&x.badgeHeight>=27),
+        label+' all number boxes should have equal visible size');
+      assert.ok(layout.every(x=>Math.abs(x.copyY-x.itemY)<=2),
+        label+' text and number start on the same horizontal axis: '+JSON.stringify(layout));
+      assert.ok(layout.every(x=>Math.abs((x.copyX-x.labelX)-(x.badgeWidth+x.gap))<=3),
+        label+' text columns must have uniform indents: '+JSON.stringify(layout));
+      assert.ok(layout.every(x=>!x.overflow&&x.copyRight<=x.itemRight+2),
+        label+' numbered instructions must not overflow: '+JSON.stringify(layout));
+      assert.ok(layout.every(x=>Math.abs(x.copyX-layout[0].copyX)<2),
+        label+' all three text rows must align: '+JSON.stringify(layout));
+    };
     const overview=guide.locator('[data-gm-guide-flow="overview"]');
     assert.ok(await overview.isVisible());
     assert.ok(await overview.locator('[data-gm-guide-stage="0"]').isVisible());
+    await assertNumberedRows(overview.locator('[data-gm-guide-stage="0"]'),'overview step 01');
     await overview.locator('[data-gm-guide-next]').click();
     assert.ok(await overview.locator('[data-gm-guide-stage="1"]').isVisible(),'next button works');
     await overview.locator('[data-gm-guide-step="2"]').click();
     assert.ok(await overview.locator('[data-gm-guide-stage="2"]').isVisible(),'step navigator works');
+    await assertNumberedRows(overview.locator('[data-gm-guide-stage="2"]'),'overview step 03');
 
     await guide.locator('[data-gm-guide-tab="candidate"]').click();
     assert.equal(await overview.isVisible(),false);
@@ -80,6 +116,11 @@ for(const [engine,driver,widths] of browsers){
     assert.equal(await candidate.locator('[data-gm-guide-stage]').count(),4);
     await candidate.locator('[data-gm-guide-step="1"]').click();
     const register=candidate.locator('[data-gm-guide-stage="1"]');
+    await assertNumberedRows(candidate.locator('[data-gm-guide-stage="1"]'),'candidate jobs step 02');
+    if([390,820,1440].includes(width)){
+      await candidate.locator('[data-gm-guide-stage="1"] .gm-guide-explain ol')
+        .screenshot({path:'qa-growmatch-guide/numbered-steps-'+engine+'-'+width+'.png',animations:'disabled'});
+    }
     assert.ok(await register.isVisible());
     assert.ok((await register.locator('img').getAttribute('src')).includes('register-public'));
     assert.equal(await register.locator('a.gm-button').getAttribute('href'),'https://dcg-growmatch.vercel.app/#register');
@@ -100,6 +141,7 @@ for(const [engine,driver,widths] of browsers){
     const employer=guide.locator('[data-gm-guide-flow="employer"]');
     assert.ok(await employer.isVisible());
     assert.equal(await employer.locator('[data-gm-guide-stage]').count(),4);
+    await assertNumberedRows(employer.locator('[data-gm-guide-stage="0"]'),'employer step 01');
     assert.ok(await employer.locator('[data-gm-guide-stage="0"] img').getAttribute('src').then(x=>x.includes('employer-public')));
     const measurements=await page.evaluate(()=>{
       const root=document.querySelector('#gm-guide').getBoundingClientRect();

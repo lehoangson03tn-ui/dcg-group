@@ -36,9 +36,64 @@
 .gm .gm-guide-step-kicker{font-size:11px;letter-spacing:.07em;font-weight:750;color:var(--gm-gold);margin:0 0 12px}
 .gm .gm-guide-explain h3{font-size:clamp(22px,2.5vw,30px);line-height:1.38;letter-spacing:-.025em;margin:0 0 13px;color:var(--gm-navy)}
 .gm .gm-guide-summary{font-size:15px;line-height:1.73;margin:0 0 18px}
-.gm .gm-guide-explain ol{list-style:none;counter-reset:guide;padding:0;margin:0 0 20px;display:grid;gap:10px}
-.gm .gm-guide-explain li{counter-increment:guide;position:relative;padding-left:30px;font-size:13px;line-height:1.72;color:#42586d}
-.gm .gm-guide-explain li::before{content:counter(guide);position:absolute;left:0;top:1px;width:21px;height:21px;border:1px solid #c9ddec;background:#eaf4fd;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--gm-primary);line-height:1}
+/* Align the numbered badge and copy as real grid siblings.
+   The copy stays in the same column when it wraps onto multiple lines. */
+.gm .gm-guide-explain ol{
+  list-style:none;
+  counter-reset:guide;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(11px,1.15vw,15px);
+  padding:0;
+  margin:0 0 20px;
+}
+.gm .gm-guide-explain ol li{
+  counter-increment:guide;
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr);
+  grid-template-rows:auto;
+  column-gap:12px;
+  align-items:start;
+  position:relative;
+  min-width:0;
+  padding:0;
+  margin:0;
+  color:#42586d;
+  font-size:clamp(13px,1.08vw,15px);
+  line-height:1.65;
+}
+.gm .gm-guide-explain ol li::before{
+  content:counter(guide);
+  position:static;
+  grid-column:1;
+  grid-row:1;
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  margin:0;
+  padding:0;
+  border:1px solid #c9ddec;
+  border-radius:8px;
+  background:#eaf4fd;
+  color:var(--gm-primary);
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.gm .gm-guide-explain ol li .gm-guide-item-text{
+  display:block;
+  grid-column:2;
+  grid-row:1;
+  min-width:0;
+  margin:0;
+  padding:0;
+  font:inherit;
+  color:inherit;
+  line-height:1.65;
+  overflow-wrap:break-word;
+}
 .gm .gm-guide-access{font-size:12px;line-height:1.7;padding:12px 15px;margin:0 0 18px;border-left:3px solid #7bb0de;background:#f3f8fc;color:#4f6680}
 .gm .gm-guide-access span{color:var(--gm-primary);margin-right:5px;font-size:8px;vertical-align:2px}
 .gm .gm-guide-explain .gm-button{width:max-content;max-width:100%;font-size:13px;min-height:46px}
