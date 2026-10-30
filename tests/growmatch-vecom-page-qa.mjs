@@ -249,7 +249,10 @@ for (const width of widths) {
  } catch (e) {
   results.push({ width, status: 'FAIL', error: e.message });
   await page.screenshot({ path: 'qa-growmatch-vecom/failure-' + width + '.png', fullPage: true }).catch(() => {});
-  console.error('FAIL', width, e.message);
+  const imageState=await page.locator('.gm img').evaluateAll(imgs => imgs.map(img=>({
+    src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,loading:img.loading
+  }))).catch(()=>[]);
+  console.error('FAIL', width, e.message, JSON.stringify(imageState.filter(img=>img.complete&&img.naturalWidth===0)));
  } finally { await page.close(); }
 }
 await browser.close();
