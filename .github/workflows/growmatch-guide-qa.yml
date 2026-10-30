@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/growmatch-real-screenshot-user-guide-20261030
+      - fix/growmatch-guide-verification-compact-20261030
       - main
     paths:
       - 'src/growmatch-guide.js'
