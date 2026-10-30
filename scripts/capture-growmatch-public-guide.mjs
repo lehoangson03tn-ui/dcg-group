@@ -21,7 +21,13 @@ try {
   try{
    const response=await page.goto(base+route.hash,{waitUntil:'domcontentloaded',timeout:45000});
    if(!response || response.status()!==200)throw Error('Public site response '+response?.status());
-   await page.waitForSelector('main h1',{state:'visible',timeout:35000});
+   try {await page.waitForSelector('main h1',{state:'visible',timeout:13000});}
+   catch(error){
+     const debug=await page.evaluate(()=>({title:document.title,href:location.href,text:document.body?.innerText.slice(0,1700),main:!!document.querySelector('main'),html:document.documentElement.outerHTML.slice(0,1600)}));
+     console.error('PUBLIC PRODUCT DIAGNOSTIC '+route.id,JSON.stringify(debug));
+     await page.screenshot({path:out+'/diagnostic-'+route.id+'.jpg',type:'jpeg',quality:75,fullPage:false});
+     throw error;
+   }
    await page.waitForFunction(expected=>!expected || (document.querySelector('main')?.innerText||'').includes(expected),route.expected,{timeout:25000});
    await page.evaluate(async()=>{
     await document.fonts.ready;
