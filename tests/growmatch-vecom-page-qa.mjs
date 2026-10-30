@@ -22,6 +22,46 @@ for (const width of widths) {
    assert.equal(await page.locator('#' + id).count(), 1, id + ' section');
   }
   assert.equal(await page.locator('.growmatch-award-figure').count(), 2, 'exactly two original award figures');
+  // Visual geometry contract for the three problem cards, checked at all eleven viewports.
+  const problemLayout = await page.evaluate(() => {
+    const section=document.querySelector('#gm-problem');
+    const title=section.querySelector('h2');
+    const intro=section.querySelector('.gm-head > p');
+    const cards=[...section.querySelectorAll('.gm-three > .gm-tile')];
+    const box=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
+    return {
+      title:box(title), intro:box(intro),
+      gridColumns:getComputedStyle(section.querySelector('.gm-three')).gridTemplateColumns.split(' ').length,
+      cards:cards.map(card=>({
+        card:box(card),index:box(card.querySelector('.gm-index')),
+        title:box(card.querySelector('h3')),copy:box(card.querySelector('p')),
+        overflow:card.scrollWidth > card.clientWidth+2
+      }))
+    };
+  });
+  assert.equal(problemLayout.cards.length,3,'three problem cards preserved');
+  assert.ok(problemLayout.cards.every(x=>!x.overflow),'no card text overflow');
+  assert.ok(problemLayout.cards.every(x=>x.copy.right<=x.card.right+2),'paragraphs must stay inside cards');
+  assert.ok(problemLayout.cards.every(x=>x.title.right<=x.card.right+2),'headings must stay inside cards');
+  if(width>=1181){
+    assert.equal(problemLayout.gridColumns,3,'desktop has three equal columns');
+    assert.ok(problemLayout.cards.every(x=>Math.abs(x.card.top-problemLayout.cards[0].card.top)<2),'desktop card tops align');
+    assert.ok(problemLayout.cards.every(x=>Math.abs(x.card.height-problemLayout.cards[0].card.height)<2),'desktop card heights align');
+    assert.ok(problemLayout.cards.every(x=>Math.abs(x.title.top-problemLayout.cards[0].title.top)<3),'desktop headings align');
+  } else if(width>=701){
+    assert.equal(problemLayout.gridColumns,1,'iPad uses one horizontal card per row');
+    for(let i=1;i<problemLayout.cards.length;i++){
+      assert.ok(problemLayout.cards[i].card.top > problemLayout.cards[i-1].card.bottom,'iPad cards are stacked without overlap');
+      assert.ok(Math.abs(problemLayout.cards[i].card.width-problemLayout.cards[0].card.width)<2,'iPad cards have equal width');
+    }
+    assert.ok(problemLayout.cards.every(x=>x.title.left>x.index.right),'iPad heading is next to the index');
+    assert.ok(problemLayout.cards.every(x=>x.copy.left>x.title.right),'iPad description occupies a separate right column');
+  } else {
+    assert.equal(problemLayout.gridColumns,1,'phones use single-column cards');
+    assert.ok(problemLayout.cards.every(x=>x.copy.top>=x.title.bottom-1),'phone descriptions appear below headings');
+    assert.ok(problemLayout.cards.every(x=>x.copy.width>=x.title.width),'phone paragraphs use available width');
+  }
+
   // Each team member uses three self-contained rows, not six loose grid cells.
   const memberMetas = page.locator('.gm-team-carousel .gm-person-meta');
   assert.equal(await memberMetas.count(), 2, 'both profiles have metadata');

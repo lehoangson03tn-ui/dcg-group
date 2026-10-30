@@ -446,3 +446,155 @@
 @media(max-width:390px){
  .gm .gm-team-carousel .gm-person-meta b{font-size:13px}
 }
+
+/* 31 Oct 2026 | DCG GrowMatch problem cards: responsive editorial layout. */
+/* Scoped to the market-problem section, preserving the rest of the project. */
+.gm #gm-problem .gm-head{
+  max-width:none;
+  display:grid;
+  grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+  align-items:end;
+  gap:clamp(24px,4.5vw,68px);
+  margin-bottom:clamp(24px,3vw,38px);
+}
+.gm #gm-problem .gm-head > div{min-width:0}
+.gm #gm-problem .gm-head h2{
+  max-width:22ch;
+  margin:0;
+  font-size:clamp(30px,3.2vw,43px);
+  line-height:1.24;
+  letter-spacing:-.038em;
+  text-wrap:balance;
+}
+.gm #gm-problem .gm-head > p{
+  margin:0 0 3px;
+  max-width:58ch;
+  font-size:clamp(14px,1.15vw,16px);
+  line-height:1.76;
+  color:#46566a;
+  text-wrap:pretty;
+}
+.gm #gm-problem .gm-three{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.7vw,22px);
+  align-items:stretch;
+}
+.gm #gm-problem .gm-tile{
+  box-sizing:border-box;
+  min-width:0;
+  min-height:300px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:30px minmax(66px,auto) 1fr;
+  gap:clamp(13px,1.3vw,19px);
+  align-items:start;
+  padding:clamp(23px,2.4vw,34px);
+  border:1px solid #d9e4eb;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+  box-shadow:0 8px 26px rgba(20,57,84,.055);
+}
+.gm #gm-problem .gm-index{
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:43px;
+  height:29px;
+  padding:0;
+  border:1px solid #e3d6bb;
+  border-radius:8px;
+  background:#fcf8ee;
+  color:#83602c;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+  line-height:1;
+}
+.gm #gm-problem .gm-tile h3{
+  min-width:0;
+  margin:0;
+  font-size:clamp(18px,1.66vw,23px);
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:-.025em;
+  color:#173553;
+  overflow-wrap:break-word;
+  text-wrap:balance;
+}
+.gm #gm-problem .gm-tile p{
+  min-width:0;
+  margin:0;
+  font-size:clamp(14px,1.12vw,16px);
+  line-height:1.75;
+  color:#46566a;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+/* iPad portrait and landscape: one tidy horizontal information card per row. */
+@media(min-width:701px) and (max-width:1180px){
+  .gm #gm-problem .gm-head{
+    grid-template-columns:minmax(0,1fr);
+    max-width:900px;
+    gap:18px;
+    margin-bottom:27px;
+  }
+  .gm #gm-problem .gm-head h2{
+    max-width:25ch;
+    font-size:clamp(30px,3.4vw,39px);
+  }
+  .gm #gm-problem .gm-head > p{max-width:75ch;font-size:16px;line-height:1.72}
+  .gm #gm-problem .gm-three{
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+  }
+  .gm #gm-problem .gm-tile{
+    grid-template-columns:54px minmax(165px,.82fr) minmax(0,1.18fr);
+    grid-template-rows:minmax(0,auto);
+    align-items:center;
+    gap:clamp(16px,2.4vw,28px);
+    min-height:132px;
+    padding:clamp(20px,2.5vw,28px);
+  }
+  .gm #gm-problem .gm-tile h3{font-size:clamp(19px,2vw,22px);line-height:1.42}
+  .gm #gm-problem .gm-tile p{font-size:clamp(14px,1.55vw,16px);line-height:1.67}
+}
+/* Phones: compact vertical cards with readable lines, not three compressed columns. */
+@media(max-width:700px){
+  .gm #gm-problem .gm-head{
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .gm #gm-problem .gm-head h2{
+    max-width:24ch;
+    font-size:clamp(28px,7.2vw,36px);
+    line-height:1.28;
+  }
+  .gm #gm-problem .gm-head > p{max-width:62ch;font-size:14px;line-height:1.72}
+  .gm #gm-problem .gm-three{grid-template-columns:minmax(0,1fr);gap:12px}
+  .gm #gm-problem .gm-tile{
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr);
+    grid-template-rows:auto auto;
+    gap:12px 13px;
+    align-items:center;
+    min-height:0;
+    padding:21px clamp(19px,5vw,25px) 23px;
+    border-radius:16px;
+  }
+  .gm #gm-problem .gm-index{grid-column:1;grid-row:1}
+  .gm #gm-problem .gm-tile h3{
+    grid-column:2;grid-row:1;
+    font-size:clamp(18px,4.8vw,21px);
+    line-height:1.4;
+  }
+  .gm #gm-problem .gm-tile p{
+    grid-column:1/-1;grid-row:2;
+    font-size:14px;line-height:1.7;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .gm #gm-problem .gm-tile{scroll-behavior:auto}
+}
