@@ -915,7 +915,7 @@ main .lq .lq-closing h2 :is(span,em,strong){
    Public media are hosted in the already-published DCG Group Floot asset library. */
 .lq .lq-hero{
   background-color:#f5faf9;
-  background-image:linear-gradient(90deg,#f5faf9 0%,rgba(245,250,249,.97) 33%,rgba(245,250,249,.84) 63%,rgba(245,250,249,.44) 100%),url("https://dcg-group-ecosystem.floot.app/_cdn/static/e5a6d5a5-7c94-4cad-bd30-2d7b93e3a5f2.png");
+  background-image:linear-gradient(90deg,#f5faf9 0%,rgba(245,250,249,.97) 33%,rgba(245,250,249,.84) 63%,rgba(245,250,249,.44) 100%),url("/assets/selfhosted/lumiqc-editorial-backdrop.webp");
   background-position:center,right 47%;
   background-repeat:no-repeat;
   background-size:cover,cover;
@@ -976,7 +976,7 @@ main .lq .lq-closing h2 :is(span,em,strong){
    Process diagram retains its own high-contrast surfaces for accessibility. */
 .lq .lq-workflow{
   background-color:#0b1c25;
-  background-image:linear-gradient(100deg,rgba(9,25,34,.83),rgba(13,43,52,.7) 65%,rgba(8,38,43,.66)),url("https://dcg-group-ecosystem.floot.app/_cdn/static/329cab55-1965-4198-ac7b-d56e5d92c719-lumiqc-workflow-ai-background.png");
+  background-image:linear-gradient(100deg,rgba(9,25,34,.83),rgba(13,43,52,.7) 65%,rgba(8,38,43,.66)),url("/assets/selfhosted/lumiqc-workflow-background.webp");
   background-size:cover,cover;
   background-position:center,center 45%;
   background-repeat:no-repeat;
@@ -1012,7 +1012,7 @@ main .lq .lq-closing h2 :is(span,em,strong){
 .lq .lq-closing{
   color:#0f172a;
   background-color:#f6fbfa;
-  background-image:linear-gradient(95deg,rgba(247,251,250,.985) 0%,rgba(247,251,250,.95) 47%,rgba(247,251,250,.73) 70%,rgba(247,251,250,.38) 100%),url("https://dcg-group-ecosystem.floot.app/_cdn/static/887228e0-5054-4309-8744-01ff4ff9fa56-lumiqc-closing-ai-background.png");
+  background-image:linear-gradient(95deg,rgba(247,251,250,.985) 0%,rgba(247,251,250,.95) 47%,rgba(247,251,250,.73) 70%,rgba(247,251,250,.38) 100%),url("/assets/selfhosted/lumiqc-closing-background.webp");
   background-size:cover,cover;
   background-position:center,center;
   background-repeat:no-repeat;
@@ -1062,11 +1062,11 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
 }
 @media(max-width:1000px){
   .lq .lq-hero{
-    background-image:linear-gradient(100deg,rgba(246,250,249,.96),rgba(246,250,249,.85) 65%,rgba(246,250,249,.54)),url("https://dcg-group-ecosystem.floot.app/_cdn/static/e5a6d5a5-7c94-4cad-bd30-2d7b93e3a5f2.png");
+    background-image:linear-gradient(100deg,rgba(246,250,249,.96),rgba(246,250,249,.85) 65%,rgba(246,250,249,.54)),url("/assets/selfhosted/lumiqc-editorial-backdrop.webp");
     background-position:center,center;
   }
   .lq .lq-closing{
-    background-image:linear-gradient(90deg,rgba(247,251,250,.985),rgba(247,251,250,.86)),url("https://dcg-group-ecosystem.floot.app/_cdn/static/887228e0-5054-4309-8744-01ff4ff9fa56-lumiqc-closing-ai-background.png");
+    background-image:linear-gradient(90deg,rgba(247,251,250,.985),rgba(247,251,250,.86)),url("/assets/selfhosted/lumiqc-closing-background.webp");
   }
   .lq .lq-closing .lq-closing-actions{justify-self:start}
 }
@@ -1075,11 +1075,11 @@ main .lq .lq-closing :is(h1,h2,h3,h4) :is(span,em,strong){
   .lq .lq-problem-photo{aspect-ratio:1.6;max-height:320px}
   .lq .lq-workflow{
     background-position:center,68% center;
-    background-image:linear-gradient(rgba(9,27,37,.86),rgba(9,37,46,.8)),url("https://dcg-group-ecosystem.floot.app/_cdn/static/329cab55-1965-4198-ac7b-d56e5d92c719-lumiqc-workflow-ai-background.png");
+    background-image:linear-gradient(rgba(9,27,37,.86),rgba(9,37,46,.8)),url("/assets/selfhosted/lumiqc-workflow-background.webp");
   }
   .lq .lq-closing{
     background-position:center,62% center;
-    background-image:linear-gradient(rgba(247,251,250,.92),rgba(247,251,250,.9)),url("https://dcg-group-ecosystem.floot.app/_cdn/static/887228e0-5054-4309-8744-01ff4ff9fa56-lumiqc-closing-ai-background.png");
+    background-image:linear-gradient(rgba(247,251,250,.92),rgba(247,251,250,.9)),url("/assets/selfhosted/lumiqc-closing-background.webp");
   }
 }
 @media(max-width:500px){
