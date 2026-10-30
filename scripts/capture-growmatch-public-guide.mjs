@@ -21,21 +21,21 @@ try {
   try{
    const response=await page.goto(base+route.hash,{waitUntil:'domcontentloaded',timeout:45000});
    if(!response || response.status()!==200)throw Error('Public site response '+response?.status());
-   try {await page.waitForSelector('main h1',{state:'visible',timeout:13000});}
+   try {await page.waitForFunction(() => Array.from(document.querySelectorAll('h1')).some(h => h.getBoundingClientRect().width > 0),null,{timeout:13000});}
    catch(error){
      const debug=await page.evaluate(()=>({title:document.title,href:location.href,text:document.body?.innerText.slice(0,1700),main:!!document.querySelector('main'),html:document.documentElement.outerHTML.slice(0,1600)}));
      console.error('PUBLIC PRODUCT DIAGNOSTIC '+route.id,JSON.stringify(debug));
      await page.screenshot({path:out+'/diagnostic-'+route.id+'.jpg',type:'jpeg',quality:75,fullPage:false});
      throw error;
    }
-   await page.waitForFunction(expected=>!expected || (document.querySelector('main')?.innerText||'').includes(expected),route.expected,{timeout:25000});
+   await page.waitForFunction(expected=>!expected || (document.body?.innerText||'').includes(expected),route.expected,{timeout:25000});
    await page.evaluate(async()=>{
     await document.fonts.ready;
     await Promise.all([...document.querySelectorAll('main img')].filter(img=>img.getBoundingClientRect().top<innerHeight+100).map(img=>img.decode().catch(()=>{})));
    });
    await page.waitForTimeout(950);
    const state=await page.evaluate(()=>({
-    h1:document.querySelector('main h1')?.innerText.trim()||'',
+    h1:document.querySelector('h1')?.innerText.trim()||'',
     hasLoginForm:!!document.querySelector('#loginForm'),
     hasRegisterForm:!!document.querySelector('.auth-register-card'),
     url:location.href,
