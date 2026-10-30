@@ -194,3 +194,6 @@
  .gm .gm-team-arrow,.gm .gm-team-dots button{transition:none}
  .gm .gm-team-arrow:hover{transform:none}
 }
+
+/* Ensure event image is not restricted by the small logo rule. */
+.gm .gm-vecom-panel img.gm-vecom-photo{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:center}
