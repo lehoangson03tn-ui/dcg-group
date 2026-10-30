@@ -62,7 +62,7 @@ export function lumiqcPage() {
     <div class="lq-wrap lq-editorial lq-balanced-pair lq-balanced-pair--problem">
       <div class="lq-editorial-lede lq-balanced-left"><p class="lq-overline">01 / BÀI TOÁN NGÀNH F&B</p><h2 id="lq-problem-title">Tem giấy không lưu được <em>toàn bộ hành trình chất lượng</em></h2><p>Vấn đề không chỉ là biết thực phẩm hết hạn ngày nào, mà là biết điều gì xảy ra trong suốt quá trình nhận hàng, sơ chế, bảo quản và bàn giao.</p>
         <figure class="lq-photo lq-problem-photo">
-          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/1247c286-08c7-4122-849b-d200a540e841.png" width="1024" height="1024" alt="Ảnh minh họa AI các hộp thực phẩm được phân loại tại khu bếp thương mại" loading="lazy" decoding="async">
+          <img src="/assets/selfhosted/lumiqc-insight-01.webp" width="1024" height="1024" alt="Ảnh minh họa AI các hộp thực phẩm được phân loại tại khu bếp thương mại" loading="lazy" decoding="async">
           <figcaption>HÌNH MINH HỌA AI / QUẢN LÝ LÔ VÀ HỘP</figcaption>
         </figure></div>
       <div class="lq-fractures lq-balanced-right" aria-label="Ba điểm đứt gãy cần giải quyết">
@@ -80,7 +80,7 @@ export function lumiqcPage() {
       <div class="lq-feature lq-feature--trace lq-balanced-pair lq-balanced-pair--trace">
         <div class="lq-feature-copy lq-balanced-left"><span class="lq-feature-index">01 <i></i> TRACE-SAFE</span><h3>Từ một hộp thực phẩm truy ngược về lô ban đầu</h3><p>Mã QR và nhật ký liên kết lô nguyên liệu, mẻ sơ chế và các hộp tại chi nhánh. Khi chia hộp hoặc xử lý hủy, quan hệ nguồn gốc không bị đánh mất.</p><span class="lq-feature-foot">TRUY VẾT XUÔI & NGƯỢC / THIẾT KẾ CORE</span>
         <figure class="lq-photo lq-feature-photo">
-          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/5aa054db-4c55-4a3a-aaca-4db587ccc349.png" width="1024" height="1024" alt="Ảnh minh họa AI nhân viên quét mã trên hộp thực phẩm trong bếp" loading="lazy" decoding="async">
+          <img src="/assets/selfhosted/lumiqc-insight-02.webp" width="1024" height="1024" alt="Ảnh minh họa AI nhân viên quét mã trên hộp thực phẩm trong bếp" loading="lazy" decoding="async">
           <figcaption>MINH HỌA AI / QUÉT MÃ HỘP THỰC PHẨM</figcaption>
         </figure></div>
         <div class="lq-lineage lq-balanced-right" aria-label="Sơ đồ phả hệ truy vết minh họa">
@@ -113,7 +113,7 @@ export function lumiqcPage() {
       <div class="lq-feature lq-feature--evidence lq-balanced-pair lq-balanced-pair--evidence">
         <div class="lq-feature-copy lq-balanced-left"><span class="lq-feature-index">03 <i></i> EVIDENCE GAP RESOLVER</span><h3>Mỗi ngoại lệ cần bằng chứng và người chịu trách nhiệm</h3><p>Khi có ngoại lệ, hồ sơ chứa mã hộp, ảnh, nhật ký, người phụ trách và quyết định xử lý. Hàng bị giữ ở trạng thái HOLD cho đến khi được người có thẩm quyền đánh giá.</p><span class="lq-feature-foot">HỒ SƠ NGOẠI LỆ / THIẾT KẾ CORE</span>
         <figure class="lq-photo lq-feature-photo">
-          <img src="https://dcg-group-ecosystem.floot.app/_cdn/static/1f2349be-d00c-42ba-aaaa-9e495f514348.png" width="1024" height="1024" alt="Ảnh minh họa AI giám sát viên kiểm tra vệ sinh bằng thiết bị số trong bếp thương mại" loading="lazy" decoding="async">
+          <img src="/assets/selfhosted/lumiqc-insight-03.webp" width="1024" height="1024" alt="Ảnh minh họa AI giám sát viên kiểm tra vệ sinh bằng thiết bị số trong bếp thương mại" loading="lazy" decoding="async">
           <figcaption>MINH HỌA AI / THU THẬP BẰNG CHỨNG</figcaption>
         </figure></div>
         <div class="lq-gate lq-balanced-right" aria-label="Sơ đồ xử lý HOLD, đánh giá bằng chứng và quyết định cuối">
@@ -242,7 +242,7 @@ export function lumiqcPage() {
         <div class="lq-team-track lq-team-grid" id="lq-team-track" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để xem thành viên">
           <article class="lq-person lq-team-slide" data-lq-member="0" aria-label="Thành viên 1: Lê Hoàng Sơn">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--son" src="https://dcg-group-ecosystem.floot.app/_cdn/static/lumiqc-son-portrait-website.webp" alt="Lê Hoàng Sơn mặc áo sơ mi trắng, ảnh chân dung do thành viên cung cấp" width="850" height="1153" decoding="async" loading="lazy">
+              <img class="lq-person-photo lq-person-photo--son" src="/assets/selfhosted/team-le-hoang-son.webp" alt="Lê Hoàng Sơn mặc áo sơ mi trắng, ảnh chân dung do thành viên cung cấp" width="850" height="1153" decoding="async" loading="lazy">
               
             </div>
             <div class="lq-person-info">
@@ -267,7 +267,7 @@ export function lumiqcPage() {
           </article>
           <article class="lq-person lq-team-slide" data-lq-member="1" aria-label="Thành viên 2: Trương Quốc Huy" hidden aria-hidden="true">
             <div class="lq-person-media">
-              <img class="lq-person-photo lq-person-photo--huy" src="https://dcg-group-ecosystem.floot.app/_cdn/static/30e8b869-4cc0-4d9f-b31f-7ad08d2940bc-lumiqc-truong-quoc-huy-vest-user-confirmed.jpeg" alt="Chân dung biên tập của Trương Quốc Huy mặc vest đen, áo sơ mi trắng và cà vạt đen" width="1122" height="1402" decoding="async" loading="lazy">
+              <img class="lq-person-photo lq-person-photo--huy" src="/assets/selfhosted/team-truong-quoc-huy.jpeg" alt="Chân dung biên tập của Trương Quốc Huy mặc vest đen, áo sơ mi trắng và cà vạt đen" width="1122" height="1402" decoding="async" loading="lazy">
               
             </div>
             <div class="lq-person-info">
