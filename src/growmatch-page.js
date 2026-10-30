@@ -1,5 +1,6 @@
 
 import './growmatch-page.css';
+import {growmatchGuideHtml,initGrowmatchGuide} from './growmatch-guide.js';
 
 /**
  * DCG GROWMATCH editorial project page.
@@ -11,7 +12,7 @@ export function growmatchPage(recognitionArticle) {
  '<article class="gm" id="growmatch-top">',
  '<nav class="gm-context" aria-label="Điều hướng nhanh DCG GROWMATCH"><div class="gm-container gm-context-inner">',
  '<a href="/du-an" class="gm-context-brand" aria-label="Quay lại trang các dự án"><img src="/assets/dcg-talent-emblem-safe.webp" width="34" height="34" alt=""><span><b>DCG GROWMATCH</b><small>DCG TALENT / DCG GROUP</small></span></a>',
- '<div class="gm-context-links"><a href="#gm-problem">Bài toán</a><a href="#gm-solution">Giải pháp</a><a href="#gm-process">Cách hoạt động</a><a href="#gm-product">Nền tảng</a><a href="#gm-team">Đội ngũ</a><a href="#thanh-tich">Dấu ấn</a><a href="#gm-vecom">Vecom 2026</a></div>',
+ '<div class="gm-context-links"><a href="#gm-problem">Bài toán</a><a href="#gm-solution">Giải pháp</a><a href="#gm-process">Cách hoạt động</a><a href="#gm-product">Nền tảng</a><a href="#gm-guide">Hướng dẫn</a><a href="#gm-team">Đội ngũ</a><a href="#thanh-tich">Dấu ấn</a><a href="#gm-vecom">Vecom 2026</a></div>',
  '<a class="gm-context-cta" href="https://dcg-growmatch.vercel.app/" target="_blank" rel="noopener noreferrer">Trải nghiệm <span aria-hidden="true">↗</span></a>',
  '</div></nav>',
  '<header class="gm-hero" aria-labelledby="gm-title"><div class="gm-container gm-hero-grid">',
@@ -37,9 +38,10 @@ export function growmatchPage(recognitionArticle) {
  '<ol class="gm-steps"><li><span>01</span><h3>Kết nối</h3><p>Doanh nghiệp công bố nhu cầu, ứng viên tìm hiểu những cơ hội nghề nghiệp.</p></li><li><span>02</span><h3>Đánh giá</h3><p>Người phụ trách xem xét hồ sơ, kỹ năng và thông tin từ tình huống phù hợp.</p></li><li><span>03</span><h3>Luyện tập</h3><p>Người được cấp quyền thực hành với AI và nhận phản hồi để tiến bộ.</p></li><li><span>04</span><h3>Quyết định</h3><p>Doanh nghiệp tổng hợp bằng chứng và chủ động đưa ra bước tiếp theo.</p></li></ol>',
  '<div class="gm-principle"><strong>AI hỗ trợ, con người quyết định</strong><p>Không để ứng viên tự chấm năng lực và không xem kết quả AI là phán quyết tuyển dụng.</p></div></div></section>',
  '<section class="gm-section gm-section-alt" id="gm-product" aria-labelledby="gm-product-title"><div class="gm-container"><div class="gm-head gm-head-split"><div><p class="gm-kicker">04 / NỀN TẢNG</p><h2 id="gm-product-title">Từ ý tưởng đến trải nghiệm số</h2></div><p>Website sản phẩm độc lập được sử dụng để phát triển và giới thiệu các chức năng. Phạm vi vận hành cần được kiểm tra trên phiên bản thực tế.</p></div>',
- '<div class="gm-product-showcase"><div class="gm-product-shot"><img src="/assets/projects/dcg-growmatch-real-website.webp" width="1600" height="697" alt="Ảnh chụp giao diện trang chủ sản phẩm DCG GROWMATCH" loading="lazy" decoding="async"></div><aside><span class="gm-index">DCG GROWMATCH / PRODUCT</span><h3>Khám phá nền tảng đang phát triển</h3><p>Tiếp cận các khu vực dành cho ứng viên, doanh nghiệp và những hoạt động rèn luyện kỹ năng theo quyền truy cập.</p><a class="gm-button gm-button-primary" href="https://dcg-growmatch.vercel.app/" target="_blank" rel="noopener noreferrer">Truy cập sản phẩm <span aria-hidden="true">↗</span></a></aside></div>',
+ '<div class="gm-product-showcase"><div class="gm-product-shot"><img src="/assets/projects/dcg-growmatch-real-website.webp" width="1600" height="697" alt="Ảnh chụp giao diện trang chủ sản phẩm DCG GROWMATCH" loading="lazy" decoding="async"></div><aside><span class="gm-index">DCG GROWMATCH / PRODUCT</span><h3>Khám phá nền tảng đang phát triển</h3><p>Tiếp cận các khu vực dành cho ứng viên, doanh nghiệp và những hoạt động rèn luyện kỹ năng theo quyền truy cập.</p><a class="gm-button gm-button-primary" href="https://dcg-growmatch.vercel.app/" target="_blank" rel="noopener noreferrer">Truy cập sản phẩm <span aria-hidden="true">↗</span></a><a class="gm-product-guide-link" href="#gm-guide">Xem hướng dẫn bằng hình ảnh <span aria-hidden="true">↓</span></a></aside></div>',
  '<div class="gm-concept-gallery"><div class="gm-concept-image"><img src="https://dcg-group-ecosystem.floot.app/_cdn/static/91d678e8-aba2-4c65-9747-f6c14f0302ca-growmatch-ai-dashboard-concept.png" width="1672" height="941" loading="lazy" decoding="async" alt="Hình AI minh họa ý tưởng bảng điều khiển tuyển dụng, các điểm số trong ảnh là giả lập"></div><div class="gm-concept-copy"><p class="gm-kicker">MINH HỌA ĐỊNH HƯỚNG SẢN PHẨM</p><h3>Trực quan hóa thông tin, hỗ trợ quyết định</h3><p>Giao diện minh họa giúp hình dung cách tập hợp hồ sơ, đánh giá kỹ năng và tiến độ tuyển dụng. Các biểu đồ và tỷ lệ trong hình không phải số liệu thực tế.</p></div></div>',
  '<div class="gm-audiences"><article><span class="gm-index">DÀNH CHO DOANH NGHIỆP</span><h3>Hiểu ứng viên rõ hơn</h3><p>Tìm hiểu hồ sơ, nhu cầu tuyển dụng và thông tin đánh giá kỹ năng trong một hành trình có cấu trúc.</p></article><article><span class="gm-index">DÀNH CHO ỨNG VIÊN</span><h3>Chuẩn bị cho cơ hội tiếp theo</h3><p>Khám phá việc làm, hiểu yêu cầu vị trí và luyện tập khi được doanh nghiệp cấp quyền.</p></article></div></div></section>',
+ growmatchGuideHtml(),
  '<section class="gm-section" id="gm-model" aria-labelledby="gm-model-title"><div class="gm-container gm-model-grid"><div><p class="gm-kicker">05 / MÔ HÌNH KINH DOANH SỐ</p><h2 id="gm-model-title">Giải pháp dành cho nhu cầu thực tế của doanh nghiệp</h2><p>Định hướng thương mại tập trung vào tổ chức có nhu cầu tuyển dụng, hướng dẫn và phát triển năng lực nhân sự. Các gói dịch vụ chỉ được công bố chính thức khi có phương án giá đã duyệt.</p></div><div class="gm-model-details"><div><b>Khách hàng</b><span>Doanh nghiệp và bộ phận tuyển dụng, đào tạo</span></div><div><b>Giá trị</b><span>Hỗ trợ xem xét năng lực và luyện tập tình huống</span></div><div><b>Doanh thu dự kiến</b><span>Dịch vụ cho doanh nghiệp và các gói sử dụng theo phạm vi được phê duyệt</span></div></div></div></section>',
  '<section class="gm-section gm-section-alt" id="gm-team" aria-labelledby="gm-team-title"><div class="gm-container"><div class="gm-head gm-head-split"><div><p class="gm-kicker">06 / ĐỘI NGŨ THỰC HIỆN</p><h2 id="gm-team-title">ĐÀN CÁ GỖ</h2></div><p>Hai thành viên chính thức từ ngành Quản trị kinh doanh, Trường Đại học Nguyễn Tất Thành, lớp 25DQT1A.</p></div>',
  '<div class="gm-team-carousel" role="region" aria-roledescription="Bộ trình chiếu thành viên" aria-label="Hồ sơ hai thành viên đội ĐÀN CÁ GỖ"><div class="gm-team-track" id="gm-team-track" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để chuyển thành viên">',
@@ -59,6 +61,7 @@ export function growmatchPage(recognitionArticle) {
 
 /** Same profile-carousel behavior as LUMIQC; independent controls and styles. */
 export function initGrowmatchPage() {
+ initGrowmatchGuide();
  const root = document.querySelector('.gm');
  const track = root?.querySelector('#gm-team-track');
  if (!track) return;
