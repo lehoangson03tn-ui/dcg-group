@@ -113,7 +113,11 @@ for (const width of widths) {
    heroImg: document.querySelector('.gm-hero-visual img')?.getAttribute('src'),
    aiImgCount: document.querySelectorAll('.gm img[src*="growmatch-ai-"]').length,
    carouselCount: document.querySelectorAll('.gm-team-carousel').length,
-   archivePhotoCaptionsHidden: [...document.querySelectorAll('#thanh-tich .growmatch-award-figure figcaption')].every(el=>getComputedStyle(el).clipPath==='inset(50%)'),
+   archivePhotoCaptionsVisible: [...document.querySelectorAll('#thanh-tich .growmatch-award-figure figcaption')].every(el=>{
+     const css=getComputedStyle(el),box=el.getBoundingClientRect();
+     return css.display!=='none' && css.visibility==='visible' && css.position!=='absolute' &&
+       css.clipPath==='none' && box.height>=36 && box.width>150 && !!el.textContent.trim();
+   }),
    noNewFigcaptions: document.querySelectorAll('.gm-hero-visual figcaption,.gm-editorial-media figcaption,.gm-story-gallery figcaption,.gm-team-carousel figcaption').length===0
   }));
   assert.ok(metrics.overflow <= 2, 'horizontal overflow: ' + metrics.overflow);
@@ -193,7 +197,52 @@ for (const width of widths) {
   assert.ok(metrics.heroImg.endsWith('growmatch-ai-hero-launch.png'), 'AI hero launch art');
   assert.ok(metrics.aiImgCount >= 6, 'six AI illustration occurrences');
   assert.equal(metrics.carouselCount, 1, 'one accessible team carousel');
-  assert.ok(metrics.archivePhotoCaptionsHidden && metrics.noNewFigcaptions, 'no visible photo captions');
+  assert.ok(metrics.archivePhotoCaptionsVisible && metrics.noNewFigcaptions,
+    'both original documentary photo captions must be visible; other image sections remain unchanged');
+  assert.equal(await page.locator('#thanh-tich .growmatch-award-figure figcaption').count(),2,
+    'retain original captions for both competition photographs');
+  const awardMetrics=await page.evaluate(()=>{
+    const article=document.querySelector('#thanh-tich');
+    const intro=article.querySelector('.growmatch-award-intro p');
+    const title=article.querySelector('.growmatch-award-title');
+    const text=article.querySelector('.growmatch-award-prose:not(.growmatch-award-intro)');
+    const picture=article.querySelector('.growmatch-award-figure');
+    const subtitle=article.querySelector('.growmatch-award-prose h4');
+    const captions=[...article.querySelectorAll('.growmatch-award-figure figcaption')];
+    const box=x=>{const r=x.getBoundingClientRect();return {
+      left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
+    return {
+      introFont:parseFloat(getComputedStyle(intro).fontSize),
+      bodyFont:parseFloat(getComputedStyle(text.querySelector('p')).fontSize),
+      titleFont:parseFloat(getComputedStyle(title).fontSize),
+      subtitleFont:parseFloat(getComputedStyle(subtitle).fontSize),
+      intro:box(intro),picture:box(picture),text:box(text),
+      captions:captions.map(c=>({box:box(c),font:parseFloat(getComputedStyle(c).fontSize),
+        clip:getComputedStyle(c).clipPath}))
+    };
+  });
+  assert.ok(awardMetrics.captions.every(x=>x.box.height>=36 && x.font>=13 && x.clip==='none'),
+    'award captions must have real readable height, not screen-reader-only geometry');
+  assert.ok(awardMetrics.captions.every(x=>x.box.width>=200),
+    'award captions must follow photo width');
+  if(width>=701 && width<=1180){
+    assert.ok(awardMetrics.introFont>=18 && awardMetrics.bodyFont>=18,
+      'iPad award text must be at least 18px: '+JSON.stringify(awardMetrics));
+    assert.ok(awardMetrics.titleFont>=35 && awardMetrics.subtitleFont>=26,
+      'iPad article headings must be readable against the photographs');
+    assert.ok(Math.abs(awardMetrics.picture.width-awardMetrics.text.width)<5,
+      'iPad photo and text columns should have equal width: '+JSON.stringify(awardMetrics));
+    assert.ok(Math.abs(awardMetrics.picture.left-awardMetrics.text.left)<5,
+      'iPad photo and text should share a common left edge');
+  }
+  if(width<=700){
+    assert.ok(awardMetrics.bodyFont>=16,'phone body stays readable');
+  }
+  if([390,820,1024,1440].includes(width)){
+    await page.locator('#thanh-tich .growmatch-award-figure').first().screenshot({
+      path:'qa-growmatch-vecom/award-caption-'+width+'.png',animations:'disabled'
+    });
+  }
 
   // Product showcase regression: two matched CTAs and a genuine decodable JPG.
   const productShowcase=page.locator('.gm-product-showcase');
