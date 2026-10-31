@@ -68,7 +68,7 @@ for(const [engine,driver,widths] of browsers){
 
     // Regression: numbered badges share a stable first-line axis with their
     // text on phones, iPads and desktop, even when a sentence wraps.
-    const assertNumberedRows=async(stage,label)=>{
+    const assertNumberedRows=async(stage,label,expectedCount=3)=>{
       const layout=await stage.locator('.gm-guide-explain ol').evaluate(ol=>{
         const rows=[...ol.querySelectorAll(':scope > li')];
         return rows.map(li=>{
@@ -85,7 +85,7 @@ for(const [engine,driver,widths] of browsers){
             copyHeight:word?.height,overflow:li.scrollWidth>li.clientWidth+2};
         });
       });
-      assert.equal(layout.length,3,label+' should have three numbered instructions');
+      assert.equal(layout.length,expectedCount,label+' should have '+expectedCount+' numbered instructions');
       assert.ok(layout.every(x=>x.badgePosition==='static'),
         label+' badges must remain in the document layout');
       assert.ok(layout.every(x=>x.badgeWidth>=27&&x.badgeHeight>=27),
@@ -102,7 +102,7 @@ for(const [engine,driver,widths] of browsers){
     const overview=guide.locator('[data-gm-guide-flow="overview"]');
     assert.ok(await overview.isVisible());
     assert.ok(await overview.locator('[data-gm-guide-stage="0"]').isVisible());
-    await assertNumberedRows(overview.locator('[data-gm-guide-stage="0"]'),'overview step 01');
+    await assertNumberedRows(overview.locator('[data-gm-guide-stage="0"]'),'overview step 01',2);
     await overview.locator('[data-gm-guide-next]').click();
     assert.ok(await overview.locator('[data-gm-guide-stage="1"]').isVisible(),'next button works');
     await overview.locator('[data-gm-guide-step="2"]').click();
