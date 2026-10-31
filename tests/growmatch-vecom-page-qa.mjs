@@ -22,6 +22,48 @@ for (const width of widths) {
    assert.equal(await page.locator('#' + id).count(), 1, id + ' section');
   }
   assert.equal(await page.locator('.growmatch-award-figure').count(), 2, 'exactly two original award figures');
+
+  // Vecom 2026: two discover links must have matching geometry on all devices.
+  const vecomButtons = await page.locator('#gm-vecom .gm-actions').evaluate(group=>{
+    const rect=el=>{const r=el.getBoundingClientRect();return {
+      left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height
+    };};
+    const buttons=[...group.querySelectorAll(':scope > a.gm-button')];
+    return {group:rect(group),buttons:buttons.map(el=>({
+      ...rect(el),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,
+      link:el.getAttribute('href'),text:el.textContent.trim(),
+      iconWidth:rect(el.querySelector('span')).width
+    }))};
+  });
+  assert.equal(vecomButtons.buttons.length,2,'Vecom must keep exactly two CTAs');
+  const [primaryVecom,secondaryVecom]=vecomButtons.buttons;
+  assert.ok(Math.abs(primaryVecom.width-secondaryVecom.width)<=2,
+    'Vecom buttons should have exactly the same width: '+JSON.stringify(vecomButtons));
+  assert.ok(Math.abs(primaryVecom.height-secondaryVecom.height)<=2,
+    'Vecom buttons should have exactly the same height: '+JSON.stringify(vecomButtons));
+  assert.ok(vecomButtons.buttons.every(b=>b.height>=54 && b.width>=170),
+    'Vecom buttons need comfortable click areas');
+  assert.ok(vecomButtons.buttons.every(b=>b.scrollWidth<=b.clientWidth+2),
+    'Vecom button labels must not overflow');
+  assert.equal(primaryVecom.link,'https://dcg-growmatch.vercel.app/');
+  assert.equal(secondaryVecom.link,'/du-an');
+  if(width<=1180){
+    assert.ok(secondaryVecom.top>=primaryVecom.bottom+7,
+      'Vecom iPad/phone buttons must stack evenly');
+    assert.ok(Math.abs(secondaryVecom.left-primaryVecom.left)<2,
+      'Vecom stacked buttons must have the same left alignment');
+  }else{
+    assert.ok(Math.abs(secondaryVecom.top-primaryVecom.top)<2,
+      'Vecom desktop buttons should share one row');
+    assert.ok(secondaryVecom.left>=primaryVecom.right+7,
+      'Vecom desktop buttons must have visible spacing');
+  }
+  if([390,820,1024,1440].includes(width)){
+    await page.locator('#gm-vecom .gm-actions').screenshot({
+      path:'qa-growmatch-vecom/vecom-matched-actions-'+width+'.png',animations:'disabled'
+    });
+  }
+
   // Visual geometry contract for the three problem cards, checked at all eleven viewports.
   const problemLayout = await page.evaluate(() => {
     const section=document.querySelector('#gm-problem');
