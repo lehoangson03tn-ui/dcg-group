@@ -72,14 +72,14 @@ function home(){return `
 <section class="home-hero">
  <div class="home-hero-copy"><div class="home-hero-copy-inner">
   ${eyebrow('DCG GROUP')}
-  <h1>Kết nối con người <span>Công nghệ và sáng tạo</span></h1>
+  <h1>Kết nối con người, <span>công nghệ và sáng tạo</span></h1>
   <p>DCG phát triển hệ sinh thái trong các lĩnh vực nhân lực, sản xuất nội dung, thị giác máy tính và giải trí. Mỗi hướng đi bắt đầu từ một nhu cầu cụ thể của con người và doanh nghiệp.</p>
   <div class="hero-actions">${cta('Khám phá hệ sinh thái','/he-sinh-thai','button-dark')}${cta('Tìm hiểu về DCG','/gioi-thieu','button-secondary')}</div>
  </div></div>
  <div class="home-hero-media">${editorialImage(group.image,'group',true)}</div>
 </section>
 <section class="about-home page-section"><div class="container">${sectionTop('01','GIỚI THIỆU')}
- <div class="about-home-grid"><div>${eyebrow('VỀ DCG GROUP')}<h2>Bốn lĩnh vực <span>Một định hướng chung</span></h2></div>
+ <div class="about-home-grid"><div>${eyebrow('VỀ DCG GROUP')}<h2>Bốn lĩnh vực, <span>một định hướng chung</span></h2></div>
  <div><p class="lead">Mỗi lĩnh vực có cách tiếp cận riêng, cùng bắt đầu từ những nhu cầu thực tế.</p>
  <p>DCG GROUP kết nối bốn thương hiệu: DCG TALENT, DCG STUDIO, DCG VISION và DCG ENTERTAINMENT. Mỗi thương hiệu theo đuổi một lĩnh vực riêng, cùng hướng đến việc đưa công nghệ và sáng tạo vào những nhu cầu thực tế.</p>
  <p>Định hướng của DCG là bắt đầu từ vấn đề cần giải quyết, lựa chọn cách làm phù hợp và từng bước hoàn thiện sản phẩm qua thử nghiệm.</p>
